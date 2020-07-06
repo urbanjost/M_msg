@@ -57,8 +57,8 @@ The unit test runs with
    as described at [https://fortran-lang.org](https://fortran-lang.org)
    when there is a production version of fpm(1) available.
 
-   In the mean time it is the first and simplest module set up using
-   fpm(1) in an attempt to explore the use of fpm(1). The initial
-   goal is to set up all the seperate modules with fpm(1) and then
-   change the FUNIX repository to build entirely using fpm(1) as an
-   experiment.
+   In the mean time it is my first first and simplest module set up using
+   fpm(1); in an attempt to explore the use of fpm(1). The initial goal
+   is to set up all the seperate modules needed by the FUNIX repository
+   with fpm(1) and then change the FUNIX repository to build entirely
+   using fpm(1) as an experiment.
