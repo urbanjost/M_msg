@@ -1,0 +1,14 @@
+name = "M_msg"
+version = "0.1.0"
+license = "MIT"
+author = "John S. Urban"
+maintainer = "urbanjost@comcast.net"
+copyright = "2020 John S. Urban"
+
+[library]
+source-dir="src"
+
+[[test]]
+name="runTests"
+source-dir="test"
+main="main.f90"
