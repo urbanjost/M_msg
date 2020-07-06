@@ -31,11 +31,13 @@ program and run the test and display the manpage for the routine.
 
 
 ## USER DOCUMENTATION
-   - a simple [manpage](https://urbanjost.github.io/M_msg/src.3.html) in HTML form
+   - a simple [manpage](https://urbanjost.github.io/M_msg/str.3.html) in HTML form
 
 
 ## ADDITIONAL DIRECTORY DESCRIPTIONS
 There are 
+
+   - source for the M_msg(3f) module in src/
    - manpages in the man/man3 directory 
    - HTML documentation in the docs/ directory.
    - test/ contains a simple test program
