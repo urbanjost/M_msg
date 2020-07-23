@@ -12,20 +12,33 @@ other larger modules so it is in its own module to prevent circular dependencies
 ## BUILDING THE MODULE
 A conventional *nix install:
 
+```bash
      git clone https://github.com/urbanjost/M_msg.git
      cd M_msg/src
      # change Makefile if not using gfortran(1)
      make
+```
+This will compile the Fortran module and basic test
+program and run the test and display the manpage for the routine.
 
-A build if you have fpm (Fortran Package Mananger) installed:
 
+## SUPPORTS FPM (registered at the [fpm(1) registry](https://github.com/fortran-lang/fpm-registry) )
+
+Alternatively, download the github repository and build it with 
+fpm ( as described at [Fortran Package Manager](https://github.com/fortran-lang/fpm) )
+
+```bash
      git clone https://github.com/urbanjost/M_msg.git
      cd M_msg
      fpm build
      fpm test
+```
 
-This will compile the Fortran module and basic test
-program and run the test and display the manpage for the routine.
+or just list it as a dependency in your fpm.toml project file.
+
+     [dependencies]
+     M_msg        = { git = "https://github.com/urbanjost/M_msg.git" }
+
 
 ## INSTALLATION
 
@@ -46,10 +59,12 @@ There are
 ## UNIT TESTS
 The unit test runs with
 
+```bash
     # typical *nix installation
     cd src;make
     # if you have fpm(1) installed
     fpm test
+```
 
 
 ## FUTURE
