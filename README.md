@@ -2,12 +2,12 @@
 ## M_msg - convert any scalar type to a string using unlimited polymorphic variables
 
 ## DESCRIPTION
-This is a small module that can convert a list of variables of any
-of the most common default types to a string.
+This is a small module that can convert a list of variables of any of
+the most common default types to a string.
 
-It performs such a low-level operation that it is likely to be a dependency of
-other larger modules so it is in its own module to prevent circular dependencies.
-
+It performs such a low-level operation that it is likely to be a
+dependency of other larger modules so it is in its own module to prevent
+circular dependencies.
 
 ## BUILDING THE MODULE
 A conventional *nix install:
