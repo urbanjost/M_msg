@@ -22,7 +22,8 @@ This will compile the Fortran module and basic test
 program and run the test and display the manpage for the routine.
 
 
-## SUPPORTS FPM (registered at the [fpm(1) registry](https://github.com/fortran-lang/fpm-registry) )
+## SUPPORTS FPM
+#### (registered at the [fpm(1) registry](https://github.com/fortran-lang/fpm-registry) )
 
 Alternatively, download the github repository and build it with 
 fpm ( as described at [Fortran Package Manager](https://github.com/fortran-lang/fpm) )
