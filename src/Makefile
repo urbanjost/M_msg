@@ -9,9 +9,9 @@ PROG = ${PROGFILES:.f90=}
 
 CPROG = ${CPROGFILES:.c=}
 
-SRCS =  M_msg.f90 
+SRCS =  M_msg.f90 M_journal.f90 M_debug.f90
 
-OBJS =  M_msg.o 
+OBJS =  M_msg.o M_journal.o M_debug.o
 
 LIBRARY = libM_msg.a
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -21,19 +21,22 @@ LIBS := -lM_msg
 CC := cc
 CFLAGS := -O
 FC := gfortran
-FFLAGS := -O
-F90 := gfortran
-F90FLAGS := -O
+FFLAGS := -O -fPIC \
+  -Wall -Wextra -Wimplicit-interface -fmax-errors=1 -fbounds-check -fcheck-array-temporaries\
+  -march=native -ffast-math -funroll-loops\
+  -fbacktrace
 LDFLAGS := 
+
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 all: $(OBJS) $(LIBRARY) $(PROGFILES) $(PROG)
 	: That is all Folks!
 
 $(PROG): $(OBJS)
-	-$(F90) $(LDFLAGS) $@.f90 -o $@ $(OBJS) $(LIBS)||echo "ouch: $@.f90 "
+	-$(FC) $(LDFLAGS) $@.f90 -o $@ $(OBJS) $(LIBS)||echo "ouch: $@.f90 "
 
 $(PROGFILES): $(LIBRARY)
-	-$(F90) $(LDFLAGS) $@ -L. -o $* $(LIBS)
+	-$(FC) $(LDFLAGS) $@ -L. -o $* $(LIBS)
 	env MANPATH=../man man str
 	$*
 
@@ -46,7 +49,11 @@ clean:
 .SUFFIXES: $(SUFFIXES) .f90 .F90 
 
 .f90.o:
-	$(F90) $(F90FLAGS) -c $<
+	$(FC) $(FFLAGS) -c $<
 
 .F90.o:
-	$(F90) $(F90FLAGS) -c $<
+	$(FC) $(FFLAGS) -c $<
+#=================================================================================
+
+M_debug.o: M_msg.o 
+M_journal.o: M_debug.o M_msg.o 

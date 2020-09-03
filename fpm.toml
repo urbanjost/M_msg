@@ -4,6 +4,7 @@ license = "Public Domain"
 author = "John S. Urban"
 maintainer = "urbanjost@comcast.net"
 copyright = "2020 John S. Urban"
+description = "converts any standard scalar type to a string"
 
 [library]
 source-dir="src"
