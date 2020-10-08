@@ -35,8 +35,10 @@ fpm ( as described at [Fortran Package Manager](https://github.com/fortran-lang/
 
 or just list it as a dependency in your fpm.toml project file.
 
+```toml
      [dependencies]
      M_msg        = { git = "https://github.com/urbanjost/M_msg.git" }
+```
 
 #### (registered at the [fpm(1) registry](https://github.com/fortran-lang/fpm-registry) )
 

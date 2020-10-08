@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
@@ -234,17 +223,18 @@ character(len=:),allocatable       :: prefix            ! the prefix string to a
 logical,save                       :: prefix_it=.false. ! flag whether time prefix mode is on or not
 character(len=4096)                :: mssge
 !-----------------------------------------------------------------------------------------------------------------------------------
-interface
-   function now_ex(format)
-      character(len=*),intent(in),optional :: format
-      character(len=:),allocatable         :: now_ex
-   end function now_ex
-end interface
+!interface
+!   function now_ex(format)
+!      character(len=*),intent(in),optional :: format
+!      character(len=:),allocatable         :: now_ex
+!   end function now_ex
+!end interface
 !-----------------------------------------------------------------------------------------------------------------------------------
    adv='yes'
 !-----------------------------------------------------------------------------------------------------------------------------------
    if(prefix_it)then
-      prefix=now_ex(prefix_template)
+      prefix=''
+      !!prefix=now_ex(prefix_template)
    else
       prefix=''
    endif
