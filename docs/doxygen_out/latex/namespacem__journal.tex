@@ -1,0 +1,315 @@
+\hypertarget{namespacem__journal}{}\section{m\+\_\+journal Module Reference}
+\label{namespacem__journal}\index{m\+\_\+journal@{m\+\_\+journal}}
+
+
+\subsubsection*{N\+A\+ME}
+
+M\+\_\+journal(3fm) -\/ \mbox{[}M\+\_\+journal\mbox{]} write program messages to stdout and/or a log file (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS} 
+
+
+\subsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \mbox{\hyperlink{interfacem__journal_1_1journal}{journal}}
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+journal(3f) -\/ \mbox{[}M\+\_\+journal\mbox{]} provides public message routine, no paging or graphic mode change (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a21238c3fc7731703c75eb39233ab529e}{where\+\_\+write\+\_\+message}} (where, msg)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a24b891eded8ca585a6a72ab0eef7016c}{flush\+\_\+trail}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a8388800481a5e7ca022b52cfc56b9daf}{set\+\_\+stdout\+\_\+lun}} (iounit)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a25d0f5da7f7e84e22ab0a583447412b1}{where\+\_\+write\+\_\+message\+\_\+all}} (where, g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, nospace)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+where\+\_\+write\+\_\+message\+\_\+all(3f) -\/ \mbox{[}M\+\_\+journal\mbox{]} converts any standard scalar type to a string and calls journal(3f) (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacem__journal_aa86511a7c388f9286c282f6fa933ab58}{write\+\_\+message\+\_\+only}} (message)
+\item 
+character(len=\+:) function, allocatable \mbox{\hyperlink{namespacem__journal_a9c8074667748f2685122f2b3147e61d5}{now\+\_\+ex}} (format)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, save, private \mbox{\hyperlink{namespacem__journal_a664cf3fd85385b776d30ea589606ad1c}{stdout}} =O\+U\+T\+P\+U\+T\+\_\+\+U\+N\+IT
+\item 
+logical, save \mbox{\hyperlink{namespacem__journal_a6184fbcebdfa06f0a45ce4c699189b53}{debug}} =.false.
+\item 
+integer, save \mbox{\hyperlink{namespacem__journal_a47e8e34dc4072b04101027394d688519}{last\+\_\+int}} =0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{N\+A\+ME}
+
+M\+\_\+journal(3fm) -\/ \mbox{[}M\+\_\+journal\mbox{]} write program messages to stdout and/or a log file (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+use, M\+\_\+journal , only \+: journal \subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+\begin{DoxyVerb}For interactive programs in particular it is useful if all messages
+go thru the JOURNAL(3f) routine. This makes it easy to write messages
+to a log file as well as standard output; to toggle time prefixes
+on and off; to turn on and off debug-mode messages; control output
+paging and create replayable input journals.
+
+The primary use of JOURNAL(3f) is to create journal files for
+interactive programs that can be replayed and/or be used to verify
+program executions. Typically, you would echo what the user typed to
+the trail file as-is, and write output you write to stdout as comments
+to the trail file so that the trail file can easily be read back in
+(by ignoring comments). So usually things that are read from user
+input are using output with WHERE='T' and output that usually goes
+to stdout is written with WHERE='SC' in the JOURNAL(3f) call.
+
+ >      :
+ >      :
+ > character(len=256) userline, output
+ > call journal('O','my_trail_file')  ! open trail file
+ >      :
+ >      :
+ > do
+ >    read(*,'(a)',iostat=ios) userline  ! read user input
+ >    if(ios.ne.0)exit
+ >    ! echo user input to trail file
+ >    call journal('T',userline)
+ >    ! assume user input causes values i1, i2, and i3 to be calculated
+ >    write(output,'(i0,1x,i0,1x)')i1,i2,i3 ! build an output line
+ >    ! write output to stdout and as comment to trail file
+ >    call journal(output)
+ >    !or you can specify the WHERE parameter and up to ten scalar values
+ >    call journal('SC','i1=',i1,'i2=',i2,'i3=',i3)
+ > enddo
+
+In this example an output line was built with an internal write; but calls
+to journal(3f) with numeric values with and without advancing I/O turned on
+are often used for simpler output:
+
+   I=10
+   R=20.3
+   ! write to stdout and trail file without advancing I/O
+   call journal('+SC','I=',i)
+   call journal('SC','AND R=',r)
+
+writes to the trail file are ignored unless a trail file was opened with
+
+   CALL JOURNAL('O',filename)
+
+
+So that routines that do their output via JOURNAL(3f) can be used with and
+without programs generating trail files. That is, destinations 'T' and 'C'
+are ignored unless a trail file has been requested.
+
+With no parameters, the trail file is flushed.
+\end{DoxyVerb}
+
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+\begin{DoxyVerb}The man(1) page for journal(3f) describes all the options for the WHERE field.
+In addition to being used to generate a journal, the routine can be used for
+producing optional debug messages and timing information.
+
+Sample program for debug messages:
+
+  program demo_journal
+  !! showing creating debug messages
+  use M_journal, only : journal
+  implicit none
+  !! produces no output because trail is not on
+  call journal('D','*demo* DEBUG MESSAGE 001 IGNORED')
+  !! turn on debug messages
+  call journal('>','debug on')
+  !! produces output on stdout because debug mode
+  !! is on but no named trail file
+  call journal('D','*demo* DEBUG MESSAGE 002 ON STDOUT')
+  !! open trail file
+  call journal('O','mytrail.txt')
+  !! debug messages now go to the trail file
+  call journal('D','*demo* DEBUG MESSAGE 003 TO TRAIL')
+  !! close trail file so messages go to stdout again
+  call journal('O','')
+  !! debug on stdout now
+  call journal('D','*demo* DEBUG MESSAGE 004 TO STDOUT')
+  call journal('<','debug off')
+  !! back to no output from the next message
+  call journal('D','*demo* DEBUG MESSAGE 005 IGNORED')
+  end program demo_journal
+\end{DoxyVerb}
+
+
+Sample program for trail messages with optional timing information\+:
+
+program testit use M\+\_\+journal,only \+: journal implicit none call journal(\textquotesingle{}a single string A -\/should be on S\textquotesingle{})
+
+! add time prefix to output call journal(\textquotesingle{}\textquotesingle{},\textquotesingle{}Y-\/M-\/DTh\+:m\+:s.xu\+:b\textquotesingle{}) call journal(\textquotesingle{}a single string B -\/should be on S with prefix\textquotesingle{}) call journal(\textquotesingle{}\textquotesingle{},\textquotesingle{}C\+P\+U\+\_\+\+T\+I\+ME\+: c\+:C\+A\+L\+LS\+: C\+: b\textquotesingle{}) ! change time prefix call journal(\textquotesingle{}a single string B-\/1 -\/should be on S with prefix\textquotesingle{}) call journal(\textquotesingle{}a single string B-\/2 -\/should be on S with prefix\textquotesingle{}) call journal(\textquotesingle{}a single string B-\/3 -\/should be on S with prefix\textquotesingle{}) ! Other useful time formats\+: ! E -- Unix Epoch time ! e -- integer value of Unix Epoch time ! C -- number of times this format is used ! c -- C\+P\+U\+\_\+time(3f) output ! S -- seconds since last use of this format ! k -- C\+PU time in seconds from system\+\_\+clock call journal(\textquotesingle{}\textquotesingle{},\textquotesingle{}\textquotesingle{}) ! turn off time prefix ! call journal(\textquotesingle{}a single string C -\/should be on S\textquotesingle{}) ! call journal(\textquotesingle{}O\textquotesingle{},\textquotesingle{}aaa.\+out\textquotesingle{}) ! turn on trail file call journal(\textquotesingle{}a single string D -\/should be on SC\textquotesingle{}) call journal(\textquotesingle{}a single string E -\/should be on SC\textquotesingle{}) call journal(\textquotesingle{}a single string F -\/should be on SC\textquotesingle{}) call journal(\textquotesingle{}O\textquotesingle{},\textquotesingle{}\textquotesingle{}) ! turn off trail file ! call journal(\textquotesingle{}a single string G -\/should be on S\textquotesingle{}) call journal(\textquotesingle{}a single string H -\/should be on S\textquotesingle{}) call journal(\textquotesingle{}a single string I -\/should be on S\textquotesingle{})
+
+! build one line of output with intrinsic scalar values added call journal(\textquotesingle{}+sc\textquotesingle{},\textquotesingle{}A\+P\+P\+E\+ND\+:\textquotesingle{}) call journal(\textquotesingle{}+sc\textquotesingle{},\textquotesingle{} integer\textquotesingle{}, 1234) call journal(\textquotesingle{}+sc\textquotesingle{},\textquotesingle{} and real\textquotesingle{}, 1234.\+5678) call journal(\textquotesingle{}+sc\textquotesingle{},\textquotesingle{} and double\textquotesingle{},1234567890.\+123456d0) call journal(\textquotesingle{}+sc\textquotesingle{},\textquotesingle{} and logical\textquotesingle{}, .true.) call journal(\textquotesingle{}sc\textquotesingle{},\textquotesingle{}\textquotesingle{}) ! end program testit
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacem__journal_a24b891eded8ca585a6a72ab0eef7016c}\label{namespacem__journal_a24b891eded8ca585a6a72ab0eef7016c}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!flush\+\_\+trail@{flush\+\_\+trail}}
+\index{flush\+\_\+trail@{flush\+\_\+trail}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{flush\+\_\+trail()}{flush\_trail()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::flush\+\_\+trail (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References where\+\_\+write\+\_\+message().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a24b891eded8ca585a6a72ab0eef7016c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a9c8074667748f2685122f2b3147e61d5}\label{namespacem__journal_a9c8074667748f2685122f2b3147e61d5}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!now\+\_\+ex@{now\+\_\+ex}}
+\index{now\+\_\+ex@{now\+\_\+ex}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{now\+\_\+ex()}{now\_ex()}}
+{\footnotesize\ttfamily character(len=\+:) function, allocatable m\+\_\+journal\+::now\+\_\+ex (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in), optional}]{format }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References m\+\_\+time\+::now(), and now\+\_\+ex().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a9c8074667748f2685122f2b3147e61d5_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a8388800481a5e7ca022b52cfc56b9daf}\label{namespacem__journal_a8388800481a5e7ca022b52cfc56b9daf}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!set\+\_\+stdout\+\_\+lun@{set\+\_\+stdout\+\_\+lun}}
+\index{set\+\_\+stdout\+\_\+lun@{set\+\_\+stdout\+\_\+lun}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{set\+\_\+stdout\+\_\+lun()}{set\_stdout\_lun()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::set\+\_\+stdout\+\_\+lun (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{iounit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References stdout.
+
+\mbox{\Hypertarget{namespacem__journal_a21238c3fc7731703c75eb39233ab529e}\label{namespacem__journal_a21238c3fc7731703c75eb39233ab529e}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!where\+\_\+write\+\_\+message@{where\+\_\+write\+\_\+message}}
+\index{where\+\_\+write\+\_\+message@{where\+\_\+write\+\_\+message}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{where\+\_\+write\+\_\+message()}{where\_write\_message()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::where\+\_\+write\+\_\+message (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{where,  }\item[{character(len=$\ast$), intent(in)}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References debug, last\+\_\+int, now\+\_\+ex(), and stdout.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a21238c3fc7731703c75eb39233ab529e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a21238c3fc7731703c75eb39233ab529e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a25d0f5da7f7e84e22ab0a583447412b1}\label{namespacem__journal_a25d0f5da7f7e84e22ab0a583447412b1}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!where\+\_\+write\+\_\+message\+\_\+all@{where\+\_\+write\+\_\+message\+\_\+all}}
+\index{where\+\_\+write\+\_\+message\+\_\+all@{where\+\_\+write\+\_\+message\+\_\+all}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{where\+\_\+write\+\_\+message\+\_\+all()}{where\_write\_message\_all()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::where\+\_\+write\+\_\+message\+\_\+all (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{where,  }\item[{class($\ast$), intent(in)}]{g0,  }\item[{class($\ast$), intent(in), optional}]{g1,  }\item[{class($\ast$), intent(in), optional}]{g2,  }\item[{class($\ast$), intent(in), optional}]{g3,  }\item[{class($\ast$), intent(in), optional}]{g4,  }\item[{class($\ast$), intent(in), optional}]{g5,  }\item[{class($\ast$), intent(in), optional}]{g6,  }\item[{class($\ast$), intent(in), optional}]{g7,  }\item[{class($\ast$), intent(in), optional}]{g8,  }\item[{class($\ast$), intent(in), optional}]{g9,  }\item[{logical, intent(in), optional}]{nospace }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+where\+\_\+write\+\_\+message\+\_\+all(3f) -\/ \mbox{[}M\+\_\+journal\mbox{]} converts any standard scalar type to a string and calls journal(3f) (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+subroutine where\+\_\+write\+\_\+message\+\_\+all(where,g0,g1,g2g3,g4,g5,g6,g7,g8,g9,nospace)
+
+character(len=$\ast$),intent(in) \+:\+: where class($\ast$),intent(in) \+:\+: g0 class($\ast$),intent(in),optional \+:\+: g1,g2,g3,g4,g5,g6,g7,g8,g9 logical,intent(in),optional \+:\+: nospace
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+where\+\_\+write\+\_\+message\+\_\+all(3f) builds and writes a space-\/separated string from up to nine scalar values.
+
+\subsubsection*{O\+P\+T\+I\+O\+NS}
+
+\begin{DoxyVerb}where    string designating where to write message, as with journal(3f)
+g0       value to print. May
+         be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,
+         or CHARACTER.
+g[1-9]   optional additional values to print the value of after g0.
+nospace  if nospace=.true., then no spaces are added between values
+\end{DoxyVerb}
+ \subsubsection*{R\+E\+T\+U\+R\+NS}
+
+where\+\_\+write\+\_\+message\+\_\+all description to print
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+wm\+\_\+all use M\+\_\+journal, only \+: where\+\_\+write\+\_\+message\+\_\+all implicit none end program program demo\+\_\+wm\+\_\+all \subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References where\+\_\+write\+\_\+message().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a25d0f5da7f7e84e22ab0a583447412b1_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_aa86511a7c388f9286c282f6fa933ab58}\label{namespacem__journal_aa86511a7c388f9286c282f6fa933ab58}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!write\+\_\+message\+\_\+only@{write\+\_\+message\+\_\+only}}
+\index{write\+\_\+message\+\_\+only@{write\+\_\+message\+\_\+only}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{write\+\_\+message\+\_\+only()}{write\_message\_only()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::write\+\_\+message\+\_\+only (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References where\+\_\+write\+\_\+message().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_aa86511a7c388f9286c282f6fa933ab58_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacem__journal_a6184fbcebdfa06f0a45ce4c699189b53}\label{namespacem__journal_a6184fbcebdfa06f0a45ce4c699189b53}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!debug@{debug}}
+\index{debug@{debug}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily logical, save m\+\_\+journal\+::debug =.false.\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__journal_a47e8e34dc4072b04101027394d688519}\label{namespacem__journal_a47e8e34dc4072b04101027394d688519}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!last\+\_\+int@{last\+\_\+int}}
+\index{last\+\_\+int@{last\+\_\+int}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{last\+\_\+int}{last\_int}}
+{\footnotesize\ttfamily integer, save m\+\_\+journal\+::last\+\_\+int =0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__journal_a664cf3fd85385b776d30ea589606ad1c}\label{namespacem__journal_a664cf3fd85385b776d30ea589606ad1c}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!stdout@{stdout}}
+\index{stdout@{stdout}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{stdout}{stdout}}
+{\footnotesize\ttfamily integer, save, private m\+\_\+journal\+::stdout =O\+U\+T\+P\+U\+T\+\_\+\+U\+N\+IT\hspace{0.3cm}{\ttfamily [private]}}
+

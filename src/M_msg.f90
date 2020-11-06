@@ -3,13 +3,16 @@ implicit none
 private
 !-----------------------------------------------------------------------------------------------------------------------------------
 ! USED SO FREQUENTLY IN OTHER MODULES PUT IN THIS ONE WITH NO DEPENDENCIES TO PREVENT CIRCULAR DEPENDENCY
+!-----------------------------------------------------------------------------------------------------------------------------------
 
 ! ident_1="@(#)M_msg::str(3f): {msg_scalar,msg_one}"
 
 public str
+
 interface str
    module procedure msg_scalar, msg_one
 end interface str
+
 contains
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
@@ -18,14 +21,16 @@ contains
 !!##NAME
 !!    str(3f) - [M_msg] converts any standard scalar type to a string
 !!    (LICENSE:PD)
+!!
 !!##SYNOPSIS
 !!
-!!    function str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,nospace)
+!!     function str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
+!!     & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,nospace)
 !!
-!!     class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
-!!     class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
-!!     logical,intent(in),optional   :: nospace
-!!     character,len=(:),allocatable :: str
+!!      class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
+!!      class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
+!!      logical,intent(in),optional   :: nospace
+!!      character,len=(:),allocatable :: str
 !!
 !!##DESCRIPTION
 !!    str(3f) builds a space-separated string from up to twenty scalar values.
@@ -40,8 +45,10 @@ contains
 !!                arguments and array arguments is not supported.
 !!
 !!    nospace     if nospace=.true., then no spaces are added between values
+!!
 !!##RETURNS
 !!    str     description to print
+!!
 !!##EXAMPLES
 !!
 !!   Sample program:
@@ -53,7 +60,8 @@ contains
 !!    character(len=:),allocatable :: frmt
 !!    integer                      :: biggest
 !!
-!!    pr=str('HUGE(3f) integers',huge(0),'and real',huge(0.0),'and double',huge(0.0d0))
+!!    pr=str('HUGE(3f) integers',huge(0),&
+!!    &'and real',huge(0.0),'and double',huge(0.0d0))
 !!    write(*,'(a)')pr
 !!    pr=str('real            :',huge(0.0),0.0,12345.6789,tiny(0.0) )
 !!    write(*,'(a)')pr
@@ -67,8 +75,10 @@ contains
 !!    frmt=str('(*(i',int(log10(real(biggest))),':,1x))',nospace=.true.)
 !!    write(*,*)'format=',frmt
 !!
-!!    ! although it will often work, using str(3f) in an I/O statement is not recommended
-!!    ! because if an error occurs str(3f) will try to write while part of an I/O statement
+!!    ! although it will often work, using str(3f)
+!!    ! in an I/O statement is not recommended
+!!    ! because if an error occurs str(3f) will try
+!!    ! to write while part of an I/O statement
 !!    ! which not all compilers can handle and is currently non-standard
 !!    write(*,*)str('program will now stop')
 !!
@@ -85,6 +95,7 @@ contains
 !!
 !!##AUTHOR
 !!    John S. Urban
+!!
 !!##LICENSE
 !!    Public Domain
 function msg_scalar(generic0, generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9, &

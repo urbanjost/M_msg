@@ -1,0 +1,1276 @@
+\hypertarget{namespacem__verify}{}\section{m\+\_\+verify Module Reference}
+\label{namespacem__verify}\index{m\+\_\+verify@{m\+\_\+verify}}
+
+
+\subsubsection*{N\+A\+ME}
+
+M\+\_\+verify(3fm) -\/ \mbox{[}M\+\_\+verify\mbox{]} a collection of Fortran routines for supporting code development by providing error processing, debugging procedures and unit testing. (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS} 
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_a74ea8b4574606c4f72e97b115375fc9b}{unit\+\_\+check\+\_\+msg}} (name, g1, g2, g3, g4, g5, g6, g7, g8, g9)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+msg(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} converts up to nine standard scalar values to a message for unit testing (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_a41f795f932767c97b5ef481a694f4f84}{stderr}} (msg, gen0, gen1, gen2, gen3, gen4, gen5, gen6, gen7, gen8, gen9)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+stderr(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} write message to stderr (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_a2695833d468118d68918d6aeabab6d0b}{fstop}} (ierr, stdout, \mbox{\hyperlink{namespacem__verify_a41f795f932767c97b5ef481a694f4f84}{stderr}})
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+fstop(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call stop with both a number and a message (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_a96149da1a302f2a157d79dadc94e755e}{unit\+\_\+check}} (name, logical\+\_\+expression, msg, msg1, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+unit\+\_\+check(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} if logical expression is false, call command \char`\"{}goodbad N\+A\+M\+E bad\char`\"{} and stop program by default (L\+I\+C\+E\+N\+SE\+:PD) \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_ad753d0a58dbc02c8917bf2b2aa3e1de7}{unit\+\_\+check\+\_\+start}} (name, options, msg)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+start(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call command \char`\"{}goodbad N\+A\+M\+E start\char`\"{} and optionally set options (L\+I\+C\+E\+N\+SE\+:PD) \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_a0c0ed723b61b2cbbebb81fa91edd1941}{unit\+\_\+check\+\_\+done}} (name, opts, msg)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+done(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call command \char`\"{}goodbad N\+A\+M\+E good\char`\"{} or \char`\"{}goodbad N\+A\+M\+E bad\char`\"{} depending on whether failures were found (L\+I\+C\+E\+N\+SE\+:PD) \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_aaa2744e5ab1687072183869bd53cc086}{unit\+\_\+check\+\_\+bad}} (name, opts, msg)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+bad(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call command \char`\"{}goodbad N\+A\+M\+E bad\char`\"{} and stop program (L\+I\+C\+E\+N\+SE\+:PD) \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_a9d5ed59a1ac977dd7ab23e0d1fb54de4}{unit\+\_\+check\+\_\+good}} (name, opts, msg)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+good(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call command \char`\"{}goodbad N\+A\+M\+E good\char`\"{} (L\+I\+C\+E\+N\+SE\+:PD) \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_aa772ce395fd2e4cc546b8645d8fd9949}{pdec}} (string)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+pdec(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} write out string with A\+S\+C\+II decimal equivalent vertically under it (L\+I\+C\+E\+N\+SE\+:PD) \end{DoxyCompactList}\item 
+function \mbox{\hyperlink{namespacem__verify_a6185c00609b8f0e4c5a503cfadcb2490}{atleast}} (line, length)
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_a83a6bafddb101d8b0fe70f34827836ff}{assert}} (filename, linen, expr, g1, g2, g3, g4, g5, g6, g7, g8, g9)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+assert(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} print filename, linenumber, and message to stderr and stop program (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\item 
+real(kind=\mbox{\hyperlink{namespacem__verify_a7f6aa94b09b3824bc5c15bc74e757d6b}{realtime}}) function \mbox{\hyperlink{namespacem__verify_a1a97667eb1d53ce5b97a60c4a9ebe565}{julian}} ()
+\item 
+logical function, public \mbox{\hyperlink{namespacem__verify_ac5b0a0323929702a4b9e3fb918ea19b3}{almost}} (x, y, digits, verbose)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+almost(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} return true or false if two numbers agree up to specified number of digits (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_a311d01ea90882e4db1e87520ba731d5c}{accdig}} (X, Y, digi0, A\+C\+U\+R\+CY, I\+ND)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+accdig(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} compare two real numbers only up to a specified number of digits (L\+I\+C\+E\+N\+SE\+:PD) \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacem__verify_a7408df33e6934a8959fdeda8cc3fb5ff}{dp\+\_\+accdig}} (x, y, digi0, A\+C\+U\+R\+CY, I\+ND)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+dp\+\_\+accdig(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} compare two numbers only up to a specified number of digits (L\+I\+C\+E\+N\+SE\+:PD) \end{DoxyCompactList}\item 
+elemental pure logical function, public \mbox{\hyperlink{namespacem__verify_aa0d8de1c26ca3aae0366b9fb8ead21c4}{in\+\_\+margin}} (expected\+\_\+value, measured\+\_\+value, allowed\+\_\+margin)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+in\+\_\+margin(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} check if two reals are approximately equal using a relative margin \end{DoxyCompactList}\item 
+real(kind=dp) function, public \mbox{\hyperlink{namespacem__verify_af997c802e1ad966d55f023822b2f645a}{round}} (val, idigits0)
+\item 
+pure elemental real(kind=real128) function \mbox{\hyperlink{namespacem__verify_ab08d7bdca3b5d5e99732919be5880dc4}{anyscalar\+\_\+to\+\_\+real128}} (valuein)
+\item 
+pure elemental doubleprecision function \mbox{\hyperlink{namespacem__verify_a92278514bcbb93fefca1d925e3dfba65}{anyscalar\+\_\+to\+\_\+double}} (valuein)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, save, public \mbox{\hyperlink{namespacem__verify_a7014b3aa584eb29266bf52fc6e03e6ed}{io\+\_\+debug}} =E\+R\+R\+O\+R\+\_\+\+U\+N\+IT
+\item 
+integer, save, public \mbox{\hyperlink{namespacem__verify_a65569c8b4be204251ba14430ad18372d}{unit\+\_\+check\+\_\+lun}} =E\+R\+R\+O\+R\+\_\+\+U\+N\+IT
+\item 
+logical, save, public \mbox{\hyperlink{namespacem__verify_a0f87b43bebf70897f9ec711be3f01839}{debug}} =.false.
+\item 
+logical, save, public \mbox{\hyperlink{namespacem__verify_a434af7c4d380da5b85d49dc07466dde8}{unit\+\_\+check\+\_\+keep\+\_\+going}} =.false.
+\item 
+integer, save, public \mbox{\hyperlink{namespacem__verify_afe37222ddb2a9470e1a0e9c40e2dcce3}{unit\+\_\+check\+\_\+level}} =0
+\item 
+character(len=4096), public \mbox{\hyperlink{namespacem__verify_aaa3c6dfa94a9414592071525036020d4}{unit\+\_\+check\+\_\+command}} =\textquotesingle{}goodbad\textquotesingle{}
+\item 
+integer, parameter, public \mbox{\hyperlink{namespacem__verify_a7f6aa94b09b3824bc5c15bc74e757d6b}{realtime}} =kind(0.\+0d0)
+\item 
+integer, parameter, public \mbox{\hyperlink{namespacem__verify_a278d7a36f55fac875e4f94bc893447fe}{exit\+\_\+success}} =0
+\item 
+integer, parameter, public \mbox{\hyperlink{namespacem__verify_a458c47b6b47738f8ebadddb4a944d0e0}{exit\+\_\+failure}} =1
+\item 
+real(kind=\mbox{\hyperlink{namespacem__verify_a7f6aa94b09b3824bc5c15bc74e757d6b}{realtime}}), save \mbox{\hyperlink{namespacem__verify_a77729c599fbd8aed6075a05fb3c38146}{duration}} =0.\+0d0
+\item 
+integer, save \mbox{\hyperlink{namespacem__verify_af97c7f92394811bec5fed506fdfab67d}{clicks}} =0.\+0d0
+\item 
+logical, save \mbox{\hyperlink{namespacem__verify_a425cad68370e8552495e1838b2e34734}{stop\+\_\+g}} =.true.
+\item 
+integer, save \mbox{\hyperlink{namespacem__verify_ada62999b3a1ef795c335deccac28cda5}{ipassed\+\_\+g}} =0
+\item 
+integer, save \mbox{\hyperlink{namespacem__verify_ab18f1875be62b6aa1e101894358b617f}{ifailed\+\_\+g}} =0
+\item 
+logical, save, public \mbox{\hyperlink{namespacem__verify_aa827fd6225334c65efe89d1d0af79efa}{no\+\_\+news\+\_\+is\+\_\+good\+\_\+news}} =.false.
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{N\+A\+ME}
+
+M\+\_\+verify(3fm) -\/ \mbox{[}M\+\_\+verify\mbox{]} a collection of Fortran routines for supporting code development by providing error processing, debugging procedures and unit testing. (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+use M\+\_\+verify, only \+: unit\+\_\+check, unit\+\_\+check\+\_\+start, unit\+\_\+check\+\_\+good, unit\+\_\+check\+\_\+bad, unit\+\_\+check\+\_\+done use M\+\_\+verify, only \+: unit\+\_\+check\+\_\+limit, unit\+\_\+check\+\_\+keep\+\_\+going, unit\+\_\+check\+\_\+command use M\+\_\+verify, only \+: unit\+\_\+check\+\_\+msg use M\+\_\+verify, only \+: debug use M\+\_\+verify, only \+: fstop use M\+\_\+verify, only \+: stderr use M\+\_\+verify, only \+: assert
+
+\subsubsection*{Q\+U\+O\+TE}
+
+Do not let your victories go to your head, nor let your failures go to your heart.
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+The M\+\_\+verify(3fm) Fortran module provides procedures and variables useful for providing error processing, debugging capabilities, and unit testing.
+
+o allows for a user-\/defined command to be called to collect results or mail failure alerts, ... o supports easily composing a message from up to nine scalar intrinsic values and different message levels o allows stopping on first failure or continuing
+
+S\+ET M\+O\+D\+ES unit\+\_\+check\+\_\+keep\+\_\+going logical variable that can be used to turn off program termination on errors. unit\+\_\+check\+\_\+level An integer that can be used to specify different debug levels unit\+\_\+check\+\_\+command name of command to execute. Defaults to the name \char`\"{}goodbad\char`\"{}. U\+N\+IT T\+E\+S\+TS unit\+\_\+check\+\_\+start(3f) start tests of a procedure and optionally call \begin{DoxyVerb}                      command NAME start ..."
+\end{DoxyVerb}
+ unit\+\_\+check(3f) if expression is false optionally call \begin{DoxyVerb}                      command NAME bad
+                   and stop program (by default)
+\end{DoxyVerb}
+
+
+unit\+\_\+check\+\_\+done(3f) call \begin{DoxyVerb}                      command NAME good
+                   if no failures
+                   else call
+                      command NAME bad
+\end{DoxyVerb}
+ unit\+\_\+check\+\_\+good(3f) call command command N\+A\+ME good unit\+\_\+check\+\_\+bad(3f) call command command N\+A\+ME bad and stop program by default unit\+\_\+check\+\_\+msg(3f) write message
+
+B\+A\+S\+IC D\+E\+B\+U\+G\+G\+I\+NG fstop(3f) calls \textquotesingle{}S\+T\+OP V\+A\+L\+UE\textquotesingle{} passing in a value (1-\/32), with optional message pdec(3f) write A\+S\+C\+II Decimal Equivalent (A\+DE) numbers vertically beneath string stderr(3f) Write message on stderr debug logical variable that can be tested by routines as a flag to process debug statements.
+
+For unit testing, the existence of a command called \char`\"{}goodbad\char`\"{} is initially assumed. This is generally a script that makes entries for each unit in an S\+Q\+Lite data file which is then used to create C\+SV and H\+T\+ML reports on the status of each unit. A sample goodbad(1) command written in the bash(1) shell and using the sqlite3(1) command should be included in this distribution as an example
+
+The flexibility introduced by calling an external script or program is that The goodbad(1) command can be changed as desired to write C\+SV files or simple logs or to notify developers with e-\/mail as desired.
+
+R\+E\+L\+A\+T\+ED F\+U\+N\+C\+T\+I\+O\+NS
+
+The routines in M\+\_\+verify(3f) are often combined with the M\+\_\+hashkeys(3fm) routines and various math and statistical routines to quickly create unit tests.
+
+Comparisons of real values can be done with a tolerance with M\+\_\+\+Compare\+\_\+\+Float\+\_\+\+Numbers(3fm), for example.
+
+The intrinsics A\+N\+Y(3f) and A\+L\+L(3f) are particularly useful in calls to unit\+\_\+check(3f).
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program
+
+!!program demo\+\_\+unit\+\_\+tests module M\+\_\+demo private public one !! regular routines public two !! regular routines public test\+\_\+suite\+\_\+\+M\+\_\+demo !! special name for use with test\+\_\+suite(1bash). contains
+
+!! regular routines subroutine one() end subroutine one
+
+subroutine two() end subroutine two
+
+!! unit test subroutine test\+\_\+suite\+\_\+\+M\+\_\+demo use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+start, unit\+\_\+check use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+good, unit\+\_\+check\+\_\+bad, unit\+\_\+check\+\_\+done use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+msg implicit none integer \+:\+: i, j, k integer,allocatable \+:\+: array(\+:) integer \+:\+: arr(4)=\mbox{[}21,51,14,45\mbox{]} integer \+:\+: a=21, b=51, c=14, d=45 ! T\+E\+S\+T-\/\+D\+R\+I\+V\+EN D\+E\+V\+E\+L\+O\+P\+M\+E\+NT ! optional set-\/up perform initialization operations common to all tests within a module i=1 j=2 k=3 array=\mbox{[}10,20,30,40,50,60,70\mbox{]} call test\+\_\+one() call test\+\_\+two() ! optional tear-\/down perform finalization operations common to all tests within a module contains
+
+subroutine test\+\_\+one() ! register an entry for specified name (\char`\"{}one\char`\"{}) in database with status of zero (0) call unit\+\_\+check\+\_\+start(\textquotesingle{}one\textquotesingle{})
+
+! if mask test fails, can ! $\ast$ produce a S\+U\+C\+C\+E\+SS\+: or F\+A\+IL\+: message and stop program ! $\ast$ change database status for specified entry to -\/1 and stop program, else continue ! $\ast$ produce a S\+U\+C\+C\+E\+SS\+: or F\+A\+IL\+: message and keep going ! $\ast$ produce a F\+A\+IL\+: message if test fails but no S\+U\+C\+C\+E\+SS\+: message if test passes call unit\+\_\+check(\textquotesingle{}one\textquotesingle{},i.\+gt.\+0,msg=\textquotesingle{}I $>$ 0\textquotesingle{})
+
+! using A\+N\+Y(3f) and A\+L\+L(3f) call unit\+\_\+check(\textquotesingle{}one\textquotesingle{},all(\mbox{[}i,j,k\mbox{]}.gt.\+0), \textquotesingle{}testing if everyone greater than zero\textquotesingle{}) ! display message built of scalars as well call unit\+\_\+check(\textquotesingle{}one\textquotesingle{},all(.not.\mbox{[}i,j,k\mbox{]}.eq.\+4),\textquotesingle{}for set \textquotesingle{},i,j,k,\textquotesingle{}testing if no one is equal to four\textquotesingle{})
+
+! for tests that are hard to reduce to a logical test just call unit\+\_\+check\+\_\+bad(3f) if fail if(i+j+k.lt.\+1)then call unit\+\_\+check\+\_\+bad(\textquotesingle{}one\textquotesingle{}) endif
+
+call unit\+\_\+check\+\_\+done(\textquotesingle{}one\textquotesingle{},\textquotesingle{}checks on \char`\"{}one\char`\"{} ended\textquotesingle{}) end subroutine test\+\_\+one
+
+subroutine test\+\_\+two ! use of all(3f), any(3f), merge(3f) can be useful ! if you know what these would produce ! write($\ast$,$\ast$)\mbox{[}\textquotesingle{}A\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}B\textquotesingle{}\mbox{]}.eq.\textquotesingle{}B\textquotesingle{} ! this would return an array, the last element having the value T, else F ! write($\ast$,$\ast$)all(\mbox{[}\textquotesingle{}A\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{}\mbox{]}.eq.\textquotesingle{}X\textquotesingle{}) ! this would return F ! write($\ast$,$\ast$)any(\mbox{[}\textquotesingle{}A\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{}\mbox{]}.eq.\textquotesingle{}B\textquotesingle{}) ! this would return F ! write($\ast$,$\ast$)any(\mbox{[}\textquotesingle{}A\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}X\textquotesingle{},\textquotesingle{}B\textquotesingle{}\mbox{]}.eq.\textquotesingle{}B\textquotesingle{}) ! this would return T ! write($\ast$,$\ast$).not.\+all(array.\+lt.\+100) ! write($\ast$,$\ast$)all(array.\+lt.\+100) ! write($\ast$,$\ast$)all(\mbox{[}a,b,c,d\mbox{]}.eq.\mbox{[}21,51,14,45\mbox{]}) ! compare a list. This would return T ! write($\ast$,$\ast$)all(arr.\+eq.\mbox{[}21,51,14,45\mbox{]}) ! compare an array. This would return T ! you know how valuable A\+N\+Y(3f) and A\+L\+L(3f) will be call unit\+\_\+check\+\_\+start(\textquotesingle{}two\textquotesingle{},\textquotesingle{}check on \char`\"{}two\char`\"{} passed\textquotesingle{}) call unit\+\_\+check(\textquotesingle{}two\textquotesingle{}, 1.\+gt.\+0 .and. abs(10.\+10000-\/10.\+10001).lt.\+0.\+0001,msg=\textquotesingle{}two looks good\textquotesingle{}) call unit\+\_\+check\+\_\+done(\textquotesingle{}two\textquotesingle{},\textquotesingle{}checks on \char`\"{}two\char`\"{} ended\textquotesingle{}) end subroutine test\+\_\+two
+
+end subroutine test\+\_\+suite\+\_\+\+M\+\_\+demo
+
+end module M\+\_\+demo
+
+program demo\+\_\+\+M\+\_\+verify use M\+\_\+demo, only\+: test\+\_\+suite\+\_\+\+M\+\_\+demo use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+command, unit\+\_\+check\+\_\+keep\+\_\+going,unit\+\_\+check\+\_\+level unit\+\_\+check\+\_\+command=\textquotesingle{}\textquotesingle{} unit\+\_\+check\+\_\+keep\+\_\+going=.true. unit\+\_\+check\+\_\+level=0 call test\+\_\+suite\+\_\+\+M\+\_\+demo end program demo\+\_\+\+M\+\_\+verify
+
+Expected output\+:
+
+unit\+\_\+check\+: one S\+U\+C\+C\+E\+SS\+:I $>$ 0 unit\+\_\+check\+: one S\+U\+C\+C\+E\+SS\+:testing if everyone greater than zero unit\+\_\+check\+: one S\+U\+C\+C\+E\+SS\+:for set 1 2 3 testing if no one is equal to four unit\+\_\+check\+\_\+done\+: one P\+A\+S\+S\+ED G\+O\+OD\+:3 B\+AD\+:0
+
+unit\+\_\+check\+: two S\+U\+C\+C\+E\+SS\+:two looks good unit\+\_\+check\+\_\+done\+: two P\+A\+S\+S\+ED G\+O\+OD\+:1 B\+AD\+:0
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacem__verify_a311d01ea90882e4db1e87520ba731d5c}\label{namespacem__verify_a311d01ea90882e4db1e87520ba731d5c}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!accdig@{accdig}}
+\index{accdig@{accdig}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{accdig()}{accdig()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::accdig (\begin{DoxyParamCaption}\item[{real, intent(in)}]{X,  }\item[{real, intent(in)}]{Y,  }\item[{real, intent(in)}]{digi0,  }\item[{real, intent(out)}]{A\+C\+U\+R\+CY,  }\item[{integer, intent(out)}]{I\+ND }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+accdig(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} compare two real numbers only up to a specified number of digits (L\+I\+C\+E\+N\+SE\+:PD) 
+
+\subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+\begin{DoxyVerb}   subroutine accdig(x,y,digio,acurcy,ind)
+
+    real,intent(in)     :: X
+    real,intent(in)     :: Y
+    real,intent(in)     :: DIGI0
+    real,intent(out)    :: acurcy
+    integer,intent(out) :: ind
+\end{DoxyVerb}
+
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+This procedure is used to check how closely two numbers agree.
+
+call accdig(\+X,\+Y,\+D\+I\+G\+I0,\+A\+C\+U\+R\+C\+Y,\+I\+N\+D)
+
+The values X and Y are the numbers to compare, and D\+I\+G\+I0 is the threshold number of digits to consider significant in returning I\+ND.
+
+If X and Y are considered equal within D\+I\+G\+I0 relative tolerance, \begin{DoxyVerb}IND    = 0, if tolerance is     satisfied.
+       = 1, if tolerance is not satisfied.
+\end{DoxyVerb}
+
+
+The result A\+C\+U\+R\+CY gives a measure of the number of leading digits in X which are the same as the number of leading digits in Y. \begin{DoxyVerb}    ACURCY=-log10((X-Y)/Y)   if X != Y and Y != 0
+    ACURCY=-log10(X-Y)       if X != Y and Y = 0
+    ACURCY=8                 if X=Y
+
+    ACURCY is never less than -8 or greater than 8
+\end{DoxyVerb}
+
+
+T\+O\+L\+E\+R\+A\+N\+CE ... X and Y are considered equal within D\+I\+G\+I0 relative tolerance, if A\+C\+U\+R\+CY is greater than D\+I\+G\+I0.
+
+For example, Take some numbers and compare then to 1.\+2345678 ... 
+
+ A number $\vert$ A\+C\+U\+R\+CY $\vert$ A\+C\+U\+R\+CY \subsection*{$\vert$ 1.\+2345678=Y $\vert$ 1.\+2345678=X }
+
+1.\+234680 $\vert$ 3.\+7900571 $\vert$ 3.\+7901275 1.\+2345378 $\vert$ 4.\+6144510 $\vert$ 4.\+6144404 2.\+2234568 $\vert$ 0.\+096367393 $\vert$ 0.\+35188114 1.\+2345678 $\vert$ 8.\+0000000 $\vert$ 8.\+0000000 1.\+2345679 $\vert$ 7.\+0732967 $\vert$ 7.\+0731968 -\/1.\+2345678 $\vert$ -\/0.\+30103000 $\vert$ -\/0.\+30103000 76.\+234567 $\vert$ -\/1.\+7835463 $\vert$ 0.\+0070906729 2.\+4691356 $\vert$ 0.\+0 $\vert$ 0.\+3010300 0.\+0 $\vert$ 0.\+0 $\vert$ -\/0.\+91514942.
+
+Due to the typical limits of the log function, the number of significant digits in the result is best considered to be three.
+
+Notice that 1.\+2345678=Y produces different values than 1.\+2345678=X
+
+A negative result indicates the two values being compared either do not agree in the first digit or they differ with respect to sign. An example of two numbers which do not agree in their leading digit (and actually differ in order of magnitude) is given above by X=76.\+234567 and Y=1.\+2345678; the accuracy reported is -\/1.\+7835463. An example of two numbers which do not agree in sign in X=-\/1.\+2345678 and Y=1.\+2345678; here the accuracy reported is -\/0.\+30103000.
+
+\subsubsection*{E\+X\+A\+M\+P\+LE}
+
+Example program\+:
+
+program demo\+\_\+accdig ! fortran 90 example use M\+\_\+verify, only \+: accdig implicit none integer \+:\+: digi integer \+:\+: i10, i20, i30 integer \+:\+: ind, ind1, ind2 real \+:\+: acurcy, acurcy1, acurcy2 real \+:\+: a, b real \+:\+: vals(9) data vals/ \& \&1.\+234680, 1.\+2345378, 2.\+2234568, 1.\+2345678, \& \&1.\+2345679, -\/1.\+2345678, 76.\+234567, 2.\+4691356, \& \&0.\+0/ write($\ast$,$\ast$)\textquotesingle{}=========================\textquotesingle{} do i10=0,16 a=1.\+0 b=a+1.0/(10$\ast$$\ast$i10) call accdig(a,b,8.\+0,acurcy,ind) write($\ast$,$\ast$)i10,a,b,acurcy,ind enddo write($\ast$,$\ast$)\textquotesingle{}=========================\textquotesingle{} digi=16 do i20=0,digi a=1.\+0 b=a+1.0/(10$\ast$$\ast$i20) call accdig(a,b,real(digi),acurcy,ind) write($\ast$,$\ast$)i20,a,b,acurcy,ind enddo write($\ast$,$\ast$)\textquotesingle{}=========================\textquotesingle{} do i30=1,9 call accdig(1.\+2345678,vals(i30),8.\+0,acurcy1,ind1) call accdig(vals(i30),1.\+2345678,8.\+0,acurcy2,ind2) write($\ast$,$\ast$)i30,vals(i30),acurcy1,acurcy2,ind1,ind2 enddo end program demo\+\_\+accdig
+
+\subsubsection*{R\+E\+F\+E\+R\+E\+N\+C\+ES}
+
+based on ...
+
+N\+BS O\+M\+N\+I\+T\+AB 1980 V\+E\+R\+S\+I\+ON 6.\+01 1/ 1/81. accdig V 7.\+00 2/14/90. $\ast$$\ast$ David Hogben, Statistical Engineering Division, Center for Computing and Applied Mathematics, A337 Administration Building, National Institute of Standards and Technology, Gaithersburg, MD 20899 T\+E\+L\+E\+P\+H\+O\+NE 301-\/975-\/2845 O\+R\+I\+G\+I\+N\+AL V\+E\+R\+S\+I\+ON -\/ October, 1969. C\+U\+R\+R\+E\+NT V\+E\+R\+S\+I\+ON -\/ February, 1990. J\+SU V\+E\+R\+S\+I\+ON -\/ February, 1991.
+
+\subsubsection*{D\+E\+P\+E\+N\+D\+E\+N\+C\+I\+ES}
+
+o M\+\_\+journal(),log10(), abs(1)
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+David Hogben, John S. Urban
+
+\subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{namespacem__verify_a311d01ea90882e4db1e87520ba731d5c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_ac5b0a0323929702a4b9e3fb918ea19b3}\label{namespacem__verify_ac5b0a0323929702a4b9e3fb918ea19b3}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!almost@{almost}}
+\index{almost@{almost}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{almost()}{almost()}}
+{\footnotesize\ttfamily logical function, public m\+\_\+verify\+::almost (\begin{DoxyParamCaption}\item[{class($\ast$), intent(in)}]{x,  }\item[{class($\ast$), intent(in)}]{y,  }\item[{class($\ast$), intent(in)}]{digits,  }\item[{logical, intent(in), optional}]{verbose }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+almost(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} return true or false if two numbers agree up to specified number of digits (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+function almost(x,y,digits)
+
+class($\ast$),intent(in) \+:\+: x,y class($\ast$),intent(in) \+:\+: rdigits logical,intent(in),optional \+:\+: verbose logical \+:\+: almost
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+Returns true or false depending on whether the two numbers given agree to within the specified number of digits as calculated by A\+C\+C\+D\+I\+G(3f). \subsubsection*{O\+P\+T\+I\+O\+NS}
+
+x,y expected and calculated values to be compared. May be of type R\+E\+AL, I\+N\+T\+E\+G\+ER, or D\+O\+U\+B\+L\+E\+P\+R\+E\+C\+I\+S\+I\+ON. rdigits real number representing number of digits of precision to compare verbose optional value that specifies to print the results of the comparison when set to .T\+R\+UE.. \subsubsection*{R\+E\+T\+U\+R\+NS}
+
+almost T\+R\+UE if the input values compare up to the specified number of values \subsubsection*{E\+X\+A\+M\+P\+LE}
+
+sample\+:
+
+program demo\+\_\+almost use M\+\_\+verify, only \+: almost real \+:\+: x, y logical \+:\+: z x=1.\+2345678 y=1.\+2300000 do i=1,8 z=almost(x,y,real(i),verbose=.true.) write($\ast$,$\ast$)i,z enddo end program demo\+\_\+almost
+
+output\+:
+
+{\itshape almost} for values 1.\+23456776 1.\+23000002 agreement of 2.\+43020344 digits out of requested 1.\+0 1 T {\itshape almost} for values 1.\+23456776 1.\+23000002 agreement of 2.\+43020344 digits out of requested 2.\+0 2 T {\itshape almost} for values 1.\+23456776 1.\+23000002 agreement of 2.\+43020344 digits out of requested 3.\+0 3 F {\itshape almost} for values 1.\+23456776 1.\+23000002 agreement of 2.\+43020344 digits out of requested 4.\+0 4 F {\itshape almost} for values 1.\+23456776 1.\+23000002 agreement of 2.\+43020344 digits out of requested 5.\+0 5 F {\itshape almost} for values 1.\+23456776 1.\+23000002 agreement of 2.\+43020344 digits out of requested 6.\+0 6 F {\itshape almost} for values 1.\+23456776 1.\+23000002 agreement of 2.\+43020344 digits out of requested 7.\+0 7 F {\itshape accdig} significant digit request too high= 8.\+00000000 {\itshape almost} for values 1.\+23456776 1.\+23000002 agreement of 2.\+43020344 digits out of requested 8.\+0 8 F \subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References accdig(), anyscalar\+\_\+to\+\_\+real128(), and dp\+\_\+accdig().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_ac5b0a0323929702a4b9e3fb918ea19b3_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a92278514bcbb93fefca1d925e3dfba65}\label{namespacem__verify_a92278514bcbb93fefca1d925e3dfba65}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!anyscalar\+\_\+to\+\_\+double@{anyscalar\+\_\+to\+\_\+double}}
+\index{anyscalar\+\_\+to\+\_\+double@{anyscalar\+\_\+to\+\_\+double}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{anyscalar\+\_\+to\+\_\+double()}{anyscalar\_to\_double()}}
+{\footnotesize\ttfamily pure elemental doubleprecision function m\+\_\+verify\+::anyscalar\+\_\+to\+\_\+double (\begin{DoxyParamCaption}\item[{class($\ast$), intent(in)}]{valuein }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{namespacem__verify_a92278514bcbb93fefca1d925e3dfba65_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_ab08d7bdca3b5d5e99732919be5880dc4}\label{namespacem__verify_ab08d7bdca3b5d5e99732919be5880dc4}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!anyscalar\+\_\+to\+\_\+real128@{anyscalar\+\_\+to\+\_\+real128}}
+\index{anyscalar\+\_\+to\+\_\+real128@{anyscalar\+\_\+to\+\_\+real128}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{anyscalar\+\_\+to\+\_\+real128()}{anyscalar\_to\_real128()}}
+{\footnotesize\ttfamily pure elemental real(kind=real128) function m\+\_\+verify\+::anyscalar\+\_\+to\+\_\+real128 (\begin{DoxyParamCaption}\item[{class($\ast$), intent(in)}]{valuein }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_ab08d7bdca3b5d5e99732919be5880dc4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a83a6bafddb101d8b0fe70f34827836ff}\label{namespacem__verify_a83a6bafddb101d8b0fe70f34827836ff}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!assert@{assert}}
+\index{assert@{assert}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{assert()}{assert()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::assert (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{filename,  }\item[{integer, intent(in)}]{linen,  }\item[{logical, intent(in)}]{expr,  }\item[{class($\ast$), intent(in), optional}]{g1,  }\item[{class($\ast$), intent(in), optional}]{g2,  }\item[{class($\ast$), intent(in), optional}]{g3,  }\item[{class($\ast$), intent(in), optional}]{g4,  }\item[{class($\ast$), intent(in), optional}]{g5,  }\item[{class($\ast$), intent(in), optional}]{g6,  }\item[{class($\ast$), intent(in), optional}]{g7,  }\item[{class($\ast$), intent(in), optional}]{g8,  }\item[{class($\ast$), intent(in), optional}]{g9 }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+assert(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} print filename, linenumber, and message to stderr and stop program (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+function assert(file,linenum,expr,g1,g2g3,g4,g5,g6,g7,g8,g9)
+
+character(len=$\ast$),intent(in) \+:\+: file character(len=$\ast$),intent(in) \+:\+: linenum logical,intent(in) \+:\+: expr class($\ast$),intent(in),optional \+:\+: g1,g2,g3,g4,g5,g6,g7,g8,g9 \subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+assert(3f) prints strings to stderr and then stops program with exit code 1 It labels the first string as the filename, the next integer parameter as the linenumber, and then up to nine scalar values.
+
+It is primarily intended for use by the ufpp(1) preprocessor \$\+A\+S\+S\+E\+RT directive
+
+\subsubsection*{O\+P\+T\+I\+O\+NS}
+
+\begin{DoxyVerb}filename   a string assumed to be the current filename when compiling
+linenum    assumed to be the line number of the source code the ASSERT(3f)
+           procedure was called at.
+expr       logical value
+g[1-9]  optional value(s) to print as a message before stopping. May
+        be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,
+        or CHARACTER.
+\end{DoxyVerb}
+
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+assert use M\+\_\+verify, only \+: assert implicit none character(len=\+:),allocatable \+:\+: pr real \+:\+: a, toobig=1024 a=2000 call assert(\textquotesingle{}myroutine\textquotesingle{}, 101, a.\+gt.\+toobig, \textquotesingle{}The value is too large\textquotesingle{}, a, \textquotesingle{}.gt.\textquotesingle{}, toobig) end program demo\+\_\+assert
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References stderr().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{namespacem__verify_a83a6bafddb101d8b0fe70f34827836ff_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a6185c00609b8f0e4c5a503cfadcb2490}\label{namespacem__verify_a6185c00609b8f0e4c5a503cfadcb2490}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!atleast@{atleast}}
+\index{atleast@{atleast}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{atleast()}{atleast()}}
+{\footnotesize\ttfamily function m\+\_\+verify\+::atleast (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{line,  }\item[{integer, intent(in)}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a6185c00609b8f0e4c5a503cfadcb2490_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a7408df33e6934a8959fdeda8cc3fb5ff}\label{namespacem__verify_a7408df33e6934a8959fdeda8cc3fb5ff}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!dp\+\_\+accdig@{dp\+\_\+accdig}}
+\index{dp\+\_\+accdig@{dp\+\_\+accdig}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{dp\+\_\+accdig()}{dp\_accdig()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::dp\+\_\+accdig (\begin{DoxyParamCaption}\item[{class($\ast$), intent(in)}]{x,  }\item[{class($\ast$), intent(in)}]{y,  }\item[{class($\ast$), intent(in)}]{digi0,  }\item[{real, intent(out)}]{A\+C\+U\+R\+CY,  }\item[{integer, intent(out)}]{I\+ND }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+dp\+\_\+accdig(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} compare two numbers only up to a specified number of digits (L\+I\+C\+E\+N\+SE\+:PD) 
+
+\subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+\begin{DoxyVerb}   subroutine dp_accdig(x,y,digio,acurcy,ind)
+
+    class(*),intent(in)  :: X
+    class(*),intent(in)  :: Y
+    class(*),intent(in)  :: DIGI0
+    real,intent(out)     :: acurcy
+    integer,intent(out)  :: ind
+\end{DoxyVerb}
+
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+\begin{DoxyVerb}This procedure is used to check how closely two numbers agree.
+
+   call dp_accdig(X,Y,DIGI0,ACURCY,IND)
+
+The values X and Y are the numbers to compare, and DIGI0 is the
+threshold number of digits to consider significant in returning IND.
+
+If X and Y are considered equal within DIGI0 relative tolerance,
+
+    IND    = 0, if tolerance is     satisfied.
+           = 1, if tolerance is not satisfied.
+
+The result ACURCY gives a measure of the number of leading digits in X
+which are the same as the number of leading digits in Y.
+
+     ACURCY=-log10((X-Y)/Y)   if X != Y and Y != 0
+     ACURCY=-log10(X-Y)       if X != Y and Y = 0
+     ACURCY=8                 if X=Y
+
+     ACURCY is never less than -8 or greater than 8 for REAL values
+
+TOLERANCE ...
+     X and Y are considered equal within DIGI0 relative tolerance,
+     if ACURCY is greater than DIGI0.
+
+For example, Take some numbers and compare then  to 1.2345678 ...
+
+   ================================================
+   A number     |    ACURCY       |   ACURCY
+                |    1.2345678=Y  |   1.2345678=X
+   ================================================
+    1.234680    |    3.7900571    |   3.7901275
+    1.2345378   |    4.6144510    |   4.6144404
+    2.2234568   |    0.096367393  |   0.35188114
+    1.2345678   |    8.0000000    |   8.0000000
+    1.2345679   |    7.0732967    |   7.0731968
+   -1.2345678   |   -0.30103000   |  -0.30103000
+   76.234567    |   -1.7835463    |   0.0070906729
+    2.4691356   |    0.0          |   0.3010300
+    0.0         |    0.0          |  -0.91514942.
+
+Due to the typical limits of the log function, the number of
+significant digits in the result is best considered to be three.
+
+Notice that 1.2345678=Y produces different values than 1.2345678=X
+
+A negative result indicates the two values being compared either do
+not agree in the first digit or they differ with respect to sign. An
+example of two numbers which do not agree in their leading digit (and
+actually differ in order of magnitude) is given above by X=76.234567
+and Y=1.2345678; the accuracy reported is -1.7835463. An example of
+two numbers which do not agree in sign in X=-1.2345678 and Y=1.2345678;
+here the accuracy reported is -0.30103000.
+\end{DoxyVerb}
+
+
+\subsubsection*{E\+X\+A\+M\+P\+LE}
+
+Example program\+:
+
+program demo\+\_\+dp\+\_\+accdig ! fortran 90 example use M\+\_\+verify, only \+: dp\+\_\+accdig implicit none integer \+:\+: digi doubleprecision \+:\+: a, b integer \+:\+: i10, i20, i30 integer \+:\+: ind, ind1, ind2 real \+:\+: acurcy, acurcy1, acurcy2 doubleprecision \+:\+: vals(9) data vals/ \& \&1.\+234680d0, 1.\+2345378d0, 2.\+2234568d0, 1.\+2345678d0, \& \&1.\+2345679d0, -\/1.\+2345678d0, 76.\+234567d0, 2.\+4691356d0, \& \&0.\+0d0/ write($\ast$,$\ast$)\textquotesingle{}=========================\textquotesingle{} do i10=0,16 a=1.\+0d0 b=a+1.0d0/(10$\ast$$\ast$i10) call dp\+\_\+accdig(a,b,8.\+0,acurcy,ind) write($\ast$,$\ast$)i10,a,b,acurcy,ind enddo write($\ast$,$\ast$)\textquotesingle{}=========================\textquotesingle{} digi=16 do i20=0,digi a=1.\+0d0 b=a+1.0d0/(10$\ast$$\ast$i20) call dp\+\_\+accdig(a,b,dble(digi),acurcy,ind) write($\ast$,$\ast$)i20,a,b,acurcy,ind enddo write($\ast$,$\ast$)\textquotesingle{}=========================\textquotesingle{} do i30=1,9 call dp\+\_\+accdig(1.\+2345678d0,vals(i30),8.\+0,acurcy1,ind1) call dp\+\_\+accdig(vals(i30),1.\+2345678d0,8.\+0,acurcy2,ind2) write($\ast$,$\ast$)i30,vals(i30),acurcy1,acurcy2,ind1,ind2 enddo end program demo\+\_\+dp\+\_\+accdig
+
+\subsubsection*{N\+O\+T\+ES}
+
+\subsubsection*{R\+E\+F\+E\+R\+E\+N\+C\+ES}
+
+based on ...
+
+N\+BS O\+M\+N\+I\+T\+AB 1980 V\+E\+R\+S\+I\+ON 6.\+01 1/ 1/81. dp\+\_\+accdig V 7.\+00 2/14/90. $\ast$$\ast$ David Hogben, Statistical Engineering Division, Center for Computing and Applied Mathematics, A337 Administration Building, National Institute of Standards and Technology, Gaithersburg, MD 20899 T\+E\+L\+E\+P\+H\+O\+NE 301-\/975-\/2845 O\+R\+I\+G\+I\+N\+AL V\+E\+R\+S\+I\+ON -\/ October, 1969. C\+U\+R\+R\+E\+NT V\+E\+R\+S\+I\+ON -\/ February, 1990. J\+SU V\+E\+R\+S\+I\+ON -\/ February, 1991.
+
+\subsubsection*{D\+E\+P\+E\+N\+D\+E\+N\+C\+I\+ES}
+
+o M\+\_\+journal(), log10(), abs(1)
+
+\subsubsection*{A\+U\+T\+H\+O\+RS}
+
+David Hogben, John S. Urban
+
+\subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References anyscalar\+\_\+to\+\_\+real128().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{namespacem__verify_a7408df33e6934a8959fdeda8cc3fb5ff_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{namespacem__verify_a7408df33e6934a8959fdeda8cc3fb5ff_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a2695833d468118d68918d6aeabab6d0b}\label{namespacem__verify_a2695833d468118d68918d6aeabab6d0b}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!fstop@{fstop}}
+\index{fstop@{fstop}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{fstop()}{fstop()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::fstop (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ierr,  }\item[{character(len=$\ast$), intent(in), optional}]{stdout,  }\item[{character(len=$\ast$), intent(in), optional}]{stderr }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+fstop(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call stop with both a number and a message (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+subroutine fstop(ierr,stdout,stderr)
+
+integer,intent(in) \+:\+: ierr character(len=$\ast$),intent(in),optional \+:\+: stdout character(len=$\ast$),intent(in),optional \+:\+: stderr \subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+F\+S\+T\+O\+P(3f) call S\+T\+O\+P(3f). What a call to S\+T\+OP does is very system dependent, so using an abstraction layer is useful, as it allows just the \mbox{\hyperlink{namespacem__verify_a2695833d468118d68918d6aeabab6d0b}{fstop()}} routine to be changed; and S\+T\+OP does not allow a variable to be used on the numeric access status (this has changed at f2015).
+
+\subsubsection*{O\+P\+T\+I\+O\+NS}
+
+ierr -\/ value in range 0 to 32 stdout -\/ description to be printed to standard output stderr -\/ description to be printed to standard error \subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+fstop use M\+\_\+verify, only\+: fstop implicit none integer \+:\+: int write($\ast$,$\ast$)\textquotesingle{}Enter stop value\textquotesingle{} read($\ast$,$\ast$) int select case(int) case(10) ; call fstop(int) case(20) ; call fstop(int,stderr=\textquotesingle{}error\+: program will now stop\textquotesingle{}) case(25) ; call fstop(int,stdout=\textquotesingle{}stdout message\textquotesingle{},stderr=\textquotesingle{}stderr message\textquotesingle{}) case(30) ; call fstop(int,stdout=\textquotesingle{}error\+: program will now stop\textquotesingle{}) case default call fstop(int) endselect
+
+end program demo\+\_\+fstop
+
+Results\+:
+
+\subsubsection*{S\+EE A\+L\+SO}
+
+Look for common extensions, such as abort(3f), backtrace(3f)
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References stderr().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{namespacem__verify_a2695833d468118d68918d6aeabab6d0b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a2695833d468118d68918d6aeabab6d0b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_aa0d8de1c26ca3aae0366b9fb8ead21c4}\label{namespacem__verify_aa0d8de1c26ca3aae0366b9fb8ead21c4}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!in\+\_\+margin@{in\+\_\+margin}}
+\index{in\+\_\+margin@{in\+\_\+margin}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{in\+\_\+margin()}{in\_margin()}}
+{\footnotesize\ttfamily elemental pure logical function, public m\+\_\+verify\+::in\+\_\+margin (\begin{DoxyParamCaption}\item[{class($\ast$), intent(in)}]{expected\+\_\+value,  }\item[{class($\ast$), intent(in)}]{measured\+\_\+value,  }\item[{class($\ast$), intent(in)}]{allowed\+\_\+margin }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+in\+\_\+margin(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} check if two reals are approximately equal using a relative margin 
+
+\subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+\begin{DoxyVerb} elemental pure function in_margin( expected_value, measured_value, allowed_margin )
+
+  real, intent(in)    :: expected_value
+  real, intent(in)    :: measured_value
+  real, intent(in)    :: allowed_margin
+  class(*),intent(in) :: invalue
+\end{DoxyVerb}
+
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+Compare two values to see if they are relatively equal using the specified allowed margin. That is, see if V\+A\+L\+U\+E\+\_\+\+M\+E\+A\+S\+U\+R\+ED is in the range V\+A\+L\+U\+E\+\_\+\+E\+X\+P\+E\+C\+T\+ED +-\/ A\+L\+L\+O\+W\+E\+D\+\_\+\+E\+R\+R\+OR where the allowed error varies with the magnitude of the values, such that the allowed error is margin $\ast$ average magnitude of measured and expected).
+
+So the allowed error is smaller when the magnitudes are smaller.
+
+\subsubsection*{O\+P\+T\+I\+O\+NS}
+
+expected\+\_\+value First value measured\+\_\+value Second value allowed\+\_\+margin Allowed relative margin
+
+\subsubsection*{E\+X\+A\+M\+P\+LE}
+
+Sample program\+:
+
+program demo\+\_\+in\+\_\+margin use \+:\+: M\+\_\+verify, only \+: in\+\_\+margin implicit none write($\ast$,$\ast$) in\+\_\+margin(4.\+00000,3.\+99999,0.\+000000001) write($\ast$,$\ast$) in\+\_\+margin(4.\+00000,3.\+99999,0.\+00000001) write($\ast$,$\ast$) in\+\_\+margin(4.\+00000,3.\+99999,0.\+0000001) write($\ast$,$\ast$) in\+\_\+margin(4.\+00000,3.\+99999,0.\+000001)
+
+write($\ast$,$\ast$) in\+\_\+margin(\mbox{[}4.\+0,40.\+0,400.\+0,4000.\+0,40000.\+0\mbox{]}, \mbox{[}3.\+9,39.\+9,399.\+9,3999.\+9,39999.\+9\mbox{]} ,0.\+000001) write($\ast$,$\ast$) in\+\_\+margin(\mbox{[}4.\+0,40.\+0,400.\+0,4000.\+0,40000.\+0\mbox{]}, \mbox{[}3.\+9,39.\+9,399.\+9,3999.\+9,39999.\+9\mbox{]} ,0.\+00001)
+
+write($\ast$,$\ast$) in\+\_\+margin(4.\+00000,3.\+99999,0.\+00001) write($\ast$,$\ast$) in\+\_\+margin(4.\+00000,3.\+99999,0.\+0001) write($\ast$,$\ast$) in\+\_\+margin(4.\+00000,3.\+99999,0.\+001) write($\ast$,$\ast$) in\+\_\+margin(4.\+00000,3.\+99999,0.\+01)
+
+end program demo\+\_\+in\+\_\+margin
+
+Results\+:
+
+F F F F F F F F F F F F F T T T T T 
+
+References anyscalar\+\_\+to\+\_\+double().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{namespacem__verify_aa0d8de1c26ca3aae0366b9fb8ead21c4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a1a97667eb1d53ce5b97a60c4a9ebe565}\label{namespacem__verify_a1a97667eb1d53ce5b97a60c4a9ebe565}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!julian@{julian}}
+\index{julian@{julian}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{julian()}{julian()}}
+{\footnotesize\ttfamily real(kind=\mbox{\hyperlink{namespacem__verify_a7f6aa94b09b3824bc5c15bc74e757d6b}{realtime}}) function m\+\_\+verify\+::julian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a1a97667eb1d53ce5b97a60c4a9ebe565_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_aa772ce395fd2e4cc546b8645d8fd9949}\label{namespacem__verify_aa772ce395fd2e4cc546b8645d8fd9949}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!pdec@{pdec}}
+\index{pdec@{pdec}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{pdec()}{pdec()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::pdec (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{string }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+pdec(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} write out string with A\+S\+C\+II decimal equivalent vertically under it (L\+I\+C\+E\+N\+SE\+:PD) 
+
+\subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+\begin{DoxyVerb}Usage:
+
+ subroutine pdec(string)
+ character(len=*),intent(in) :: string
+\end{DoxyVerb}
+
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+\begin{DoxyVerb}Given a string to print, PDEC() writes out the ASCII Decimal equivalent
+of the string directly underneath it. This can help you to locate
+unprintable characters or non-standard white-space such as a backspace
+character or tab character in input strings that your program could
+not interpret. On output, non-printable characters are replaced with
+a space, and trailing spaces are ignored.
+
+You read the numbers vertically.
+
+1. ignore trailing spaces
+2. print the character if it has an ADE of 32 on up
+3. print a space if it has an ADE of less than 32
+4. underneath each character print the ADE value vertically
+5. strings are assumed under 32767 characters in length.
+   Format integer constants > 32767 are not supported on HP-UX
+   when newer compilers are available use unlimited
+\end{DoxyVerb}
+
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+\begin{DoxyVerb}Sample program:
+
+   program demo_pdec
+   use M_verify, only : pdec
+   call pdec(' ABCDEFG abcdefg    ')
+   end program demo_pdec
+
+would produce (notice trailing space is trimmed):
+
+  > ABCDEFG abcdefg
+  >0000000000001111
+  >3666667739990000
+  >2567890127890123
+\end{DoxyVerb}
+
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain \mbox{\Hypertarget{namespacem__verify_af997c802e1ad966d55f023822b2f645a}\label{namespacem__verify_af997c802e1ad966d55f023822b2f645a}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!round@{round}}
+\index{round@{round}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{round()}{round()}}
+{\footnotesize\ttfamily real(kind=dp) function, public m\+\_\+verify\+::round (\begin{DoxyParamCaption}\item[{real(kind=dp), intent(in)}]{val,  }\item[{integer, intent(in)}]{idigits0 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacem__verify_a41f795f932767c97b5ef481a694f4f84}\label{namespacem__verify_a41f795f932767c97b5ef481a694f4f84}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!stderr@{stderr}}
+\index{stderr@{stderr}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{stderr()}{stderr()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::stderr (\begin{DoxyParamCaption}\item[{class($\ast$), intent(in), optional}]{msg,  }\item[{class($\ast$), intent(in), optional}]{gen0,  }\item[{class($\ast$), intent(in), optional}]{gen1,  }\item[{class($\ast$), intent(in), optional}]{gen2,  }\item[{class($\ast$), intent(in), optional}]{gen3,  }\item[{class($\ast$), intent(in), optional}]{gen4,  }\item[{class($\ast$), intent(in), optional}]{gen5,  }\item[{class($\ast$), intent(in), optional}]{gen6,  }\item[{class($\ast$), intent(in), optional}]{gen7,  }\item[{class($\ast$), intent(in), optional}]{gen8,  }\item[{class($\ast$), intent(in), optional}]{gen9 }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+stderr(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} write message to stderr (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+subroutine stderr(msg,\mbox{[}generic\mbox{]})
+
+class($\ast$),intent(in),optional \+:\+: msg class($\ast$),intent(in),optional \+:\+: generic0,generic1,generic2,generic3,generic4 class($\ast$),intent(in),optional \+:\+: generic5,generic6,generic7,generic8,generic9 \subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+S\+T\+D\+E\+R\+R(3f) writes a message to standard error using a standard f2003 method. Up to ten generic options are available. \subsubsection*{O\+P\+T\+I\+O\+NS}
+
+msg -\/ description to print generic\mbox{[}0-\/9\mbox{]} -\/ optional value to print the value of after the message. May be of type I\+N\+T\+E\+G\+ER, L\+O\+G\+I\+C\+AL, R\+E\+AL, D\+O\+U\+B\+L\+E\+P\+R\+E\+C\+I\+S\+I\+ON, C\+O\+M\+P\+L\+EX, or C\+H\+A\+R\+A\+C\+T\+ER. \subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+stderr use,intrinsic \+:\+: iso\+\_\+fortran\+\_\+env, only \+: int8, int16, int32, int64 use,intrinsic \+:\+: iso\+\_\+fortran\+\_\+env, only \+: real32, real64, real128 use,intrinsic \+:\+: iso\+\_\+fortran\+\_\+env, only \+: real=$>$ real32, integer=$>$ int32 use M\+\_\+verify, only\+: stderr implicit none
+
+call stderr(\textquotesingle{}A simple message\textquotesingle{}) call stderr(\textquotesingle{}error\+: R\+V\+A\+L\+UE=\textquotesingle{},3.\+0/4.0) call stderr(\textquotesingle{}error\+: I\+V\+A\+L\+UE=\textquotesingle{},123456789) call stderr(\textquotesingle{}error\+: L\+V\+A\+L\+UE=\textquotesingle{},.true.)
+
+S\+E\+V\+E\+R\+AL\+: block integer \+:\+: least=10, most=999, ival=-\/10 call stderr(\textquotesingle{}error\+: value\textquotesingle{},ival,\textquotesingle{}should be between\textquotesingle{},least,\textquotesingle{}and\textquotesingle{},most) endblock S\+E\+V\+E\+R\+AL
+
+call stderr(\textquotesingle{}real32 \+:\textquotesingle{},huge(0.\+0\+\_\+real32),0.\+0\+\_\+real32,12345.\+6789\+\_\+real32,tiny(0.\+0\+\_\+real32)) call stderr(\textquotesingle{}real64 \+:\textquotesingle{},huge(0.\+0\+\_\+real64),0.\+0\+\_\+real64,12345.\+6789\+\_\+real64,tiny(0.\+0\+\_\+real64)) call stderr(\textquotesingle{}real128 \+:\textquotesingle{},huge(0.\+0\+\_\+real128),0.\+0\+\_\+real128,12345.\+6789\+\_\+real128,tiny(0.\+0\+\_\+real128)) call stderr(\textquotesingle{}complex \+:\textquotesingle{},cmplx(huge(0.\+0\+\_\+real),tiny(0.\+0\+\_\+real)))
+
+call stderr(\textquotesingle{}error\+: program will now stop\textquotesingle{}) stop 1
+
+end program demo\+\_\+stderr
+
+Results\+: A simple message error\+: R\+V\+A\+L\+UE= 0.\+750000000 error\+: I\+V\+A\+L\+UE= 123456789 error\+: L\+V\+A\+L\+UE= T error\+: value -\/10 should be between 10 and 999 real32 \+: 3.\+40282347E+38 ... 0.\+00000000 ... 12345.\+6787 ... 1.\+17549435E-\/38 real64 \+: 1.\+7976931348623157E+308 ... 0.\+0000000000000000 ... 12345.\+678900000001 ... 2.\+2250738585072014E-\/308 real128 \+: 1.\+18973149535723176508575932662800702E+4932 ... 0.\+00000000000000000000000000000000000 ... 12345.\+6789000000000000000000000000002 ... 3.\+36210314311209350626267781732175260E-\/4932 complex \+: (3.\+40282347E+38,1.\+17549435E-\/38) error\+: program will now stop \subsection*{S\+T\+OP 1 }
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a41f795f932767c97b5ef481a694f4f84_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a96149da1a302f2a157d79dadc94e755e}\label{namespacem__verify_a96149da1a302f2a157d79dadc94e755e}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check@{unit\+\_\+check}}
+\index{unit\+\_\+check@{unit\+\_\+check}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check()}{unit\_check()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::unit\+\_\+check (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{name,  }\item[{logical, intent(in)}]{logical\+\_\+expression,  }\item[{class($\ast$), intent(in), optional}]{msg,  }\item[{class($\ast$), intent(in), optional}]{msg1,  }\item[{class($\ast$), intent(in), optional}]{msg2,  }\item[{class($\ast$), intent(in), optional}]{msg3,  }\item[{class($\ast$), intent(in), optional}]{msg4,  }\item[{class($\ast$), intent(in), optional}]{msg5,  }\item[{class($\ast$), intent(in), optional}]{msg6,  }\item[{class($\ast$), intent(in), optional}]{msg7,  }\item[{class($\ast$), intent(in), optional}]{msg8,  }\item[{class($\ast$), intent(in), optional}]{msg9 }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+unit\+\_\+check(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} if logical expression is false, call command \char`\"{}goodbad N\+A\+M\+E bad\char`\"{} and stop program by default (L\+I\+C\+E\+N\+SE\+:PD) 
+
+\subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+\begin{DoxyVerb}subroutine unit_check(name,expression,msg,msg1,msg2,msg3,msg4,msg5,msg6,msg7,msg8,msg9)
+
+ character(len=*),intent(in) :: name
+ logical,intent(in) :: expression
+ class(*),intent(in),optional :: msg,msg1,msg2,msg3,msg4,msg5,msg6,msg7,msg8,msg9
+\end{DoxyVerb}
+
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+unit\+\_\+check(3f) tests the expression and if it is false, calls the shell command \begin{DoxyVerb} goodbad NAME bad
+\end{DoxyVerb}
+
+
+and stops the program. \subsubsection*{O\+P\+T\+I\+O\+NS}
+
+N\+A\+ME the unit test name passed on to the goodbad(1) command E\+X\+P\+R\+E\+S\+S\+I\+ON the logical expression to evaluate M\+SG,M\+S\+G1...M\+S\+G9 optional message to display when performing test, composed of any scalar intrinsics of type I\+N\+T\+E\+G\+ER, R\+E\+AL, D\+O\+U\+B\+L\+E\+P\+R\+E\+C\+I\+S\+I\+ON, C\+O\+M\+P\+L\+EX, L\+O\+G\+I\+C\+AL, or C\+H\+A\+R\+A\+C\+T\+ER, with a space placed between each value.
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+unit\+\_\+check use M\+\_\+verify, only\+: unit\+\_\+check use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+start use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+done use M\+\_\+verify, only\+: almost
+
+!!use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+keep\+\_\+going ! default is unit\+\_\+check\+\_\+keep\+\_\+going=.false. !!use M\+\_\+verify, only\+: debug ! default is .false. !!use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+command ! default is unit\+\_\+check\+\_\+command=\textquotesingle{}goodbad\textquotesingle{}
+
+implicit none integer \+:\+: i integer \+:\+: x integer,allocatable \+:\+: arr(\+:) real,allocatable \+:\+: arr1(\+:) real,allocatable \+:\+: arr2(\+:)
+
+!!unit\+\_\+check\+\_\+command=\textquotesingle{}\textquotesingle{} x=10 arr1=\mbox{[}1.\+0,10.\+0,100.\+0\mbox{]} arr2=\mbox{[}1.\+0001,10.\+001,100.\+01\mbox{]} call unit\+\_\+check\+\_\+start(\textquotesingle{}myroutine\textquotesingle{})
+
+call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, x.\+gt.\+3 ,\textquotesingle{}test if big enough\textquotesingle{}) call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, x.\+lt.\+100 ,\textquotesingle{}test if small enough\textquotesingle{})
+
+do i=1,size(arr1) call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, almost(arr1(i),arr2(i),3.\+9,verbose=.true.) ) enddo
+
+arr=\mbox{[}10,20,30\mbox{]} call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, .not.\+any(arr.\+lt.\+0) ,\textquotesingle{}test if any negative values in array A\+RR\textquotesingle{}) call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, all(arr.\+lt.\+100) ,\textquotesingle{}test if all values less than 100 in array A\+RR\textquotesingle{})
+
+call unit\+\_\+check\+\_\+done(\textquotesingle{}myroutine\textquotesingle{},msg=\textquotesingle{}checks on \char`\"{}myroutine\char`\"{} all passed\textquotesingle{})
+
+end program demo\+\_\+unit\+\_\+check
+
+Sample output (varies with what goodbad(1) command is used)\+:
+
+unit\+\_\+check\+: myroutine S\+U\+C\+C\+E\+SS\+:test if big enough unit\+\_\+check\+: myroutine S\+U\+C\+C\+E\+SS\+:test if small enough unit\+\_\+check\+: myroutine S\+U\+C\+C\+E\+SS\+:test if any negative values in array A\+RR unit\+\_\+check\+: myroutine S\+U\+C\+C\+E\+SS\+:test if all values less than 100 in array A\+RR {\itshape almost} for values 1.\+00000000 1.\+00010002 agreement of 3.\+99997139 digits out of requested 3.\+90000010 {\itshape almost} for values 10.\+0000000 10.\+0010004 agreement of 3.\+99986792 digits out of requested 3.\+90000010 {\itshape almost} for values 100.\+000000 100.\+010002 agreement of 3.\+99995065 digits out of requested 3.\+90000010 unit\+\_\+check\+\_\+good\+: myroutine P\+A\+S\+S\+ED\+:checks on \char`\"{}myroutine\char`\"{} all passed
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References atleast(), fstop(), ifailed\+\_\+g, ipassed\+\_\+g, no\+\_\+news\+\_\+is\+\_\+good\+\_\+news, stderr(), unit\+\_\+check\+\_\+command, and unit\+\_\+check\+\_\+keep\+\_\+going.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a96149da1a302f2a157d79dadc94e755e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a96149da1a302f2a157d79dadc94e755e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_aaa2744e5ab1687072183869bd53cc086}\label{namespacem__verify_aaa2744e5ab1687072183869bd53cc086}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check\+\_\+bad@{unit\+\_\+check\+\_\+bad}}
+\index{unit\+\_\+check\+\_\+bad@{unit\+\_\+check\+\_\+bad}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check\+\_\+bad()}{unit\_check\_bad()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::unit\+\_\+check\+\_\+bad (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{name,  }\item[{character(len=$\ast$), intent(in), optional}]{opts,  }\item[{character(len=$\ast$), intent(in), optional}]{msg }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+bad(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call command \char`\"{}goodbad N\+A\+M\+E bad\char`\"{} and stop program (L\+I\+C\+E\+N\+SE\+:PD) 
+
+\subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+\begin{DoxyVerb}subroutine unit_check_bad(name,opts,msg)
+
+ character(len=*),intent(in) :: name
+ character(len=*),intent(in),optional :: opts
+ character(len=*),intent(in),optional :: msg
+\end{DoxyVerb}
+
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+\begin{DoxyVerb}unit_check_bad(3f) calls the shell command
+
+     goodbad NAME bad [opts]
+
+and stops the program. It is just a shortcut for calling
+     call unit_check(name,.false.)
+     call unit_check_done(name,opts,msg)
+\end{DoxyVerb}
+
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+unit\+\_\+check\+\_\+bad use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+start use M\+\_\+verify, only\+: unit\+\_\+check use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+good, unit\+\_\+check\+\_\+bad
+
+implicit none integer \+:\+: x x=10 call unit\+\_\+check\+\_\+start(\textquotesingle{}myroutine\textquotesingle{})
+
+call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, x.\+gt.\+3 ,\textquotesingle{}test if big enough\textquotesingle{}) call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, x.\+lt.\+100 ,\textquotesingle{}test if small enough\textquotesingle{})
+
+if(x.\+ne.\+0)then call unit\+\_\+check\+\_\+bad (\textquotesingle{}myroutine\textquotesingle{},msg=\textquotesingle{}checks on \char`\"{}myroutine\char`\"{} failed\textquotesingle{}) ! program execution stopped endif
+
+end program demo\+\_\+unit\+\_\+check\+\_\+bad
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban
+
+\subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References unit\+\_\+check(), and unit\+\_\+check\+\_\+done().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_aaa2744e5ab1687072183869bd53cc086_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a0c0ed723b61b2cbbebb81fa91edd1941}\label{namespacem__verify_a0c0ed723b61b2cbbebb81fa91edd1941}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check\+\_\+done@{unit\+\_\+check\+\_\+done}}
+\index{unit\+\_\+check\+\_\+done@{unit\+\_\+check\+\_\+done}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check\+\_\+done()}{unit\_check\_done()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::unit\+\_\+check\+\_\+done (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{name,  }\item[{character(len=$\ast$), intent(in), optional}]{opts,  }\item[{character(len=$\ast$), intent(in), optional}]{msg }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+done(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call command \char`\"{}goodbad N\+A\+M\+E good\char`\"{} or \char`\"{}goodbad N\+A\+M\+E bad\char`\"{} depending on whether failures were found (L\+I\+C\+E\+N\+SE\+:PD) 
+
+\subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+\begin{DoxyVerb}subroutine unit_check_done(name,opts,msg)
+
+ character(len=*),intent(in) :: name
+ character(len=*),intent(in),optional :: opts
+ character(len=*),intent(in),optional :: msg
+\end{DoxyVerb}
+
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+\begin{DoxyVerb}If there have been no failures the shell command
+
+     goodbad NAME good [opts]
+
+is executed, else the command
+
+     goodbad NAME bad [opts]
+
+is executed and by default stops the program if their have been
+any failures.
+\end{DoxyVerb}
+
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+unit\+\_\+check\+\_\+done use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+start use M\+\_\+verify, only\+: unit\+\_\+check use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+good, unit\+\_\+check\+\_\+done, unit\+\_\+check\+\_\+bad
+
+implicit none integer \+:\+: x x=10 call unit\+\_\+check\+\_\+start(\textquotesingle{}myroutine\textquotesingle{})
+
+call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, x.\+gt.\+3 ,\textquotesingle{}test if big enough\textquotesingle{}) call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, x.\+lt.\+100 ,\textquotesingle{}test if small enough\textquotesingle{})
+
+if(x.\+ne.\+0)then call unit\+\_\+check\+\_\+done (\textquotesingle{}myroutine\textquotesingle{},msg=\textquotesingle{}checks on \char`\"{}myroutine\char`\"{}\textquotesingle{} ) ! program execution stopped endif
+
+end program demo\+\_\+unit\+\_\+check\+\_\+done \subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References atleast(), clicks, duration, fstop(), ifailed\+\_\+g, ipassed\+\_\+g, julian(), stderr(), unit\+\_\+check\+\_\+command, and unit\+\_\+check\+\_\+keep\+\_\+going.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a0c0ed723b61b2cbbebb81fa91edd1941_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a0c0ed723b61b2cbbebb81fa91edd1941_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a9d5ed59a1ac977dd7ab23e0d1fb54de4}\label{namespacem__verify_a9d5ed59a1ac977dd7ab23e0d1fb54de4}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check\+\_\+good@{unit\+\_\+check\+\_\+good}}
+\index{unit\+\_\+check\+\_\+good@{unit\+\_\+check\+\_\+good}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check\+\_\+good()}{unit\_check\_good()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::unit\+\_\+check\+\_\+good (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{name,  }\item[{character(len=$\ast$), intent(in), optional}]{opts,  }\item[{character(len=$\ast$), intent(in), optional}]{msg }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+good(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call command \char`\"{}goodbad N\+A\+M\+E good\char`\"{} (L\+I\+C\+E\+N\+SE\+:PD) 
+
+\subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+\begin{DoxyVerb}subroutine unit_check_good(name,opts,msg)
+
+ character(len=*),intent(in)          :: name
+ character(len=*),intent(in),optional :: opts
+ character(len=*),intent(in),optional :: msg
+\end{DoxyVerb}
+
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+A shortcut for
+
+call unit\+\_\+check(name,.true.) call unit\+\_\+check\+\_\+done(name,opts,msg)
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+unit\+\_\+check\+\_\+good use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+start, unit\+\_\+check\+\_\+done use M\+\_\+verify, only\+: unit\+\_\+check use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+good, unit\+\_\+check\+\_\+bad
+
+implicit none integer \+:\+: x x=10 call unit\+\_\+check\+\_\+start(\textquotesingle{}myroutine\textquotesingle{})
+
+call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, x.\+gt.\+3 ,\textquotesingle{}test if big enough\textquotesingle{}) call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, x.\+lt.\+100 ,\textquotesingle{}test if small enough\textquotesingle{})
+
+call unit\+\_\+check\+\_\+good(\textquotesingle{}myroutine\textquotesingle{},msg=\textquotesingle{}checks on \char`\"{}myroutine\char`\"{} \textquotesingle{})
+
+end program demo\+\_\+unit\+\_\+check\+\_\+good
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References unit\+\_\+check(), and unit\+\_\+check\+\_\+done().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a9d5ed59a1ac977dd7ab23e0d1fb54de4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_a74ea8b4574606c4f72e97b115375fc9b}\label{namespacem__verify_a74ea8b4574606c4f72e97b115375fc9b}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check\+\_\+msg@{unit\+\_\+check\+\_\+msg}}
+\index{unit\+\_\+check\+\_\+msg@{unit\+\_\+check\+\_\+msg}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check\+\_\+msg()}{unit\_check\_msg()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::unit\+\_\+check\+\_\+msg (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{name,  }\item[{class($\ast$), intent(in), optional}]{g1,  }\item[{class($\ast$), intent(in), optional}]{g2,  }\item[{class($\ast$), intent(in), optional}]{g3,  }\item[{class($\ast$), intent(in), optional}]{g4,  }\item[{class($\ast$), intent(in), optional}]{g5,  }\item[{class($\ast$), intent(in), optional}]{g6,  }\item[{class($\ast$), intent(in), optional}]{g7,  }\item[{class($\ast$), intent(in), optional}]{g8,  }\item[{class($\ast$), intent(in), optional}]{g9 }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+msg(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} converts up to nine standard scalar values to a message for unit testing (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+function unit\+\_\+check\+\_\+msg(name,g1,g2g3,g4,g5,g6,g7,g8,g9)
+
+character(len=$\ast$),intent(in) \+:\+: name class($\ast$),intent(in),optional \+:\+: g1,g2,g3,g4,g5,g6,g7,g8,g9 \subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+unit\+\_\+check\+\_\+msg(3f) builds a string from up to nine scalar values and prints it to the error long.
+
+\subsubsection*{O\+P\+T\+I\+O\+NS}
+
+name name of unit being tested g\mbox{[}1-\/9\mbox{]} optional value to print the value of after the message. May be of type I\+N\+T\+E\+G\+ER, L\+O\+G\+I\+C\+AL, R\+E\+AL, D\+O\+U\+B\+L\+E\+P\+R\+E\+C\+I\+S\+I\+ON, C\+O\+M\+P\+L\+EX, or C\+H\+A\+R\+A\+C\+T\+ER.
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+unit\+\_\+check\+\_\+msg use M\+\_\+verify, only \+: unit\+\_\+check\+\_\+start,unit\+\_\+check\+\_\+msg,unit\+\_\+check\+\_\+done implicit none character(len=\+:),allocatable \+:\+: pr
+
+call unit\+\_\+check\+\_\+start(\textquotesingle{}myroutine\textquotesingle{}) call unit\+\_\+check\+\_\+msg(\textquotesingle{}myroutine\textquotesingle{},\textquotesingle{}H\+U\+G\+E(3f) integers\textquotesingle{},huge(0),\textquotesingle{}and real\textquotesingle{},huge(0.\+0),\textquotesingle{}and double\textquotesingle{},huge(0.\+0d0)) call unit\+\_\+check\+\_\+msg(\textquotesingle{}myroutine\textquotesingle{},\textquotesingle{}real \+:\textquotesingle{},huge(0.\+0),0.\+0,12345.\+6789,tiny(0.\+0) ) call unit\+\_\+check\+\_\+msg(\textquotesingle{}myroutine\textquotesingle{},\textquotesingle{}doubleprecision \+:\textquotesingle{},huge(0.\+0d0),0.\+0d0,12345.\+6789d0,tiny(0.\+0d0) ) call unit\+\_\+check\+\_\+msg(\textquotesingle{}myroutine\textquotesingle{},\textquotesingle{}complex \+:\textquotesingle{},cmplx(huge(0.\+0),tiny(0.\+0)) ) call unit\+\_\+check\+\_\+done(\textquotesingle{}myroutine\textquotesingle{})
+
+end program demo\+\_\+unit\+\_\+check\+\_\+msg
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References atleast(), and stderr().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__verify_a74ea8b4574606c4f72e97b115375fc9b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__verify_ad753d0a58dbc02c8917bf2b2aa3e1de7}\label{namespacem__verify_ad753d0a58dbc02c8917bf2b2aa3e1de7}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check\+\_\+start@{unit\+\_\+check\+\_\+start}}
+\index{unit\+\_\+check\+\_\+start@{unit\+\_\+check\+\_\+start}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check\+\_\+start()}{unit\_check\_start()}}
+{\footnotesize\ttfamily subroutine, public m\+\_\+verify\+::unit\+\_\+check\+\_\+start (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{name,  }\item[{character(len=$\ast$), intent(in), optional}]{options,  }\item[{character(len=$\ast$), intent(in), optional}]{msg }\end{DoxyParamCaption})}
+
+
+
+\subsubsection*{N\+A\+ME}
+
+unit\+\_\+check\+\_\+start(3f) -\/ \mbox{[}M\+\_\+verify\mbox{]} call command \char`\"{}goodbad N\+A\+M\+E start\char`\"{} and optionally set options (L\+I\+C\+E\+N\+SE\+:PD) 
+
+\subsubsection*{S\+Y\+N\+O\+P\+S\+IS}
+
+\begin{DoxyVerb}subroutine unit_check_start(name,options,msg)
+
+ character(len=*),intent(in)          :: name
+ character(len=*),intent(in),optional :: options
+ character(len=*),intent(in),optional :: msg
+\end{DoxyVerb}
+
+
+\subsubsection*{D\+E\+S\+C\+R\+I\+P\+T\+I\+ON}
+
+unit\+\_\+check\+\_\+start(3f) is an initialization command that by default calls the shell command
+
+goodbad N\+A\+ME start \mbox{[}options\mbox{]}
+
+The command can be changed by setting the environment variable U\+N\+I\+T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+C\+O\+M\+M\+A\+ND or the global module variable U\+N\+I\+T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+C\+O\+M\+M\+A\+ND. The environment variable overrides the global module variable.
+
+By default if a unit\+\_\+check(3f) logical expression is false or the unit\+\_\+check\+\_\+bad(3f) procedure is called the program will be stopped.
+
+This has the same effect as setting the environment variable M\+\_\+verify\+\_\+\+S\+T\+OP to \char`\"{}\+F\+A\+L\+S\+E\char`\"{} or the global module variable U\+N\+I\+T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+K\+E\+E\+P\+\_\+\+G\+O\+I\+NG to .F\+A\+L\+SE. . Set the value to .true. and the program will continue even when tests fail.
+
+\subsubsection*{O\+P\+T\+I\+O\+NS}
+
+N\+A\+ME name of the shell command to execute. If blank, no command is executed. O\+P\+T\+I\+O\+NS pass additional options to the shell command
+
+M\+SG print message
+
+\subsubsection*{E\+X\+A\+M\+P\+L\+ES}
+
+Sample program\+:
+
+program demo\+\_\+unit\+\_\+check\+\_\+start use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+start use M\+\_\+verify, only\+: unit\+\_\+check use M\+\_\+verify, only\+: unit\+\_\+check\+\_\+done
+
+implicit none integer \+:\+: ival call unit\+\_\+check\+\_\+start(\textquotesingle{}myroutine\textquotesingle{}) ! the goodbad(1) command called here takes many options ! used to build an S\+Q\+Lite3 entry call unit\+\_\+check\+\_\+start(\textquotesingle{}myroutine\+\_\+long\textquotesingle{},\textquotesingle{} \& \& -\/section 3 \& \& -\/library lib\+G\+PF \& \& -\/filename {\ttfamily pwd}/\+M\+\_\+verify.FF \& \& -\/documentation y \& \& -\/ufpp y \& \& -\/ccall n \& \& -\/archive G\+P\+F.\+a \& \& \textquotesingle{})
+
+ival=10 call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, ival.\+gt.\+3 , msg=\textquotesingle{}test if big enough\textquotesingle{}) call unit\+\_\+check(\textquotesingle{}myroutine\textquotesingle{}, ival.\+lt.\+100 , msg=\textquotesingle{}test if small enough\textquotesingle{})
+
+call unit\+\_\+check\+\_\+done(\textquotesingle{}myroutine\textquotesingle{},msg=\textquotesingle{}completed checks of \char`\"{}myroutine\char`\"{}\textquotesingle{})
+
+end program demo\+\_\+unit\+\_\+check\+\_\+start
+
+\subsubsection*{A\+U\+T\+H\+OR}
+
+John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
+
+Public Domain 
+
+References atleast(), clicks, duration, ifailed\+\_\+g, ipassed\+\_\+g, julian(), stderr(), unit\+\_\+check\+\_\+command, and unit\+\_\+check\+\_\+keep\+\_\+going.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{namespacem__verify_ad753d0a58dbc02c8917bf2b2aa3e1de7_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacem__verify_af97c7f92394811bec5fed506fdfab67d}\label{namespacem__verify_af97c7f92394811bec5fed506fdfab67d}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!clicks@{clicks}}
+\index{clicks@{clicks}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{clicks}{clicks}}
+{\footnotesize\ttfamily integer, save m\+\_\+verify\+::clicks =0.\+0d0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__verify_a0f87b43bebf70897f9ec711be3f01839}\label{namespacem__verify_a0f87b43bebf70897f9ec711be3f01839}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!debug@{debug}}
+\index{debug@{debug}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily logical, save, public m\+\_\+verify\+::debug =.false.}
+
+\mbox{\Hypertarget{namespacem__verify_a77729c599fbd8aed6075a05fb3c38146}\label{namespacem__verify_a77729c599fbd8aed6075a05fb3c38146}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!duration@{duration}}
+\index{duration@{duration}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{duration}{duration}}
+{\footnotesize\ttfamily real(kind=\mbox{\hyperlink{namespacem__verify_a7f6aa94b09b3824bc5c15bc74e757d6b}{realtime}}), save m\+\_\+verify\+::duration =0.\+0d0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__verify_a458c47b6b47738f8ebadddb4a944d0e0}\label{namespacem__verify_a458c47b6b47738f8ebadddb4a944d0e0}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!exit\+\_\+failure@{exit\+\_\+failure}}
+\index{exit\+\_\+failure@{exit\+\_\+failure}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{exit\+\_\+failure}{exit\_failure}}
+{\footnotesize\ttfamily integer, parameter, public m\+\_\+verify\+::exit\+\_\+failure =1}
+
+\mbox{\Hypertarget{namespacem__verify_a278d7a36f55fac875e4f94bc893447fe}\label{namespacem__verify_a278d7a36f55fac875e4f94bc893447fe}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!exit\+\_\+success@{exit\+\_\+success}}
+\index{exit\+\_\+success@{exit\+\_\+success}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{exit\+\_\+success}{exit\_success}}
+{\footnotesize\ttfamily integer, parameter, public m\+\_\+verify\+::exit\+\_\+success =0}
+
+\mbox{\Hypertarget{namespacem__verify_ab18f1875be62b6aa1e101894358b617f}\label{namespacem__verify_ab18f1875be62b6aa1e101894358b617f}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!ifailed\+\_\+g@{ifailed\+\_\+g}}
+\index{ifailed\+\_\+g@{ifailed\+\_\+g}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{ifailed\+\_\+g}{ifailed\_g}}
+{\footnotesize\ttfamily integer, save m\+\_\+verify\+::ifailed\+\_\+g =0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__verify_a7014b3aa584eb29266bf52fc6e03e6ed}\label{namespacem__verify_a7014b3aa584eb29266bf52fc6e03e6ed}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!io\+\_\+debug@{io\+\_\+debug}}
+\index{io\+\_\+debug@{io\+\_\+debug}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{io\+\_\+debug}{io\_debug}}
+{\footnotesize\ttfamily integer, save, public m\+\_\+verify\+::io\+\_\+debug =E\+R\+R\+O\+R\+\_\+\+U\+N\+IT}
+
+\mbox{\Hypertarget{namespacem__verify_ada62999b3a1ef795c335deccac28cda5}\label{namespacem__verify_ada62999b3a1ef795c335deccac28cda5}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!ipassed\+\_\+g@{ipassed\+\_\+g}}
+\index{ipassed\+\_\+g@{ipassed\+\_\+g}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{ipassed\+\_\+g}{ipassed\_g}}
+{\footnotesize\ttfamily integer, save m\+\_\+verify\+::ipassed\+\_\+g =0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__verify_aa827fd6225334c65efe89d1d0af79efa}\label{namespacem__verify_aa827fd6225334c65efe89d1d0af79efa}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!no\+\_\+news\+\_\+is\+\_\+good\+\_\+news@{no\+\_\+news\+\_\+is\+\_\+good\+\_\+news}}
+\index{no\+\_\+news\+\_\+is\+\_\+good\+\_\+news@{no\+\_\+news\+\_\+is\+\_\+good\+\_\+news}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{no\+\_\+news\+\_\+is\+\_\+good\+\_\+news}{no\_news\_is\_good\_news}}
+{\footnotesize\ttfamily logical, save, public m\+\_\+verify\+::no\+\_\+news\+\_\+is\+\_\+good\+\_\+news =.false.}
+
+\mbox{\Hypertarget{namespacem__verify_a7f6aa94b09b3824bc5c15bc74e757d6b}\label{namespacem__verify_a7f6aa94b09b3824bc5c15bc74e757d6b}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!realtime@{realtime}}
+\index{realtime@{realtime}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{realtime}{realtime}}
+{\footnotesize\ttfamily integer, parameter, public m\+\_\+verify\+::realtime =kind(0.\+0d0)}
+
+\mbox{\Hypertarget{namespacem__verify_a425cad68370e8552495e1838b2e34734}\label{namespacem__verify_a425cad68370e8552495e1838b2e34734}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!stop\+\_\+g@{stop\+\_\+g}}
+\index{stop\+\_\+g@{stop\+\_\+g}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{stop\+\_\+g}{stop\_g}}
+{\footnotesize\ttfamily logical, save m\+\_\+verify\+::stop\+\_\+g =.true.\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__verify_aaa3c6dfa94a9414592071525036020d4}\label{namespacem__verify_aaa3c6dfa94a9414592071525036020d4}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check\+\_\+command@{unit\+\_\+check\+\_\+command}}
+\index{unit\+\_\+check\+\_\+command@{unit\+\_\+check\+\_\+command}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check\+\_\+command}{unit\_check\_command}}
+{\footnotesize\ttfamily character(len=4096), public m\+\_\+verify\+::unit\+\_\+check\+\_\+command =\textquotesingle{}goodbad\textquotesingle{}}
+
+\mbox{\Hypertarget{namespacem__verify_a434af7c4d380da5b85d49dc07466dde8}\label{namespacem__verify_a434af7c4d380da5b85d49dc07466dde8}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check\+\_\+keep\+\_\+going@{unit\+\_\+check\+\_\+keep\+\_\+going}}
+\index{unit\+\_\+check\+\_\+keep\+\_\+going@{unit\+\_\+check\+\_\+keep\+\_\+going}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check\+\_\+keep\+\_\+going}{unit\_check\_keep\_going}}
+{\footnotesize\ttfamily logical, save, public m\+\_\+verify\+::unit\+\_\+check\+\_\+keep\+\_\+going =.false.}
+
+\mbox{\Hypertarget{namespacem__verify_afe37222ddb2a9470e1a0e9c40e2dcce3}\label{namespacem__verify_afe37222ddb2a9470e1a0e9c40e2dcce3}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check\+\_\+level@{unit\+\_\+check\+\_\+level}}
+\index{unit\+\_\+check\+\_\+level@{unit\+\_\+check\+\_\+level}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check\+\_\+level}{unit\_check\_level}}
+{\footnotesize\ttfamily integer, save, public m\+\_\+verify\+::unit\+\_\+check\+\_\+level =0}
+
+\mbox{\Hypertarget{namespacem__verify_a65569c8b4be204251ba14430ad18372d}\label{namespacem__verify_a65569c8b4be204251ba14430ad18372d}} 
+\index{m\+\_\+verify@{m\+\_\+verify}!unit\+\_\+check\+\_\+lun@{unit\+\_\+check\+\_\+lun}}
+\index{unit\+\_\+check\+\_\+lun@{unit\+\_\+check\+\_\+lun}!m\+\_\+verify@{m\+\_\+verify}}
+\subsubsection{\texorpdfstring{unit\+\_\+check\+\_\+lun}{unit\_check\_lun}}
+{\footnotesize\ttfamily integer, save, public m\+\_\+verify\+::unit\+\_\+check\+\_\+lun =E\+R\+R\+O\+R\+\_\+\+U\+N\+IT}
+

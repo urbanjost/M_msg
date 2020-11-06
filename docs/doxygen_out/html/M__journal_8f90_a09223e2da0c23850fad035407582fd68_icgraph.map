@@ -1,0 +1,7 @@
+<map id="now_ex" name="now_ex">
+<area shape="rect" id="node2" href="$namespacem__journal.html#a21238c3fc7731703c75eb39233ab529e" title="m_journal::where_write\l_message" alt="" coords="125,57,300,98"/>
+<area shape="rect" id="node6" href="$namespacem__journal.html#a9c8074667748f2685122f2b3147e61d5" title="m_journal::now_ex" alt="" coords="140,123,285,149"/>
+<area shape="rect" id="node3" href="$namespacem__journal.html#a24b891eded8ca585a6a72ab0eef7016c" title="m_journal::flush_trail" alt="" coords="383,5,542,32"/>
+<area shape="rect" id="node4" href="$namespacem__journal.html#a25d0f5da7f7e84e22ab0a583447412b1" title="NAMEwhere_write_message_all(3f) &#45; [M_journal] converts any standard scalar type to a string and calls..." alt="" coords="375,57,550,98"/>
+<area shape="rect" id="node5" href="$namespacem__journal.html#aa86511a7c388f9286c282f6fa933ab58" title="m_journal::write_message_only" alt="" coords="348,123,577,149"/>
+</map>

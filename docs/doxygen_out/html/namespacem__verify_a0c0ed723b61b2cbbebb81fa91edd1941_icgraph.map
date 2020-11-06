@@ -1,0 +1,4 @@
+<map id="m_verify::unit_check_done" name="m_verify::unit_check_done">
+<area shape="rect" id="node2" href="$namespacem__verify.html#aaa2744e5ab1687072183869bd53cc086" title="NAMEunit_check_bad(3f) &#45; [M_verify] call command &quot;goodbad NAME bad&quot; and stop program (LICENSE:PD) ..." alt="" coords="253,5,441,32"/>
+<area shape="rect" id="node3" href="$namespacem__verify.html#a9d5ed59a1ac977dd7ab23e0d1fb54de4" title="NAMEunit_check_good(3f) &#45; [M_verify] call command &quot;goodbad NAME good&quot; (LICENSE:PD) ..." alt="" coords="249,56,445,83"/>
+</map>

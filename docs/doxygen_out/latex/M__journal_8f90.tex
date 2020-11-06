@@ -1,0 +1,135 @@
+\hypertarget{M__journal_8f90}{}\section{/home/urbanjs/venus/\+V600/github/\+M\+\_\+msg/src/\+M\+\_\+journal.f90 File Reference}
+\label{M__journal_8f90}\index{/home/urbanjs/venus/\+V600/github/\+M\+\_\+msg/src/\+M\+\_\+journal.\+f90@{/home/urbanjs/venus/\+V600/github/\+M\+\_\+msg/src/\+M\+\_\+journal.\+f90}}
+\subsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \mbox{\hyperlink{interfacem__journal_1_1journal}{m\+\_\+journal\+::journal}}
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+journal(3f) -\/ \mbox{[}M\+\_\+journal\mbox{]} provides public message routine, no paging or graphic mode change (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \mbox{\hyperlink{namespacem__time}{m\+\_\+time}}
+\item 
+module \mbox{\hyperlink{namespacem__journal}{m\+\_\+journal}}
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+M\+\_\+journal(3fm) -\/ \mbox{[}M\+\_\+journal\mbox{]} write program messages to stdout and/or a log file (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__time_a12cbfe4ebed008f4cdf88df4358df8ad}{m\+\_\+time\+::d2j}} (dat, julian, ierr)
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__time_a4da84079c6587a8aaa8ef32169a84cc5}{m\+\_\+time\+::j2d}} (dat, julian, ierr)
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__time_ac4bd98688e1277ab6cfc16697331406c}{m\+\_\+time\+::d2u}} (dat, unixtime, ierr)
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__time_a6c01c810eb2acce767d2f24b9aaefa56}{m\+\_\+time\+::u2d}} (dat, unixtime, ierr)
+\item 
+integer function, public \mbox{\hyperlink{namespacem__time_a727dd77bbd4a5d0e3947c5d303845947}{m\+\_\+time\+::d2o}} (dat)
+\item 
+character(len=\+:) function, allocatable, public \mbox{\hyperlink{namespacem__time_a6f28cf00e4998bb50bb503f5e4bd3f77}{m\+\_\+time\+::v2mo}} (imonth)
+\item 
+character(len=\+:) function, allocatable, public \mbox{\hyperlink{namespacem__time_a6b5e87be0e510ff268c1ecfbf67a3bdb}{m\+\_\+time\+::now}} (format)
+\item 
+character(len=\+:) function, allocatable, public \mbox{\hyperlink{namespacem__time_a2cb84c9b8af4f395b76aed76e1431328}{m\+\_\+time\+::fmtdate}} (values, format)
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__time_a0ec30ca32f18ec409bbbef046a9e73f0}{m\+\_\+time\+::fmtdate\+\_\+usage}} (ii)
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__time_adfda8a89820b8d0ad4581a14896e4ce5}{m\+\_\+time\+::dow}} (values, weekday, day, ierr)
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__time_aea9216971a364d79beb307f36e9e3873}{m\+\_\+time\+::woy}} (dat, iso\+\_\+year, iso\+\_\+week, iso\+\_\+weekday, iso\+\_\+name)
+\item 
+integer function \mbox{\hyperlink{M__journal_8f90_a41382743ce1b42e02a3f42146e3fa53f}{uncorrected\+\_\+week\+\_\+of\+\_\+year}} (datin)
+\item 
+real(kind=dp) function, public \mbox{\hyperlink{namespacem__time_ad3ce73217cd51090b52a0468b045c0f3}{m\+\_\+time\+::dj}} (dat)
+\item 
+integer function, dimension(8), public \mbox{\hyperlink{namespacem__time_a6c3297c41c6f58f8139c48466a37f292}{m\+\_\+time\+::jd}} (julian)
+\item 
+real(kind=dp) function, public \mbox{\hyperlink{namespacem__time_af1b675ed3256cd2ac10d461b8f1c7da8}{m\+\_\+time\+::du}} (dat)
+\item 
+integer function, dimension(8), public \mbox{\hyperlink{namespacem__time_a8b2c0ede467ef5185d478a072a9f969f}{m\+\_\+time\+::ud}} (unixtime)
+\item 
+subroutine, public \mbox{\hyperlink{namespacem__time_aeb65659c500dd201910f3615858f9b73}{m\+\_\+time\+::sys\+\_\+sleep}} (wait\+\_\+seconds)
+\item 
+character(len=\+:) function, allocatable \mbox{\hyperlink{M__journal_8f90_a09223e2da0c23850fad035407582fd68}{now\+\_\+ex}} (format)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a21238c3fc7731703c75eb39233ab529e}{m\+\_\+journal\+::where\+\_\+write\+\_\+message}} (where, msg)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a24b891eded8ca585a6a72ab0eef7016c}{m\+\_\+journal\+::flush\+\_\+trail}} ()
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a8388800481a5e7ca022b52cfc56b9daf}{m\+\_\+journal\+::set\+\_\+stdout\+\_\+lun}} (iounit)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a25d0f5da7f7e84e22ab0a583447412b1}{m\+\_\+journal\+::where\+\_\+write\+\_\+message\+\_\+all}} (where, g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, nospace)
+\begin{DoxyCompactList}\small\item\em \subsubsection*{N\+A\+ME}
+
+where\+\_\+write\+\_\+message\+\_\+all(3f) -\/ \mbox{[}M\+\_\+journal\mbox{]} converts any standard scalar type to a string and calls journal(3f) (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacem__journal_aa86511a7c388f9286c282f6fa933ab58}{m\+\_\+journal\+::write\+\_\+message\+\_\+only}} (message)
+\item 
+character(len=\+:) function, allocatable \mbox{\hyperlink{namespacem__journal_a9c8074667748f2685122f2b3147e61d5}{m\+\_\+journal\+::now\+\_\+ex}} (format)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, parameter, private \mbox{\hyperlink{namespacem__time_a95f16e7435244d114f0a451625dc189a}{m\+\_\+time\+::dp}} =kind(0.\+0d0)
+\item 
+real(kind=dp) \mbox{\hyperlink{namespacem__time_a2c21a39cf2aa1f48e7f03d3542c0fab2}{m\+\_\+time\+::secday}} =86400.\+0d0
+\item 
+integer, save, private \mbox{\hyperlink{namespacem__journal_a664cf3fd85385b776d30ea589606ad1c}{m\+\_\+journal\+::stdout}} =O\+U\+T\+P\+U\+T\+\_\+\+U\+N\+IT
+\item 
+logical, save \mbox{\hyperlink{namespacem__journal_a6184fbcebdfa06f0a45ce4c699189b53}{m\+\_\+journal\+::debug}} =.false.
+\item 
+integer, save \mbox{\hyperlink{namespacem__journal_a47e8e34dc4072b04101027394d688519}{m\+\_\+journal\+::last\+\_\+int}} =0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{M__journal_8f90_a09223e2da0c23850fad035407582fd68}\label{M__journal_8f90_a09223e2da0c23850fad035407582fd68}} 
+\index{M\+\_\+journal.\+f90@{M\+\_\+journal.\+f90}!now\+\_\+ex@{now\+\_\+ex}}
+\index{now\+\_\+ex@{now\+\_\+ex}!M\+\_\+journal.\+f90@{M\+\_\+journal.\+f90}}
+\subsubsection{\texorpdfstring{now\+\_\+ex()}{now\_ex()}}
+{\footnotesize\ttfamily character(len=\+:) function, allocatable now\+\_\+ex (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in), optional}]{format }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References m\+\_\+time\+::now().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{M__journal_8f90_a09223e2da0c23850fad035407582fd68_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{M__journal_8f90_a09223e2da0c23850fad035407582fd68_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{M__journal_8f90_a41382743ce1b42e02a3f42146e3fa53f}\label{M__journal_8f90_a41382743ce1b42e02a3f42146e3fa53f}} 
+\index{M\+\_\+journal.\+f90@{M\+\_\+journal.\+f90}!uncorrected\+\_\+week\+\_\+of\+\_\+year@{uncorrected\+\_\+week\+\_\+of\+\_\+year}}
+\index{uncorrected\+\_\+week\+\_\+of\+\_\+year@{uncorrected\+\_\+week\+\_\+of\+\_\+year}!M\+\_\+journal.\+f90@{M\+\_\+journal.\+f90}}
+\subsubsection{\texorpdfstring{uncorrected\+\_\+week\+\_\+of\+\_\+year()}{uncorrected\_week\_of\_year()}}
+{\footnotesize\ttfamily integer function woy\+::uncorrected\+\_\+week\+\_\+of\+\_\+year (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(in)}]{datin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References m\+\_\+time\+::d2o(), and m\+\_\+time\+::dow().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{M__journal_8f90_a41382743ce1b42e02a3f42146e3fa53f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{M__journal_8f90_a41382743ce1b42e02a3f42146e3fa53f_icgraph}
+\end{center}
+\end{figure}
