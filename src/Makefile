@@ -81,15 +81,16 @@ help:
 .PHONY: run
 run: $(PROG) $(CPROG)
 	# run everything
-	echo $? |xargs -n 1|xargs -iXX time XX
+	echo $? |xargs -n 1|xargs -iXX env XX
 #=================================================================================
 .PHONY: test
 test: $(TPROG)
 	# run everything
-	echo $? |xargs -n 1|xargs -iXX time XX
+	echo $? |xargs -n 1|xargs -iXX env XX
 #=================================================================================
 .PHONY: man
 man:
+	@test -d ../man  || ( echo 'manpages must be expanded into ../man'; exit)
 	@mandb ../man 1>&2
 	@env MANPATH=../man MANWIDTH=256 man -k .|col -b
 	@env MANWIDTH=80 MANPATH=../man MANWIDTH=80  man --regex '.*'|col -b

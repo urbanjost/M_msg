@@ -2,8 +2,9 @@
           use M_verify, only: fstop
           implicit none
           integer :: int
-          write(*,*)'Enter stop value'
-          read(*,*) int
+          !*!write(*,*)'Enter stop value'
+          !*!read(*,*) int
+          int=25
           select case(int)
           case(10) ; call fstop(int)
           case(20) ; call fstop(int,stderr='error: program will now stop')

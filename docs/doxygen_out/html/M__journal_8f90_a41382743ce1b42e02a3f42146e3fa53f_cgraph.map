@@ -1,6 +1,6 @@
 <map id="uncorrected_week_of_year" name="uncorrected_week_of_year">
-<area shape="rect" id="node2" href="$namespacem__time.html#a727dd77bbd4a5d0e3947c5d303845947" title="m_time::d2o" alt="" coords="251,5,355,32"/>
-<area shape="rect" id="node5" href="$namespacem__time.html#adfda8a89820b8d0ad4581a14896e4ce5" title="m_time::dow" alt="" coords="403,56,509,83"/>
-<area shape="rect" id="node3" href="$namespacem__time.html#ac4bd98688e1277ab6cfc16697331406c" title="m_time::d2u" alt="" coords="404,5,508,32"/>
-<area shape="rect" id="node4" href="$namespacem__time.html#a12cbfe4ebed008f4cdf88df4358df8ad" title="m_time::d2j" alt="" coords="557,31,657,57"/>
+<area shape="rect" id="node2" href="$namespacem__journal.html#ac12ae324e8c89f7400fb9ef0a581dc00" title="m_journal::d2o" alt="" coords="251,5,369,32"/>
+<area shape="rect" id="node5" href="$namespacem__journal.html#a40b5e01c631024472f21521c9705881a" title="m_journal::dow" alt="" coords="417,56,540,83"/>
+<area shape="rect" id="node3" href="$namespacem__journal.html#a9cd7f892071e8ddfde7e45fea077c3ce" title="m_journal::d2u" alt="" coords="419,5,538,32"/>
+<area shape="rect" id="node4" href="$namespacem__journal.html#a3978099ba1a861a6a67260c3060fc672" title="m_journal::d2j" alt="" coords="588,31,703,57"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['v2mo',['v2mo',['../namespacem__time.html#a6f28cf00e4998bb50bb503f5e4bd3f77',1,'m_time']]]
+  ['v2mo',['v2mo',['../namespacem__journal.html#a1941b83a2253bc58165639f256827534',1,'m_journal']]]
 ];

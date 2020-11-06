@@ -29,6 +29,38 @@ subroutine \mbox{\hyperlink{namespacem__journal_a25d0f5da7f7e84e22ab0a583447412b
 where\+\_\+write\+\_\+message\+\_\+all(3f) -\/ \mbox{[}M\+\_\+journal\mbox{]} converts any standard scalar type to a string and calls journal(3f) (L\+I\+C\+E\+N\+SE\+:PD) \subsubsection*{S\+Y\+N\+O\+P\+S\+IS}\end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacem__journal_aa86511a7c388f9286c282f6fa933ab58}{write\+\_\+message\+\_\+only}} (message)
 \item 
+subroutine \mbox{\hyperlink{namespacem__journal_a3978099ba1a861a6a67260c3060fc672}{d2j}} (dat, julian, ierr)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a3856fe36ea3b9de491627294a1488918}{j2d}} (dat, julian, ierr)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a9cd7f892071e8ddfde7e45fea077c3ce}{d2u}} (dat, unixtime, ierr)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a9521857f9c0a6ef8c85edcf9a3af1b07}{u2d}} (dat, unixtime, ierr)
+\item 
+integer function \mbox{\hyperlink{namespacem__journal_ac12ae324e8c89f7400fb9ef0a581dc00}{d2o}} (dat)
+\item 
+character(len=\+:) function, allocatable \mbox{\hyperlink{namespacem__journal_a1941b83a2253bc58165639f256827534}{v2mo}} (imonth)
+\item 
+character(len=\+:) function, allocatable \mbox{\hyperlink{namespacem__journal_a4a421ecf44cfb86feeee17c7505d7b98}{now}} (format)
+\item 
+character(len=\+:) function, allocatable \mbox{\hyperlink{namespacem__journal_a626580cd351557ac2d107fd2a97a388f}{fmtdate}} (values, format)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_aad40dcd3091bc958ddd427db862e28b5}{fmtdate\+\_\+usage}} (ii)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a40b5e01c631024472f21521c9705881a}{dow}} (values, weekday, day, ierr)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_a1ee1cbb181ac428b54cd9e7acaba3be9}{woy}} (dat, iso\+\_\+year, iso\+\_\+week, iso\+\_\+weekday, iso\+\_\+name)
+\item 
+real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}) function \mbox{\hyperlink{namespacem__journal_a649265e689819cb284a82eb80c49df49}{dj}} (dat)
+\item 
+integer function, dimension(8) \mbox{\hyperlink{namespacem__journal_a1e8e57f466830af519edad2004176fbc}{jd}} (julian)
+\item 
+real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}) function \mbox{\hyperlink{namespacem__journal_a1736ec58cd905293782a2663df69bc89}{du}} (dat)
+\item 
+integer function, dimension(8) \mbox{\hyperlink{namespacem__journal_abfa78dcc463f8fcdffe0b259df2f4c92}{ud}} (unixtime)
+\item 
+subroutine \mbox{\hyperlink{namespacem__journal_aaa9769d86a12f3f850e425991c8bcff7}{sys\+\_\+sleep}} (wait\+\_\+seconds)
+\item 
 character(len=\+:) function, allocatable \mbox{\hyperlink{namespacem__journal_a9c8074667748f2685122f2b3147e61d5}{now\+\_\+ex}} (format)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -39,6 +71,10 @@ integer, save, private \mbox{\hyperlink{namespacem__journal_a664cf3fd85385b776d3
 logical, save \mbox{\hyperlink{namespacem__journal_a6184fbcebdfa06f0a45ce4c699189b53}{debug}} =.false.
 \item 
 integer, save \mbox{\hyperlink{namespacem__journal_a47e8e34dc4072b04101027394d688519}{last\+\_\+int}} =0
+\item 
+integer, parameter, private \mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}} =kind(0.\+0d0)
+\item 
+real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}) \mbox{\hyperlink{namespacem__journal_aa6eaee3a08e2f478f696f278bad54df8}{secday}} =86400.\+0d0
 \end{DoxyCompactItemize}
 
 
@@ -155,6 +191,125 @@ John S. Urban \subsubsection*{L\+I\+C\+E\+N\+SE}
 Public Domain 
 
 \subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacem__journal_a3978099ba1a861a6a67260c3060fc672}\label{namespacem__journal_a3978099ba1a861a6a67260c3060fc672}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!d2j@{d2j}}
+\index{d2j@{d2j}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{d2j()}{d2j()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::d2j (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(in)}]{dat,  }\item[{real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}), intent(out)}]{julian,  }\item[{integer, intent(out)}]{ierr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a3978099ba1a861a6a67260c3060fc672_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_ac12ae324e8c89f7400fb9ef0a581dc00}\label{namespacem__journal_ac12ae324e8c89f7400fb9ef0a581dc00}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!d2o@{d2o}}
+\index{d2o@{d2o}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{d2o()}{d2o()}}
+{\footnotesize\ttfamily integer function m\+\_\+journal\+::d2o (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(in)}]{dat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References d2u(), and secday.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_ac12ae324e8c89f7400fb9ef0a581dc00_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_ac12ae324e8c89f7400fb9ef0a581dc00_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a9cd7f892071e8ddfde7e45fea077c3ce}\label{namespacem__journal_a9cd7f892071e8ddfde7e45fea077c3ce}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!d2u@{d2u}}
+\index{d2u@{d2u}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{d2u()}{d2u()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::d2u (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(in)}]{dat,  }\item[{real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}), intent(out)}]{unixtime,  }\item[{integer, intent(out)}]{ierr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References d2j(), and secday.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{namespacem__journal_a9cd7f892071e8ddfde7e45fea077c3ce_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a9cd7f892071e8ddfde7e45fea077c3ce_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a649265e689819cb284a82eb80c49df49}\label{namespacem__journal_a649265e689819cb284a82eb80c49df49}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!dj@{dj}}
+\index{dj@{dj}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{dj()}{dj()}}
+{\footnotesize\ttfamily real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}) function m\+\_\+journal\+::dj (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(in)}]{dat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References d2j().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{namespacem__journal_a649265e689819cb284a82eb80c49df49_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a40b5e01c631024472f21521c9705881a}\label{namespacem__journal_a40b5e01c631024472f21521c9705881a}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!dow@{dow}}
+\index{dow@{dow}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{dow()}{dow()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::dow (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(in)}]{values,  }\item[{integer, intent(out), optional}]{weekday,  }\item[{character$\ast$($\ast$), intent(out), optional}]{day,  }\item[{integer, intent(out)}]{ierr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References d2j().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{namespacem__journal_a40b5e01c631024472f21521c9705881a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a40b5e01c631024472f21521c9705881a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a1736ec58cd905293782a2663df69bc89}\label{namespacem__journal_a1736ec58cd905293782a2663df69bc89}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!du@{du}}
+\index{du@{du}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{du()}{du()}}
+{\footnotesize\ttfamily real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}) function m\+\_\+journal\+::du (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(in)}]{dat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References d2u().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a1736ec58cd905293782a2663df69bc89_cgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{namespacem__journal_a24b891eded8ca585a6a72ab0eef7016c}\label{namespacem__journal_a24b891eded8ca585a6a72ab0eef7016c}} 
 \index{m\+\_\+journal@{m\+\_\+journal}!flush\+\_\+trail@{flush\+\_\+trail}}
 \index{flush\+\_\+trail@{flush\+\_\+trail}!m\+\_\+journal@{m\+\_\+journal}}
@@ -172,6 +327,94 @@ Here is the call graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{namespacem__journal_a24b891eded8ca585a6a72ab0eef7016c_cgraph}
 \end{center}
 \end{figure}
+\mbox{\Hypertarget{namespacem__journal_a626580cd351557ac2d107fd2a97a388f}\label{namespacem__journal_a626580cd351557ac2d107fd2a97a388f}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!fmtdate@{fmtdate}}
+\index{fmtdate@{fmtdate}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{fmtdate()}{fmtdate()}}
+{\footnotesize\ttfamily character(len=\+:) function, allocatable m\+\_\+journal\+::fmtdate (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(in)}]{values,  }\item[{character(len=$\ast$), intent(in)}]{format }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References d2j(), d2o(), d2u(), dow(), v2mo(), and woy().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a626580cd351557ac2d107fd2a97a388f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a626580cd351557ac2d107fd2a97a388f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_aad40dcd3091bc958ddd427db862e28b5}\label{namespacem__journal_aad40dcd3091bc958ddd427db862e28b5}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!fmtdate\+\_\+usage@{fmtdate\+\_\+usage}}
+\index{fmtdate\+\_\+usage@{fmtdate\+\_\+usage}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{fmtdate\+\_\+usage()}{fmtdate\_usage()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::fmtdate\+\_\+usage (\begin{DoxyParamCaption}\item[{integer}]{ii }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__journal_a3856fe36ea3b9de491627294a1488918}\label{namespacem__journal_a3856fe36ea3b9de491627294a1488918}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!j2d@{j2d}}
+\index{j2d@{j2d}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{j2d()}{j2d()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::j2d (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(out)}]{dat,  }\item[{real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}), intent(in)}]{julian,  }\item[{integer, intent(out)}]{ierr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References secday.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a3856fe36ea3b9de491627294a1488918_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a1e8e57f466830af519edad2004176fbc}\label{namespacem__journal_a1e8e57f466830af519edad2004176fbc}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!jd@{jd}}
+\index{jd@{jd}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{jd()}{jd()}}
+{\footnotesize\ttfamily integer function, dimension(8) m\+\_\+journal\+::jd (\begin{DoxyParamCaption}\item[{real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}), intent(in)}]{julian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References j2d().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{namespacem__journal_a1e8e57f466830af519edad2004176fbc_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a4a421ecf44cfb86feeee17c7505d7b98}\label{namespacem__journal_a4a421ecf44cfb86feeee17c7505d7b98}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!now@{now}}
+\index{now@{now}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{now()}{now()}}
+{\footnotesize\ttfamily character(len=\+:) function, allocatable m\+\_\+journal\+::now (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in), optional}]{format }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References fmtdate().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a4a421ecf44cfb86feeee17c7505d7b98_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a4a421ecf44cfb86feeee17c7505d7b98_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{namespacem__journal_a9c8074667748f2685122f2b3147e61d5}\label{namespacem__journal_a9c8074667748f2685122f2b3147e61d5}} 
 \index{m\+\_\+journal@{m\+\_\+journal}!now\+\_\+ex@{now\+\_\+ex}}
 \index{now\+\_\+ex@{now\+\_\+ex}!m\+\_\+journal@{m\+\_\+journal}}
@@ -180,13 +423,20 @@ Here is the call graph for this function\+:\nopagebreak
 
 
 
-References m\+\_\+time\+::now(), and now\+\_\+ex().
+References now().
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacem__journal_a9c8074667748f2685122f2b3147e61d5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a9c8074667748f2685122f2b3147e61d5_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacem__journal_a8388800481a5e7ca022b52cfc56b9daf}\label{namespacem__journal_a8388800481a5e7ca022b52cfc56b9daf}} 
@@ -199,6 +449,66 @@ Here is the call graph for this function\+:\nopagebreak
 
 References stdout.
 
+\mbox{\Hypertarget{namespacem__journal_aaa9769d86a12f3f850e425991c8bcff7}\label{namespacem__journal_aaa9769d86a12f3f850e425991c8bcff7}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!sys\+\_\+sleep@{sys\+\_\+sleep}}
+\index{sys\+\_\+sleep@{sys\+\_\+sleep}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{sys\+\_\+sleep()}{sys\_sleep()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::sys\+\_\+sleep (\begin{DoxyParamCaption}\item[{integer (c\+\_\+int)}]{wait\+\_\+seconds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__journal_a9521857f9c0a6ef8c85edcf9a3af1b07}\label{namespacem__journal_a9521857f9c0a6ef8c85edcf9a3af1b07}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!u2d@{u2d}}
+\index{u2d@{u2d}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{u2d()}{u2d()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::u2d (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(out)}]{dat,  }\item[{real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}), intent(in)}]{unixtime,  }\item[{integer, intent(out)}]{ierr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References d2j(), j2d(), and secday.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{namespacem__journal_a9521857f9c0a6ef8c85edcf9a3af1b07_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{namespacem__journal_a9521857f9c0a6ef8c85edcf9a3af1b07_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_abfa78dcc463f8fcdffe0b259df2f4c92}\label{namespacem__journal_abfa78dcc463f8fcdffe0b259df2f4c92}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!ud@{ud}}
+\index{ud@{ud}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{ud()}{ud()}}
+{\footnotesize\ttfamily integer function, dimension(8) m\+\_\+journal\+::ud (\begin{DoxyParamCaption}\item[{real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}), intent(in)}]{unixtime }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References u2d().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_abfa78dcc463f8fcdffe0b259df2f4c92_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacem__journal_a1941b83a2253bc58165639f256827534}\label{namespacem__journal_a1941b83a2253bc58165639f256827534}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!v2mo@{v2mo}}
+\index{v2mo@{v2mo}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{v2mo()}{v2mo()}}
+{\footnotesize\ttfamily character(len=\+:) function, allocatable m\+\_\+journal\+::v2mo (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{imonth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a1941b83a2253bc58165639f256827534_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{namespacem__journal_a21238c3fc7731703c75eb39233ab529e}\label{namespacem__journal_a21238c3fc7731703c75eb39233ab529e}} 
 \index{m\+\_\+journal@{m\+\_\+journal}!where\+\_\+write\+\_\+message@{where\+\_\+write\+\_\+message}}
 \index{where\+\_\+write\+\_\+message@{where\+\_\+write\+\_\+message}!m\+\_\+journal@{m\+\_\+journal}}
@@ -275,6 +585,30 @@ Here is the call graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{namespacem__journal_a25d0f5da7f7e84e22ab0a583447412b1_cgraph}
 \end{center}
 \end{figure}
+\mbox{\Hypertarget{namespacem__journal_a1ee1cbb181ac428b54cd9e7acaba3be9}\label{namespacem__journal_a1ee1cbb181ac428b54cd9e7acaba3be9}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!woy@{woy}}
+\index{woy@{woy}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{woy()}{woy()}}
+{\footnotesize\ttfamily subroutine m\+\_\+journal\+::woy (\begin{DoxyParamCaption}\item[{integer, dimension(8), intent(in)}]{dat,  }\item[{integer, intent(out)}]{iso\+\_\+year,  }\item[{integer, intent(out)}]{iso\+\_\+week,  }\item[{integer, intent(out)}]{iso\+\_\+weekday,  }\item[{character(len=10), intent(out)}]{iso\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+References uncorrected\+\_\+week\+\_\+of\+\_\+year().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a1ee1cbb181ac428b54cd9e7acaba3be9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacem__journal_a1ee1cbb181ac428b54cd9e7acaba3be9_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{namespacem__journal_aa86511a7c388f9286c282f6fa933ab58}\label{namespacem__journal_aa86511a7c388f9286c282f6fa933ab58}} 
 \index{m\+\_\+journal@{m\+\_\+journal}!write\+\_\+message\+\_\+only@{write\+\_\+message\+\_\+only}}
 \index{write\+\_\+message\+\_\+only@{write\+\_\+message\+\_\+only}!m\+\_\+journal@{m\+\_\+journal}}
@@ -301,11 +635,23 @@ Here is the call graph for this function\+:\nopagebreak
 \subsubsection{\texorpdfstring{debug}{debug}}
 {\footnotesize\ttfamily logical, save m\+\_\+journal\+::debug =.false.\hspace{0.3cm}{\ttfamily [private]}}
 
+\mbox{\Hypertarget{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}\label{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!dp@{dp}}
+\index{dp@{dp}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{dp}{dp}}
+{\footnotesize\ttfamily integer, parameter, private m\+\_\+journal\+::dp =kind(0.\+0d0)\hspace{0.3cm}{\ttfamily [private]}}
+
 \mbox{\Hypertarget{namespacem__journal_a47e8e34dc4072b04101027394d688519}\label{namespacem__journal_a47e8e34dc4072b04101027394d688519}} 
 \index{m\+\_\+journal@{m\+\_\+journal}!last\+\_\+int@{last\+\_\+int}}
 \index{last\+\_\+int@{last\+\_\+int}!m\+\_\+journal@{m\+\_\+journal}}
 \subsubsection{\texorpdfstring{last\+\_\+int}{last\_int}}
 {\footnotesize\ttfamily integer, save m\+\_\+journal\+::last\+\_\+int =0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{namespacem__journal_aa6eaee3a08e2f478f696f278bad54df8}\label{namespacem__journal_aa6eaee3a08e2f478f696f278bad54df8}} 
+\index{m\+\_\+journal@{m\+\_\+journal}!secday@{secday}}
+\index{secday@{secday}!m\+\_\+journal@{m\+\_\+journal}}
+\subsubsection{\texorpdfstring{secday}{secday}}
+{\footnotesize\ttfamily real(kind=\mbox{\hyperlink{namespacem__journal_aaae0522a70bb76a85ea800670d5fec5f}{dp}}) m\+\_\+journal\+::secday =86400.\+0d0\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{namespacem__journal_a664cf3fd85385b776d30ea589606ad1c}\label{namespacem__journal_a664cf3fd85385b776d30ea589606ad1c}} 
 \index{m\+\_\+journal@{m\+\_\+journal}!stdout@{stdout}}

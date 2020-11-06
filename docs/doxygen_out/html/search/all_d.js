@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['u2d',['u2d',['../namespacem__time.html#a6c01c810eb2acce767d2f24b9aaefa56',1,'m_time']]],
-  ['ud',['ud',['../namespacem__time.html#a8b2c0ede467ef5185d478a072a9f969f',1,'m_time']]],
+  ['u2d',['u2d',['../namespacem__journal.html#a9521857f9c0a6ef8c85edcf9a3af1b07',1,'m_journal']]],
+  ['ud',['ud',['../namespacem__journal.html#abfa78dcc463f8fcdffe0b259df2f4c92',1,'m_journal']]],
   ['uncorrected_5fweek_5fof_5fyear',['uncorrected_week_of_year',['../M__journal_8f90.html#a41382743ce1b42e02a3f42146e3fa53f',1,'M_journal.f90']]],
   ['unit_5fcheck',['unit_check',['../namespacem__verify.html#a96149da1a302f2a157d79dadc94e755e',1,'m_verify']]],
   ['unit_5fcheck_5fbad',['unit_check_bad',['../namespacem__verify.html#aaa2744e5ab1687072183869bd53cc086',1,'m_verify']]],

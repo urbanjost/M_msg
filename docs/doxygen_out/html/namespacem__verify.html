@@ -563,7 +563,7 @@ g[1-9]  optional value(s) to print as a message before stopping. May
         or CHARACTER.
 </pre><h2>EXAMPLES</h2>
 <p>Sample program:</p>
-<p>program demo_assert use M_verify, only : assert implicit none character(len=:),allocatable :: pr real :: a, toobig=1024 a=2000 call assert('myroutine', 101, a.gt.toobig, 'The value is too large', a, '.gt.', toobig) end program demo_assert</p>
+<p>program demo_assert use M_verify, only : assert implicit none real :: a, toobig=1024 a=2000 call assert('myroutine', 101, a.gt.toobig, 'The value is too large', a, '.gt.', toobig) end program demo_assert</p>
 <h2>AUTHOR</h2>
 <p>John S. Urban </p><h2>LICENSE</h2>
 <p>Public Domain </p>
@@ -812,7 +812,7 @@ fstop(3f) - [M_verify] call stop with both a number and a message (LICENSE:PD) <
 <h2>OPTIONS</h2>
 <p>ierr - value in range 0 to 32 stdout - description to be printed to standard output stderr - description to be printed to standard error </p><h2>EXAMPLES</h2>
 <p>Sample program:</p>
-<p>program demo_fstop use M_verify, only: fstop implicit none integer :: int write(*,*)'Enter stop value' read(*,*) int select case(int) case(10) ; call fstop(int) case(20) ; call fstop(int,stderr='error: program will now stop') case(25) ; call fstop(int,stdout='stdout message',stderr='stderr message') case(30) ; call fstop(int,stdout='error: program will now stop') case default call fstop(int) endselect</p>
+<p>program demo_fstop use M_verify, only: fstop implicit none integer :: int !*!write(*,*)'Enter stop value' !*!read(*,*) int int=25 select case(int) case(10) ; call fstop(int) case(20) ; call fstop(int,stderr='error: program will now stop') case(25) ; call fstop(int,stdout='stdout message',stderr='stderr message') case(30) ; call fstop(int,stdout='error: program will now stop') case default call fstop(int) endselect</p>
 <p>end program demo_fstop</p>
 <p>Results:</p>
 <h2>SEE ALSO</h2>
@@ -1606,7 +1606,7 @@ unit_check_msg(3f) - [M_verify] converts up to nine standard scalar values to a 
 <p>name name of unit being tested g[1-9] optional value to print the value of after the message. May be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.</p>
 <h2>EXAMPLES</h2>
 <p>Sample program:</p>
-<p>program demo_unit_check_msg use M_verify, only : unit_check_start,unit_check_msg,unit_check_done implicit none character(len=:),allocatable :: pr</p>
+<p>program demo_unit_check_msg use M_verify, only : unit_check_start,unit_check_msg,unit_check_done implicit none</p>
 <p>call unit_check_start('myroutine') call unit_check_msg('myroutine','HUGE(3f) integers',huge(0),'and real',huge(0.0),'and double',huge(0.0d0)) call unit_check_msg('myroutine','real :',huge(0.0),0.0,12345.6789,tiny(0.0) ) call unit_check_msg('myroutine','doubleprecision :',huge(0.0d0),0.0d0,12345.6789d0,tiny(0.0d0) ) call unit_check_msg('myroutine','complex :',cmplx(huge(0.0),tiny(0.0)) ) call unit_check_done('myroutine')</p>
 <p>end program demo_unit_check_msg</p>
 <h2>AUTHOR</h2>

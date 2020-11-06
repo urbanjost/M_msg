@@ -276,7 +276,6 @@ contains
 !!    program demo_unit_check_msg
 !!    use M_verify, only : unit_check_start,unit_check_msg,unit_check_done
 !!    implicit none
-!!    character(len=:),allocatable :: pr
 !!
 !!    call unit_check_start('myroutine')
 !!    call unit_check_msg('myroutine','HUGE(3f) integers',huge(0),'and real',huge(0.0),'and double',huge(0.0d0))
@@ -431,8 +430,9 @@ end subroutine stderr
 !!    use M_verify, only: fstop
 !!    implicit none
 !!    integer :: int
-!!    write(*,*)'Enter stop value'
-!!    read(*,*) int
+!!    !*!write(*,*)'Enter stop value'
+!!    !*!read(*,*) int
+!!    int=25
 !!    select case(int)
 !!    case(10) ; call fstop(int)
 !!    case(20) ; call fstop(int,stderr='error: program will now stop')
@@ -1238,7 +1238,6 @@ end function atleast
 !!    program demo_assert
 !!    use M_verify, only : assert
 !!    implicit none
-!!    character(len=:),allocatable :: pr
 !!    real :: a, toobig=1024
 !!    a=2000
 !!    call assert('myroutine', 101, a.gt.toobig, 'The value is too large', a, '.gt.', toobig)
@@ -1885,7 +1884,9 @@ logical             :: in_margin
 end function in_margin
 function round(val,idigits0)
 implicit none
-character(len=*),parameter :: ident="@(#) M_verify::round(3f): round val to specified number of significant digits"
+
+! ident_17="@(#)M_verify::round(3f): round val to specified number of significant digits"
+
 integer,parameter          :: dp=kind(0.0d0)
 real(kind=dp),intent(in)   :: val
 integer,intent(in)         :: idigits0
@@ -1918,7 +1919,7 @@ pure elemental function anyscalar_to_real128(valuein) result(d_out)
 use, intrinsic :: iso_fortran_env, only : error_unit !! ,input_unit,output_unit
 implicit none
 
-! ident_17="@(#)M_verify::anyscalar_to_real128(3f): convert integer or real parameter of any kind to real128"
+! ident_18="@(#)M_verify::anyscalar_to_real128(3f): convert integer or real parameter of any kind to real128"
 
 class(*),intent(in)          :: valuein
 real(kind=real128)           :: d_out
@@ -1947,7 +1948,7 @@ pure elemental function anyscalar_to_double(valuein) result(d_out)
 use, intrinsic :: iso_fortran_env, only : error_unit !! ,input_unit,output_unit
 implicit none
 
-! ident_18="@(#)M_verify::anyscalar_to_double(3f): convert integer or real parameter of any kind to doubleprecision"
+! ident_19="@(#)M_verify::anyscalar_to_double(3f): convert integer or real parameter of any kind to doubleprecision"
 
 class(*),intent(in)       :: valuein
 doubleprecision           :: d_out

@@ -1,7 +1,6 @@
           program demo_unit_check_msg
           use M_verify, only : unit_check_start,unit_check_msg,unit_check_done
           implicit none
-          character(len=:),allocatable :: pr
 
           call unit_check_start('myroutine')
           call unit_check_msg('myroutine','HUGE(3f) integers',huge(0),'and real',huge(0.0),'and double',huge(0.0d0))
