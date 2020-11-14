@@ -1,6 +1,0 @@
-<map id="m_verify::fstop" name="m_verify::fstop">
-<area shape="rect" id="node2" href="$namespacem__verify.html#a96149da1a302f2a157d79dadc94e755e" title="NAMEunit_check(3f) &#45; [M_verify] if logical expression is false, call command &quot;goodbad NAME bad&quot; and s..." alt="" coords="193,5,350,32"/>
-<area shape="rect" id="node5" href="$namespacem__verify.html#a0c0ed723b61b2cbbebb81fa91edd1941" title="NAMEunit_check_done(3f) &#45; [M_verify] call command &quot;goodbad NAME good&quot; or &quot;goodbad NAME bad&quot; depending..." alt="" coords="173,56,369,83"/>
-<area shape="rect" id="node3" href="$namespacem__verify.html#aaa2744e5ab1687072183869bd53cc086" title="NAMEunit_check_bad(3f) &#45; [M_verify] call command &quot;goodbad NAME bad&quot; and stop program (LICENSE:PD) ..." alt="" coords="421,5,609,32"/>
-<area shape="rect" id="node4" href="$namespacem__verify.html#a9d5ed59a1ac977dd7ab23e0d1fb54de4" title="NAMEunit_check_good(3f) &#45; [M_verify] call command &quot;goodbad NAME good&quot; (LICENSE:PD) ..." alt="" coords="417,56,613,83"/>
-</map>

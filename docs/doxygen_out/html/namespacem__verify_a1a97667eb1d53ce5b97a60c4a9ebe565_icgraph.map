@@ -1,6 +1,0 @@
-<map id="m_verify::julian" name="m_verify::julian">
-<area shape="rect" id="node2" href="$namespacem__verify.html#ad753d0a58dbc02c8917bf2b2aa3e1de7" title="NAMEunit_check_start(3f) &#45; [M_verify] call command &quot;goodbad NAME start&quot; and optionally set options (L..." alt="" coords="195,5,353,47"/>
-<area shape="rect" id="node3" href="$namespacem__verify.html#a0c0ed723b61b2cbbebb81fa91edd1941" title="NAMEunit_check_done(3f) &#45; [M_verify] call command &quot;goodbad NAME good&quot; or &quot;goodbad NAME bad&quot; depending..." alt="" coords="176,71,372,98"/>
-<area shape="rect" id="node4" href="$namespacem__verify.html#aaa2744e5ab1687072183869bd53cc086" title="NAMEunit_check_bad(3f) &#45; [M_verify] call command &quot;goodbad NAME bad&quot; and stop program (LICENSE:PD) ..." alt="" coords="424,46,612,73"/>
-<area shape="rect" id="node5" href="$namespacem__verify.html#a9d5ed59a1ac977dd7ab23e0d1fb54de4" title="NAMEunit_check_good(3f) &#45; [M_verify] call command &quot;goodbad NAME good&quot; (LICENSE:PD) ..." alt="" coords="420,97,616,123"/>
-</map>

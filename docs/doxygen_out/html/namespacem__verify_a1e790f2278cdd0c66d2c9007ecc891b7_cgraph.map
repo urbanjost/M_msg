@@ -1,5 +1,0 @@
-<map id="m_verify::dp_accdig" name="m_verify::dp_accdig">
-<area shape="rect" id="node2" href="$namespacem__verify.html#a2ef44f20366143129a1d6324b7a7429a" title="NAMEaccdig(3f) &#45; [M_verify] compare two real numbers only up to a specified number of digits (LICENSE..." alt="" coords="396,5,525,32"/>
-<area shape="rect" id="node3" href="$namespacem__verify.html#a034fd607958f96f6eea66cd741f4d1c0" title="NAMEalmost(3f) &#45; [M_verify] return true or false if two numbers agree up to specified number of digit..." alt="" coords="205,45,337,72"/>
-<area shape="rect" id="node4" href="$namespacem__verify.html#ab08d7bdca3b5d5e99732919be5880dc4" title="m_verify::anyscalar\l_to_real128" alt="" coords="385,67,536,109"/>
-</map>

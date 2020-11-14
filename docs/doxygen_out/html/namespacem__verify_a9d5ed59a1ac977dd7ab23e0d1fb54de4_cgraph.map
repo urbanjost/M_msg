@@ -1,8 +1,0 @@
-<map id="m_verify::unit_check_good" name="m_verify::unit_check_good">
-<area shape="rect" id="node2" href="$namespacem__verify.html#a96149da1a302f2a157d79dadc94e755e" title="NAMEunit_check(3f) &#45; [M_verify] if logical expression is false, call command &quot;goodbad NAME bad&quot; and s..." alt="" coords="269,157,426,184"/>
-<area shape="rect" id="node6" href="$namespacem__verify.html#a0c0ed723b61b2cbbebb81fa91edd1941" title="NAMEunit_check_done(3f) &#45; [M_verify] call command &quot;goodbad NAME good&quot; or &quot;goodbad NAME bad&quot; depending..." alt="" coords="249,107,445,133"/>
-<area shape="rect" id="node3" href="$namespacem__verify.html#a6185c00609b8f0e4c5a503cfadcb2490" title="m_verify::atleast" alt="" coords="493,157,625,184"/>
-<area shape="rect" id="node4" href="$namespacem__verify.html#a2695833d468118d68918d6aeabab6d0b" title="NAMEfstop(3f) &#45; [M_verify] call stop with both a number and a message (LICENSE:PD) SYNOPSIS..." alt="" coords="499,107,619,133"/>
-<area shape="rect" id="node5" href="$namespacem__verify.html#a41f795f932767c97b5ef481a694f4f84" title="NAMEstderr(3f) &#45; [M_verify] write message to stderr (LICENSE:PD) SYNOPSIS" alt="" coords="673,107,799,133"/>
-<area shape="rect" id="node7" href="$namespacem__verify.html#a1a97667eb1d53ce5b97a60c4a9ebe565" title="m_verify::julian" alt="" coords="498,5,621,32"/>
-</map>

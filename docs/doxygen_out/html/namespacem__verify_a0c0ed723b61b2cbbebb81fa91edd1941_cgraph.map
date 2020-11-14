@@ -1,6 +1,0 @@
-<map id="m_verify::unit_check_done" name="m_verify::unit_check_done">
-<area shape="rect" id="node2" href="$namespacem__verify.html#a6185c00609b8f0e4c5a503cfadcb2490" title="m_verify::atleast" alt="" coords="249,5,381,32"/>
-<area shape="rect" id="node3" href="$namespacem__verify.html#a2695833d468118d68918d6aeabab6d0b" title="NAMEfstop(3f) &#45; [M_verify] call stop with both a number and a message (LICENSE:PD) SYNOPSIS..." alt="" coords="255,56,375,83"/>
-<area shape="rect" id="node4" href="$namespacem__verify.html#a41f795f932767c97b5ef481a694f4f84" title="NAMEstderr(3f) &#45; [M_verify] write message to stderr (LICENSE:PD) SYNOPSIS" alt="" coords="429,81,555,108"/>
-<area shape="rect" id="node5" href="$namespacem__verify.html#a1a97667eb1d53ce5b97a60c4a9ebe565" title="m_verify::julian" alt="" coords="254,157,377,184"/>
-</map>

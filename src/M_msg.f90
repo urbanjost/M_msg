@@ -1,4 +1,5 @@
 module M_msg
+use, intrinsic :: iso_fortran_env, only : ERROR_UNIT,OUTPUT_UNIT    ! access computing environment
 implicit none
 private
 !-----------------------------------------------------------------------------------------------------------------------------------
@@ -8,6 +9,7 @@ private
 ! ident_1="@(#)M_msg::str(3f): {msg_scalar,msg_one}"
 
 public str
+public stderr
 
 interface str
    module procedure msg_scalar, msg_one
@@ -236,4 +238,101 @@ end subroutine print_generic
 !===================================================================================================================================
 end function msg_one
 !===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
+!>
+!!##NAME
+!!    stderr(3f) - [M_msg] write message to stderr
+!!    (LICENSE:PD)
+!!##SYNOPSIS
+!!
+!!    subroutine stderr(msg,[generic])
+!!
+!!     class(*),intent(in),optional :: msg
+!!     class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4
+!!     class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9
+!!##DESCRIPTION
+!!    STDERR(3f) writes a message to standard error using a standard f2003 method.
+!!    Up to ten generic options are available.
+!!##OPTIONS
+!!    msg           - description to print
+!!    generic[0-9]  - optional value to print the value of after the message. May
+!!                    be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,
+!!                    or CHARACTER.
+!!##EXAMPLES
+!!
+!!   Sample program:
+!!
+!!    program demo_stderr
+!!    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+!!    use,intrinsic :: iso_fortran_env, only : real32, real64, real128
+!!    use,intrinsic :: iso_fortran_env, only : real=> real32, integer=> int32
+!!    use M_verify, only: stderr
+!!    implicit none
+!!
+!!    call stderr('A simple message')
+!!    call stderr('error: RVALUE=',3.0/4.0)
+!!    call stderr('error: IVALUE=',123456789)
+!!    call stderr('error: LVALUE=',.true.)
+!!
+!!    SEVERAL: block
+!!    integer :: least=10, most=999, ival=-10
+!!    call stderr('error: value',ival,'should be between',least,'and',most)
+!!    endblock SEVERAL
+!!
+!!    call stderr('real32  :',huge(0.0_real32),0.0_real32,12345.6789_real32,tiny(0.0_real32))
+!!    call stderr('real64  :',huge(0.0_real64),0.0_real64,12345.6789_real64,tiny(0.0_real64))
+!!    call stderr('real128 :',huge(0.0_real128),0.0_real128,12345.6789_real128,tiny(0.0_real128))
+!!    call stderr('complex :',cmplx(huge(0.0_real),tiny(0.0_real)))
+!!
+!!    call stderr('error: program will now stop')
+!!    stop 1
+!!
+!!    end program demo_stderr
+!!
+!!   Results:
+!!     A simple message
+!!     error: RVALUE= 0.750000000
+!!     error: IVALUE= 123456789
+!!     error: LVALUE= T
+!!     error: value -10 should be between 10 and 999
+!!     real32  : 3.40282347E+38 ...
+!!               0.00000000 ...
+!!               12345.6787 ...
+!!               1.17549435E-38
+!!     real64  : 1.7976931348623157E+308 ...
+!!               0.0000000000000000 ...
+!!               12345.678900000001 ...
+!!               2.2250738585072014E-308
+!!     real128 : 1.18973149535723176508575932662800702E+4932 ...
+!!               0.00000000000000000000000000000000000  ...
+!!               12345.6789000000000000000000000000002 ...
+!!               3.36210314311209350626267781732175260E-4932
+!!     complex : (3.40282347E+38,1.17549435E-38)
+!!     error: program will now stop
+!!     STOP 1
+!!
+!!##AUTHOR
+!!    John S. Urban
+!!
+!!##LICENSE
+!!    Public Domain
+subroutine stderr(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj)
+implicit none
+
+! ident_4="@(#)M_verify::stderr(3f): writes a message to standard error using a standard f2003 method"
+
+class(*),intent(in),optional :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
+class(*),intent(in),optional :: ga, gb, gc, gd, ge, gf, gg, gh, gi, gj
+integer                      :: ios
+   write(error_unit,'(a)',iostat=ios) str(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, g0, gb, gc, gd, ge, gf, gg, gh, gi, gj)
+   flush(unit=output_unit,iostat=ios)
+   flush(unit=error_unit,iostat=ios)
+end subroutine stderr
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
 end module M_msg
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================

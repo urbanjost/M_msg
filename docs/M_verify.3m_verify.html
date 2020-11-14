@@ -53,8 +53,9 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>M_verify</B>(3fm) - [M_verify] a collection of Fortran routines for supporting code development by
-providing error processing, debugging procedures and unit testing.
+<B>M_verify</B>(3fm) - [M_verify] a collection of Fortran routines for
+supporting code development by providing error
+processing, debugging procedures and unit testing.
 (LICENSE:PD)
 </BLOCKQUOTE>
 <A name=contents></A><H3>CONTENTS</H3></A>
@@ -72,13 +73,25 @@ providing error processing, debugging procedures and unit testing.
 
 </A>
 <BLOCKQUOTE>
-<B>use</B> M_verify, <I>only</I> : unit_check, unit_check_start, unit_check_good, unit_check_bad, <I>unit_check_done</I>
-<B>use</B> M_verify, <I>only</I> : unit_check_limit, unit_check_keep_going, <I>unit_check_command</I>
-<B>use</B> M_verify, <I>only</I> : <I>unit_check_msg</I>
-<B>use</B> M_verify, <I>only</I> : <I>debug</I>
-<B>use</B> M_verify, <I>only</I> : <I>fstop</I>
-<B>use</B> M_verify, <I>only</I> : <I>stderr</I>
-<B>use</B> M_verify, <I>only</I> : <I>assert</I>
+<P>
+<B>Module</B> <I>procedures</I>
+<P>
+<PRE>
+   use M_verify, only : unit_check, unit_check_start, unit_check_done
+   use M_verify, only : unit_check_good, unit_check_bad
+   use M_verify, only : unit_check_msg
+   use M_verify, only : debug
+   use M_verify, only : fstop
+   use M_verify, only : assert
+<P>
+</PRE>
+<B>Module</B> <I>values</I>
+<P>
+<PRE>
+   use M_verify, only : unit_check_limit, unit_check_keep_going
+   use M_verify, only : unit_check_command
+<P>
+</PRE>
 </BLOCKQUOTE>
 <A name=2>
 
@@ -95,11 +108,11 @@ to your heart.
 
 </A>
 <BLOCKQUOTE>
-The <B>M_verify</B>(3fm) Fortran module provides procedures and variables
+The <B>M_verify</B>(3fm) Fortran module provides <I>procedures</I> and variables
 useful for providing error processing, debugging capabilities, and
 unit testing.
 <BLOCKQUOTE>
-<TABLE cellpadding=3><!-- tsb: The <B>M_verify</B>(3fm) Fortran module provides procedures and variables
+<TABLE cellpadding=3><!-- tsb: The <B>M_verify</B>(3fm) Fortran module provides <I>procedures</I> and variables
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
@@ -112,7 +125,7 @@ mail failure alerts, &#46;&#46;&#46;
 o
 </TD><TD>
 supports easily composing a message from up to nine scalar
-intrinsic values and different message levels
+intrinsic <I>values</I> and different message levels
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
@@ -135,10 +148,10 @@ program termination on errors.
 <TR valign=top><TD colspan=2>
 <B>unit_check_level</B> </TD></TR><TR valign=top><TD width=3%>&nbsp;</TD><TD>
 An integer that can be used to specify
-different <I>debug</I> levels
+different debug levels
 </TD></TR>
 <TR valign=top><TD colspan=2>
-<B></B><I>unit_check_command</I> </TD></TR><TR valign=top><TD width=3%>&nbsp;</TD><TD>
+<B>unit_check_command</B> </TD></TR><TR valign=top><TD width=3%>&nbsp;</TD><TD>
 name of command to execute. Defaults to the name
 "goodbad".
 </TD></TR>
@@ -167,30 +180,51 @@ if expression is false optionally call
 <TR><TD colspan=2>
 <PRE>
                              command NAME bad
+<P>
 </PRE>
+</TD></TR>
+<TR><TD width=6%>&nbsp;</TD><TD>
 and stop program (by default)
 </TD></TR>
 <TR valign=top><TD colspan=2>
-<B></B><I>unit_check_done</I>(3f) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<B></B><B>unit_check_done</B>(3f) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
 call
 </TD></TR>
 <TR><TD colspan=2>
 <PRE>
                              command NAME good
+<P>
 </PRE>
-if no failures
-else call
-command NAME bad
+</TD></TR>
+<TR><TD width=6%>&nbsp;</TD><TD>
+if no failures; else call
+<P>
+<PRE>
+                             command NAME bad
+<P>
+</PRE>
 </TD></TR>
 <TR valign=top><TD colspan=2>
 <B></B><B>unit_check_good</B>(3f) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
 call command
-command NAME good
+</TD></TR>
+<TR><TD colspan=2>
+<PRE>
+                             command NAME good
+<P>
+</PRE>
 </TD></TR>
 <TR valign=top><TD colspan=2>
 <B></B><B>unit_check_bad</B>(3f) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
 call command
-command NAME bad
+</TD></TR>
+<TR><TD colspan=2>
+<PRE>
+                             command NAME bad
+<P>
+</PRE>
+</TD></TR>
+<TR><TD width=6%>&nbsp;</TD><TD>
 and stop program by default
 </TD></TR>
 <TR valign=top><TD colspan=2>
@@ -205,7 +239,7 @@ write message
 <BLOCKQUOTE>
 <TABLE cellpadding=3>
 <TR valign=top><TD colspan=2>
-<B></B><I>fstop</I>(3f) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<B></B><B>fstop</B>(3f) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
 calls &#146;STOP VALUE&#146; passing in a value (1-32),
 with optional message
 </TD></TR>
@@ -214,14 +248,10 @@ with optional message
 write ASCII Decimal Equivalent (ADE) numbers
 vertically beneath string
 </TD></TR>
-<TR valign=top><TD colspan=2>
-<B></B><I>stderr</I>(3f) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-Write message on <I>stderr</I>
-</TD></TR>
 <TR valign=top><TD width=6% nowrap>
-<B></B><I>debug</I> </TD><TD valign=bottom>
+<B>debug</B> </TD><TD valign=bottom>
 logical variable that can be tested by routines
-as a flag to process <I>debug</I> statements.
+as a flag to process debug statements.
 </TD></TR>
 <TR></TR></TABLE>For unit testing, the existence of a command called "goodbad" is
 initially assumed. This is generally a script that makes entries
@@ -244,7 +274,7 @@ The routines in <B>M_verify</B>(3f) are often combined with the <B>M_hashkeys</B
 routines and various math and statistical routines to quickly create
 unit tests.
 <P>
-Comparisons of real values can be done with a tolerance with
+Comparisons of real <I>values</I> can be done with a tolerance with
 <B>M_Compare_Float_Numbers</B>(3fm), for example.
 <P>
 The intrinsics <B>ANY</B>(3f) and <B>ALL</B>(3f) are particularly useful in calls
@@ -380,7 +410,7 @@ John S. Urban
 Public Domain
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>M_verify (3m_verify)</TD> <TD align=right width=33%><I>November 05, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from b94f4d58-a805-473b-b6d0-08775c4ffba3 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>M_verify (3m_verify)</TD> <TD align=right width=33%><I>November 14, 2020</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 9fe3f729-0d1d-4455-8abd-7588e0ac6c45 using man macros.</FONT>
 <br><br><center><img src="images/M_verify.gif"></center>
 </div>
 </div>
