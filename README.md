@@ -21,8 +21,19 @@ A conventional GNU/Linux or Unix install:
 ```bash
      git clone https://github.com/urbanjost/M_msg.git
      cd M_msg/src
-     # change Makefile if not using gfortran(1)
-     make  
+     # change Makefile if not using one of the listed compilers
+     
+     # for gfortran
+     make clean
+     make F90=gfortran gfortran
+     
+     # for ifort
+     make clean
+     make F90=ifort ifort
+
+     # for nvfortran
+     make clean
+     make F90=nvfortran nvfortran
 ```
 This will compile the Fortran module and basic test
 programs 

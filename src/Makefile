@@ -36,11 +36,34 @@ LIBS := -L. -lM_msg
 CC := cc
 CFLAGS := -O
 FC := gfortran
-FFLAGS := -O -fPIC \
-  -Wall -Wextra -Wimplicit-interface -fmax-errors=1 -fbounds-check -fcheck-array-temporaries\
+LDFLAGS := 
+# 
+# You can either ignore it, or disable the "may be used uninitialized"
+# warnings with -Wno-maybe-uninitialized or compile with optimizations
+# (-O1 and more).
+gfortran: F90=gfortran
+gfortran: FFLAGS := -O -fPIC \
+   -g -O -Wall -std=f2018 -Wextra -Wno-maybe-uninitialized -Wno-uninitialized \
+  -Wimplicit-interface -fmax-errors=1 -fbounds-check -fcheck-array-temporaries \
   -march=native -ffast-math -funroll-loops\
   -fbacktrace
-LDFLAGS := 
+gfortran: all
+	@echo built with $(F90)
+
+nvfortran: F90=nvfortran
+nvfortran: F90FLAGS := -Minform=inform -Mbackslash -traceback
+nvfortran: all
+	@echo built with $(F90)
+
+ifort: F90=ifort
+ifort: F90FLAGS := -warn all -traceback
+ifort: all
+	@echo built with $(F90)
+
+nagfor: F90=nagfor
+nagfor: F90FLAGS := -C all
+nagfor: all
+	@echo built with $(F90)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #all: $(OBJS) $(LIBRARY) $(PROGFILES) $(TESTPROGFILES) $(PROG)
 all: $(LIBRARY) $(PROG) $(CPROG)
@@ -65,7 +88,7 @@ M_verify.o: M_journal.o M_msg.o
 M_journal.o: M_msg.o 
 #=================================================================================
 clean:
-	-rm -f $(PROG) $(CPROG) $(OBJS) *.mod $(LIBRARY)
+	-rm -f $(PROG) $(TPROG) $(CPROG) $(OBJS) *.mod $(LIBRARY)
 	-rm -f mytrail.txt trail
 #=================================================================================
 .PHONY: help
@@ -81,12 +104,12 @@ help:
 .PHONY: run
 run: $(PROG) $(CPROG)
 	# run everything
-	echo $? |xargs -n 1|xargs -iXX env XX
+	@echo $? |xargs -n 1|xargs -iXX env XX
 #=================================================================================
 .PHONY: test
 test: $(TPROG)
 	# run everything
-	echo $? |xargs -n 1|xargs -iXX env XX
+	@echo $? |xargs -n 1|xargs -iXX env XX
 #=================================================================================
 .PHONY: man
 man:

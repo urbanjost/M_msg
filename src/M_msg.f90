@@ -163,7 +163,7 @@ class(*),intent(in) :: generic
       type is (real(kind=real32));      write(line(istart:),'(1pg0)') generic
       type is (real(kind=real64));      write(line(istart:),'(1pg0)') generic
       type is (real(kind=real128));     write(line(istart:),'(1pg0)') generic
-      type is (logical);                write(line(istart:),'(1l)') generic
+      type is (logical);                write(line(istart:),'(l1)') generic
       type is (character(len=*));       write(line(istart:),'(a)') trim(generic)
       type is (complex);                write(line(istart:),'("(",1pg0,",",1pg0,")")') generic
    end select
@@ -226,7 +226,7 @@ integer :: i
       type is (real(kind=real64));      write(line(istart:),'("[",*(1pg0,1x))') generic
       type is (real(kind=real128));     write(line(istart:),'("[",*(1pg0,1x))') generic
       !type is (real(kind=real256));     write(error_unit,'(1pg0)',advance='no') generic
-      type is (logical);                write(line(istart:),'("[",*(1l,1x))') generic
+      type is (logical);                write(line(istart:),'("[",*(l1,1x))') generic
       type is (character(len=*));       write(line(istart:),'("[",:*("""",a,"""",1x))') (trim(generic(i)),i=1,size(generic))
       type is (complex);                write(line(istart:),'("[",*("(",1pg0,",",1pg0,")",1x))') generic
       class default
@@ -325,7 +325,7 @@ implicit none
 class(*),intent(in),optional :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
 class(*),intent(in),optional :: ga, gb, gc, gd, ge, gf, gg, gh, gi, gj
 integer                      :: ios
-   write(error_unit,'(a)',iostat=ios) str(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, g0, gb, gc, gd, ge, gf, gg, gh, gi, gj)
+   write(error_unit,'(a)',iostat=ios) str(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj)
    flush(unit=output_unit,iostat=ios)
    flush(unit=error_unit,iostat=ios)
 end subroutine stderr
