@@ -10,6 +10,7 @@ private
 
 public str
 public stderr
+public wrt
 
 interface str
    module procedure msg_scalar, msg_one
@@ -174,7 +175,9 @@ end function msg_scalar
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
-function msg_one(generic0,generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9,nospace)
+function msg_one(generic0,generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9,&
+               & generica,genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj,&
+               & nospace)
 implicit none
 
 ! ident_3="@(#)M_msg::msg_one(3fp): writes a message to a string composed of any standard one dimensional types"
@@ -182,6 +185,8 @@ implicit none
 class(*),intent(in)           :: generic0(:)
 class(*),intent(in),optional  :: generic1(:), generic2(:), generic3(:), generic4(:), generic5(:)
 class(*),intent(in),optional  :: generic6(:), generic7(:), generic8(:), generic9(:)
+class(*),intent(in),optional  :: generica(:), genericb(:), genericc(:), genericd(:), generice(:)
+class(*),intent(in),optional  :: genericf(:), genericg(:), generich(:), generici(:), genericj(:)
 logical,intent(in),optional   :: nospace
 character(len=:), allocatable :: msg_one
 character(len=4096)           :: line
@@ -209,6 +214,16 @@ integer                       :: increment
    if(present(generic7))call print_generic(generic7)
    if(present(generic8))call print_generic(generic8)
    if(present(generic9))call print_generic(generic9)
+   if(present(generica))call print_generic(generica)
+   if(present(genericb))call print_generic(genericb)
+   if(present(genericc))call print_generic(genericc)
+   if(present(genericd))call print_generic(genericd)
+   if(present(generice))call print_generic(generice)
+   if(present(genericf))call print_generic(genericf)
+   if(present(genericg))call print_generic(genericg)
+   if(present(generich))call print_generic(generich)
+   if(present(generici))call print_generic(generici)
+   if(present(genericj))call print_generic(genericj)
    msg_one=trim(line)
 contains
 !===================================================================================================================================
@@ -267,7 +282,7 @@ end function msg_one
 !!    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 !!    use,intrinsic :: iso_fortran_env, only : real32, real64, real128
 !!    use,intrinsic :: iso_fortran_env, only : real=> real32, integer=> int32
-!!    use M_verify, only: stderr
+!!    use M_msg, only: stderr
 !!    implicit none
 !!
 !!    call stderr('A simple message')
@@ -320,7 +335,7 @@ end function msg_one
 subroutine stderr(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj)
 implicit none
 
-! ident_4="@(#)M_verify::stderr(3f): writes a message to standard error using a standard f2003 method"
+! ident_4="@(#)M_msg::stderr(3f): writes a message to standard error using a standard f2003 method"
 
 class(*),intent(in),optional :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
 class(*),intent(in),optional :: ga, gb, gc, gd, ge, gf, gg, gh, gi, gj
@@ -329,6 +344,89 @@ integer                      :: ios
    flush(unit=output_unit,iostat=ios)
    flush(unit=error_unit,iostat=ios)
 end subroutine stderr
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
+!>
+!!##NAME
+!!    wrt(3f) - [M_msg] write multiple scalar values to any number of files
+!!    (LICENSE:PD)
+!!##SYNOPSIS
+!!
+!!    subroutine wrt(luns,generic(s),iostat)
+!!
+!!     integer,intent(in)           :: luns(:)
+!!     class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4
+!!     class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9
+!!     class(*),intent(in),optional :: generica,genericb,genericc,genericd,generice
+!!     class(*),intent(in),optional :: genericf,genericg,generich,generici,genericj
+!!     integer,intent(out),optional :: ios
+!!##DESCRIPTION
+!!    WRT(3f) writes a list of scalar values  to the list of unit numbers in LUNS(:).
+!!##OPTIONS
+!!    LUNS            Unit numbers to write to. If of size zero no output is generated
+!!    generic[1-20]   optional value to print the value of after the message. May
+!!                    be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,
+!!                    or CHARACTER.
+!!##RETURNS
+!!    IOSTAT          The value of the last non-zero IOSTAT value. Returns zero if
+!!                    no errors occurred.
+!!##EXAMPLES
+!!
+!!   Sample program:
+!!
+!!    program demo_wrt
+!!    use, intrinsic :: iso_fortran_env, only : &
+!!     & stdin=>input_unit, &
+!!     & stdout=>output_unit, &
+!!     & stderr=>error_unit
+!!    use M_msg, only: wrt
+!!    implicit none
+!!    integer,allocatable :: luns(:)
+!!    integer :: iostat=0
+!!    ! a null list allows for turning off verbose or debug mode output
+!!    luns=[integer ::]
+!!    call wrt(luns,'NULL LIST:',huge(0),'PI=',asin(-1.0d0)*4.0d0,iostat=iostat)
+!!    write(*,*)'IOSTAT=',iostat
+!!    ! multiple files can be used to create a log file
+!!    luns=[stderr,stdout]
+!!    call wrt(luns,'TWO FILES:',huge(0),'PI=',asin(-1.0d0)*4.0d0,iostat=iostat)
+!!    write(*,*)'IOSTAT=',iostat
+!!    ! unlike direct use of WRITE a function can be used that returns
+!!    ! an INTEGER array.
+!!
+!!    end program demo_wrt
+!!
+!!   Results:
+!!
+!!     IOSTAT=           0
+!!    TWO FILES: 2147483647 PI= -6.283185307179586
+!!    TWO FILES: 2147483647 PI= -6.283185307179586
+!!     IOSTAT=           0
+!!
+!!##AUTHOR
+!!    John S. Urban
+!!
+!!##LICENSE
+!!    Public Domain
+subroutine wrt(luns,g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj,iostat)
+
+! ident_5="@(#)M_msg::write(3f): writes a message to any number of open files with any scalar values"
+
+implicit none
+integer,intent(in)           :: luns(:)
+class(*),intent(in),optional :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
+class(*),intent(in),optional :: ga, gb, gc, gd, ge, gf, gg, gh, gi, gj
+integer,intent(out),optional :: iostat
+integer                      :: i
+character(len=256)           :: msg
+   do i=1,size(luns)
+      write(luns(i),'(a)',iostat=iostat,iomsg=msg)str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,ga,gb,gc,gd,ge,gf,gg,gh,gi,gj)
+      if(iostat.ne.0)then
+         call stderr('<ERROR>*write*:',msg)
+      endif
+   enddo
+end subroutine wrt
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================

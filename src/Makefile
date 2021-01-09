@@ -6,20 +6,21 @@ TESTPROGFILES = ../test/main.f90 \
 $(NULL)
 
 PROGFILES = \
- ../test/demos/str/str.f90 \
- ../test/demos/assert/assert.f90 \
- ../test/demos/fstop/fstop.f90 \
- ../test/demos/M_verify/M_verify.f90 \
- ../test/demos/pdec/pdec.f90 \
- ../test/demos/stderr/stderr.f90 \
- ../test/demos/unit_check/unit_check.f90 \
- ../test/demos/unit_check_bad/unit_check_bad.f90 \
- ../test/demos/unit_check_done/unit_check_done.f90 \
- ../test/demos/unit_check_good/unit_check_good.f90 \
- ../test/demos/unit_check_msg/unit_check_msg.f90 \
- ../test/demos/unit_check_start/unit_check_start.f90 \
- ../test/demos/journal/journal.f90 \
- ../test/demos/M_journal/M_journal.f90 \
+ ../example/demo_str.f90 \
+ ../example/demo_assert.f90 \
+ ../example/demo_fstop.f90 \
+ ../example/demo_M_verify.f90 \
+ ../example/demo_pdec.f90 \
+ ../example/demo_wrt.f90 \
+ ../example/demo_stderr.f90 \
+ ../example/demo_unit_check.f90 \
+ ../example/demo_unit_check_bad.f90 \
+ ../example/demo_unit_check_done.f90 \
+ ../example/demo_unit_check_good.f90 \
+ ../example/demo_unit_check_msg.f90 \
+ ../example/demo_unit_check_start.f90 \
+ ../example/demo_journal.f90 \
+ ../example/demo_M_journal.f90 \
 $(NULL)
 
 CPROGFILES = 
@@ -88,7 +89,7 @@ M_verify.o: M_journal.o M_msg.o
 M_journal.o: M_msg.o 
 #=================================================================================
 clean:
-	-rm -f $(PROG) $(TPROG) $(CPROG) $(OBJS) *.mod $(LIBRARY)
+	-rm -f $(PROG) $(TPROG) $(CPROG) $(OBJS) *.mod $(LIBRARY) *.o
 	-rm -f mytrail.txt trail
 #=================================================================================
 .PHONY: help

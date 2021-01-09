@@ -370,7 +370,7 @@ end interface journal
 ! global variables
 
 !integer,parameter,private  :: stdin=INPUT_UNIT
-integer,save,private       :: stdout=OUTPUT_UNIT
+integer,save,private       :: my_stdout=OUTPUT_UNIT
 logical,save               :: debug=.false.
 integer,save               :: last_int=0
 
@@ -401,7 +401,7 @@ character(len=*),intent(in)  :: msg
 
 !     where=O open trail file "msg" or close trail file if blank filename is given
 !     where=% set prefix to run thru now(3f) to generate time prefix strings, blank turns off time prefix
-!     where=N open new file and assign stdout to the file unless file name is blank; then revert to stdout being original stdout.
+!     where=N open new file and assign stdout to the file unless file name is blank; then revert to my_stdout being original stdout.
 !
 !  the trail file messages are preceded by a pound character (#) by default so they can easily be interpreted as comments
 !  if the trace file is subsequently used as input data for a program
@@ -435,12 +435,12 @@ character(len=4096)                :: mssge
          if(trailopen) then
             write(itrail,'(a)',advance=adv)prefix//trim(msg)
          !!elseif(times.eq.0)then
-         !!   write(stdout,'(a)',advance=adv)prefix//trim(msg)
+         !!   write(my_stdout,'(a)',advance=adv)prefix//trim(msg)
          !!   times=times+1
          endif
       !-----------------------------------------------------------------------------------------------------------------------------
       case('S','s')
-         write(stdout,'(a)',advance=adv)prefix//trim(msg)
+         write(my_stdout,'(a)',advance=adv)prefix//trim(msg)
          times=times+1
       !-----------------------------------------------------------------------------------------------------------------------------
       case('E','e')
@@ -461,26 +461,26 @@ character(len=4096)                :: mssge
             prefix_it=.true.
          endif
       !-----------------------------------------------------------------------------------------------------------------------------
-      case('N')                                                   ! new name for stdout
+      case('N')                                                   ! new name for my_stdout
          if(msg.ne.' '.and.msg.ne.'#N#'.and.msg.ne.'"#N#"')then   ! if filename not special or blank open new file
             close(unit=last_int,iostat=ios)
             open(unit=last_int,file=adjustl(trim(msg)),iostat=ios)
             if(ios.eq.0)then
-               stdout=last_int
+               my_stdout=last_int
             else
                write(*,*)'*journal* error opening redirected output file, ioerr=',ios
                write(*,*)'*journal* msg='//trim(msg)
             endif
          elseif(msg.eq.' ')then
             close(unit=last_int,iostat=ios)
-            stdout=6
+            my_stdout=6
          endif
       !-----------------------------------------------------------------------------------------------------------------------------
       case('C','c')
          if(trailopen)then
             write(itrail,'(3a)',advance=adv)prefix,comment,trim(msg)
          elseif(times.eq.0)then
-            !! write(stdout,'(2a)',advance=adv)prefix,trim(msg)
+            !! write(my_stdout,'(2a)',advance=adv)prefix,trim(msg)
             !! times=times+1
          endif
       case('D','d')
@@ -488,7 +488,7 @@ character(len=4096)                :: mssge
             if(trailopen)then
                write(itrail,'(4a)',advance=adv)prefix,comment,'DEBUG: ',trim(msg)
             elseif(times.eq.0)then
-               write(stdout,'(3a)',advance=adv)prefix,'DEBUG:',trim(msg)
+               write(my_stdout,'(3a)',advance=adv)prefix,'DEBUG:',trim(msg)
                times=times+1
             endif
          endif
@@ -515,7 +515,7 @@ character(len=4096)                :: mssge
             trailopen=.false.
          endif
       case default
-         write(stdout,'(a)',advance=adv)'*journal* bad WHERE value '//trim(where)//' when msg=['//trim(msg)//']'
+         write(my_stdout,'(a)',advance=adv)'*journal* bad WHERE value '//trim(where)//' when msg=['//trim(msg)//']'
       end select
    enddo
 !-----------------------------------------------------------------------------------------------------------------------------------
@@ -537,7 +537,7 @@ subroutine set_stdout_lun(iounit)
 ! ident_4="@(#)M_journal::set_stdout_lun(3fp): change I/O logical unit value for standard writes"
 
 integer,intent(in)                   :: iounit
-   stdout=iounit
+   my_stdout=iounit
 end subroutine set_stdout_lun
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!

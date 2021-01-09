@@ -1,15 +1,16 @@
-!TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
-subroutine test_in_margin
-use M_debug, only: unit_check, unit_check_start, unit_check_done, unit_check_good, unit_check_bad
-use M_debug, only: unit_check_level
-call unit_check_start('in_margin')
-call unit_check_done('in_margin')
-end subroutine test_in_margin
+program runtest
+use M_msg
+use M_verify
+use M_journal
+   unit_check_command=''
+   unit_check_keep_going=.true.
+   unit_check_level=0
    call test_accdig()         ! compare two real numbers only up to a specified number of digits
    call test_almost()         ! function compares two numbers only up to a specified number of digits
    call test_dp_accdig()      ! compare two double numbers only up to a specified number of digits
    call test_in_margin()      ! check if two reals are approximately equal using a relative margin
    call test_round()          ! round val to specified number of significant digits
+   contains
 !TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 subroutine test_in_margin()
 
@@ -17,8 +18,6 @@ subroutine test_in_margin()
    !!call unit_check('in_margin', 0.eq.0, 'checking', 100)
    call unit_check_done('in_margin',msg='')
 end subroutine test_in_margin
-<li><a href="in_margin.3.html">      in_margin(3f)    </a> check if two reals are approximately equal using a relative margin </li>
-<li><a href="round.3.html">          round(3f)        </a> round val to specified number of significant digits </li>
 !TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 subroutine test_round()
 
@@ -47,3 +46,6 @@ subroutine test_dp_accdig()
    !!call unit_check('dp_accdig', 0.eq.0, 'checking', 100)
    call unit_check_done('dp_accdig',msg='')
 end subroutine test_dp_accdig
+!TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+end program runtest
+!TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT

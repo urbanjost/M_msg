@@ -45,7 +45,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 <div id="Container">
 <div id="Content">
 <CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>str (3m_msg)</NOBR><HR></H1>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>wrt (3m_msg)</NOBR><HR></H1>
 </CENTER>
 <A name=0>
 
@@ -53,9 +53,8 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>str</B>(3f) - [M_msg] converts any standard scalar type to a string
+<B>wrt</B>(3f) - [M_msg] write multiple scalar values to any number of files
 (LICENSE:PD)
-<P>
 </BLOCKQUOTE>
 <A name=contents></A><H3>CONTENTS</H3></A>
 <BLOCKQUOTE>
@@ -73,15 +72,15 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-function <B>str</B>(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
-& ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,nospace)
+subroutine <B>wrt</B>(luns,generic(s),iostat)
 <P>
 <PRE>
-     class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
-     class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
-     logical,intent(in),optional   :: nospace
-     character,len=(:),allocatable :: str
-<P>
+    integer,intent(in)           :: luns(:)
+    class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4
+    class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9
+    class(*),intent(in),optional :: generica,genericb,genericc,genericd,generice
+    class(*),intent(in),optional :: genericf,genericg,generich,generici,genericj
+    integer,intent(out),optional :: ios
 </PRE>
 </BLOCKQUOTE>
 <A name=2>
@@ -90,8 +89,12 @@ function <B>str</B>(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
 
 </A>
 <BLOCKQUOTE>
-<B>str</B>(3f) builds a space-separated string from up to twenty scalar values.
-</BLOCKQUOTE>
+<TABLE cellpadding=3>
+<TR valign=top><TD colspan=2>
+<B></B><B>WRT</B>(3f) writes a list of scalar values </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+to the list of unit numbers in <B>LUNS</B>(:).
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
 <A name=3>
 
      <H3>OPTIONS</H3>
@@ -99,19 +102,15 @@ function <B>str</B>(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
 </A>
 <BLOCKQUOTE>
 <TABLE cellpadding=3>
-<TR valign=top><TD colspan=2>
-<B>g[0-9a-j]</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-optional value to print the value of after the message. May
-be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION,
-COMPLEX, or CHARACTER.
-<P>
-Optionally, all the generic values can be
-single-dimensioned arrays. Currently, mixing scalar
-arguments and array arguments is not supported.
+<TR valign=top><TD width=6% nowrap>
+<B>LUNS</B> </TD><TD valign=bottom>
+Unit numbers to write to. If of size zero no output is generated
 </TD></TR>
 <TR valign=top><TD colspan=2>
-<B>nospace</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
-if nospace=.true., then no spaces are added between values
+<B>generic[1-20]</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+optional value to print the value of after the message. May
+be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,
+or CHARACTER.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
@@ -122,8 +121,9 @@ if nospace=.true., then no spaces are added between values
 <BLOCKQUOTE>
 <TABLE cellpadding=3>
 <TR valign=top><TD width=6% nowrap>
-<B>str</B> </TD><TD valign=bottom>
-description to print
+<B>IOSTAT</B> </TD><TD valign=bottom>
+The value of the last non-zero IOSTAT value. Returns zero if
+no errors occurred.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -135,50 +135,45 @@ description to print
 Sample program:
 <P>
 <PRE>
-   program demo_msg
-   use M_msg, only : str
+   program demo_wrt
+   use, intrinsic :: iso_fortran_env, only : &
+    & stdin=&gt;input_unit, &
+    & stdout=&gt;output_unit, &
+    & stderr=&gt;error_unit
+   use M_msg, only: wrt
    implicit none
-   character(len=:),allocatable :: pr
-   character(len=:),allocatable :: frmt
-   integer                      :: biggest
+   integer,allocatable :: luns(:)
+   integer :: iostat=0
+   ! a null list allows for turning off verbose or debug mode output
+   luns=[integer ::]
+   call wrt(luns,&#146;NULL LIST:&#146;,huge(0),&#146;PI=&#146;,asin(-1.0d0)*4.0d0,iostat=iostat)
+   write(*,*)&#146;IOSTAT=&#146;,iostat
+   ! multiple files can be used to create a log file
+   luns=[stderr,stdout]
+   call wrt(luns,&#146;TWO FILES:&#146;,huge(0),&#146;PI=&#146;,asin(-1.0d0)*4.0d0,iostat=iostat)
+   write(*,*)&#146;IOSTAT=&#146;,iostat
+   ! unlike direct use of WRITE a function can be used that returns
+   ! an INTEGER array.
 <P>
-   pr=str(&#146;HUGE(3f) integers&#146;,huge(0),&
-   &&#146;and real&#146;,huge(0.0),&#146;and double&#146;,huge(0.0d0))
-   write(*,&#146;(a)&#146;)pr
-   pr=str(&#146;real            :&#146;,huge(0.0),0.0,12345.6789,tiny(0.0) )
-   write(*,&#146;(a)&#146;)pr
-   pr=str(&#146;doubleprecision :&#146;,huge(0.0d0),0.0d0,12345.6789d0,tiny(0.0d0) )
-   write(*,&#146;(a)&#146;)pr
-   pr=str(&#146;complex         :&#146;,cmplx(huge(0.0),tiny(0.0)) )
-   write(*,&#146;(a)&#146;)pr
-<P>
-   ! create a format on the fly
-   biggest=huge(0)
-   frmt=str(&#146;(*(i&#146;,int(log10(real(biggest))),&#146;:,1x))&#146;,nospace=.true.)
-   write(*,*)&#146;format=&#146;,frmt
-<P>
-   ! although it will often work, using str(3f)
-   ! in an I/O statement is not recommended
-   ! because if an error occurs str(3f) will try
-   ! to write while part of an I/O statement
-   ! which not all compilers can handle and is currently non-standard
-   write(*,*)str(&#146;program will now stop&#146;)
-<P>
-   end program demo_msg
+   end program demo_wrt
 <P>
 </PRE>
-</BLOCKQUOTE>
-Output
+Results:
 <P>
 <PRE>
-   HUGE(3f) integers 2147483647 and real 3.40282347E+38 and double 1.7976931348623157E+308
-   real            : 3.40282347E+38 0.00000000 12345.6787 1.17549435E-38
-   doubleprecision : 1.7976931348623157E+308 0.0000000000000000 12345.678900000001 2.2250738585072014E-308
-   complex         : (3.40282347E+38,1.17549435E-38)
-    format=(*(i9:,1x))
-    program will now stop
-<P>
+    IOSTAT=           0
 </PRE>
+TWO FILES: 2147483647 PI= <B>-6.283185307179586</B>
+TWO FILES: 2147483647 PI= <B>-6.283185307179586</B>
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb:     IOSTAT=           0
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD colspan=2>
+<B>IOSTAT=</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+</TD></TR>
+<TR></TR></TABLE></BLOCKQUOTE>
+</BLOCKQUOTE>
 <A name=6>
 
      <H3>AUTHOR</H3>
@@ -196,8 +191,8 @@ John S. Urban
 Public Domain
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>str (3m_msg)</TD> <TD align=right width=33%><I>January 09, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 62739392-5485-4813-a1d0-2361b9b675c8 using man macros.</FONT>
-<br><br><center><img src="images/str.gif"></center>
+<TABLE width=100%><TR> <TD width=33%><I></I></TD> <TD width=33% align=center>wrt (3m_msg)</TD> <TD align=right width=33%><I>January 09, 2021</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 40e31177-07c2-4b15-8875-7a28133ea36e using man macros.</FONT>
+<br><br><center><img src="images/wrt.gif"></center>
 </div>
 </div>
 </body>

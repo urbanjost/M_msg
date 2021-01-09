@@ -51,7 +51,6 @@ Manager](https://github.com/fortran-lang/fpm) )
 ```bash
      git clone https://github.com/urbanjost/M_msg.git
      cd M_msg
-     fpm build
      fpm test
 ```
 
@@ -80,6 +79,7 @@ or just list it as a dependency in your fpm.toml project file.
 ## ADDITIONAL DIRECTORY DESCRIPTIONS
 There are 
 
-   - source for the M_msg(3f) module in src/
-   - HTML documentation and the manpage archives in the docs/ directory.
-   - test/ contains a simple test program and procedure demos
+   - src/ is where the source for the M_msg(3f) modules resides 
+   - docs/ contains HTML documentation and the manpage archives 
+   - test/ contains a simple test program 
+   - example/ has demos
