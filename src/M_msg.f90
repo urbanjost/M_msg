@@ -27,10 +27,10 @@ contains
 !!
 !!##SYNOPSIS
 !!
-!!     function str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
+!!    Syntax:
 !!
+!!      function str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
 !!      & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,nospace)
-!!
 !!      class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
 !!      class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
 !!      logical,intent(in),optional   :: nospace
