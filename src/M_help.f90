@@ -148,20 +148,23 @@ integer                                :: position(2)
 integer                                :: end_of_first_word
 integer                                :: start_of_topic
 integer                                :: ios
-character(len=:),allocatable           :: topic
+character(len=:),allocatable           :: topic, old_topic
 logical                                :: block_topic
-integer                                :: i,j
+integer                                :: i, j, jj
 logical                                :: numbered
 character(len=len(help_text))          :: last_response
 integer                                :: toomany
 integer,parameter                      :: max_toomany=2000
 integer                                :: howbig
+integer                                :: old_position
 
    howbig=size(help_text)
    toomany=1
    last_response=' '
    numbered=.false.
    topic=trim(topic_name)
+   old_topic=''
+   old_position=0
    INFINITE: do
 
       if (topic.eq.' ') then                                           ! if no topic
@@ -188,31 +191,54 @@ integer                                :: howbig
                endif
             endif
             if(want_to_stop())exit INFINITE
+            if(old_topic.ne.'')cycle INFINITE
             if(i.ge.howbig) then
                do j=1,max_toomany
                   call journal('sc','[end-of-file] (line',i,')')
                   position(1)=position(2)+1
                   if(want_to_stop())exit INFINITE
+                  if(old_topic.ne.'')cycle INFINITE
                   if(i.lt.howbig)exit
                enddo
                if(i.ge.howbig)exit
             endif
          enddo
          exit INFINITE
-      case('topics')                                   ! go through all the text showing lines not starting with a a space or equal
-         i=0                                           ! display topic starting at start_of_topic
+      case('topics')                         ! go through all the text showing lines not starting with a a space or equal
+         i=1                                 ! display topic starting at start_of_topic
          do
             i=i+1
             if(i.gt.howbig) exit
             if(help_text(i)(1:1).eq.'   ')cycle
             if(help_text(i)(1:3).eq.'===')cycle
+            jj=merge(0,3,help_text(i-1)(1:3).eq.'===')
             if(numbered)then
-               call journal('sc',i,help_text(i))
+               call journal('sc',i,'>',repeat(' ',jj)//help_text(i))
             else
-               call journal('sc',help_text(i))
+               call journal('sc','>',repeat(' ',jj)//help_text(i))
             endif
-            if(want_to_stop())exit INFINITE
+            if(want_to_stop())then
+               if(old_topic.ne.'')then
+                  topic=old_topic
+                  old_topic=''
+                  i=old_position
+                  call pageback(1)
+                  i=max(1,i)
+                  position(1)=position(2)+1
+                  cycle INFINITE
+               endif
+               exit INFINITE
+            endif
          enddo
+         if(old_topic.ne.'')then
+            topic=old_topic
+            old_topic=''
+            i=old_position
+            call pageback(1)
+            i=max(1,i)
+            position(1)=position(2)+1
+            cycle INFINITE
+         endif
          exit INFINITE
       case default ! find the line that starts with the topic
          start_of_topic=0
@@ -268,8 +294,9 @@ integer                                :: howbig
                   call journal('sc',help_text(i))
                endif
                if(want_to_stop())exit INFINITE
-            toomany=toomany+1
-            if(toomany.ge.max_toomany)exit INFINITE    ! to prevent infinite loops in batch mode
+               if(old_topic.ne.'')cycle INFINITE
+               toomany=toomany+1
+               if(toomany.ge.max_toomany)exit INFINITE    ! to prevent infinite loops in batch mode
                i=max(start_of_topic-1,i)
                i=i+1
                if(i.gt.howbig) exit
@@ -317,20 +344,25 @@ integer                              :: ierr
             i=min(i,howbig-1)
             position(1) = 0
          case('t')                                            ! topics
-            do j=2,howbig
-               if(help_text(j)(1:1).eq.'   ')cycle
-               if(help_text(j)(1:3).eq.'===')cycle
-               jj=merge(0,3,help_text(j-1)(1:3).eq.'===')
-               if(numbered)then
-                  call journal('sc',j,'>',repeat(' ',jj)//help_text(j))
-               else
-                  call journal('sc','>',repeat(' ',jj)//help_text(j))
-               endif
-            enddo
-            call pageback(1)
-            i=max(1,i)
-            position(1)=position(2)+1
-            cycle PROMPT
+            old_topic=topic
+            old_position=i
+            topic='topics'
+            position(1)=0
+            exit PROMPT
+            !do j=2,howbig
+            !   if(help_text(j)(1:1).eq.'   ')cycle
+            !   if(help_text(j)(1:3).eq.'===')cycle
+            !   jj=merge(0,3,help_text(j-1)(1:3).eq.'===')
+            !   if(numbered)then
+            !      call journal('sc',j,'>',repeat(' ',jj)//help_text(j))
+            !   else
+            !      call journal('sc','>',repeat(' ',jj)//help_text(j))
+            !   endif
+            !enddo
+            !call pageback(1)
+            !i=max(1,i)
+            !position(1)=position(2)+1
+            !cycle PROMPT
          case('u')                                            ! back one-half page
             call pageback(1)
             i=max(1,i-position(2)/2-1)
@@ -441,7 +473,7 @@ integer                              :: ierr
             call journal('sc','| h          display this help                       |')
             call journal('sc','| q          quit                                    |')
             call journal('sc','#----------------------------------------------------#')
-            call journal('sc','Anything else quits.')
+            call journal('sc','Anything else is ignored.')
             call journal('sc','Line count is ',i,'out of',howbig,'. Page size is',position(2),'(see "lines")')
             cycle
          case('q')
