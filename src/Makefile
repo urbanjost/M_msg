@@ -21,14 +21,15 @@ PROGFILES = \
  ../example/demo_unit_check_start.f90 \
  ../example/demo_journal.f90 \
  ../example/demo_M_journal.f90 \
+ ../example/demo_help_command.f90 \
 $(NULL)
 
 CPROGFILES = 
 PROG = ${PROGFILES:.f90=}
 CPROG = ${CPROGFILES:.c=}
 TPROG = ${TESTPROGFILES:.f90=}
-SRCS =  M_msg.f90 M_journal.f90 M_verify.f90
-OBJS =  M_msg.o M_journal.o M_verify.o
+SRCS =  M_msg.f90 M_journal.f90 M_verify.f90 M_help.f90
+OBJS =  M_msg.o M_journal.o M_verify.o M_help.o
 LIBRARY = libM_msg.a
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # platform-specific values you will probably change
