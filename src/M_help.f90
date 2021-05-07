@@ -70,7 +70,6 @@ contains
 !!    program demo_help_command
 !!    use M_help, only : help_command
 !!    character(len=:),allocatable :: help_text(:)
-!!    character(len=:),allocatable :: topic
 !!    integer                      :: position(2)
 !!    position=[0,23]
 !!    help_text=[character(len=80) :: &
@@ -380,7 +379,7 @@ integer                              :: ierr
             character(len=1000) :: errmsg
             integer :: temp_lun
                response=adjustl(response(2:))
-               if(response(2:).eq.'')response='mat88_userguide.txt'
+               if(response.eq.'')response='userguide.txt'
                open(newunit=temp_lun,file=response,status='new',iostat=ios,iomsg=errmsg) ! open help file
                if(ios.eq.0)then
                   write(temp_lun,'(a)',iostat=ios)( trim(help_text(i)),i=1,howbig )

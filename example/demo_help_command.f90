@@ -1,7 +1,6 @@
           program demo_help_command
           use M_help, only : help_command
           character(len=:),allocatable :: help_text(:)
-          character(len=:),allocatable :: topic
           integer                      :: position(2)
           position=[0,23]
           help_text=[character(len=80) :: &
