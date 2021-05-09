@@ -389,6 +389,7 @@ integer                              :: ierr
                   call journal(trim(errmsg))
                endif
             endblock WRITEFILE
+            i=max(1,i-1)
          case('d')                                            ! down one-half page
             i=min(howbig-1,i-position(2)/2-1)
             position(1) = 0
