@@ -1,5 +1,5 @@
 module M_help
-use,intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT, stdin=>INPUT_UNIT, stdout=>OUTPUT_UNIT
+use,intrinsic :: iso_fortran_env, only : stderr=>error_unit, stdin=>input_unit, stdout=>output_unit
 use M_journal, only : journal
 implicit none
 private
@@ -149,7 +149,7 @@ integer                                :: start_of_topic
 integer                                :: ios
 character(len=:),allocatable           :: topic, old_topic
 logical                                :: block_topic
-integer                                :: i, j, jj
+integer                                :: i, j, k, jj
 logical                                :: numbered
 character(len=len(help_text))          :: last_response
 integer                                :: toomany
@@ -382,8 +382,8 @@ integer                              :: ierr
                if(response.eq.'')response='userguide.txt'
                open(newunit=temp_lun,file=response,status='new',iostat=ios,iomsg=errmsg) ! open help file
                if(ios.eq.0)then
-                  write(temp_lun,'(a)',iostat=ios)( trim(help_text(i)),i=1,howbig )
-                  call journal('sc','<INFO> user guide including all help text in the Appendix is on file',trim(response) )
+                  write(temp_lun,'(a)',iostat=ios)( trim(help_text(k)),k=1,howbig )
+                  call journal('sc','<INFO> user guide is on file',trim(response) )
                   close(unit=temp_lun,iostat=ios)
                else
                   call journal(trim(errmsg))
