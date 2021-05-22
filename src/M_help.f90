@@ -22,10 +22,11 @@ contains
 !!
 !!##DESCRIPTION
 !!    This routine, when given a CHARACTER array displays the
-!!    text interactively. The special topics "manual" and "topics"
-!!    are reserved. "manual" causes the entire array to be displayed.
+!!    text interactively. The special topics "manual","topics", and
+!!    "search" are reserved. "manual" causes the entire array to be displayed.
 !!    "topics" displays all lines not beginning with a space or three or
-!!    more equal signs.
+!!    more equal signs, and "search" must be followed by a string to search
+!!    for in the manual.
 !!
 !!    A line beginning with a non-blank character in column one is a topic
 !!
@@ -56,9 +57,10 @@ contains
 !!    help_text  The block of text to treat as the input document
 !!
 !!    topic      What topic or section to search for (case sensitive). A blank
-!!               is equivalent to "SUMMARY". There are two reserved names.
+!!               is equivalent to "SUMMARY". There are several reserved names.
 !!               "manual" means the entire help text, and "topics" shows only
-!!               lines not beginning with a blank.
+!!               lines not beginning with a blank, and "search" does a
+!!               case-insensitive search for a string.
 !!
 !!    position   A small array with two values. The second value is the size
 !!               of the page to be used between pauses. The first one indicates
@@ -147,9 +149,9 @@ integer                                :: position(2)
 integer                                :: end_of_first_word
 integer                                :: start_of_topic
 integer                                :: ios
-character(len=:),allocatable           :: topic, old_topic
+character(len=:),allocatable           :: topic, old_topic, string
 logical                                :: block_topic
-integer                                :: i, j, k, jj
+integer                                :: i, j, k, jj, ii
 logical                                :: numbered
 character(len=len(help_text))          :: last_response
 integer                                :: toomany
@@ -164,6 +166,9 @@ integer                                :: old_position
    topic=trim(topic_name)
    old_topic=''
    old_position=0
+   if(index(topic,'search ').eq.1)then
+      topic='search'
+   endif
    INFINITE: do
 
       if (topic.eq.' ') then                                           ! if no topic
@@ -238,6 +243,38 @@ integer                                :: old_position
             position(1)=position(2)+1
             cycle INFINITE
          endif
+         exit INFINITE
+      case('search')                         ! go through all the text showing lines matching string
+         position(1) = 0
+         string=topic_name//'        '
+         string=trim(lower(adjustl(string(8:))))
+         i=0
+         do
+            i=i+1
+            if(i.gt.howbig)exit
+            if(help_text(i)(1:1).ne.' '.and.help_text(i)(1:3).ne.'===')then
+               old_topic=help_text(i)//' '
+               ii=index(old_topic,' ')
+               old_topic=old_topic(:ii)
+            endif
+            if(index(lower(help_text(i)),string).ne.0)then
+               if(numbered)then
+                  call journal('sc',i,help_text(i))
+               else
+                  call journal('sc',old_topic,'>',help_text(i))
+               endif
+               if(want_to_stop())exit INFINITE
+               if(i.ge.howbig) then
+                  do j=1,max_toomany
+                     call journal('sc','[end-of-file] (line',i,')')
+                     position(1)=position(2)+1
+                     if(want_to_stop())exit INFINITE
+                     if(i.lt.howbig)exit
+                  enddo
+                  if(i.ge.howbig)exit
+               endif
+            endif
+         enddo
          exit INFINITE
       case default ! find the line that starts with the topic
          start_of_topic=0
