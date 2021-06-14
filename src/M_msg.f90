@@ -12,6 +12,7 @@ public str
 public stderr
 public wrt
 public fmt
+!!public :: a,i,f,g
 
 interface str
    module procedure msg_scalar, msg_one
@@ -265,7 +266,7 @@ end function msg_one
 !!    function fmt(value,format) result(string)
 !!
 !!     class(*),intent(in),optional :: value
-!!     character(len=*),intent(in)  :: format
+!!     character(len=*),intent(in),optional  :: format
 !!     character(len=:),allocatable :: string
 !!##DESCRIPTION
 !!    FMT(3f) converts any standard intrinsic value to a string using the specified
@@ -275,7 +276,8 @@ end function msg_one
 !!             REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.
 !!    format   format to use to print value. It is up to the user to use an
 !!             appropriate format. The format does not require being
-!!             surrounded by parenthesis.
+!!             surrounded by parenthesis. If not present a default is selected
+!!             similar to what would be produced with free format.
 !!##RETURNS
 !!    string   A string value
 !!##EXAMPLES
@@ -315,14 +317,18 @@ recursive function fmt(generic,format) result (line)
 
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
 class(*),intent(in)          :: generic
-character(len=*),intent(in)  :: format
+character(len=*),intent(in),optional  :: format
 character(len=:),allocatable :: line
 character(len=:),allocatable :: fmt_local
 integer                      :: ios
 character(len=255)           :: msg
 character(len=1),parameter   :: null=char(0)
 integer                      :: ilen
-   fmt_local=format
+   if(present(format))then
+      fmt_local=format
+   else
+      fmt_local=''
+   endif
    ! add ",a" and print null and use position of null to find length of output
    ! add cannot use SIZE= or POS= or ADVANCE='NO' on WRITE() on INTERNAL READ,
    ! and do not want to trim as trailing spaces can be significant
