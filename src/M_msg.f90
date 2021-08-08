@@ -312,10 +312,10 @@ end function msg_one
 !!##LICENSE
 !!    Public Domain
 recursive function fmt(generic,format) result (line)
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
 
 ! ident_4="@(#)M_msg::fmt(3f): convert any intrinsic to a string using specified format"
 
-use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
 class(*),intent(in)          :: generic
 character(len=*),intent(in),optional  :: format
 character(len=:),allocatable :: line
@@ -539,10 +539,10 @@ end subroutine stderr
 !!##LICENSE
 !!    Public Domain
 subroutine wrt(luns,g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj,iostat)
+implicit none
 
 ! ident_6="@(#)M_msg::write(3f): writes a message to any number of open files with any scalar values"
 
-implicit none
 integer,intent(in)           :: luns(:)
 class(*),intent(in),optional :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
 class(*),intent(in),optional :: ga, gb, gc, gd, ge, gf, gg, gh, gi, gj

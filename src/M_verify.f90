@@ -718,7 +718,7 @@ end subroutine unit_check
 !!       & -library        libGPF               &
 !!       & -filename       `pwd`/M_verify.FF     &
 !!       & -documentation  y                    &
-!!       & -ufpp           y                    &
+!!       & -prep           y                    &
 !!       & -ccall          n                    &
 !!       & -archive        GPF.a                &
 !!       & ')
@@ -1157,7 +1157,7 @@ end function atleast
 !!    code 1 It labels the first string as the filename, the next integer
 !!    parameter as the linenumber, and then up to nine scalar values.
 !!
-!!    It is primarily intended for use by the ufpp(1) preprocessor $ASSERT
+!!    It is primarily intended for use by the prep(1) preprocessor $ASSERT
 !!    directive
 !!
 !!##OPTIONS
@@ -1273,8 +1273,10 @@ end function julian
 !!
 !!    program demo_almost
 !!    use M_verify, only : almost
+!!    implicit none
 !!    real    :: x, y
 !!    logical :: z
+!!    integer :: i
 !!    x=1.2345678
 !!    y=1.2300000
 !!    do i=1,8

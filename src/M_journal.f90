@@ -831,7 +831,7 @@ END FUNCTION v2mo
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 FUNCTION now(format)
-! ident_13="@(#)now(3f): return string representing current time given format JSU 2015-10-24"
+! ident_13="@(#)now(3f): return string representing current time given format"
 CHARACTER(LEN=*),INTENT(IN),OPTIONAL :: format
 CHARACTER(LEN=:),ALLOCATABLE         :: now
    INTEGER                           :: values(8)
@@ -1008,7 +1008,7 @@ END FUNCTION fmtdate
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 subroutine fmtdate_usage(ii)
-! ident_15="@(#)fmtdate_usage(3f): display macros recognized by fmtdate(3f) JSU 2015-10-24"
+! ident_15="@(#)fmtdate_usage(3f): display macros recognized by fmtdate(3f)"
 character(len=51),allocatable :: usage(:)
 integer                       :: i,ii
 character(len=ii)             :: blanks
