@@ -35,6 +35,7 @@
 !!     o supports easily composing a message from up to nine scalar
 !!       intrinsic values and different message levels
 !!     o allows stopping on first failure or continuing
+!!     o provides for a non-zero exit code if any tests fail
 !!
 !!    SET MODES
 !!    unit_check_keep_going  logical variable that can be used to turn off
@@ -126,7 +127,7 @@
 !!
 !!     !! unit test
 !!     subroutine test_suite_M_demo
-!!     use M_verify, only: unit_check_start, unit_check,
+!!     use M_verify, only: unit_check_start, unit_check
 !!     use M_verify, only: unit_check_good, unit_check_bad, unit_check_done
 !!     use M_verify, only: unit_check_msg, unit_check_stop
 !!     implicit none
@@ -855,6 +856,7 @@ use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 character(len=*),intent(in),optional :: msg
 character(len=:),allocatable         :: msg_local
 character(len=4096)                  :: out
+character(len=:),allocatable         :: PF
 integer(kind=int64)                  :: milliseconds
 integer                              :: clicks_now
    if(present(msg))then
@@ -865,12 +867,18 @@ integer                              :: clicks_now
    call system_clock(clicks_now)
    milliseconds=(julian()-duration_all)*1000
    milliseconds=clicks_now-clicks_all
+   PF=merge('PASSED  :','FAILED  :',ifailed_all_G.eq.0)
+   if(PF.eq.'PASSED  :'.and.ipassed_all_G.eq.0)then
+      PF='UNTESTED:'
+   endif
    write(out,'("unit_check_stop:  ", &
        & "TALLY:              ",          &
+       & 1x,a,                            &
        & " DURATION:",i14.14,             &
        & " GOOD:",i0,                     &
        & 1x," BAD:",i0                    &
        & )')                              &
+       & PF,                              &
        & milliseconds,                    &
        & IPASSED_ALL_G,                   &
        & IFAILED_ALL_G
