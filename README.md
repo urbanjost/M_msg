@@ -63,7 +63,8 @@ or just list it as a dependency in your fpm.toml project file.
 
 #### (registered at the [fpm(1) registry](https://github.com/fortran-lang/fpm-registry) )
 
-## USER DOCUMENTATION
+## DOCUMENTATION   ![docs](docs/images/docs.gif)
+### USER
    
  - manpages in 
     + [manpages.zip](https://urbanjost.github.io/M_msg/manpages.zip) 
