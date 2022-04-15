@@ -1803,7 +1803,11 @@ END SUBROUTINE accdig
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !-----------------------------------------------------------------------------------------------------------------------------------
 SUBROUTINE dp_accdig(x,y,digi0,ACURCY,IND)
+#ifdef __NVCOMPILER
+use,intrinsic :: iso_fortran_env, only : wp=>real64
+#else
 use,intrinsic :: iso_fortran_env, only : wp=>real128
+#endif
 use M_journal,  only : journal
 implicit none
 
