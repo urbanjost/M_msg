@@ -1443,11 +1443,7 @@ integer                     :: ind
       verbose_local=.false.
    endif
 
-#ifdef __NVCOMPILER
-   digits_local=anyscalar_to_double(digits)
-#else
-   digits_local=anyscalar_to_real128(digits)
-#endif
+   digits_local=anyscalar_to_realbig(digits)
    acurcy=0.0
    select type(x)
    type is(real)
@@ -1829,9 +1825,9 @@ real(kind=wp)   :: diff
 real(kind=wp)   :: digi
 integer              :: idble_significant_digits
 !-----------------------------------------------------------------------------------------------------------------------------------
-   x_local=anyscalar_to_real128(x)
-   y_local=anyscalar_to_real128(y)
-   digi=anyscalar_to_real128(digi0)
+   x_local=anyscalar_to_realbig(x)
+   y_local=anyscalar_to_realbig(y)
+   digi=anyscalar_to_realbig(digi0)
 !-----------------------------------------------------------------------------------------------------------------------------------
    idble_significant_digits=int(log10(2.0_wp**digits(0.0_wp))) ! MAXIMUM NUMBER OF SIGNIFICANT DIGITS IN A REAL128 NUMBER.
    if(digi.le.0)then
@@ -1974,7 +1970,7 @@ end function round
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
-pure elemental function anyscalar_to_real128(valuein) result(d_out)
+pure elemental function anyscalar_to_realbig(valuein) result(d_out)
 use, intrinsic :: iso_fortran_env, only : error_unit !! ,input_unit,output_unit
 #ifdef __NVCOMPILER
 use,intrinsic :: iso_fortran_env, only : wp=>real64
@@ -1983,7 +1979,7 @@ use,intrinsic :: iso_fortran_env, only : wp=>real128
 #endif
 implicit none
 
-! ident_19="@(#)M_verify::anyscalar_to_real128(3f): convert integer or real parameter of any kind to real128"
+! ident_19="@(#)M_verify::anyscalar_to_realbig(3f): convert integer or real parameter of any kind to real128 or biggest available"
 
 class(*),intent(in)          :: valuein
 real(kind=wp)           :: d_out
@@ -2005,9 +2001,9 @@ character(len=3)             :: readable
     !!d_out=huge(0.0_wp)
     readable='NaN'
     read(readable,*)d_out
-    !!stop '*M_verify::anyscalar_to_real128: unknown type'
+    !!stop '*M_verify::anyscalar_to_realbig: unknown type'
    end select
-end function anyscalar_to_real128
+end function anyscalar_to_realbig
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
