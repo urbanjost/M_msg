@@ -1443,7 +1443,11 @@ integer                     :: ind
       verbose_local=.false.
    endif
 
+#ifdef __NVCOMPILER
+   digits_local=anyscalar_to_double(digits)
+#else
    digits_local=anyscalar_to_real128(digits)
+#endif
    acurcy=0.0
    select type(x)
    type is(real)
@@ -1803,7 +1807,7 @@ END SUBROUTINE accdig
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !-----------------------------------------------------------------------------------------------------------------------------------
 SUBROUTINE dp_accdig(x,y,digi0,ACURCY,IND)
-use,intrinsic :: iso_fortran_env, only : real128
+use,intrinsic :: iso_fortran_env, only : wp=>real128
 use M_journal,  only : journal
 implicit none
 
@@ -1814,33 +1818,33 @@ class(*),intent(in)  :: x           ! FIRST  OF TWO NUMBERS TO BE COMPARED.
 class(*),intent(in)  :: y           ! SECOND OF TWO NUMBERS TO BE COMPARED.
 class(*),intent(in)  :: digi0       ! NUMBER OF DIGITS TO BE SATISFIED IN RELATIVE TOLERANCE.
 
-real(kind=real128)   :: x_local
-real(kind=real128)   :: y_local
+real(kind=wp)   :: x_local
+real(kind=wp)   :: y_local
 
 !  OUTPUT ...
 integer,intent(out)  :: ind         ! = 0, IF TOLERANCE IS     SATISFIED.
                                               ! = 1, IF TOLERANCE IS NOT SATISFIED.
 real,intent(out)     :: acurcy      ! = - LOG10(ABS((x_local-y_local)/y_local)))
-real(kind=real128)   :: diff
-real(kind=real128)   :: digi
+real(kind=wp)   :: diff
+real(kind=wp)   :: digi
 integer              :: idble_significant_digits
 !-----------------------------------------------------------------------------------------------------------------------------------
    x_local=anyscalar_to_real128(x)
    y_local=anyscalar_to_real128(y)
    digi=anyscalar_to_real128(digi0)
 !-----------------------------------------------------------------------------------------------------------------------------------
-   idble_significant_digits=int(log10(2.0_real128**digits(0.0_real128))) ! MAXIMUM NUMBER OF SIGNIFICANT DIGITS IN A REAL128 NUMBER.
+   idble_significant_digits=int(log10(2.0_wp**digits(0.0_wp))) ! MAXIMUM NUMBER OF SIGNIFICANT DIGITS IN A REAL128 NUMBER.
    if(digi.le.0)then
-      call journal('sc','*dp_accdig* bad number of significant digits=',real(digi,kind=real128))
+      call journal('sc','*dp_accdig* bad number of significant digits=',real(digi,kind=wp))
       digi=idble_significant_digits
    elseif(digi .gt. idble_significant_digits)then
-      call journal('sc','*dp_accdig* significant digit request too high=',real(digi,kind=real128))
-      digi=min(digi,real(idble_significant_digits,kind=real128))
+      call journal('sc','*dp_accdig* significant digit request too high=',real(digi,kind=wp))
+      digi=min(digi,real(idble_significant_digits,kind=wp))
    endif
    diff = x_local - y_local
-   if(diff .eq. 0.0_real128) then
+   if(diff .eq. 0.0_wp) then
       acurcy = digi
-   elseif(y_local .eq. 0.0_real128) then
+   elseif(y_local .eq. 0.0_wp) then
       acurcy = - log10(abs(x_local))
    else
       acurcy = - log10(abs(diff)) + log10(abs(y_local))
@@ -1972,25 +1976,33 @@ end function round
 !===================================================================================================================================
 pure elemental function anyscalar_to_real128(valuein) result(d_out)
 use, intrinsic :: iso_fortran_env, only : error_unit !! ,input_unit,output_unit
+#ifdef __NVCOMPILER
+use,intrinsic :: iso_fortran_env, only : wp=>real64
+#else
+use,intrinsic :: iso_fortran_env, only : wp=>real128
+#endif
 implicit none
 
 ! ident_19="@(#)M_verify::anyscalar_to_real128(3f): convert integer or real parameter of any kind to real128"
 
 class(*),intent(in)          :: valuein
-real(kind=real128)           :: d_out
+real(kind=wp)           :: d_out
 character(len=3)             :: readable
    select type(valuein)
-   type is (integer(kind=int8));   d_out=real(valuein,kind=real128)
-   type is (integer(kind=int16));  d_out=real(valuein,kind=real128)
-   type is (integer(kind=int32));  d_out=real(valuein,kind=real128)
-   type is (integer(kind=int64));  d_out=real(valuein,kind=real128)
-   type is (real(kind=real32));    d_out=real(valuein,kind=real128)
-   type is (real(kind=real64));    d_out=real(valuein,kind=real128)
+   type is (integer(kind=int8));   d_out=real(valuein,kind=wp)
+   type is (integer(kind=int16));  d_out=real(valuein,kind=wp)
+   type is (integer(kind=int32));  d_out=real(valuein,kind=wp)
+   type is (integer(kind=int64));  d_out=real(valuein,kind=wp)
+   type is (real(kind=real32));    d_out=real(valuein,kind=wp)
+   type is (real(kind=real64));    d_out=real(valuein,kind=wp)
+#ifdef __NVCOMPILER
+#else
    Type is (real(kind=real128));   d_out=valuein
-   type is (logical);              d_out=merge(0.0_real128,1.0_real128,valuein)
+#endif
+   type is (logical);              d_out=merge(0.0_wp,1.0_wp,valuein)
    type is (character(len=*));     read(valuein,*) d_out
    class default
-    !!d_out=huge(0.0_real128)
+    !!d_out=huge(0.0_wp)
     readable='NaN'
     read(readable,*)d_out
     !!stop '*M_verify::anyscalar_to_real128: unknown type'
@@ -2015,7 +2027,10 @@ doubleprecision,parameter :: big=huge(0.0d0)
    type is (integer(kind=int64));  d_out=dble(valuein)
    type is (real(kind=real32));    d_out=dble(valuein)
    type is (real(kind=real64));    d_out=dble(valuein)
+#ifdef __NVCOMPILER
+#else
    Type is (real(kind=real128))
+#endif
       !!if(valuein.gt.big)then
       !!   write(error_unit,*)'*anyscalar_to_double* value too large ',valuein
       !!endif

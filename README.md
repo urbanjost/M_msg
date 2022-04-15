@@ -66,7 +66,7 @@ or just list it as a dependency in your fpm.toml project file.
 ## DOCUMENTATION   ![docs](docs/images/docs.gif)
 ### USER
    
- - manpages in 
+ - man-pages in 
     + [manpages.zip](https://urbanjost.github.io/M_msg/manpages.zip) 
     + [manpages.tgz](https://urbanjost.github.io/M_msg/manpages.tgz) 
 
@@ -74,7 +74,7 @@ or just list it as a dependency in your fpm.toml project file.
    of the manpages 
 
  - A single page that uses javascript to combine all the HTML descriptions
-   of the manpages is at
+   of the man-pages is at
    [BOOK_M_msg](https://urbanjost.github.io/M_msg/BOOK_M_msg.html).
 
 ## ADDITIONAL DIRECTORY DESCRIPTIONS

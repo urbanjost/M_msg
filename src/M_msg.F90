@@ -24,7 +24,7 @@ contains
 !===================================================================================================================================
 !>
 !!##NAME
-!!    str(3f) - [M_msg] converts up to 20 standard scalar type values to a string
+!!    str(3f) - [M_msg] converts up to twenty standard scalar type values to a string
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS
@@ -165,7 +165,10 @@ class(*),intent(in) :: generic
       type is (integer(kind=int64));    write(line(istart:),'(i0)') generic
       type is (real(kind=real32));      write(line(istart:),'(1pg0)') generic
       type is (real(kind=real64));      write(line(istart:),'(1pg0)') generic
+#ifdef __NVCOMPILER
+#else
       type is (real(kind=real128));     write(line(istart:),'(1pg0)') generic
+#endif
       type is (logical);                write(line(istart:),'(l1)') generic
       type is (character(len=*));       write(line(istart:),'(a)') trim(generic)
       type is (complex);                write(line(istart:),'("(",1pg0,",",1pg0,")")') generic
@@ -241,8 +244,11 @@ integer :: i
       type is (integer(kind=int64));    write(line(istart:),'("[",*(i0,1x))') generic
       type is (real(kind=real32));      write(line(istart:),'("[",*(1pg0,1x))') generic
       type is (real(kind=real64));      write(line(istart:),'("[",*(1pg0,1x))') generic
+#ifdef __NVCOMPILER
+#else
       type is (real(kind=real128));     write(line(istart:),'("[",*(1pg0,1x))') generic
       !type is (real(kind=real256));     write(error_unit,'(1pg0)',advance='no') generic
+#endif
       type is (logical);                write(line(istart:),'("[",*(l1,1x))') generic
       type is (character(len=*));       write(line(istart:),'("[",:*("""",a,"""",1x))') (trim(generic(i)),i=1,size(generic))
       type is (complex);                write(line(istart:),'("[",*("(",1pg0,",",1pg0,")",1x))') generic
@@ -340,7 +346,10 @@ integer                      :: ilen
          type is (integer(kind=int64));    fmt_local='(i0,a)'
          type is (real(kind=real32));      fmt_local='(1pg0,a)'
          type is (real(kind=real64));      fmt_local='(1pg0,a)'
+#ifdef __NVCOMPILER
+#else
          type is (real(kind=real128));     fmt_local='(1pg0,a)'
+#endif
          type is (logical);                fmt_local='(l1,a)'
          type is (character(len=*));       fmt_local='(a,a)'
          type is (complex);                fmt_local='("(",1pg0,",",1pg0,")",a)'
@@ -361,7 +370,10 @@ integer                      :: ilen
       type is (integer(kind=int64));    write(line,fmt_local,iostat=ios,iomsg=msg) generic,null
       type is (real(kind=real32));      write(line,fmt_local,iostat=ios,iomsg=msg) generic,null
       type is (real(kind=real64));      write(line,fmt_local,iostat=ios,iomsg=msg) generic,null
+#ifdef __NVCOMPILER
+#else
       type is (real(kind=real128));     write(line,fmt_local,iostat=ios,iomsg=msg) generic,null
+#endif
       type is (logical);                write(line,fmt_local,iostat=ios,iomsg=msg) generic,null
       type is (character(len=*));       write(line,fmt_local,iostat=ios,iomsg=msg) generic,null
       type is (complex);                write(line,fmt_local,iostat=ios,iomsg=msg) generic,null
@@ -419,7 +431,10 @@ end function fmt
 !!
 !!    call stderr('real32  :',huge(0.0_real32),0.0_real32,12345.6789_real32,tiny(0.0_real32))
 !!    call stderr('real64  :',huge(0.0_real64),0.0_real64,12345.6789_real64,tiny(0.0_real64))
-!!    call stderr('real128 :',huge(0.0_real128),0.0_real128,12345.6789_real128,tiny(0.0_real128))
+!!    !#ifdef __NVCOMPILER
+!!    !#else
+!!       call stderr('real128 :',huge(0.0_real128),0.0_real128,12345.6789_real128,tiny(0.0_real128))
+!!    !#endif
 !!    call stderr('complex :',cmplx(huge(0.0_real),tiny(0.0_real)))
 !!
 !!    call stderr('error: program will now stop')
