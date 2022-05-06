@@ -10,7 +10,7 @@
     <meta name="author" content="John Doe" >
     <link rel="icon" href="../favicon.png">
 
-    <title>M_msg.f90 &ndash; easy</title>
+    <title>M_msg.F90 &ndash; easy</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -108,7 +108,7 @@
     
   
   <div class="row">
-    <h1>M_msg.f90
+    <h1>M_msg.F90
     <small>Source File</small>
     
     </h1>
@@ -131,7 +131,7 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/M_msg.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/M_msg.F90"> Source File</a></li>
      
      
   </ul>
@@ -139,7 +139,7 @@
   
     
   
-     <li class="active">M_msg.f90</li>
+     <li class="active">M_msg.F90</li>
   </ol>
 </div>
 </div>
@@ -194,7 +194,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../sourcefile/m_msg.f90.html#src">M_msg.f90</a>
+    <a class="list-group-item" href="../sourcefile/m_msg.f90.html#src">M_msg.F90</a>
   </div>
 </div>
 
@@ -250,7 +250,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../sourcefile/m_msg.f90.html#src">M_msg.f90</a>
+    <a class="list-group-item" href="../sourcefile/m_msg.f90.html#src">M_msg.F90</a>
   </div>
 </div>
 
@@ -287,7 +287,7 @@
 <a name="ln-24"></a><span class="c">!===================================================================================================================================</span>
 <a name="ln-25"></a><span class="c">!&gt;</span>
 <a name="ln-26"></a><span class="c">!!##NAME</span>
-<a name="ln-27"></a><span class="c">!!    str(3f) - [M_msg] converts up to 20 standard scalar type values to a string</span>
+<a name="ln-27"></a><span class="c">!!    str(3f) - [M_msg] converts up to twenty standard scalar type values to a string</span>
 <a name="ln-28"></a><span class="c">!!    (LICENSE:PD)</span>
 <a name="ln-29"></a><span class="c">!!</span>
 <a name="ln-30"></a><span class="c">!!##SYNOPSIS</span>
@@ -428,404 +428,419 @@
 <a name="ln-165"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(i0)&#39;</span><span class="p">)</span> <span class="k">generic</span>
 <a name="ln-166"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(1pg0)&#39;</span><span class="p">)</span> <span class="k">generic</span>
 <a name="ln-167"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(1pg0)&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-168"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(1pg0)&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-169"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(l1)&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-170"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="nb">trim</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
-<a name="ln-171"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;(&quot;,1pg0,&quot;,&quot;,1pg0,&quot;)&quot;)&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-172"></a><span class="k">   end select</span>
-<a name="ln-173"></a><span class="k">   </span><span class="n">istart</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">+</span><span class="n">increment</span>
-<a name="ln-174"></a>   <span class="n">line</span><span class="o">=</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">//</span><span class="n">sep_local</span>
-<a name="ln-175"></a><span class="k">end subroutine </span><span class="n">print_generic</span>
-<a name="ln-176"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-177"></a><span class="k">end function </span><span class="n">msg_scalar</span>
-<a name="ln-178"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-179"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-180"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-181"></a><span class="k">function </span><span class="n">msg_one</span><span class="p">(</span><span class="n">generic0</span><span class="p">,</span><span class="n">generic1</span><span class="p">,</span> <span class="n">generic2</span><span class="p">,</span> <span class="n">generic3</span><span class="p">,</span> <span class="n">generic4</span><span class="p">,</span> <span class="n">generic5</span><span class="p">,</span> <span class="n">generic6</span><span class="p">,</span> <span class="n">generic7</span><span class="p">,</span> <span class="n">generic8</span><span class="p">,</span> <span class="n">generic9</span><span class="p">,&amp;</span>
-<a name="ln-182"></a>               <span class="p">&amp;</span> <span class="n">generica</span><span class="p">,</span><span class="n">genericb</span><span class="p">,</span> <span class="n">genericc</span><span class="p">,</span> <span class="n">genericd</span><span class="p">,</span> <span class="n">generice</span><span class="p">,</span> <span class="n">genericf</span><span class="p">,</span> <span class="n">genericg</span><span class="p">,</span> <span class="n">generich</span><span class="p">,</span> <span class="n">generici</span><span class="p">,</span> <span class="n">genericj</span><span class="p">,&amp;</span>
-<a name="ln-183"></a>               <span class="p">&amp;</span> <span class="n">sep</span><span class="p">)</span>
-<a name="ln-184"></a><span class="k">implicit none</span>
-<a name="ln-185"></a>
-<a name="ln-186"></a><span class="c">! ident_3=&quot;@(#)M_msg::msg_one(3fp): writes a message to a string composed of any standard one dimensional types&quot;</span>
-<a name="ln-187"></a>
-<a name="ln-188"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">generic0</span><span class="p">(:)</span>
-<a name="ln-189"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="n">generic1</span><span class="p">(:),</span> <span class="n">generic2</span><span class="p">(:),</span> <span class="n">generic3</span><span class="p">(:),</span> <span class="n">generic4</span><span class="p">(:),</span> <span class="n">generic5</span><span class="p">(:)</span>
-<a name="ln-190"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="n">generic6</span><span class="p">(:),</span> <span class="n">generic7</span><span class="p">(:),</span> <span class="n">generic8</span><span class="p">(:),</span> <span class="n">generic9</span><span class="p">(:)</span>
-<a name="ln-191"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="n">generica</span><span class="p">(:),</span> <span class="n">genericb</span><span class="p">(:),</span> <span class="n">genericc</span><span class="p">(:),</span> <span class="n">genericd</span><span class="p">(:),</span> <span class="n">generice</span><span class="p">(:)</span>
-<a name="ln-192"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="n">genericf</span><span class="p">(:),</span> <span class="n">genericg</span><span class="p">(:),</span> <span class="n">generich</span><span class="p">(:),</span> <span class="n">generici</span><span class="p">(:),</span> <span class="n">genericj</span><span class="p">(:)</span>
-<a name="ln-193"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">sep</span>
-<a name="ln-194"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span>  <span class="kd">::</span> <span class="n">sep_local</span>
-<a name="ln-195"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">msg_one</span>
-<a name="ln-196"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4096</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">line</span>
-<a name="ln-197"></a><span class="kt">integer</span>                       <span class="kd">::</span> <span class="n">istart</span>
-<a name="ln-198"></a><span class="kt">integer</span>                       <span class="kd">::</span> <span class="n">increment</span>
-<a name="ln-199"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">sep</span><span class="p">))</span><span class="k">then</span>
-<a name="ln-200"></a><span class="k">      </span><span class="n">increment</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">sep</span><span class="p">)</span>
-<a name="ln-201"></a>      <span class="n">sep_local</span><span class="o">=</span><span class="n">sep</span>
-<a name="ln-202"></a>   <span class="k">else</span>
-<a name="ln-203"></a><span class="k">      </span><span class="n">sep_local</span><span class="o">=</span><span class="s1">&#39; &#39;</span>
-<a name="ln-204"></a>      <span class="n">increment</span><span class="o">=</span><span class="mi">2</span>
-<a name="ln-205"></a>   <span class="k">endif</span>
-<a name="ln-206"></a>
-<a name="ln-207"></a><span class="k">   </span><span class="n">istart</span><span class="o">=</span><span class="mi">1</span>
-<a name="ln-208"></a>   <span class="n">line</span><span class="o">=</span><span class="s1">&#39; &#39;</span>
-<a name="ln-209"></a>   <span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic0</span><span class="p">)</span>
-<a name="ln-210"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic1</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic1</span><span class="p">)</span>
-<a name="ln-211"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic2</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic2</span><span class="p">)</span>
-<a name="ln-212"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic3</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic3</span><span class="p">)</span>
-<a name="ln-213"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic4</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic4</span><span class="p">)</span>
-<a name="ln-214"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic5</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic5</span><span class="p">)</span>
-<a name="ln-215"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic6</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic6</span><span class="p">)</span>
-<a name="ln-216"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic7</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic7</span><span class="p">)</span>
-<a name="ln-217"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic8</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic8</span><span class="p">)</span>
-<a name="ln-218"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic9</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic9</span><span class="p">)</span>
-<a name="ln-219"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generica</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generica</span><span class="p">)</span>
-<a name="ln-220"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericb</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericb</span><span class="p">)</span>
-<a name="ln-221"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericc</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericc</span><span class="p">)</span>
-<a name="ln-222"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericd</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericd</span><span class="p">)</span>
-<a name="ln-223"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generice</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generice</span><span class="p">)</span>
-<a name="ln-224"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericf</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericf</span><span class="p">)</span>
-<a name="ln-225"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericg</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericg</span><span class="p">)</span>
-<a name="ln-226"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generich</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generich</span><span class="p">)</span>
-<a name="ln-227"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generici</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generici</span><span class="p">)</span>
-<a name="ln-228"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericj</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericj</span><span class="p">)</span>
-<a name="ln-229"></a>   <span class="n">msg_one</span><span class="o">=</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<a name="ln-230"></a><span class="k">contains</span>
-<a name="ln-231"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-232"></a><span class="k">subroutine </span><span class="n">print_generic</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
-<a name="ln-233"></a><span class="c">!use, intrinsic :: iso_fortran_env, only : int8, int16, int32, biggest=&gt;int64, real32, real64, dp=&gt;real128</span>
-<a name="ln-234"></a><span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">int8</span><span class="p">,</span> <span class="n">int16</span><span class="p">,</span> <span class="n">int32</span><span class="p">,</span> <span class="n">int64</span><span class="p">,</span> <span class="n">real32</span><span class="p">,</span> <span class="n">real64</span><span class="p">,</span> <span class="n">real128</span>
-<a name="ln-235"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="k">generic</span><span class="p">(:)</span>
-<a name="ln-236"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
-<a name="ln-237"></a>   <span class="k">select type</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
-<a name="ln-238"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(i0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-239"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(i0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-240"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(i0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-241"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(i0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-242"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(1pg0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-243"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(1pg0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-244"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(1pg0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-245"></a>      <span class="c">!type is (real(kind=real256));     write(error_unit,&#39;(1pg0)&#39;,advance=&#39;no&#39;) generic</span>
-<a name="ln-246"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(l1,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-247"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,:*(&quot;&quot;&quot;&quot;,a,&quot;&quot;&quot;&quot;,1x))&#39;</span><span class="p">)</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="k">generic</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="k">generic</span><span class="p">))</span>
-<a name="ln-248"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(&quot;(&quot;,1pg0,&quot;,&quot;,1pg0,&quot;)&quot;,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
-<a name="ln-249"></a><span class="k">      class </span><span class="n">default</span>
-<a name="ln-250"></a>         <span class="k">stop</span> <span class="s1">&#39;unknown type in *print_generic*&#39;</span>
-<a name="ln-251"></a>   <span class="k">end select</span>
-<a name="ln-252"></a><span class="k">   </span><span class="n">istart</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">+</span><span class="n">increment</span><span class="o">+</span><span class="mi">1</span>
-<a name="ln-253"></a>   <span class="n">line</span><span class="o">=</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;]&#39;</span><span class="o">//</span><span class="n">sep_local</span>
-<a name="ln-254"></a><span class="k">end subroutine </span><span class="n">print_generic</span>
-<a name="ln-255"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-256"></a><span class="k">end function </span><span class="n">msg_one</span>
-<a name="ln-257"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-258"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-259"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-260"></a><span class="c">!&gt;</span>
-<a name="ln-261"></a><span class="c">!!##NAME</span>
-<a name="ln-262"></a><span class="c">!!    fmt(3f) - [M_msg] convert any intrinsic to a string using specified format</span>
-<a name="ln-263"></a><span class="c">!!    (LICENSE:PD)</span>
-<a name="ln-264"></a><span class="c">!!##SYNOPSIS</span>
-<a name="ln-265"></a><span class="c">!!</span>
-<a name="ln-266"></a><span class="c">!!    function fmt(value,format) result(string)</span>
-<a name="ln-267"></a><span class="c">!!</span>
-<a name="ln-268"></a><span class="c">!!     class(*),intent(in),optional :: value</span>
-<a name="ln-269"></a><span class="c">!!     character(len=*),intent(in),optional  :: format</span>
-<a name="ln-270"></a><span class="c">!!     character(len=:),allocatable :: string</span>
-<a name="ln-271"></a><span class="c">!!##DESCRIPTION</span>
-<a name="ln-272"></a><span class="c">!!    FMT(3f) converts any standard intrinsic value to a string using the specified</span>
-<a name="ln-273"></a><span class="c">!!    format.</span>
-<a name="ln-274"></a><span class="c">!!##OPTIONS</span>
-<a name="ln-275"></a><span class="c">!!    value    value to print the value of. May be of type INTEGER, LOGICAL,</span>
-<a name="ln-276"></a><span class="c">!!             REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.</span>
-<a name="ln-277"></a><span class="c">!!    format   format to use to print value. It is up to the user to use an</span>
-<a name="ln-278"></a><span class="c">!!             appropriate format. The format does not require being</span>
-<a name="ln-279"></a><span class="c">!!             surrounded by parenthesis. If not present a default is selected</span>
-<a name="ln-280"></a><span class="c">!!             similar to what would be produced with free format.</span>
-<a name="ln-281"></a><span class="c">!!##RETURNS</span>
-<a name="ln-282"></a><span class="c">!!    string   A string value</span>
-<a name="ln-283"></a><span class="c">!!##EXAMPLES</span>
-<a name="ln-284"></a><span class="c">!!</span>
-<a name="ln-285"></a><span class="c">!!   Sample program:</span>
-<a name="ln-286"></a><span class="c">!!</span>
-<a name="ln-287"></a><span class="c">!!     program demo_fmt</span>
-<a name="ln-288"></a><span class="c">!!     use :: M_msg, only : fmt</span>
-<a name="ln-289"></a><span class="c">!!     implicit none</span>
-<a name="ln-290"></a><span class="c">!!     character(len=:),allocatable :: output</span>
-<a name="ln-291"></a><span class="c">!!</span>
-<a name="ln-292"></a><span class="c">!!        output=fmt(10,&quot;&#39;[&#39;,i0,&#39;]&#39;&quot;)</span>
-<a name="ln-293"></a><span class="c">!!        write(*,*)&#39;result is &#39;,output</span>
-<a name="ln-294"></a><span class="c">!!</span>
-<a name="ln-295"></a><span class="c">!!        output=fmt(10.0/3.0,&quot;&#39;[&#39;,g0.5,&#39;]&#39;&quot;)</span>
-<a name="ln-296"></a><span class="c">!!        write(*,*)&#39;result is &#39;,output</span>
+<a name="ln-168"></a><span class="cp">#ifdef __NVCOMPILER</span>
+<a name="ln-169"></a><span class="cp">#else</span>
+<a name="ln-170"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(1pg0)&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-171"></a><span class="cp">#endif</span>
+<a name="ln-172"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(l1)&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-173"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="nb">trim</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
+<a name="ln-174"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;(&quot;,1pg0,&quot;,&quot;,1pg0,&quot;)&quot;)&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-175"></a><span class="k">   end select</span>
+<a name="ln-176"></a><span class="k">   </span><span class="n">istart</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">+</span><span class="n">increment</span>
+<a name="ln-177"></a>   <span class="n">line</span><span class="o">=</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">//</span><span class="n">sep_local</span>
+<a name="ln-178"></a><span class="k">end subroutine </span><span class="n">print_generic</span>
+<a name="ln-179"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-180"></a><span class="k">end function </span><span class="n">msg_scalar</span>
+<a name="ln-181"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-182"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-183"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-184"></a><span class="k">function </span><span class="n">msg_one</span><span class="p">(</span><span class="n">generic0</span><span class="p">,</span><span class="n">generic1</span><span class="p">,</span> <span class="n">generic2</span><span class="p">,</span> <span class="n">generic3</span><span class="p">,</span> <span class="n">generic4</span><span class="p">,</span> <span class="n">generic5</span><span class="p">,</span> <span class="n">generic6</span><span class="p">,</span> <span class="n">generic7</span><span class="p">,</span> <span class="n">generic8</span><span class="p">,</span> <span class="n">generic9</span><span class="p">,&amp;</span>
+<a name="ln-185"></a>               <span class="p">&amp;</span> <span class="n">generica</span><span class="p">,</span><span class="n">genericb</span><span class="p">,</span> <span class="n">genericc</span><span class="p">,</span> <span class="n">genericd</span><span class="p">,</span> <span class="n">generice</span><span class="p">,</span> <span class="n">genericf</span><span class="p">,</span> <span class="n">genericg</span><span class="p">,</span> <span class="n">generich</span><span class="p">,</span> <span class="n">generici</span><span class="p">,</span> <span class="n">genericj</span><span class="p">,&amp;</span>
+<a name="ln-186"></a>               <span class="p">&amp;</span> <span class="n">sep</span><span class="p">)</span>
+<a name="ln-187"></a><span class="k">implicit none</span>
+<a name="ln-188"></a>
+<a name="ln-189"></a><span class="c">! ident_3=&quot;@(#)M_msg::msg_one(3fp): writes a message to a string composed of any standard one dimensional types&quot;</span>
+<a name="ln-190"></a>
+<a name="ln-191"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">generic0</span><span class="p">(:)</span>
+<a name="ln-192"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="n">generic1</span><span class="p">(:),</span> <span class="n">generic2</span><span class="p">(:),</span> <span class="n">generic3</span><span class="p">(:),</span> <span class="n">generic4</span><span class="p">(:),</span> <span class="n">generic5</span><span class="p">(:)</span>
+<a name="ln-193"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="n">generic6</span><span class="p">(:),</span> <span class="n">generic7</span><span class="p">(:),</span> <span class="n">generic8</span><span class="p">(:),</span> <span class="n">generic9</span><span class="p">(:)</span>
+<a name="ln-194"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="n">generica</span><span class="p">(:),</span> <span class="n">genericb</span><span class="p">(:),</span> <span class="n">genericc</span><span class="p">(:),</span> <span class="n">genericd</span><span class="p">(:),</span> <span class="n">generice</span><span class="p">(:)</span>
+<a name="ln-195"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="n">genericf</span><span class="p">(:),</span> <span class="n">genericg</span><span class="p">(:),</span> <span class="n">generich</span><span class="p">(:),</span> <span class="n">generici</span><span class="p">(:),</span> <span class="n">genericj</span><span class="p">(:)</span>
+<a name="ln-196"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">sep</span>
+<a name="ln-197"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span>  <span class="kd">::</span> <span class="n">sep_local</span>
+<a name="ln-198"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">msg_one</span>
+<a name="ln-199"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4096</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">line</span>
+<a name="ln-200"></a><span class="kt">integer</span>                       <span class="kd">::</span> <span class="n">istart</span>
+<a name="ln-201"></a><span class="kt">integer</span>                       <span class="kd">::</span> <span class="n">increment</span>
+<a name="ln-202"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">sep</span><span class="p">))</span><span class="k">then</span>
+<a name="ln-203"></a><span class="k">      </span><span class="n">increment</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">sep</span><span class="p">)</span>
+<a name="ln-204"></a>      <span class="n">sep_local</span><span class="o">=</span><span class="n">sep</span>
+<a name="ln-205"></a>   <span class="k">else</span>
+<a name="ln-206"></a><span class="k">      </span><span class="n">sep_local</span><span class="o">=</span><span class="s1">&#39; &#39;</span>
+<a name="ln-207"></a>      <span class="n">increment</span><span class="o">=</span><span class="mi">2</span>
+<a name="ln-208"></a>   <span class="k">endif</span>
+<a name="ln-209"></a>
+<a name="ln-210"></a><span class="k">   </span><span class="n">istart</span><span class="o">=</span><span class="mi">1</span>
+<a name="ln-211"></a>   <span class="n">line</span><span class="o">=</span><span class="s1">&#39; &#39;</span>
+<a name="ln-212"></a>   <span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic0</span><span class="p">)</span>
+<a name="ln-213"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic1</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic1</span><span class="p">)</span>
+<a name="ln-214"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic2</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic2</span><span class="p">)</span>
+<a name="ln-215"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic3</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic3</span><span class="p">)</span>
+<a name="ln-216"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic4</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic4</span><span class="p">)</span>
+<a name="ln-217"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic5</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic5</span><span class="p">)</span>
+<a name="ln-218"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic6</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic6</span><span class="p">)</span>
+<a name="ln-219"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic7</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic7</span><span class="p">)</span>
+<a name="ln-220"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic8</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic8</span><span class="p">)</span>
+<a name="ln-221"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generic9</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generic9</span><span class="p">)</span>
+<a name="ln-222"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generica</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generica</span><span class="p">)</span>
+<a name="ln-223"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericb</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericb</span><span class="p">)</span>
+<a name="ln-224"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericc</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericc</span><span class="p">)</span>
+<a name="ln-225"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericd</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericd</span><span class="p">)</span>
+<a name="ln-226"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generice</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generice</span><span class="p">)</span>
+<a name="ln-227"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericf</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericf</span><span class="p">)</span>
+<a name="ln-228"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericg</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericg</span><span class="p">)</span>
+<a name="ln-229"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generich</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generich</span><span class="p">)</span>
+<a name="ln-230"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">generici</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">generici</span><span class="p">)</span>
+<a name="ln-231"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">genericj</span><span class="p">))</span><span class="k">call </span><span class="n">print_generic</span><span class="p">(</span><span class="n">genericj</span><span class="p">)</span>
+<a name="ln-232"></a>   <span class="n">msg_one</span><span class="o">=</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<a name="ln-233"></a><span class="k">contains</span>
+<a name="ln-234"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-235"></a><span class="k">subroutine </span><span class="n">print_generic</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
+<a name="ln-236"></a><span class="c">!use, intrinsic :: iso_fortran_env, only : int8, int16, int32, biggest=&gt;int64, real32, real64, dp=&gt;real128</span>
+<a name="ln-237"></a><span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">int8</span><span class="p">,</span> <span class="n">int16</span><span class="p">,</span> <span class="n">int32</span><span class="p">,</span> <span class="n">int64</span><span class="p">,</span> <span class="n">real32</span><span class="p">,</span> <span class="n">real64</span><span class="p">,</span> <span class="n">real128</span>
+<a name="ln-238"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="k">generic</span><span class="p">(:)</span>
+<a name="ln-239"></a><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-240"></a>   <span class="k">select type</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
+<a name="ln-241"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(i0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-242"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(i0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-243"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(i0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-244"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(i0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-245"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(1pg0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-246"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(1pg0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-247"></a><span class="cp">#ifdef __NVCOMPILER</span>
+<a name="ln-248"></a><span class="cp">#else</span>
+<a name="ln-249"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(1pg0,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-250"></a>      <span class="c">!type is (real(kind=real256));     write(error_unit,&#39;(1pg0)&#39;,advance=&#39;no&#39;) generic</span>
+<a name="ln-251"></a><span class="cp">#endif</span>
+<a name="ln-252"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(l1,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-253"></a><span class="k">      type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,:*(&quot;&quot;&quot;&quot;,a,&quot;&quot;&quot;&quot;,1x))&#39;</span><span class="p">)</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="k">generic</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="k">generic</span><span class="p">))</span>
+<a name="ln-254"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="s1">&#39;(&quot;[&quot;,*(&quot;(&quot;,1pg0,&quot;,&quot;,1pg0,&quot;)&quot;,1x))&#39;</span><span class="p">)</span> <span class="k">generic</span>
+<a name="ln-255"></a><span class="k">      class </span><span class="n">default</span>
+<a name="ln-256"></a>         <span class="k">stop</span> <span class="s1">&#39;unknown type in *print_generic*&#39;</span>
+<a name="ln-257"></a>   <span class="k">end select</span>
+<a name="ln-258"></a><span class="k">   </span><span class="n">istart</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">+</span><span class="n">increment</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-259"></a>   <span class="n">line</span><span class="o">=</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;]&#39;</span><span class="o">//</span><span class="n">sep_local</span>
+<a name="ln-260"></a><span class="k">end subroutine </span><span class="n">print_generic</span>
+<a name="ln-261"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-262"></a><span class="k">end function </span><span class="n">msg_one</span>
+<a name="ln-263"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-264"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-265"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-266"></a><span class="c">!&gt;</span>
+<a name="ln-267"></a><span class="c">!!##NAME</span>
+<a name="ln-268"></a><span class="c">!!    fmt(3f) - [M_msg] convert any intrinsic to a string using specified format</span>
+<a name="ln-269"></a><span class="c">!!    (LICENSE:PD)</span>
+<a name="ln-270"></a><span class="c">!!##SYNOPSIS</span>
+<a name="ln-271"></a><span class="c">!!</span>
+<a name="ln-272"></a><span class="c">!!    function fmt(value,format) result(string)</span>
+<a name="ln-273"></a><span class="c">!!</span>
+<a name="ln-274"></a><span class="c">!!     class(*),intent(in),optional :: value</span>
+<a name="ln-275"></a><span class="c">!!     character(len=*),intent(in),optional  :: format</span>
+<a name="ln-276"></a><span class="c">!!     character(len=:),allocatable :: string</span>
+<a name="ln-277"></a><span class="c">!!##DESCRIPTION</span>
+<a name="ln-278"></a><span class="c">!!    FMT(3f) converts any standard intrinsic value to a string using the specified</span>
+<a name="ln-279"></a><span class="c">!!    format.</span>
+<a name="ln-280"></a><span class="c">!!##OPTIONS</span>
+<a name="ln-281"></a><span class="c">!!    value    value to print the value of. May be of type INTEGER, LOGICAL,</span>
+<a name="ln-282"></a><span class="c">!!             REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.</span>
+<a name="ln-283"></a><span class="c">!!    format   format to use to print value. It is up to the user to use an</span>
+<a name="ln-284"></a><span class="c">!!             appropriate format. The format does not require being</span>
+<a name="ln-285"></a><span class="c">!!             surrounded by parenthesis. If not present a default is selected</span>
+<a name="ln-286"></a><span class="c">!!             similar to what would be produced with free format.</span>
+<a name="ln-287"></a><span class="c">!!##RETURNS</span>
+<a name="ln-288"></a><span class="c">!!    string   A string value</span>
+<a name="ln-289"></a><span class="c">!!##EXAMPLES</span>
+<a name="ln-290"></a><span class="c">!!</span>
+<a name="ln-291"></a><span class="c">!!   Sample program:</span>
+<a name="ln-292"></a><span class="c">!!</span>
+<a name="ln-293"></a><span class="c">!!     program demo_fmt</span>
+<a name="ln-294"></a><span class="c">!!     use :: M_msg, only : fmt</span>
+<a name="ln-295"></a><span class="c">!!     implicit none</span>
+<a name="ln-296"></a><span class="c">!!     character(len=:),allocatable :: output</span>
 <a name="ln-297"></a><span class="c">!!</span>
-<a name="ln-298"></a><span class="c">!!        output=fmt(.true.,&quot;&#39;The final answer is [&#39;,g0,&#39;]&#39;&quot;)</span>
+<a name="ln-298"></a><span class="c">!!        output=fmt(10,&quot;&#39;[&#39;,i0,&#39;]&#39;&quot;)</span>
 <a name="ln-299"></a><span class="c">!!        write(*,*)&#39;result is &#39;,output</span>
 <a name="ln-300"></a><span class="c">!!</span>
-<a name="ln-301"></a><span class="c">!!     end program demo_fmt</span>
-<a name="ln-302"></a><span class="c">!!</span>
-<a name="ln-303"></a><span class="c">!!   Results:</span>
-<a name="ln-304"></a><span class="c">!!</span>
-<a name="ln-305"></a><span class="c">!!     result is [10]</span>
-<a name="ln-306"></a><span class="c">!!     result is [3.3333]</span>
-<a name="ln-307"></a><span class="c">!!     result is The final answer is [T]</span>
+<a name="ln-301"></a><span class="c">!!        output=fmt(10.0/3.0,&quot;&#39;[&#39;,g0.5,&#39;]&#39;&quot;)</span>
+<a name="ln-302"></a><span class="c">!!        write(*,*)&#39;result is &#39;,output</span>
+<a name="ln-303"></a><span class="c">!!</span>
+<a name="ln-304"></a><span class="c">!!        output=fmt(.true.,&quot;&#39;The final answer is [&#39;,g0,&#39;]&#39;&quot;)</span>
+<a name="ln-305"></a><span class="c">!!        write(*,*)&#39;result is &#39;,output</span>
+<a name="ln-306"></a><span class="c">!!</span>
+<a name="ln-307"></a><span class="c">!!     end program demo_fmt</span>
 <a name="ln-308"></a><span class="c">!!</span>
-<a name="ln-309"></a><span class="c">!!##AUTHOR</span>
-<a name="ln-310"></a><span class="c">!!    John S. Urban</span>
-<a name="ln-311"></a><span class="c">!!</span>
-<a name="ln-312"></a><span class="c">!!##LICENSE</span>
-<a name="ln-313"></a><span class="c">!!    Public Domain</span>
-<a name="ln-314"></a><span class="k">recursive function </span><span class="n">fmt</span><span class="p">(</span><span class="k">generic</span><span class="p">,</span><span class="k">format</span><span class="p">)</span> <span class="k">result</span> <span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<a name="ln-315"></a><span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">int8</span><span class="p">,</span> <span class="n">int16</span><span class="p">,</span> <span class="n">int32</span><span class="p">,</span> <span class="n">int64</span><span class="p">,</span> <span class="n">real32</span><span class="p">,</span> <span class="n">real64</span><span class="p">,</span> <span class="n">real128</span>
-<a name="ln-316"></a>
-<a name="ln-317"></a><span class="c">! ident_4=&quot;@(#)M_msg::fmt(3f): convert any intrinsic to a string using specified format&quot;</span>
-<a name="ln-318"></a>
-<a name="ln-319"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="k">generic</span>
-<a name="ln-320"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="k">format</span>
-<a name="ln-321"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">line</span>
-<a name="ln-322"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">fmt_local</span>
-<a name="ln-323"></a><span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">ios</span>
-<a name="ln-324"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">msg</span>
-<a name="ln-325"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="k">parameter</span>   <span class="kd">::</span> <span class="nb">null</span><span class="o">=</span><span class="nb">char</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<a name="ln-326"></a><span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">ilen</span>
-<a name="ln-327"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="k">format</span><span class="p">))</span><span class="k">then</span>
-<a name="ln-328"></a><span class="k">      </span><span class="n">fmt_local</span><span class="o">=</span><span class="k">format</span>
-<a name="ln-329"></a><span class="k">   else</span>
-<a name="ln-330"></a><span class="k">      </span><span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-<a name="ln-331"></a>   <span class="k">endif</span>
-<a name="ln-332"></a>   <span class="c">! add &quot;,a&quot; and print null and use position of null to find length of output</span>
-<a name="ln-333"></a>   <span class="c">! add cannot use SIZE= or POS= or ADVANCE=&#39;NO&#39; on WRITE() on INTERNAL READ,</span>
-<a name="ln-334"></a>   <span class="c">! and do not want to trim as trailing spaces can be significant</span>
-<a name="ln-335"></a>   <span class="k">if</span><span class="p">(</span><span class="n">fmt_local</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="k">then</span>
-<a name="ln-336"></a><span class="k">      select type</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
-<a name="ln-337"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>     <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
-<a name="ln-338"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>    <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
-<a name="ln-339"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>    <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
-<a name="ln-340"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>    <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
-<a name="ln-341"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>      <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(1pg0,a)&#39;</span>
-<a name="ln-342"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>      <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(1pg0,a)&#39;</span>
-<a name="ln-343"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(1pg0,a)&#39;</span>
-<a name="ln-344"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(l1,a)&#39;</span>
-<a name="ln-345"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(a,a)&#39;</span>
-<a name="ln-346"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(&quot;(&quot;,1pg0,&quot;,&quot;,1pg0,&quot;)&quot;,a)&#39;</span>
-<a name="ln-347"></a>      <span class="k">end select</span>
-<a name="ln-348"></a><span class="k">   else</span>
-<a name="ln-349"></a><span class="k">      if</span><span class="p">(</span><span class="k">format</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">).</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;(&#39;</span><span class="p">)</span><span class="k">then</span>
-<a name="ln-350"></a><span class="k">         </span><span class="n">fmt_local</span><span class="o">=</span><span class="k">format</span><span class="p">(:</span><span class="nb">len_trim</span><span class="p">(</span><span class="k">format</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;,a)&#39;</span>
-<a name="ln-351"></a>      <span class="k">else</span>
-<a name="ln-352"></a><span class="k">         </span><span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(&#39;</span><span class="o">//</span><span class="n">fmt_local</span><span class="o">//</span><span class="s1">&#39;,a)&#39;</span>
-<a name="ln-353"></a>      <span class="k">endif</span>
-<a name="ln-354"></a><span class="k">   endif</span>
-<a name="ln-355"></a><span class="k">   allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span> <span class="kd">::</span> <span class="n">line</span><span class="p">)</span> <span class="c">! cannot currently write into allocatable variable</span>
-<a name="ln-356"></a>   <span class="n">ios</span><span class="o">=</span><span class="mi">0</span>
-<a name="ln-357"></a>   <span class="k">select type</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
-<a name="ln-358"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-359"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-360"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-361"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-362"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-363"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-364"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-365"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-366"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-367"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<a name="ln-368"></a><span class="nb">   </span><span class="k">end select</span>
-<a name="ln-369"></a><span class="k">   if</span><span class="p">(</span><span class="n">ios</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
-<a name="ln-370"></a><span class="k">      </span><span class="n">line</span><span class="o">=</span><span class="s1">&#39;&lt;ERROR&gt;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<a name="ln-371"></a>   <span class="k">else</span>
-<a name="ln-372"></a><span class="k">      </span><span class="n">ilen</span><span class="o">=</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="nb">null</span><span class="p">,</span><span class="n">back</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
-<a name="ln-373"></a>      <span class="k">if</span><span class="p">(</span><span class="n">ilen</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="n">ilen</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<a name="ln-374"></a>      <span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">(:</span><span class="n">ilen</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-375"></a>   <span class="k">endif</span>
-<a name="ln-376"></a><span class="k">end function </span><span class="n">fmt</span>
-<a name="ln-377"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-378"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-379"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-380"></a><span class="c">!&gt;</span>
-<a name="ln-381"></a><span class="c">!!##NAME</span>
-<a name="ln-382"></a><span class="c">!!    stderr(3f) - [M_msg] write message to stderr</span>
-<a name="ln-383"></a><span class="c">!!    (LICENSE:PD)</span>
-<a name="ln-384"></a><span class="c">!!##SYNOPSIS</span>
-<a name="ln-385"></a><span class="c">!!</span>
-<a name="ln-386"></a><span class="c">!!    subroutine stderr(msg,[generic])</span>
-<a name="ln-387"></a><span class="c">!!</span>
-<a name="ln-388"></a><span class="c">!!     class(*),intent(in),optional :: msg</span>
-<a name="ln-389"></a><span class="c">!!     class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4</span>
-<a name="ln-390"></a><span class="c">!!     class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9</span>
-<a name="ln-391"></a><span class="c">!!##DESCRIPTION</span>
-<a name="ln-392"></a><span class="c">!!    STDERR(3f) writes a message to standard error using a standard f2003 method.</span>
-<a name="ln-393"></a><span class="c">!!    Up to ten generic options are available.</span>
-<a name="ln-394"></a><span class="c">!!##OPTIONS</span>
-<a name="ln-395"></a><span class="c">!!    msg           - description to print</span>
-<a name="ln-396"></a><span class="c">!!    generic[0-9]  - optional value to print the value of after the message. May</span>
-<a name="ln-397"></a><span class="c">!!                    be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,</span>
-<a name="ln-398"></a><span class="c">!!                    or CHARACTER.</span>
-<a name="ln-399"></a><span class="c">!!##EXAMPLES</span>
-<a name="ln-400"></a><span class="c">!!</span>
-<a name="ln-401"></a><span class="c">!!   Sample program:</span>
-<a name="ln-402"></a><span class="c">!!</span>
-<a name="ln-403"></a><span class="c">!!    program demo_stderr</span>
-<a name="ln-404"></a><span class="c">!!    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64</span>
-<a name="ln-405"></a><span class="c">!!    use,intrinsic :: iso_fortran_env, only : real32, real64, real128</span>
-<a name="ln-406"></a><span class="c">!!    use,intrinsic :: iso_fortran_env, only : real=&gt; real32, integer=&gt; int32</span>
-<a name="ln-407"></a><span class="c">!!    use M_msg, only: stderr</span>
-<a name="ln-408"></a><span class="c">!!    implicit none</span>
-<a name="ln-409"></a><span class="c">!!</span>
-<a name="ln-410"></a><span class="c">!!    call stderr(&#39;A simple message&#39;)</span>
-<a name="ln-411"></a><span class="c">!!    call stderr(&#39;error: RVALUE=&#39;,3.0/4.0)</span>
-<a name="ln-412"></a><span class="c">!!    call stderr(&#39;error: IVALUE=&#39;,123456789)</span>
-<a name="ln-413"></a><span class="c">!!    call stderr(&#39;error: LVALUE=&#39;,.true.)</span>
+<a name="ln-309"></a><span class="c">!!   Results:</span>
+<a name="ln-310"></a><span class="c">!!</span>
+<a name="ln-311"></a><span class="c">!!     result is [10]</span>
+<a name="ln-312"></a><span class="c">!!     result is [3.3333]</span>
+<a name="ln-313"></a><span class="c">!!     result is The final answer is [T]</span>
+<a name="ln-314"></a><span class="c">!!</span>
+<a name="ln-315"></a><span class="c">!!##AUTHOR</span>
+<a name="ln-316"></a><span class="c">!!    John S. Urban</span>
+<a name="ln-317"></a><span class="c">!!</span>
+<a name="ln-318"></a><span class="c">!!##LICENSE</span>
+<a name="ln-319"></a><span class="c">!!    Public Domain</span>
+<a name="ln-320"></a><span class="k">recursive function </span><span class="n">fmt</span><span class="p">(</span><span class="k">generic</span><span class="p">,</span><span class="k">format</span><span class="p">)</span> <span class="k">result</span> <span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<a name="ln-321"></a><span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">int8</span><span class="p">,</span> <span class="n">int16</span><span class="p">,</span> <span class="n">int32</span><span class="p">,</span> <span class="n">int64</span><span class="p">,</span> <span class="n">real32</span><span class="p">,</span> <span class="n">real64</span><span class="p">,</span> <span class="n">real128</span>
+<a name="ln-322"></a>
+<a name="ln-323"></a><span class="c">! ident_4=&quot;@(#)M_msg::fmt(3f): convert any intrinsic to a string using specified format&quot;</span>
+<a name="ln-324"></a>
+<a name="ln-325"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="k">generic</span>
+<a name="ln-326"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="k">format</span>
+<a name="ln-327"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">line</span>
+<a name="ln-328"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">fmt_local</span>
+<a name="ln-329"></a><span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">ios</span>
+<a name="ln-330"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">msg</span>
+<a name="ln-331"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="k">parameter</span>   <span class="kd">::</span> <span class="nb">null</span><span class="o">=</span><span class="nb">char</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a name="ln-332"></a><span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">ilen</span>
+<a name="ln-333"></a>   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="k">format</span><span class="p">))</span><span class="k">then</span>
+<a name="ln-334"></a><span class="k">      </span><span class="n">fmt_local</span><span class="o">=</span><span class="k">format</span>
+<a name="ln-335"></a><span class="k">   else</span>
+<a name="ln-336"></a><span class="k">      </span><span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<a name="ln-337"></a>   <span class="k">endif</span>
+<a name="ln-338"></a>   <span class="c">! add &quot;,a&quot; and print null and use position of null to find length of output</span>
+<a name="ln-339"></a>   <span class="c">! add cannot use SIZE= or POS= or ADVANCE=&#39;NO&#39; on WRITE() on INTERNAL READ,</span>
+<a name="ln-340"></a>   <span class="c">! and do not want to trim as trailing spaces can be significant</span>
+<a name="ln-341"></a>   <span class="k">if</span><span class="p">(</span><span class="n">fmt_local</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="k">then</span>
+<a name="ln-342"></a><span class="k">      select type</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
+<a name="ln-343"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>     <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
+<a name="ln-344"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>    <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
+<a name="ln-345"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>    <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
+<a name="ln-346"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>    <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
+<a name="ln-347"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>      <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(1pg0,a)&#39;</span>
+<a name="ln-348"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>      <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(1pg0,a)&#39;</span>
+<a name="ln-349"></a><span class="cp">#ifdef __NVCOMPILER</span>
+<a name="ln-350"></a><span class="cp">#else</span>
+<a name="ln-351"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(1pg0,a)&#39;</span>
+<a name="ln-352"></a><span class="cp">#endif</span>
+<a name="ln-353"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(l1,a)&#39;</span>
+<a name="ln-354"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(a,a)&#39;</span>
+<a name="ln-355"></a>         <span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(&quot;(&quot;,1pg0,&quot;,&quot;,1pg0,&quot;)&quot;,a)&#39;</span>
+<a name="ln-356"></a>      <span class="k">end select</span>
+<a name="ln-357"></a><span class="k">   else</span>
+<a name="ln-358"></a><span class="k">      if</span><span class="p">(</span><span class="k">format</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">).</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;(&#39;</span><span class="p">)</span><span class="k">then</span>
+<a name="ln-359"></a><span class="k">         </span><span class="n">fmt_local</span><span class="o">=</span><span class="k">format</span><span class="p">(:</span><span class="nb">len_trim</span><span class="p">(</span><span class="k">format</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;,a)&#39;</span>
+<a name="ln-360"></a>      <span class="k">else</span>
+<a name="ln-361"></a><span class="k">         </span><span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(&#39;</span><span class="o">//</span><span class="n">fmt_local</span><span class="o">//</span><span class="s1">&#39;,a)&#39;</span>
+<a name="ln-362"></a>      <span class="k">endif</span>
+<a name="ln-363"></a><span class="k">   endif</span>
+<a name="ln-364"></a><span class="k">   allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span> <span class="kd">::</span> <span class="n">line</span><span class="p">)</span> <span class="c">! cannot currently write into allocatable variable</span>
+<a name="ln-365"></a>   <span class="n">ios</span><span class="o">=</span><span class="mi">0</span>
+<a name="ln-366"></a>   <span class="k">select type</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
+<a name="ln-367"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-368"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-369"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-370"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-371"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-372"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-373"></a><span class="cp">#ifdef __NVCOMPILER</span>
+<a name="ln-374"></a><span class="cp">#else</span>
+<a name="ln-375"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-376"></a><span class="cp">#endif</span>
+<a name="ln-377"></a>      <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-378"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-379"></a><span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
+<a name="ln-380"></a><span class="nb">   </span><span class="k">end select</span>
+<a name="ln-381"></a><span class="k">   if</span><span class="p">(</span><span class="n">ios</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
+<a name="ln-382"></a><span class="k">      </span><span class="n">line</span><span class="o">=</span><span class="s1">&#39;&lt;ERROR&gt;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<a name="ln-383"></a>   <span class="k">else</span>
+<a name="ln-384"></a><span class="k">      </span><span class="n">ilen</span><span class="o">=</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="nb">null</span><span class="p">,</span><span class="n">back</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+<a name="ln-385"></a>      <span class="k">if</span><span class="p">(</span><span class="n">ilen</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="n">ilen</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<a name="ln-386"></a>      <span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">(:</span><span class="n">ilen</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-387"></a>   <span class="k">endif</span>
+<a name="ln-388"></a><span class="k">end function </span><span class="n">fmt</span>
+<a name="ln-389"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-390"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-391"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-392"></a><span class="c">!&gt;</span>
+<a name="ln-393"></a><span class="c">!!##NAME</span>
+<a name="ln-394"></a><span class="c">!!    stderr(3f) - [M_msg] write message to stderr</span>
+<a name="ln-395"></a><span class="c">!!    (LICENSE:PD)</span>
+<a name="ln-396"></a><span class="c">!!##SYNOPSIS</span>
+<a name="ln-397"></a><span class="c">!!</span>
+<a name="ln-398"></a><span class="c">!!    subroutine stderr(msg,[generic])</span>
+<a name="ln-399"></a><span class="c">!!</span>
+<a name="ln-400"></a><span class="c">!!     class(*),intent(in),optional :: msg</span>
+<a name="ln-401"></a><span class="c">!!     class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4</span>
+<a name="ln-402"></a><span class="c">!!     class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9</span>
+<a name="ln-403"></a><span class="c">!!##DESCRIPTION</span>
+<a name="ln-404"></a><span class="c">!!    STDERR(3f) writes a message to standard error using a standard f2003 method.</span>
+<a name="ln-405"></a><span class="c">!!    Up to ten generic options are available.</span>
+<a name="ln-406"></a><span class="c">!!##OPTIONS</span>
+<a name="ln-407"></a><span class="c">!!    msg           - description to print</span>
+<a name="ln-408"></a><span class="c">!!    generic[0-9]  - optional value to print the value of after the message. May</span>
+<a name="ln-409"></a><span class="c">!!                    be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,</span>
+<a name="ln-410"></a><span class="c">!!                    or CHARACTER.</span>
+<a name="ln-411"></a><span class="c">!!##EXAMPLES</span>
+<a name="ln-412"></a><span class="c">!!</span>
+<a name="ln-413"></a><span class="c">!!   Sample program:</span>
 <a name="ln-414"></a><span class="c">!!</span>
-<a name="ln-415"></a><span class="c">!!    SEVERAL: block</span>
-<a name="ln-416"></a><span class="c">!!    integer :: least=10, most=999, ival=-10</span>
-<a name="ln-417"></a><span class="c">!!    call stderr(&#39;error: value&#39;,ival,&#39;should be between&#39;,least,&#39;and&#39;,most)</span>
-<a name="ln-418"></a><span class="c">!!    endblock SEVERAL</span>
-<a name="ln-419"></a><span class="c">!!</span>
-<a name="ln-420"></a><span class="c">!!    call stderr(&#39;real32  :&#39;,huge(0.0_real32),0.0_real32,12345.6789_real32,tiny(0.0_real32))</span>
-<a name="ln-421"></a><span class="c">!!    call stderr(&#39;real64  :&#39;,huge(0.0_real64),0.0_real64,12345.6789_real64,tiny(0.0_real64))</span>
-<a name="ln-422"></a><span class="c">!!    call stderr(&#39;real128 :&#39;,huge(0.0_real128),0.0_real128,12345.6789_real128,tiny(0.0_real128))</span>
-<a name="ln-423"></a><span class="c">!!    call stderr(&#39;complex :&#39;,cmplx(huge(0.0_real),tiny(0.0_real)))</span>
-<a name="ln-424"></a><span class="c">!!</span>
-<a name="ln-425"></a><span class="c">!!    call stderr(&#39;error: program will now stop&#39;)</span>
-<a name="ln-426"></a><span class="c">!!    stop 1</span>
-<a name="ln-427"></a><span class="c">!!</span>
-<a name="ln-428"></a><span class="c">!!    end program demo_stderr</span>
-<a name="ln-429"></a><span class="c">!!</span>
-<a name="ln-430"></a><span class="c">!!   Results:</span>
-<a name="ln-431"></a><span class="c">!!     A simple message</span>
-<a name="ln-432"></a><span class="c">!!     error: RVALUE= 0.750000000</span>
-<a name="ln-433"></a><span class="c">!!     error: IVALUE= 123456789</span>
-<a name="ln-434"></a><span class="c">!!     error: LVALUE= T</span>
-<a name="ln-435"></a><span class="c">!!     error: value -10 should be between 10 and 999</span>
-<a name="ln-436"></a><span class="c">!!     real32  : 3.40282347E+38 ...</span>
-<a name="ln-437"></a><span class="c">!!               0.00000000 ...</span>
-<a name="ln-438"></a><span class="c">!!               12345.6787 ...</span>
-<a name="ln-439"></a><span class="c">!!               1.17549435E-38</span>
-<a name="ln-440"></a><span class="c">!!     real64  : 1.7976931348623157E+308 ...</span>
-<a name="ln-441"></a><span class="c">!!               0.0000000000000000 ...</span>
-<a name="ln-442"></a><span class="c">!!               12345.678900000001 ...</span>
-<a name="ln-443"></a><span class="c">!!               2.2250738585072014E-308</span>
-<a name="ln-444"></a><span class="c">!!     real128 : 1.18973149535723176508575932662800702E+4932 ...</span>
-<a name="ln-445"></a><span class="c">!!               0.00000000000000000000000000000000000  ...</span>
-<a name="ln-446"></a><span class="c">!!               12345.6789000000000000000000000000002 ...</span>
-<a name="ln-447"></a><span class="c">!!               3.36210314311209350626267781732175260E-4932</span>
-<a name="ln-448"></a><span class="c">!!     complex : (3.40282347E+38,1.17549435E-38)</span>
-<a name="ln-449"></a><span class="c">!!     error: program will now stop</span>
-<a name="ln-450"></a><span class="c">!!     STOP 1</span>
-<a name="ln-451"></a><span class="c">!!</span>
-<a name="ln-452"></a><span class="c">!!##AUTHOR</span>
-<a name="ln-453"></a><span class="c">!!    John S. Urban</span>
-<a name="ln-454"></a><span class="c">!!</span>
-<a name="ln-455"></a><span class="c">!!##LICENSE</span>
-<a name="ln-456"></a><span class="c">!!    Public Domain</span>
-<a name="ln-457"></a><span class="k">subroutine </span><span class="n">stderr</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span><span class="p">)</span>
-<a name="ln-458"></a><span class="k">implicit none</span>
-<a name="ln-459"></a>
-<a name="ln-460"></a><span class="c">! ident_5=&quot;@(#)M_msg::stderr(3f): writes a message to standard error using a standard f2003 method&quot;</span>
-<a name="ln-461"></a>
-<a name="ln-462"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span>
-<a name="ln-463"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span>
-<a name="ln-464"></a><span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">ios</span>
-<a name="ln-465"></a>   <span class="k">write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(a)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span> <span class="n">str</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span><span class="p">)</span>
-<a name="ln-466"></a>   <span class="nb">flush</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">output_unit</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
-<a name="ln-467"></a>   <span class="nb">flush</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">error_unit</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
-<a name="ln-468"></a><span class="k">end subroutine </span><span class="n">stderr</span>
-<a name="ln-469"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-470"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-471"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-472"></a><span class="c">!&gt;</span>
-<a name="ln-473"></a><span class="c">!!##NAME</span>
-<a name="ln-474"></a><span class="c">!!    wrt(3f) - [M_msg] write multiple scalar values to any number of files</span>
-<a name="ln-475"></a><span class="c">!!    (LICENSE:PD)</span>
-<a name="ln-476"></a><span class="c">!!##SYNOPSIS</span>
-<a name="ln-477"></a><span class="c">!!</span>
-<a name="ln-478"></a><span class="c">!!    subroutine wrt(luns,generic(s),iostat)</span>
-<a name="ln-479"></a><span class="c">!!</span>
-<a name="ln-480"></a><span class="c">!!     integer,intent(in)           :: luns(:)</span>
-<a name="ln-481"></a><span class="c">!!     class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4</span>
-<a name="ln-482"></a><span class="c">!!     class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9</span>
-<a name="ln-483"></a><span class="c">!!     class(*),intent(in),optional :: generica,genericb,genericc,genericd,generice</span>
-<a name="ln-484"></a><span class="c">!!     class(*),intent(in),optional :: genericf,genericg,generich,generici,genericj</span>
-<a name="ln-485"></a><span class="c">!!     integer,intent(out),optional :: ios</span>
-<a name="ln-486"></a><span class="c">!!##DESCRIPTION</span>
-<a name="ln-487"></a><span class="c">!!    WRT(3f) writes a list of scalar values  to the list of unit numbers in LUNS(:).</span>
-<a name="ln-488"></a><span class="c">!!##OPTIONS</span>
-<a name="ln-489"></a><span class="c">!!    LUNS            Unit numbers to write to. If of size zero no output is generated</span>
-<a name="ln-490"></a><span class="c">!!    generic[1-20]   optional value to print the value of after the message. May</span>
-<a name="ln-491"></a><span class="c">!!                    be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,</span>
-<a name="ln-492"></a><span class="c">!!                    or CHARACTER.</span>
-<a name="ln-493"></a><span class="c">!!##RETURNS</span>
-<a name="ln-494"></a><span class="c">!!    IOSTAT          The value of the last non-zero IOSTAT value. Returns zero if</span>
-<a name="ln-495"></a><span class="c">!!                    no errors occurred.</span>
-<a name="ln-496"></a><span class="c">!!##EXAMPLES</span>
-<a name="ln-497"></a><span class="c">!!</span>
-<a name="ln-498"></a><span class="c">!!   Sample program:</span>
-<a name="ln-499"></a><span class="c">!!</span>
-<a name="ln-500"></a><span class="c">!!    program demo_wrt</span>
-<a name="ln-501"></a><span class="c">!!    use, intrinsic :: iso_fortran_env, only : &amp;</span>
-<a name="ln-502"></a><span class="c">!!     &amp; stdin=&gt;input_unit, &amp;</span>
-<a name="ln-503"></a><span class="c">!!     &amp; stdout=&gt;output_unit, &amp;</span>
-<a name="ln-504"></a><span class="c">!!     &amp; stderr=&gt;error_unit</span>
-<a name="ln-505"></a><span class="c">!!    use M_msg, only: wrt, fmt</span>
-<a name="ln-506"></a><span class="c">!!    implicit none</span>
-<a name="ln-507"></a><span class="c">!!    integer,allocatable :: luns(:)</span>
-<a name="ln-508"></a><span class="c">!!    integer :: iostat=0</span>
-<a name="ln-509"></a><span class="c">!!    integer,parameter :: ints(3)=[1,2,3]</span>
-<a name="ln-510"></a><span class="c">!!</span>
-<a name="ln-511"></a><span class="c">!!    ! a null list allows for turning off verbose or debug mode output</span>
-<a name="ln-512"></a><span class="c">!!    luns=[integer ::]</span>
-<a name="ln-513"></a><span class="c">!!    call wrt(luns,&#39;NULL LIST:&#39;,huge(0),&#39;PI=&#39;,asin(1.0d0)*2.0d0,iostat=iostat)</span>
-<a name="ln-514"></a><span class="c">!!    write(*,*)&#39;IOSTAT=&#39;,iostat</span>
-<a name="ln-515"></a><span class="c">!!</span>
-<a name="ln-516"></a><span class="c">!!    ! multiple files can be used to create a log file, for example</span>
-<a name="ln-517"></a><span class="c">!!    luns=[stderr,stdout]</span>
-<a name="ln-518"></a><span class="c">!!    call wrt(luns,&#39;TWO FILES:&#39;,huge(0),&#39;PI=&#39;,asin(1.0d0)*2.0d0,iostat=iostat)</span>
-<a name="ln-519"></a><span class="c">!!    write(*,*)&#39;IOSTAT=&#39;,iostat</span>
-<a name="ln-520"></a><span class="c">!!</span>
-<a name="ln-521"></a><span class="c">!!    ! using fmt</span>
-<a name="ln-522"></a><span class="c">!!    call wrt([stdout,stdout,stdout],&#39;USING FMT :&#39;, &amp;</span>
-<a name="ln-523"></a><span class="c">!!     &amp; huge(0),&#39;PI=&#39;,asin(1.0d0)*2.0d0,fmt(ints(2),&#39;i0.4&#39;),iostat=iostat)</span>
-<a name="ln-524"></a><span class="c">!!</span>
+<a name="ln-415"></a><span class="c">!!    program demo_stderr</span>
+<a name="ln-416"></a><span class="c">!!    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64</span>
+<a name="ln-417"></a><span class="c">!!    use,intrinsic :: iso_fortran_env, only : real32, real64, real128</span>
+<a name="ln-418"></a><span class="c">!!    use,intrinsic :: iso_fortran_env, only : real=&gt; real32, integer=&gt; int32</span>
+<a name="ln-419"></a><span class="c">!!    use M_msg, only: stderr</span>
+<a name="ln-420"></a><span class="c">!!    implicit none</span>
+<a name="ln-421"></a><span class="c">!!</span>
+<a name="ln-422"></a><span class="c">!!    call stderr(&#39;A simple message&#39;)</span>
+<a name="ln-423"></a><span class="c">!!    call stderr(&#39;error: RVALUE=&#39;,3.0/4.0)</span>
+<a name="ln-424"></a><span class="c">!!    call stderr(&#39;error: IVALUE=&#39;,123456789)</span>
+<a name="ln-425"></a><span class="c">!!    call stderr(&#39;error: LVALUE=&#39;,.true.)</span>
+<a name="ln-426"></a><span class="c">!!</span>
+<a name="ln-427"></a><span class="c">!!    SEVERAL: block</span>
+<a name="ln-428"></a><span class="c">!!    integer :: least=10, most=999, ival=-10</span>
+<a name="ln-429"></a><span class="c">!!    call stderr(&#39;error: value&#39;,ival,&#39;should be between&#39;,least,&#39;and&#39;,most)</span>
+<a name="ln-430"></a><span class="c">!!    endblock SEVERAL</span>
+<a name="ln-431"></a><span class="c">!!</span>
+<a name="ln-432"></a><span class="c">!!    call stderr(&#39;real32  :&#39;,huge(0.0_real32),0.0_real32,12345.6789_real32,tiny(0.0_real32))</span>
+<a name="ln-433"></a><span class="c">!!    call stderr(&#39;real64  :&#39;,huge(0.0_real64),0.0_real64,12345.6789_real64,tiny(0.0_real64))</span>
+<a name="ln-434"></a><span class="c">!!    !#ifdef __NVCOMPILER</span>
+<a name="ln-435"></a><span class="c">!!    !#else</span>
+<a name="ln-436"></a><span class="c">!!    call stderr(&#39;real128 :&#39;,huge(0.0_real128),0.0_real128,12345.6789_real128,tiny(0.0_real128))</span>
+<a name="ln-437"></a><span class="c">!!    !#endif</span>
+<a name="ln-438"></a><span class="c">!!    call stderr(&#39;complex :&#39;,cmplx(huge(0.0_real),tiny(0.0_real)))</span>
+<a name="ln-439"></a><span class="c">!!</span>
+<a name="ln-440"></a><span class="c">!!    call stderr(&#39;error: program will now stop&#39;)</span>
+<a name="ln-441"></a><span class="c">!!    stop 1</span>
+<a name="ln-442"></a><span class="c">!!</span>
+<a name="ln-443"></a><span class="c">!!    end program demo_stderr</span>
+<a name="ln-444"></a><span class="c">!!</span>
+<a name="ln-445"></a><span class="c">!!   Results:</span>
+<a name="ln-446"></a><span class="c">!!     A simple message</span>
+<a name="ln-447"></a><span class="c">!!     error: RVALUE= 0.750000000</span>
+<a name="ln-448"></a><span class="c">!!     error: IVALUE= 123456789</span>
+<a name="ln-449"></a><span class="c">!!     error: LVALUE= T</span>
+<a name="ln-450"></a><span class="c">!!     error: value -10 should be between 10 and 999</span>
+<a name="ln-451"></a><span class="c">!!     real32  : 3.40282347E+38 ...</span>
+<a name="ln-452"></a><span class="c">!!               0.00000000 ...</span>
+<a name="ln-453"></a><span class="c">!!               12345.6787 ...</span>
+<a name="ln-454"></a><span class="c">!!               1.17549435E-38</span>
+<a name="ln-455"></a><span class="c">!!     real64  : 1.7976931348623157E+308 ...</span>
+<a name="ln-456"></a><span class="c">!!               0.0000000000000000 ...</span>
+<a name="ln-457"></a><span class="c">!!               12345.678900000001 ...</span>
+<a name="ln-458"></a><span class="c">!!               2.2250738585072014E-308</span>
+<a name="ln-459"></a><span class="c">!!     real128 : 1.18973149535723176508575932662800702E+4932 ...</span>
+<a name="ln-460"></a><span class="c">!!               0.00000000000000000000000000000000000  ...</span>
+<a name="ln-461"></a><span class="c">!!               12345.6789000000000000000000000000002 ...</span>
+<a name="ln-462"></a><span class="c">!!               3.36210314311209350626267781732175260E-4932</span>
+<a name="ln-463"></a><span class="c">!!     complex : (3.40282347E+38,1.17549435E-38)</span>
+<a name="ln-464"></a><span class="c">!!     error: program will now stop</span>
+<a name="ln-465"></a><span class="c">!!     STOP 1</span>
+<a name="ln-466"></a><span class="c">!!</span>
+<a name="ln-467"></a><span class="c">!!##AUTHOR</span>
+<a name="ln-468"></a><span class="c">!!    John S. Urban</span>
+<a name="ln-469"></a><span class="c">!!</span>
+<a name="ln-470"></a><span class="c">!!##LICENSE</span>
+<a name="ln-471"></a><span class="c">!!    Public Domain</span>
+<a name="ln-472"></a><span class="k">subroutine </span><span class="n">stderr</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span><span class="p">)</span>
+<a name="ln-473"></a><span class="k">implicit none</span>
+<a name="ln-474"></a>
+<a name="ln-475"></a><span class="c">! ident_5=&quot;@(#)M_msg::stderr(3f): writes a message to standard error using a standard f2003 method&quot;</span>
+<a name="ln-476"></a>
+<a name="ln-477"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span>
+<a name="ln-478"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span>
+<a name="ln-479"></a><span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">ios</span>
+<a name="ln-480"></a>   <span class="k">write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(a)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span> <span class="n">str</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span><span class="p">)</span>
+<a name="ln-481"></a>   <span class="nb">flush</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">output_unit</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
+<a name="ln-482"></a>   <span class="nb">flush</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">error_unit</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span>
+<a name="ln-483"></a><span class="k">end subroutine </span><span class="n">stderr</span>
+<a name="ln-484"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-485"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-486"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-487"></a><span class="c">!&gt;</span>
+<a name="ln-488"></a><span class="c">!!##NAME</span>
+<a name="ln-489"></a><span class="c">!!    wrt(3f) - [M_msg] write multiple scalar values to any number of files</span>
+<a name="ln-490"></a><span class="c">!!    (LICENSE:PD)</span>
+<a name="ln-491"></a><span class="c">!!##SYNOPSIS</span>
+<a name="ln-492"></a><span class="c">!!</span>
+<a name="ln-493"></a><span class="c">!!    subroutine wrt(luns,generic(s),iostat)</span>
+<a name="ln-494"></a><span class="c">!!</span>
+<a name="ln-495"></a><span class="c">!!     integer,intent(in)           :: luns(:)</span>
+<a name="ln-496"></a><span class="c">!!     class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4</span>
+<a name="ln-497"></a><span class="c">!!     class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9</span>
+<a name="ln-498"></a><span class="c">!!     class(*),intent(in),optional :: generica,genericb,genericc,genericd,generice</span>
+<a name="ln-499"></a><span class="c">!!     class(*),intent(in),optional :: genericf,genericg,generich,generici,genericj</span>
+<a name="ln-500"></a><span class="c">!!     integer,intent(out),optional :: ios</span>
+<a name="ln-501"></a><span class="c">!!##DESCRIPTION</span>
+<a name="ln-502"></a><span class="c">!!    WRT(3f) writes a list of scalar values  to the list of unit numbers in LUNS(:).</span>
+<a name="ln-503"></a><span class="c">!!##OPTIONS</span>
+<a name="ln-504"></a><span class="c">!!    LUNS            Unit numbers to write to. If of size zero no output is generated</span>
+<a name="ln-505"></a><span class="c">!!    generic[1-20]   optional value to print the value of after the message. May</span>
+<a name="ln-506"></a><span class="c">!!                    be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX,</span>
+<a name="ln-507"></a><span class="c">!!                    or CHARACTER.</span>
+<a name="ln-508"></a><span class="c">!!##RETURNS</span>
+<a name="ln-509"></a><span class="c">!!    IOSTAT          The value of the last non-zero IOSTAT value. Returns zero if</span>
+<a name="ln-510"></a><span class="c">!!                    no errors occurred.</span>
+<a name="ln-511"></a><span class="c">!!##EXAMPLES</span>
+<a name="ln-512"></a><span class="c">!!</span>
+<a name="ln-513"></a><span class="c">!!   Sample program:</span>
+<a name="ln-514"></a><span class="c">!!</span>
+<a name="ln-515"></a><span class="c">!!    program demo_wrt</span>
+<a name="ln-516"></a><span class="c">!!    use, intrinsic :: iso_fortran_env, only : &amp;</span>
+<a name="ln-517"></a><span class="c">!!     &amp; stdin=&gt;input_unit, &amp;</span>
+<a name="ln-518"></a><span class="c">!!     &amp; stdout=&gt;output_unit, &amp;</span>
+<a name="ln-519"></a><span class="c">!!     &amp; stderr=&gt;error_unit</span>
+<a name="ln-520"></a><span class="c">!!    use M_msg, only: wrt, fmt</span>
+<a name="ln-521"></a><span class="c">!!    implicit none</span>
+<a name="ln-522"></a><span class="c">!!    integer,allocatable :: luns(:)</span>
+<a name="ln-523"></a><span class="c">!!    integer :: iostat=0</span>
+<a name="ln-524"></a><span class="c">!!    integer,parameter :: ints(3)=[1,2,3]</span>
 <a name="ln-525"></a><span class="c">!!</span>
-<a name="ln-526"></a><span class="c">!!    end program demo_wrt</span>
-<a name="ln-527"></a><span class="c">!!</span>
-<a name="ln-528"></a><span class="c">!!##TWO FILES: 2147483647 PI= 3.1415926535897931</span>
-<a name="ln-529"></a><span class="c">!!##TWO FILES: 2147483647 PI= 3.1415926535897931</span>
-<a name="ln-530"></a><span class="c">!!  IOSTAT=           0</span>
-<a name="ln-531"></a><span class="c">!!##USING FMT : 2147483647 PI= 3.1415926535897931 0002</span>
-<a name="ln-532"></a><span class="c">!!##USING FMT : 2147483647 PI= 3.1415926535897931 0002</span>
-<a name="ln-533"></a><span class="c">!!##USING FMT : 2147483647 PI= 3.1415926535897931 0002</span>
-<a name="ln-534"></a><span class="c">!!  IOSTAT=           0</span>
+<a name="ln-526"></a><span class="c">!!    ! a null list allows for turning off verbose or debug mode output</span>
+<a name="ln-527"></a><span class="c">!!    luns=[integer ::]</span>
+<a name="ln-528"></a><span class="c">!!    call wrt(luns,&#39;NULL LIST:&#39;,huge(0),&#39;PI=&#39;,asin(1.0d0)*2.0d0,iostat=iostat)</span>
+<a name="ln-529"></a><span class="c">!!    write(*,*)&#39;IOSTAT=&#39;,iostat</span>
+<a name="ln-530"></a><span class="c">!!</span>
+<a name="ln-531"></a><span class="c">!!    ! multiple files can be used to create a log file, for example</span>
+<a name="ln-532"></a><span class="c">!!    luns=[stderr,stdout]</span>
+<a name="ln-533"></a><span class="c">!!    call wrt(luns,&#39;TWO FILES:&#39;,huge(0),&#39;PI=&#39;,asin(1.0d0)*2.0d0,iostat=iostat)</span>
+<a name="ln-534"></a><span class="c">!!    write(*,*)&#39;IOSTAT=&#39;,iostat</span>
 <a name="ln-535"></a><span class="c">!!</span>
-<a name="ln-536"></a><span class="c">!!##AUTHOR</span>
-<a name="ln-537"></a><span class="c">!!    John S. Urban</span>
-<a name="ln-538"></a><span class="c">!!</span>
-<a name="ln-539"></a><span class="c">!!##LICENSE</span>
-<a name="ln-540"></a><span class="c">!!    Public Domain</span>
-<a name="ln-541"></a><span class="k">subroutine </span><span class="n">wrt</span><span class="p">(</span><span class="n">luns</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span><span class="p">,</span><span class="n">iostat</span><span class="p">)</span>
-<a name="ln-542"></a><span class="k">implicit none</span>
-<a name="ln-543"></a>
-<a name="ln-544"></a><span class="c">! ident_6=&quot;@(#)M_msg::write(3f): writes a message to any number of open files with any scalar values&quot;</span>
-<a name="ln-545"></a>
-<a name="ln-546"></a><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">luns</span><span class="p">(:)</span>
-<a name="ln-547"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span>
-<a name="ln-548"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span>
-<a name="ln-549"></a><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">iostat</span>
-<a name="ln-550"></a><span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">i</span>
-<a name="ln-551"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">msg</span>
-<a name="ln-552"></a>   <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">luns</span><span class="p">)</span>
-<a name="ln-553"></a>      <span class="k">write</span><span class="p">(</span><span class="n">luns</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39;(a)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span><span class="n">str</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">g2</span><span class="p">,</span><span class="n">g3</span><span class="p">,</span><span class="n">g4</span><span class="p">,</span><span class="n">g5</span><span class="p">,</span><span class="n">g6</span><span class="p">,</span><span class="n">g7</span><span class="p">,</span><span class="n">g8</span><span class="p">,</span><span class="n">g9</span><span class="p">,</span><span class="n">ga</span><span class="p">,</span><span class="n">gb</span><span class="p">,</span><span class="n">gc</span><span class="p">,</span><span class="n">gd</span><span class="p">,</span><span class="n">ge</span><span class="p">,</span><span class="n">gf</span><span class="p">,</span><span class="n">gg</span><span class="p">,</span><span class="n">gh</span><span class="p">,</span><span class="n">gi</span><span class="p">,</span><span class="n">gj</span><span class="p">)</span>
-<a name="ln-554"></a>      <span class="k">if</span><span class="p">(</span><span class="n">iostat</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
-<a name="ln-555"></a><span class="k">         call </span><span class="n">stderr</span><span class="p">(</span><span class="s1">&#39;&lt;ERROR&gt;*write*:&#39;</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span>
-<a name="ln-556"></a>      <span class="k">endif</span>
-<a name="ln-557"></a><span class="k">   enddo</span>
-<a name="ln-558"></a><span class="k">end subroutine </span><span class="n">wrt</span>
-<a name="ln-559"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-560"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-561"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-562"></a><span class="k">end module </span><span class="n">M_msg</span>
-<a name="ln-563"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-564"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-565"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-536"></a><span class="c">!!    ! using fmt</span>
+<a name="ln-537"></a><span class="c">!!    call wrt([stdout,stdout,stdout],&#39;USING FMT :&#39;, &amp;</span>
+<a name="ln-538"></a><span class="c">!!     &amp; huge(0),&#39;PI=&#39;,asin(1.0d0)*2.0d0,fmt(ints(2),&#39;i0.4&#39;),iostat=iostat)</span>
+<a name="ln-539"></a><span class="c">!!</span>
+<a name="ln-540"></a><span class="c">!!</span>
+<a name="ln-541"></a><span class="c">!!    end program demo_wrt</span>
+<a name="ln-542"></a><span class="c">!!</span>
+<a name="ln-543"></a><span class="c">!!##TWO FILES: 2147483647 PI= 3.1415926535897931</span>
+<a name="ln-544"></a><span class="c">!!##TWO FILES: 2147483647 PI= 3.1415926535897931</span>
+<a name="ln-545"></a><span class="c">!!  IOSTAT=           0</span>
+<a name="ln-546"></a><span class="c">!!##USING FMT : 2147483647 PI= 3.1415926535897931 0002</span>
+<a name="ln-547"></a><span class="c">!!##USING FMT : 2147483647 PI= 3.1415926535897931 0002</span>
+<a name="ln-548"></a><span class="c">!!##USING FMT : 2147483647 PI= 3.1415926535897931 0002</span>
+<a name="ln-549"></a><span class="c">!!  IOSTAT=           0</span>
+<a name="ln-550"></a><span class="c">!!</span>
+<a name="ln-551"></a><span class="c">!!##AUTHOR</span>
+<a name="ln-552"></a><span class="c">!!    John S. Urban</span>
+<a name="ln-553"></a><span class="c">!!</span>
+<a name="ln-554"></a><span class="c">!!##LICENSE</span>
+<a name="ln-555"></a><span class="c">!!    Public Domain</span>
+<a name="ln-556"></a><span class="k">subroutine </span><span class="n">wrt</span><span class="p">(</span><span class="n">luns</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span><span class="p">,</span><span class="n">iostat</span><span class="p">)</span>
+<a name="ln-557"></a><span class="k">implicit none</span>
+<a name="ln-558"></a>
+<a name="ln-559"></a><span class="c">! ident_6=&quot;@(#)M_msg::write(3f): writes a message to any number of open files with any scalar values&quot;</span>
+<a name="ln-560"></a>
+<a name="ln-561"></a><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">luns</span><span class="p">(:)</span>
+<a name="ln-562"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">g0</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">g5</span><span class="p">,</span> <span class="n">g6</span><span class="p">,</span> <span class="n">g7</span><span class="p">,</span> <span class="n">g8</span><span class="p">,</span> <span class="n">g9</span>
+<a name="ln-563"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gb</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">gd</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="n">gg</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">gj</span>
+<a name="ln-564"></a><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">iostat</span>
+<a name="ln-565"></a><span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">i</span>
+<a name="ln-566"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">msg</span>
+<a name="ln-567"></a>   <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">luns</span><span class="p">)</span>
+<a name="ln-568"></a>      <span class="k">write</span><span class="p">(</span><span class="n">luns</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39;(a)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span><span class="n">str</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">g2</span><span class="p">,</span><span class="n">g3</span><span class="p">,</span><span class="n">g4</span><span class="p">,</span><span class="n">g5</span><span class="p">,</span><span class="n">g6</span><span class="p">,</span><span class="n">g7</span><span class="p">,</span><span class="n">g8</span><span class="p">,</span><span class="n">g9</span><span class="p">,</span><span class="n">ga</span><span class="p">,</span><span class="n">gb</span><span class="p">,</span><span class="n">gc</span><span class="p">,</span><span class="n">gd</span><span class="p">,</span><span class="n">ge</span><span class="p">,</span><span class="n">gf</span><span class="p">,</span><span class="n">gg</span><span class="p">,</span><span class="n">gh</span><span class="p">,</span><span class="n">gi</span><span class="p">,</span><span class="n">gj</span><span class="p">)</span>
+<a name="ln-569"></a>      <span class="k">if</span><span class="p">(</span><span class="n">iostat</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
+<a name="ln-570"></a><span class="k">         call </span><span class="n">stderr</span><span class="p">(</span><span class="s1">&#39;&lt;ERROR&gt;*write*:&#39;</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span>
+<a name="ln-571"></a>      <span class="k">endif</span>
+<a name="ln-572"></a><span class="k">   enddo</span>
+<a name="ln-573"></a><span class="k">end subroutine </span><span class="n">wrt</span>
+<a name="ln-574"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-575"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-576"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-577"></a><span class="k">end module </span><span class="n">M_msg</span>
+<a name="ln-578"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-579"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-580"></a><span class="c">!===================================================================================================================================</span>
 </pre></div>
 
     </section>
@@ -844,7 +859,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2022-01-30 20:45  
+             on 2022-05-05 23:44  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> easy was developed by John Doe</p></div>

@@ -10,7 +10,7 @@
     <meta name="author" content="John Doe" >
     <link rel="icon" href="../favicon.png">
 
-    <title>M_verify.f90 &ndash; easy</title>
+    <title>M_verify.F90 &ndash; easy</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -108,7 +108,7 @@
     
   
   <div class="row">
-    <h1>M_verify.f90
+    <h1>M_verify.F90
     <small>Source File</small>
     
     </h1>
@@ -126,12 +126,12 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="25.2% of total for source files.">596 statements</a>
+    title="25.2% of total for source files.">597 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/M_verify.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/M_verify.F90"> Source File</a></li>
      
      
   </ul>
@@ -139,7 +139,7 @@
   
     
   
-     <li class="active">M_verify.f90</li>
+     <li class="active">M_verify.F90</li>
   </ol>
 </div>
 </div>
@@ -194,7 +194,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../sourcefile/m_verify.f90.html#src">M_verify.f90</a>
+    <a class="list-group-item" href="../sourcefile/m_verify.f90.html#src">M_verify.F90</a>
   </div>
 </div>
 
@@ -250,7 +250,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../sourcefile/m_verify.f90.html#src">M_verify.f90</a>
+    <a class="list-group-item" href="../sourcefile/m_verify.f90.html#src">M_verify.F90</a>
   </div>
 </div>
 
@@ -1706,7 +1706,7 @@
 <a name="ln-1443"></a><span class="k">      </span><span class="n">verbose_local</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 <a name="ln-1444"></a>   <span class="k">endif</span>
 <a name="ln-1445"></a>
-<a name="ln-1446"></a><span class="k">   </span><span class="n">digits_local</span><span class="o">=</span><span class="n">anyscalar_to_real128</span><span class="p">(</span><span class="nb">digits</span><span class="p">)</span>
+<a name="ln-1446"></a><span class="k">   </span><span class="n">digits_local</span><span class="o">=</span><span class="n">anyscalar_to_realbig</span><span class="p">(</span><span class="nb">digits</span><span class="p">)</span>
 <a name="ln-1447"></a>   <span class="n">acurcy</span><span class="o">=</span><span class="mf">0.0</span>
 <a name="ln-1448"></a>   <span class="k">select type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <a name="ln-1449"></a>   <span class="k">type is</span><span class="p">(</span><span class="kt">real</span><span class="p">)</span>
@@ -2066,242 +2066,257 @@
 <a name="ln-1803"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
 <a name="ln-1804"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
 <a name="ln-1805"></a><span class="k">SUBROUTINE </span><span class="n">dp_accdig</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">digi0</span><span class="p">,</span><span class="n">ACURCY</span><span class="p">,</span><span class="n">IND</span><span class="p">)</span>
-<a name="ln-1806"></a><span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">real128</span>
-<a name="ln-1807"></a><span class="k">use </span><span class="n">M_journal</span><span class="p">,</span>  <span class="k">only</span> <span class="p">:</span> <span class="n">journal</span>
-<a name="ln-1808"></a><span class="k">implicit none</span>
-<a name="ln-1809"></a>
-<a name="ln-1810"></a><span class="c">! ident_16=&quot;@(#)M_verify::dp_accdig(3f): compare two values only up to a specified number of digits&quot;</span>
-<a name="ln-1811"></a>
-<a name="ln-1812"></a><span class="c">!  INPUT ...</span>
-<a name="ln-1813"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>           <span class="c">! FIRST  OF TWO NUMBERS TO BE COMPARED.</span>
-<a name="ln-1814"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">y</span>           <span class="c">! SECOND OF TWO NUMBERS TO BE COMPARED.</span>
-<a name="ln-1815"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">digi0</span>       <span class="c">! NUMBER OF DIGITS TO BE SATISFIED IN RELATIVE TOLERANCE.</span>
-<a name="ln-1816"></a>
-<a name="ln-1817"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">x_local</span>
-<a name="ln-1818"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">y_local</span>
-<a name="ln-1819"></a>
-<a name="ln-1820"></a><span class="c">!  OUTPUT ...</span>
-<a name="ln-1821"></a><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">ind</span>         <span class="c">! = 0, IF TOLERANCE IS     SATISFIED.</span>
-<a name="ln-1822"></a>                                              <span class="c">! = 1, IF TOLERANCE IS NOT SATISFIED.</span>
-<a name="ln-1823"></a><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">acurcy</span>      <span class="c">! = - LOG10(ABS((x_local-y_local)/y_local)))</span>
-<a name="ln-1824"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">diff</span>
-<a name="ln-1825"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">digi</span>
-<a name="ln-1826"></a><span class="kt">integer</span>              <span class="kd">::</span> <span class="n">idble_significant_digits</span>
-<a name="ln-1827"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<a name="ln-1828"></a>   <span class="n">x_local</span><span class="o">=</span><span class="n">anyscalar_to_real128</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<a name="ln-1829"></a>   <span class="n">y_local</span><span class="o">=</span><span class="n">anyscalar_to_real128</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<a name="ln-1830"></a>   <span class="n">digi</span><span class="o">=</span><span class="n">anyscalar_to_real128</span><span class="p">(</span><span class="n">digi0</span><span class="p">)</span>
+<a name="ln-1806"></a><span class="cp">#ifdef __NVCOMPILER</span>
+<a name="ln-1807"></a><span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real64</span>
+<a name="ln-1808"></a><span class="cp">#else</span>
+<a name="ln-1809"></a><span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real128</span>
+<a name="ln-1810"></a><span class="cp">#endif</span>
+<a name="ln-1811"></a><span class="k">use </span><span class="n">M_journal</span><span class="p">,</span>  <span class="k">only</span> <span class="p">:</span> <span class="n">journal</span>
+<a name="ln-1812"></a><span class="k">implicit none</span>
+<a name="ln-1813"></a>
+<a name="ln-1814"></a><span class="c">! ident_16=&quot;@(#)M_verify::dp_accdig(3f): compare two values only up to a specified number of digits&quot;</span>
+<a name="ln-1815"></a>
+<a name="ln-1816"></a><span class="c">!  INPUT ...</span>
+<a name="ln-1817"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>           <span class="c">! FIRST  OF TWO NUMBERS TO BE COMPARED.</span>
+<a name="ln-1818"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">y</span>           <span class="c">! SECOND OF TWO NUMBERS TO BE COMPARED.</span>
+<a name="ln-1819"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">digi0</span>       <span class="c">! NUMBER OF DIGITS TO BE SATISFIED IN RELATIVE TOLERANCE.</span>
+<a name="ln-1820"></a>
+<a name="ln-1821"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">x_local</span>
+<a name="ln-1822"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">y_local</span>
+<a name="ln-1823"></a>
+<a name="ln-1824"></a><span class="c">!  OUTPUT ...</span>
+<a name="ln-1825"></a><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">ind</span>         <span class="c">! = 0, IF TOLERANCE IS     SATISFIED.</span>
+<a name="ln-1826"></a>                                              <span class="c">! = 1, IF TOLERANCE IS NOT SATISFIED.</span>
+<a name="ln-1827"></a><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">acurcy</span>      <span class="c">! = - LOG10(ABS((x_local-y_local)/y_local)))</span>
+<a name="ln-1828"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">diff</span>
+<a name="ln-1829"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">digi</span>
+<a name="ln-1830"></a><span class="kt">integer</span>              <span class="kd">::</span> <span class="n">idble_significant_digits</span>
 <a name="ln-1831"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<a name="ln-1832"></a>   <span class="n">idble_significant_digits</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="mf">2.0_real128</span><span class="o">**</span><span class="nb">digits</span><span class="p">(</span><span class="mf">0.0_real128</span><span class="p">)))</span> <span class="c">! MAXIMUM NUMBER OF SIGNIFICANT DIGITS IN A REAL128 NUMBER.</span>
-<a name="ln-1833"></a>   <span class="k">if</span><span class="p">(</span><span class="n">digi</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
-<a name="ln-1834"></a><span class="k">      call </span><span class="n">journal</span><span class="p">(</span><span class="s1">&#39;sc&#39;</span><span class="p">,</span><span class="s1">&#39;*dp_accdig* bad number of significant digits=&#39;</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">))</span>
-<a name="ln-1835"></a>      <span class="n">digi</span><span class="o">=</span><span class="n">idble_significant_digits</span>
-<a name="ln-1836"></a>   <span class="n">elseif</span><span class="p">(</span><span class="n">digi</span> <span class="p">.</span><span class="n">gt</span><span class="p">.</span> <span class="n">idble_significant_digits</span><span class="p">)</span><span class="k">then</span>
-<a name="ln-1837"></a><span class="k">      call </span><span class="n">journal</span><span class="p">(</span><span class="s1">&#39;sc&#39;</span><span class="p">,</span><span class="s1">&#39;*dp_accdig* significant digit request too high=&#39;</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">))</span>
-<a name="ln-1838"></a>      <span class="n">digi</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">idble_significant_digits</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">))</span>
-<a name="ln-1839"></a>   <span class="k">endif</span>
-<a name="ln-1840"></a><span class="k">   </span><span class="n">diff</span> <span class="o">=</span> <span class="n">x_local</span> <span class="o">-</span> <span class="n">y_local</span>
-<a name="ln-1841"></a>   <span class="k">if</span><span class="p">(</span><span class="n">diff</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="mf">0.0_real128</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-1842"></a><span class="k">      </span><span class="n">acurcy</span> <span class="o">=</span> <span class="n">digi</span>
-<a name="ln-1843"></a>   <span class="n">elseif</span><span class="p">(</span><span class="n">y_local</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="mf">0.0_real128</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-1844"></a><span class="k">      </span><span class="n">acurcy</span> <span class="o">=</span> <span class="o">-</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x_local</span><span class="p">))</span>
-<a name="ln-1845"></a>   <span class="k">else</span>
-<a name="ln-1846"></a><span class="k">      </span><span class="n">acurcy</span> <span class="o">=</span> <span class="o">-</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span> <span class="o">+</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y_local</span><span class="p">))</span>
-<a name="ln-1847"></a>   <span class="k">endif</span>
-<a name="ln-1848"></a><span class="k">   if</span><span class="p">(</span><span class="n">acurcy</span> <span class="p">.</span><span class="n">lt</span><span class="p">.</span> <span class="n">digi</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-1849"></a><span class="k">      </span><span class="n">ind</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-1850"></a>   <span class="k">else</span>
-<a name="ln-1851"></a><span class="k">      </span><span class="n">ind</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-1852"></a>   <span class="k">endif</span>
-<a name="ln-1853"></a><span class="k">end subroutine </span><span class="n">dp_accdig</span>
-<a name="ln-1854"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<a name="ln-1855"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-1856"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<a name="ln-1857"></a><span class="c">!&gt;</span>
-<a name="ln-1858"></a><span class="c">!!##NAME</span>
-<a name="ln-1859"></a><span class="c">!!   in_margin(3f) - [M_verify] check if two reals are approximately equal using a relative margin</span>
-<a name="ln-1860"></a><span class="c">!!</span>
-<a name="ln-1861"></a><span class="c">!!##SYNOPSIS</span>
-<a name="ln-1862"></a><span class="c">!!</span>
-<a name="ln-1863"></a><span class="c">!!     elemental pure function in_margin( expected_value, measured_value, allowed_margin )</span>
+<a name="ln-1832"></a>   <span class="n">x_local</span><span class="o">=</span><span class="n">anyscalar_to_realbig</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a name="ln-1833"></a>   <span class="n">y_local</span><span class="o">=</span><span class="n">anyscalar_to_realbig</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<a name="ln-1834"></a>   <span class="n">digi</span><span class="o">=</span><span class="n">anyscalar_to_realbig</span><span class="p">(</span><span class="n">digi0</span><span class="p">)</span>
+<a name="ln-1835"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-1836"></a>   <span class="n">idble_significant_digits</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="mf">2.0_wp</span><span class="o">**</span><span class="nb">digits</span><span class="p">(</span><span class="mf">0.0_wp</span><span class="p">)))</span> <span class="c">! MAXIMUM NUMBER OF SIGNIFICANT DIGITS IN A REAL128 NUMBER.</span>
+<a name="ln-1837"></a>   <span class="k">if</span><span class="p">(</span><span class="n">digi</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
+<a name="ln-1838"></a><span class="k">      call </span><span class="n">journal</span><span class="p">(</span><span class="s1">&#39;sc&#39;</span><span class="p">,</span><span class="s1">&#39;*dp_accdig* bad number of significant digits=&#39;</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">))</span>
+<a name="ln-1839"></a>      <span class="n">digi</span><span class="o">=</span><span class="n">idble_significant_digits</span>
+<a name="ln-1840"></a>   <span class="n">elseif</span><span class="p">(</span><span class="n">digi</span> <span class="p">.</span><span class="n">gt</span><span class="p">.</span> <span class="n">idble_significant_digits</span><span class="p">)</span><span class="k">then</span>
+<a name="ln-1841"></a><span class="k">      call </span><span class="n">journal</span><span class="p">(</span><span class="s1">&#39;sc&#39;</span><span class="p">,</span><span class="s1">&#39;*dp_accdig* significant digit request too high=&#39;</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">))</span>
+<a name="ln-1842"></a>      <span class="n">digi</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">idble_significant_digits</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">))</span>
+<a name="ln-1843"></a>   <span class="k">endif</span>
+<a name="ln-1844"></a><span class="k">   </span><span class="n">diff</span> <span class="o">=</span> <span class="n">x_local</span> <span class="o">-</span> <span class="n">y_local</span>
+<a name="ln-1845"></a>   <span class="k">if</span><span class="p">(</span><span class="n">diff</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="mf">0.0_wp</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-1846"></a><span class="k">      </span><span class="n">acurcy</span> <span class="o">=</span> <span class="n">digi</span>
+<a name="ln-1847"></a>   <span class="n">elseif</span><span class="p">(</span><span class="n">y_local</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="mf">0.0_wp</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-1848"></a><span class="k">      </span><span class="n">acurcy</span> <span class="o">=</span> <span class="o">-</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x_local</span><span class="p">))</span>
+<a name="ln-1849"></a>   <span class="k">else</span>
+<a name="ln-1850"></a><span class="k">      </span><span class="n">acurcy</span> <span class="o">=</span> <span class="o">-</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span> <span class="o">+</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y_local</span><span class="p">))</span>
+<a name="ln-1851"></a>   <span class="k">endif</span>
+<a name="ln-1852"></a><span class="k">   if</span><span class="p">(</span><span class="n">acurcy</span> <span class="p">.</span><span class="n">lt</span><span class="p">.</span> <span class="n">digi</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-1853"></a><span class="k">      </span><span class="n">ind</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-1854"></a>   <span class="k">else</span>
+<a name="ln-1855"></a><span class="k">      </span><span class="n">ind</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-1856"></a>   <span class="k">endif</span>
+<a name="ln-1857"></a><span class="k">end subroutine </span><span class="n">dp_accdig</span>
+<a name="ln-1858"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-1859"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-1860"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-1861"></a><span class="c">!&gt;</span>
+<a name="ln-1862"></a><span class="c">!!##NAME</span>
+<a name="ln-1863"></a><span class="c">!!   in_margin(3f) - [M_verify] check if two reals are approximately equal using a relative margin</span>
 <a name="ln-1864"></a><span class="c">!!</span>
-<a name="ln-1865"></a><span class="c">!!      real, intent(in)    :: expected_value</span>
-<a name="ln-1866"></a><span class="c">!!      real, intent(in)    :: measured_value</span>
-<a name="ln-1867"></a><span class="c">!!      real, intent(in)    :: allowed_margin</span>
-<a name="ln-1868"></a><span class="c">!!      class(*),intent(in) :: invalue</span>
-<a name="ln-1869"></a><span class="c">!!</span>
-<a name="ln-1870"></a><span class="c">!!##DESCRIPTION</span>
-<a name="ln-1871"></a><span class="c">!!   Compare two values to see if they are relatively equal using the</span>
-<a name="ln-1872"></a><span class="c">!!   specified allowed margin. That is, see if VALUE_MEASURED is in</span>
-<a name="ln-1873"></a><span class="c">!!   the range VALUE_EXPECTED +- ALLOWED_ERROR where the allowed error</span>
-<a name="ln-1874"></a><span class="c">!!   varies with the magnitude of the values, such that the allowed error</span>
-<a name="ln-1875"></a><span class="c">!!   is margin * average magnitude of measured and expected).</span>
-<a name="ln-1876"></a><span class="c">!!</span>
-<a name="ln-1877"></a><span class="c">!!   So the allowed error is smaller when the magnitudes are smaller.</span>
-<a name="ln-1878"></a><span class="c">!!</span>
-<a name="ln-1879"></a><span class="c">!!##OPTIONS</span>
-<a name="ln-1880"></a><span class="c">!!   expected_value   First value</span>
-<a name="ln-1881"></a><span class="c">!!   measured_value   Second value</span>
-<a name="ln-1882"></a><span class="c">!!   allowed_margin   Allowed relative margin</span>
-<a name="ln-1883"></a><span class="c">!!</span>
-<a name="ln-1884"></a><span class="c">!!##EXAMPLE</span>
-<a name="ln-1885"></a><span class="c">!!</span>
-<a name="ln-1886"></a><span class="c">!!   Sample program:</span>
+<a name="ln-1865"></a><span class="c">!!##SYNOPSIS</span>
+<a name="ln-1866"></a><span class="c">!!</span>
+<a name="ln-1867"></a><span class="c">!!     elemental pure function in_margin( expected_value, measured_value, allowed_margin )</span>
+<a name="ln-1868"></a><span class="c">!!</span>
+<a name="ln-1869"></a><span class="c">!!      real, intent(in)    :: expected_value</span>
+<a name="ln-1870"></a><span class="c">!!      real, intent(in)    :: measured_value</span>
+<a name="ln-1871"></a><span class="c">!!      real, intent(in)    :: allowed_margin</span>
+<a name="ln-1872"></a><span class="c">!!      class(*),intent(in) :: invalue</span>
+<a name="ln-1873"></a><span class="c">!!</span>
+<a name="ln-1874"></a><span class="c">!!##DESCRIPTION</span>
+<a name="ln-1875"></a><span class="c">!!   Compare two values to see if they are relatively equal using the</span>
+<a name="ln-1876"></a><span class="c">!!   specified allowed margin. That is, see if VALUE_MEASURED is in</span>
+<a name="ln-1877"></a><span class="c">!!   the range VALUE_EXPECTED +- ALLOWED_ERROR where the allowed error</span>
+<a name="ln-1878"></a><span class="c">!!   varies with the magnitude of the values, such that the allowed error</span>
+<a name="ln-1879"></a><span class="c">!!   is margin * average magnitude of measured and expected).</span>
+<a name="ln-1880"></a><span class="c">!!</span>
+<a name="ln-1881"></a><span class="c">!!   So the allowed error is smaller when the magnitudes are smaller.</span>
+<a name="ln-1882"></a><span class="c">!!</span>
+<a name="ln-1883"></a><span class="c">!!##OPTIONS</span>
+<a name="ln-1884"></a><span class="c">!!   expected_value   First value</span>
+<a name="ln-1885"></a><span class="c">!!   measured_value   Second value</span>
+<a name="ln-1886"></a><span class="c">!!   allowed_margin   Allowed relative margin</span>
 <a name="ln-1887"></a><span class="c">!!</span>
-<a name="ln-1888"></a><span class="c">!!    program demo_in_margin</span>
-<a name="ln-1889"></a><span class="c">!!    use :: M_verify, only : in_margin</span>
-<a name="ln-1890"></a><span class="c">!!    implicit none</span>
-<a name="ln-1891"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.000000001)</span>
-<a name="ln-1892"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.00000001)</span>
-<a name="ln-1893"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.0000001)</span>
-<a name="ln-1894"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.000001)</span>
-<a name="ln-1895"></a><span class="c">!!</span>
-<a name="ln-1896"></a><span class="c">!!    write(*,*) in_margin([4.0,40.0,400.0,4000.0,40000.0], [3.9,39.9,399.9,3999.9,39999.9] ,0.000001)</span>
-<a name="ln-1897"></a><span class="c">!!    write(*,*) in_margin([4.0,40.0,400.0,4000.0,40000.0], [3.9,39.9,399.9,3999.9,39999.9] ,0.00001)</span>
-<a name="ln-1898"></a><span class="c">!!</span>
-<a name="ln-1899"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.00001)</span>
-<a name="ln-1900"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.0001)</span>
-<a name="ln-1901"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.001)</span>
-<a name="ln-1902"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.01)</span>
-<a name="ln-1903"></a><span class="c">!!</span>
-<a name="ln-1904"></a><span class="c">!!    end program demo_in_margin</span>
-<a name="ln-1905"></a><span class="c">!!</span>
-<a name="ln-1906"></a><span class="c">!!   Results:</span>
+<a name="ln-1888"></a><span class="c">!!##EXAMPLE</span>
+<a name="ln-1889"></a><span class="c">!!</span>
+<a name="ln-1890"></a><span class="c">!!   Sample program:</span>
+<a name="ln-1891"></a><span class="c">!!</span>
+<a name="ln-1892"></a><span class="c">!!    program demo_in_margin</span>
+<a name="ln-1893"></a><span class="c">!!    use :: M_verify, only : in_margin</span>
+<a name="ln-1894"></a><span class="c">!!    implicit none</span>
+<a name="ln-1895"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.000000001)</span>
+<a name="ln-1896"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.00000001)</span>
+<a name="ln-1897"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.0000001)</span>
+<a name="ln-1898"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.000001)</span>
+<a name="ln-1899"></a><span class="c">!!</span>
+<a name="ln-1900"></a><span class="c">!!    write(*,*) in_margin([4.0,40.0,400.0,4000.0,40000.0], [3.9,39.9,399.9,3999.9,39999.9] ,0.000001)</span>
+<a name="ln-1901"></a><span class="c">!!    write(*,*) in_margin([4.0,40.0,400.0,4000.0,40000.0], [3.9,39.9,399.9,3999.9,39999.9] ,0.00001)</span>
+<a name="ln-1902"></a><span class="c">!!</span>
+<a name="ln-1903"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.00001)</span>
+<a name="ln-1904"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.0001)</span>
+<a name="ln-1905"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.001)</span>
+<a name="ln-1906"></a><span class="c">!!    write(*,*) in_margin(4.00000,3.99999,0.01)</span>
 <a name="ln-1907"></a><span class="c">!!</span>
-<a name="ln-1908"></a><span class="c">!!     F</span>
-<a name="ln-1909"></a><span class="c">!!     F</span>
-<a name="ln-1910"></a><span class="c">!!     F</span>
-<a name="ln-1911"></a><span class="c">!!     F</span>
-<a name="ln-1912"></a><span class="c">!!     F F F F F</span>
-<a name="ln-1913"></a><span class="c">!!     F F F F T</span>
-<a name="ln-1914"></a><span class="c">!!     T</span>
-<a name="ln-1915"></a><span class="c">!!     T</span>
-<a name="ln-1916"></a><span class="c">!!     T</span>
-<a name="ln-1917"></a><span class="c">!!     T</span>
-<a name="ln-1918"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-1919"></a><span class="k">elemental pure function </span><span class="n">in_margin</span><span class="p">(</span><span class="n">expected_value</span><span class="p">,</span> <span class="n">measured_value</span><span class="p">,</span> <span class="n">allowed_margin</span><span class="p">)</span>
-<a name="ln-1920"></a><span class="k">implicit none</span>
-<a name="ln-1921"></a>
-<a name="ln-1922"></a><span class="c">! ident_17=&quot;@(#)M_verify::in_margin(3f): check if two reals are approximately equal using a relative margin&quot;</span>
-<a name="ln-1923"></a>
-<a name="ln-1924"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">expected_value</span><span class="p">,</span> <span class="n">measured_value</span><span class="p">,</span> <span class="n">allowed_margin</span>
-<a name="ln-1925"></a><span class="kt">logical</span>             <span class="kd">::</span> <span class="n">in_margin</span>
-<a name="ln-1926"></a>
-<a name="ln-1927"></a>   <span class="n">doubleprecision</span>     <span class="kd">::</span> <span class="n">expected</span><span class="p">,</span> <span class="n">measured</span><span class="p">,</span> <span class="n">margin</span>
-<a name="ln-1928"></a>
-<a name="ln-1929"></a>   <span class="n">expected</span><span class="o">=</span><span class="n">anyscalar_to_double</span><span class="p">(</span><span class="n">expected_value</span><span class="p">)</span>
-<a name="ln-1930"></a>   <span class="n">measured</span><span class="o">=</span><span class="n">anyscalar_to_double</span><span class="p">(</span><span class="n">measured_value</span><span class="p">)</span>
-<a name="ln-1931"></a>   <span class="n">margin</span><span class="o">=</span><span class="n">anyscalar_to_double</span><span class="p">(</span><span class="n">allowed_margin</span><span class="p">)</span>
+<a name="ln-1908"></a><span class="c">!!    end program demo_in_margin</span>
+<a name="ln-1909"></a><span class="c">!!</span>
+<a name="ln-1910"></a><span class="c">!!   Results:</span>
+<a name="ln-1911"></a><span class="c">!!</span>
+<a name="ln-1912"></a><span class="c">!!     F</span>
+<a name="ln-1913"></a><span class="c">!!     F</span>
+<a name="ln-1914"></a><span class="c">!!     F</span>
+<a name="ln-1915"></a><span class="c">!!     F</span>
+<a name="ln-1916"></a><span class="c">!!     F F F F F</span>
+<a name="ln-1917"></a><span class="c">!!     F F F F T</span>
+<a name="ln-1918"></a><span class="c">!!     T</span>
+<a name="ln-1919"></a><span class="c">!!     T</span>
+<a name="ln-1920"></a><span class="c">!!     T</span>
+<a name="ln-1921"></a><span class="c">!!     T</span>
+<a name="ln-1922"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-1923"></a><span class="k">elemental pure function </span><span class="n">in_margin</span><span class="p">(</span><span class="n">expected_value</span><span class="p">,</span> <span class="n">measured_value</span><span class="p">,</span> <span class="n">allowed_margin</span><span class="p">)</span>
+<a name="ln-1924"></a><span class="k">implicit none</span>
+<a name="ln-1925"></a>
+<a name="ln-1926"></a><span class="c">! ident_17=&quot;@(#)M_verify::in_margin(3f): check if two reals are approximately equal using a relative margin&quot;</span>
+<a name="ln-1927"></a>
+<a name="ln-1928"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">expected_value</span><span class="p">,</span> <span class="n">measured_value</span><span class="p">,</span> <span class="n">allowed_margin</span>
+<a name="ln-1929"></a><span class="kt">logical</span>             <span class="kd">::</span> <span class="n">in_margin</span>
+<a name="ln-1930"></a>
+<a name="ln-1931"></a>   <span class="n">doubleprecision</span>     <span class="kd">::</span> <span class="n">expected</span><span class="p">,</span> <span class="n">measured</span><span class="p">,</span> <span class="n">margin</span>
 <a name="ln-1932"></a>
-<a name="ln-1933"></a>   <span class="k">if</span> <span class="p">(</span> <span class="nb">abs</span><span class="p">(</span><span class="n">expected</span><span class="o">-</span><span class="n">measured</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.50d0</span> <span class="o">*</span> <span class="n">margin</span> <span class="o">*</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">measured</span><span class="p">))</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-1934"></a><span class="k">      </span><span class="n">in_margin</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="c">! values not comparable</span>
-<a name="ln-1935"></a>   <span class="k">else</span>
-<a name="ln-1936"></a><span class="k">      </span><span class="n">in_margin</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="c">! values comparable</span>
-<a name="ln-1937"></a>   <span class="k">endif</span>
-<a name="ln-1938"></a>
-<a name="ln-1939"></a><span class="k">end function </span><span class="n">in_margin</span>
-<a name="ln-1940"></a><span class="k">function </span><span class="n">round</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">idigits0</span><span class="p">)</span>
-<a name="ln-1941"></a><span class="k">implicit none</span>
+<a name="ln-1933"></a>   <span class="n">expected</span><span class="o">=</span><span class="n">anyscalar_to_double</span><span class="p">(</span><span class="n">expected_value</span><span class="p">)</span>
+<a name="ln-1934"></a>   <span class="n">measured</span><span class="o">=</span><span class="n">anyscalar_to_double</span><span class="p">(</span><span class="n">measured_value</span><span class="p">)</span>
+<a name="ln-1935"></a>   <span class="n">margin</span><span class="o">=</span><span class="n">anyscalar_to_double</span><span class="p">(</span><span class="n">allowed_margin</span><span class="p">)</span>
+<a name="ln-1936"></a>
+<a name="ln-1937"></a>   <span class="k">if</span> <span class="p">(</span> <span class="nb">abs</span><span class="p">(</span><span class="n">expected</span><span class="o">-</span><span class="n">measured</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.50d0</span> <span class="o">*</span> <span class="n">margin</span> <span class="o">*</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">measured</span><span class="p">))</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-1938"></a><span class="k">      </span><span class="n">in_margin</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="c">! values not comparable</span>
+<a name="ln-1939"></a>   <span class="k">else</span>
+<a name="ln-1940"></a><span class="k">      </span><span class="n">in_margin</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span>   <span class="c">! values comparable</span>
+<a name="ln-1941"></a>   <span class="k">endif</span>
 <a name="ln-1942"></a>
-<a name="ln-1943"></a><span class="c">! ident_18=&quot;@(#)M_verify::round(3f): round val to specified number of significant digits&quot;</span>
-<a name="ln-1944"></a>
-<a name="ln-1945"></a><span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span>          <span class="kd">::</span> <span class="n">dp</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">)</span>
-<a name="ln-1946"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">val</span>
-<a name="ln-1947"></a><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">idigits0</span>
-<a name="ln-1948"></a>   <span class="kt">integer</span>                 <span class="kd">::</span> <span class="n">idigits</span><span class="p">,</span><span class="n">ipow</span>
-<a name="ln-1949"></a>   <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">aval</span><span class="p">,</span><span class="n">rnormal</span>
-<a name="ln-1950"></a>   <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">round</span>
-<a name="ln-1951"></a><span class="c">!  this does not work very well because of round-off errors.</span>
-<a name="ln-1952"></a><span class="c">!  Make a better one, probably have to use machine-dependent bit shifting</span>
-<a name="ln-1953"></a>   <span class="c">! make sure a reasonable number of digits has been requested</span>
-<a name="ln-1954"></a>   <span class="n">idigits</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">idigits0</span><span class="p">)</span>
-<a name="ln-1955"></a>   <span class="n">aval</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
-<a name="ln-1956"></a><span class="c">!  select a power that will normalize the number</span>
-<a name="ln-1957"></a><span class="c">!  (put it in the range 1 &gt; abs(val) &lt;= 0)</span>
-<a name="ln-1958"></a>   <span class="k">if</span><span class="p">(</span><span class="n">aval</span><span class="p">.</span><span class="n">ge</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="k">then</span>
-<a name="ln-1959"></a><span class="k">      </span><span class="n">ipow</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">aval</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-1960"></a>   <span class="k">else</span>
-<a name="ln-1961"></a><span class="k">      </span><span class="n">ipow</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">aval</span><span class="p">))</span>
-<a name="ln-1962"></a>   <span class="k">endif</span>
-<a name="ln-1963"></a><span class="k">   </span><span class="n">rnormal</span><span class="o">=</span><span class="n">val</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="mf">0.0d0</span><span class="o">**</span><span class="n">ipow</span><span class="p">)</span>
-<a name="ln-1964"></a>   <span class="k">if</span><span class="p">(</span><span class="n">rnormal</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="k">then</span>
-<a name="ln-1965"></a><span class="k">      </span><span class="n">ipow</span><span class="o">=</span><span class="n">ipow</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-1943"></a><span class="k">end function </span><span class="n">in_margin</span>
+<a name="ln-1944"></a><span class="k">function </span><span class="n">round</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">idigits0</span><span class="p">)</span>
+<a name="ln-1945"></a><span class="k">implicit none</span>
+<a name="ln-1946"></a>
+<a name="ln-1947"></a><span class="c">! ident_18=&quot;@(#)M_verify::round(3f): round val to specified number of significant digits&quot;</span>
+<a name="ln-1948"></a>
+<a name="ln-1949"></a><span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span>          <span class="kd">::</span> <span class="n">dp</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">)</span>
+<a name="ln-1950"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">val</span>
+<a name="ln-1951"></a><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">idigits0</span>
+<a name="ln-1952"></a>   <span class="kt">integer</span>                 <span class="kd">::</span> <span class="n">idigits</span><span class="p">,</span><span class="n">ipow</span>
+<a name="ln-1953"></a>   <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">aval</span><span class="p">,</span><span class="n">rnormal</span>
+<a name="ln-1954"></a>   <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">round</span>
+<a name="ln-1955"></a><span class="c">!  this does not work very well because of round-off errors.</span>
+<a name="ln-1956"></a><span class="c">!  Make a better one, probably have to use machine-dependent bit shifting</span>
+<a name="ln-1957"></a>   <span class="c">! make sure a reasonable number of digits has been requested</span>
+<a name="ln-1958"></a>   <span class="n">idigits</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">idigits0</span><span class="p">)</span>
+<a name="ln-1959"></a>   <span class="n">aval</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+<a name="ln-1960"></a><span class="c">!  select a power that will normalize the number</span>
+<a name="ln-1961"></a><span class="c">!  (put it in the range 1 &gt; abs(val) &lt;= 0)</span>
+<a name="ln-1962"></a>   <span class="k">if</span><span class="p">(</span><span class="n">aval</span><span class="p">.</span><span class="n">ge</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="k">then</span>
+<a name="ln-1963"></a><span class="k">      </span><span class="n">ipow</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">aval</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-1964"></a>   <span class="k">else</span>
+<a name="ln-1965"></a><span class="k">      </span><span class="n">ipow</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">aval</span><span class="p">))</span>
 <a name="ln-1966"></a>   <span class="k">endif</span>
-<a name="ln-1967"></a>   <span class="c">!normalize, multiply by 10*idigits to an integer, and so on</span>
-<a name="ln-1968"></a>   <span class="n">round</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="nb">anint</span><span class="p">(</span><span class="n">val</span><span class="o">*</span><span class="mi">1</span><span class="mf">0.d0</span><span class="o">**</span><span class="p">(</span><span class="n">idigits</span><span class="o">-</span><span class="n">ipow</span><span class="p">)))</span><span class="o">*</span><span class="mi">1</span><span class="mf">0.d0</span><span class="o">**</span><span class="p">(</span><span class="n">ipow</span><span class="o">-</span><span class="n">idigits</span><span class="p">)</span>
-<a name="ln-1969"></a><span class="k">end function </span><span class="n">round</span>
-<a name="ln-1970"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-1971"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-1972"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-1973"></a><span class="k">pure elemental function </span><span class="n">anyscalar_to_real128</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">d_out</span><span class="p">)</span>
-<a name="ln-1974"></a><span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">error_unit</span> <span class="c">!! ,input_unit,output_unit</span>
-<a name="ln-1975"></a><span class="k">implicit none</span>
-<a name="ln-1976"></a>
-<a name="ln-1977"></a><span class="c">! ident_19=&quot;@(#)M_verify::anyscalar_to_real128(3f): convert integer or real parameter of any kind to real128&quot;</span>
-<a name="ln-1978"></a>
-<a name="ln-1979"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">valuein</span>
-<a name="ln-1980"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">d_out</span>
-<a name="ln-1981"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">readable</span>
-<a name="ln-1982"></a>   <span class="k">select type</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-1983"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>   <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>
-<a name="ln-1984"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>
-<a name="ln-1985"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>
-<a name="ln-1986"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>
-<a name="ln-1987"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>    <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>
-<a name="ln-1988"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>    <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>
-<a name="ln-1989"></a>   <span class="k">Type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>   <span class="n">d_out</span><span class="o">=</span><span class="n">valuein</span>
-<a name="ln-1990"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>              <span class="n">d_out</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="mf">0.0_real128</span><span class="p">,</span><span class="mf">1.0_real128</span><span class="p">,</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-1991"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>     <span class="k">read</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_out</span>
-<a name="ln-1992"></a>   <span class="k">class </span><span class="n">default</span>
-<a name="ln-1993"></a>    <span class="c">!!d_out=huge(0.0_real128)</span>
-<a name="ln-1994"></a>    <span class="n">readable</span><span class="o">=</span><span class="s1">&#39;NaN&#39;</span>
-<a name="ln-1995"></a>    <span class="k">read</span><span class="p">(</span><span class="n">readable</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="n">d_out</span>
-<a name="ln-1996"></a>    <span class="c">!!stop &#39;*M_verify::anyscalar_to_real128: unknown type&#39;</span>
-<a name="ln-1997"></a>   <span class="k">end select</span>
-<a name="ln-1998"></a><span class="k">end function </span><span class="n">anyscalar_to_real128</span>
-<a name="ln-1999"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-2000"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-2001"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-2002"></a><span class="k">pure elemental function </span><span class="n">anyscalar_to_double</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">d_out</span><span class="p">)</span>
-<a name="ln-2003"></a><span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">error_unit</span> <span class="c">!! ,input_unit,output_unit</span>
-<a name="ln-2004"></a><span class="k">implicit none</span>
-<a name="ln-2005"></a>
-<a name="ln-2006"></a><span class="c">! ident_20=&quot;@(#)M_verify::anyscalar_to_double(3f): convert integer or real parameter of any kind to doubleprecision&quot;</span>
-<a name="ln-2007"></a>
-<a name="ln-2008"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">valuein</span>
-<a name="ln-2009"></a><span class="n">doubleprecision</span>           <span class="kd">::</span> <span class="n">d_out</span>
-<a name="ln-2010"></a><span class="n">doubleprecision</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">big</span><span class="o">=</span><span class="nb">huge</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">)</span>
-<a name="ln-2011"></a>   <span class="k">select type</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-2012"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>   <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-2013"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-2014"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-2015"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-2016"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>    <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-2017"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>    <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-2018"></a>   <span class="k">Type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">))</span>
-<a name="ln-2019"></a>      <span class="c">!!if(valuein.gt.big)then</span>
-<a name="ln-2020"></a>      <span class="c">!!   write(error_unit,*)&#39;*anyscalar_to_double* value too large &#39;,valuein</span>
-<a name="ln-2021"></a>      <span class="c">!!endif</span>
-<a name="ln-2022"></a>      <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-2023"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>              <span class="n">d_out</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">,</span><span class="mf">1.0d0</span><span class="p">,</span><span class="n">valuein</span><span class="p">)</span>
-<a name="ln-2024"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>      <span class="k">read</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_out</span>
-<a name="ln-2025"></a>   <span class="c">!type is (real(kind=real128))</span>
-<a name="ln-2026"></a>   <span class="c">!   if(valuein.gt.big)then</span>
-<a name="ln-2027"></a>   <span class="c">!      write(error_unit,*)&#39;*anyscalar_to_double* value too large &#39;,valuein</span>
-<a name="ln-2028"></a>   <span class="c">!   endif</span>
-<a name="ln-2029"></a>   <span class="c">!   d_out=dble(valuein)</span>
-<a name="ln-2030"></a>   <span class="k">class </span><span class="n">default</span>
-<a name="ln-2031"></a>     <span class="n">d_out</span><span class="o">=</span><span class="mf">0.0d0</span>
-<a name="ln-2032"></a>     <span class="c">!!stop &#39;*M_verify::anyscalar_to_double: unknown type&#39;</span>
-<a name="ln-2033"></a>   <span class="k">end select</span>
-<a name="ln-2034"></a><span class="k">end function </span><span class="n">anyscalar_to_double</span>
-<a name="ln-2035"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-2036"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-2037"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-2038"></a><span class="k">end module </span><span class="n">M_verify</span>
-<a name="ln-2039"></a><span class="c">!===================================================================================================================================</span>
-<a name="ln-2040"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
-<a name="ln-2041"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-1967"></a><span class="k">   </span><span class="n">rnormal</span><span class="o">=</span><span class="n">val</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="mf">0.0d0</span><span class="o">**</span><span class="n">ipow</span><span class="p">)</span>
+<a name="ln-1968"></a>   <span class="k">if</span><span class="p">(</span><span class="n">rnormal</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="k">then</span>
+<a name="ln-1969"></a><span class="k">      </span><span class="n">ipow</span><span class="o">=</span><span class="n">ipow</span><span class="o">+</span><span class="mi">1</span>
+<a name="ln-1970"></a>   <span class="k">endif</span>
+<a name="ln-1971"></a>   <span class="c">!normalize, multiply by 10*idigits to an integer, and so on</span>
+<a name="ln-1972"></a>   <span class="n">round</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="nb">anint</span><span class="p">(</span><span class="n">val</span><span class="o">*</span><span class="mi">1</span><span class="mf">0.d0</span><span class="o">**</span><span class="p">(</span><span class="n">idigits</span><span class="o">-</span><span class="n">ipow</span><span class="p">)))</span><span class="o">*</span><span class="mi">1</span><span class="mf">0.d0</span><span class="o">**</span><span class="p">(</span><span class="n">ipow</span><span class="o">-</span><span class="n">idigits</span><span class="p">)</span>
+<a name="ln-1973"></a><span class="k">end function </span><span class="n">round</span>
+<a name="ln-1974"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-1975"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-1976"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-1977"></a><span class="k">pure elemental function </span><span class="n">anyscalar_to_realbig</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">d_out</span><span class="p">)</span>
+<a name="ln-1978"></a><span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">error_unit</span> <span class="c">!! ,input_unit,output_unit</span>
+<a name="ln-1979"></a><span class="cp">#ifdef __NVCOMPILER</span>
+<a name="ln-1980"></a><span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real64</span>
+<a name="ln-1981"></a><span class="cp">#else</span>
+<a name="ln-1982"></a><span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real128</span>
+<a name="ln-1983"></a><span class="cp">#endif</span>
+<a name="ln-1984"></a><span class="k">implicit none</span>
+<a name="ln-1985"></a>
+<a name="ln-1986"></a><span class="c">! ident_19=&quot;@(#)M_verify::anyscalar_to_realbig(3f): convert integer or real parameter of any kind to real128 or biggest available&quot;</span>
+<a name="ln-1987"></a>
+<a name="ln-1988"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">valuein</span>
+<a name="ln-1989"></a><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">d_out</span>
+<a name="ln-1990"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">readable</span>
+<a name="ln-1991"></a>   <span class="k">select type</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-1992"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>   <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>
+<a name="ln-1993"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>
+<a name="ln-1994"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>
+<a name="ln-1995"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>
+<a name="ln-1996"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>    <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>
+<a name="ln-1997"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>    <span class="n">d_out</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>
+<a name="ln-1998"></a><span class="cp">#ifdef __NVCOMPILER</span>
+<a name="ln-1999"></a><span class="cp">#else</span>
+<a name="ln-2000"></a>   <span class="k">Type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>   <span class="n">d_out</span><span class="o">=</span><span class="n">valuein</span>
+<a name="ln-2001"></a><span class="cp">#endif</span>
+<a name="ln-2002"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>              <span class="n">d_out</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2003"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>     <span class="k">read</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_out</span>
+<a name="ln-2004"></a>   <span class="k">class </span><span class="n">default</span>
+<a name="ln-2005"></a>    <span class="c">!!d_out=huge(0.0_wp)</span>
+<a name="ln-2006"></a>    <span class="n">readable</span><span class="o">=</span><span class="s1">&#39;NaN&#39;</span>
+<a name="ln-2007"></a>    <span class="k">read</span><span class="p">(</span><span class="n">readable</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="n">d_out</span>
+<a name="ln-2008"></a>    <span class="c">!!stop &#39;*M_verify::anyscalar_to_realbig: unknown type&#39;</span>
+<a name="ln-2009"></a>   <span class="k">end select</span>
+<a name="ln-2010"></a><span class="k">end function </span><span class="n">anyscalar_to_realbig</span>
+<a name="ln-2011"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-2012"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-2013"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-2014"></a><span class="k">pure elemental function </span><span class="n">anyscalar_to_double</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">d_out</span><span class="p">)</span>
+<a name="ln-2015"></a><span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">error_unit</span> <span class="c">!! ,input_unit,output_unit</span>
+<a name="ln-2016"></a><span class="k">implicit none</span>
+<a name="ln-2017"></a>
+<a name="ln-2018"></a><span class="c">! ident_20=&quot;@(#)M_verify::anyscalar_to_double(3f): convert integer or real parameter of any kind to doubleprecision&quot;</span>
+<a name="ln-2019"></a>
+<a name="ln-2020"></a><span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">valuein</span>
+<a name="ln-2021"></a><span class="n">doubleprecision</span>           <span class="kd">::</span> <span class="n">d_out</span>
+<a name="ln-2022"></a><span class="n">doubleprecision</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">big</span><span class="o">=</span><span class="nb">huge</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">)</span>
+<a name="ln-2023"></a>   <span class="k">select type</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2024"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>   <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2025"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2026"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2027"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>  <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2028"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>    <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2029"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>    <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2030"></a><span class="cp">#ifdef __NVCOMPILER</span>
+<a name="ln-2031"></a><span class="cp">#else</span>
+<a name="ln-2032"></a>   <span class="k">Type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">))</span>
+<a name="ln-2033"></a><span class="cp">#endif</span>
+<a name="ln-2034"></a>      <span class="c">!!if(valuein.gt.big)then</span>
+<a name="ln-2035"></a>      <span class="c">!!   write(error_unit,*)&#39;*anyscalar_to_double* value too large &#39;,valuein</span>
+<a name="ln-2036"></a>      <span class="c">!!endif</span>
+<a name="ln-2037"></a>      <span class="n">d_out</span><span class="o">=</span><span class="nb">dble</span><span class="p">(</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2038"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>              <span class="n">d_out</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">,</span><span class="mf">1.0d0</span><span class="p">,</span><span class="n">valuein</span><span class="p">)</span>
+<a name="ln-2039"></a>   <span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>      <span class="k">read</span><span class="p">(</span><span class="n">valuein</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">d_out</span>
+<a name="ln-2040"></a>   <span class="c">!type is (real(kind=real128))</span>
+<a name="ln-2041"></a>   <span class="c">!   if(valuein.gt.big)then</span>
+<a name="ln-2042"></a>   <span class="c">!      write(error_unit,*)&#39;*anyscalar_to_double* value too large &#39;,valuein</span>
+<a name="ln-2043"></a>   <span class="c">!   endif</span>
+<a name="ln-2044"></a>   <span class="c">!   d_out=dble(valuein)</span>
+<a name="ln-2045"></a>   <span class="k">class </span><span class="n">default</span>
+<a name="ln-2046"></a>     <span class="n">d_out</span><span class="o">=</span><span class="mf">0.0d0</span>
+<a name="ln-2047"></a>     <span class="c">!!stop &#39;*M_verify::anyscalar_to_double: unknown type&#39;</span>
+<a name="ln-2048"></a>   <span class="k">end select</span>
+<a name="ln-2049"></a><span class="k">end function </span><span class="n">anyscalar_to_double</span>
+<a name="ln-2050"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-2051"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-2052"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-2053"></a><span class="k">end module </span><span class="n">M_verify</span>
+<a name="ln-2054"></a><span class="c">!===================================================================================================================================</span>
+<a name="ln-2055"></a><span class="c">!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!</span>
+<a name="ln-2056"></a><span class="c">!===================================================================================================================================</span>
 </pre></div>
 
     </section>
@@ -2320,7 +2335,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2022-01-30 20:45  
+             on 2022-05-05 23:44  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> easy was developed by John Doe</p></div>

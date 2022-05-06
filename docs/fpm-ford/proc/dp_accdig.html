@@ -131,14 +131,14 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/M_verify.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/M_verify.F90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/m_verify.f90.html'>M_verify.f90</a></li>
+     <li><a href='../sourcefile/m_verify.f90.html'>M_verify.F90</a></li>
     
      <li><a href='../module/m_verify.html'>M_verify</a></li>
     
@@ -564,7 +564,7 @@ public subroutine dp_accdig(x, y, digi0, acurcy, ind)
   
 <tr>
   
-  <td><span class="anchor" id="variable-diff~2"></span>real(kind=real128),</td>
+  <td><span class="anchor" id="variable-diff~2"></span>real(kind=wp),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -578,7 +578,7 @@ public subroutine dp_accdig(x, y, digi0, acurcy, ind)
   
 <tr>
   
-  <td><span class="anchor" id="variable-digi~2"></span>real(kind=real128),</td>
+  <td><span class="anchor" id="variable-digi~2"></span>real(kind=wp),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -606,7 +606,7 @@ public subroutine dp_accdig(x, y, digi0, acurcy, ind)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x_local"></span>real(kind=real128),</td>
+  <td><span class="anchor" id="variable-x_local"></span>real(kind=wp),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -620,7 +620,7 @@ public subroutine dp_accdig(x, y, digi0, acurcy, ind)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y_local"></span>real(kind=real128),</td>
+  <td><span class="anchor" id="variable-y_local"></span>real(kind=wp),</td>
   
   <td>public</td>
   <td></td><td>::</td>
@@ -652,7 +652,11 @@ public subroutine dp_accdig(x, y, digi0, acurcy, ind)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span><span class="k">SUBROUTINE </span><span class="n">dp_accdig</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">digi0</span><span class="p">,</span><span class="n">ACURCY</span><span class="p">,</span><span class="n">IND</span><span class="p">)</span>
-<span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">real128</span>
+<span class="cp">#ifdef __NVCOMPILER</span>
+<span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real64</span>
+<span class="cp">#else</span>
+<span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">wp</span><span class="o">=&gt;</span><span class="n">real128</span>
+<span class="cp">#endif</span>
 <span class="k">use </span><span class="n">M_journal</span><span class="p">,</span>  <span class="k">only</span> <span class="p">:</span> <span class="n">journal</span>
 <span class="k">implicit none</span>
 
@@ -663,33 +667,33 @@ public subroutine dp_accdig(x, y, digi0, acurcy, ind)
 <span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">y</span>           <span class="c">! SECOND OF TWO NUMBERS TO BE COMPARED.</span>
 <span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">digi0</span>       <span class="c">! NUMBER OF DIGITS TO BE SATISFIED IN RELATIVE TOLERANCE.</span>
 
-<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">x_local</span>
-<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">y_local</span>
+<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">x_local</span>
+<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">y_local</span>
 
 <span class="c">!  OUTPUT ...</span>
 <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">ind</span>         <span class="c">! = 0, IF TOLERANCE IS     SATISFIED.</span>
                                               <span class="c">! = 1, IF TOLERANCE IS NOT SATISFIED.</span>
 <span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">acurcy</span>      <span class="c">! = - LOG10(ABS((x_local-y_local)/y_local)))</span>
-<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">diff</span>
-<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">digi</span>
+<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">diff</span>
+<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">digi</span>
 <span class="kt">integer</span>              <span class="kd">::</span> <span class="n">idble_significant_digits</span>
 <span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-   <span class="n">x_local</span><span class="o">=</span><span class="n">anyscalar_to_real128</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-   <span class="n">y_local</span><span class="o">=</span><span class="n">anyscalar_to_real128</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-   <span class="n">digi</span><span class="o">=</span><span class="n">anyscalar_to_real128</span><span class="p">(</span><span class="n">digi0</span><span class="p">)</span>
+   <span class="n">x_local</span><span class="o">=</span><span class="n">anyscalar_to_realbig</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+   <span class="n">y_local</span><span class="o">=</span><span class="n">anyscalar_to_realbig</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+   <span class="n">digi</span><span class="o">=</span><span class="n">anyscalar_to_realbig</span><span class="p">(</span><span class="n">digi0</span><span class="p">)</span>
 <span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-   <span class="n">idble_significant_digits</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="mf">2.0_real128</span><span class="o">**</span><span class="nb">digits</span><span class="p">(</span><span class="mf">0.0_real128</span><span class="p">)))</span> <span class="c">! MAXIMUM NUMBER OF SIGNIFICANT DIGITS IN A REAL128 NUMBER.</span>
+   <span class="n">idble_significant_digits</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="mf">2.0_wp</span><span class="o">**</span><span class="nb">digits</span><span class="p">(</span><span class="mf">0.0_wp</span><span class="p">)))</span> <span class="c">! MAXIMUM NUMBER OF SIGNIFICANT DIGITS IN A REAL128 NUMBER.</span>
    <span class="k">if</span><span class="p">(</span><span class="n">digi</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
-<span class="k">      call </span><span class="n">journal</span><span class="p">(</span><span class="s1">&#39;sc&#39;</span><span class="p">,</span><span class="s1">&#39;*dp_accdig* bad number of significant digits=&#39;</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">))</span>
+<span class="k">      call </span><span class="n">journal</span><span class="p">(</span><span class="s1">&#39;sc&#39;</span><span class="p">,</span><span class="s1">&#39;*dp_accdig* bad number of significant digits=&#39;</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">))</span>
       <span class="n">digi</span><span class="o">=</span><span class="n">idble_significant_digits</span>
    <span class="n">elseif</span><span class="p">(</span><span class="n">digi</span> <span class="p">.</span><span class="n">gt</span><span class="p">.</span> <span class="n">idble_significant_digits</span><span class="p">)</span><span class="k">then</span>
-<span class="k">      call </span><span class="n">journal</span><span class="p">(</span><span class="s1">&#39;sc&#39;</span><span class="p">,</span><span class="s1">&#39;*dp_accdig* significant digit request too high=&#39;</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">))</span>
-      <span class="n">digi</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">idble_significant_digits</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">))</span>
+<span class="k">      call </span><span class="n">journal</span><span class="p">(</span><span class="s1">&#39;sc&#39;</span><span class="p">,</span><span class="s1">&#39;*dp_accdig* significant digit request too high=&#39;</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">))</span>
+      <span class="n">digi</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">digi</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">idble_significant_digits</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">))</span>
    <span class="k">endif</span>
 <span class="k">   </span><span class="n">diff</span> <span class="o">=</span> <span class="n">x_local</span> <span class="o">-</span> <span class="n">y_local</span>
-   <span class="k">if</span><span class="p">(</span><span class="n">diff</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="mf">0.0_real128</span><span class="p">)</span> <span class="k">then</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">diff</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="mf">0.0_wp</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">      </span><span class="n">acurcy</span> <span class="o">=</span> <span class="n">digi</span>
-   <span class="n">elseif</span><span class="p">(</span><span class="n">y_local</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="mf">0.0_real128</span><span class="p">)</span> <span class="k">then</span>
+   <span class="n">elseif</span><span class="p">(</span><span class="n">y_local</span> <span class="p">.</span><span class="n">eq</span><span class="p">.</span> <span class="mf">0.0_wp</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">      </span><span class="n">acurcy</span> <span class="o">=</span> <span class="o">-</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x_local</span><span class="p">))</span>
    <span class="k">else</span>
 <span class="k">      </span><span class="n">acurcy</span> <span class="o">=</span> <span class="o">-</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span> <span class="o">+</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y_local</span><span class="p">))</span>
@@ -721,7 +725,7 @@ public subroutine dp_accdig(x, y, digi0, acurcy, ind)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2022-01-30 20:45  
+             on 2022-05-05 23:44  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> easy was developed by John Doe</p></div>
