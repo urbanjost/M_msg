@@ -1,5 +1,6 @@
 module M_msg
-use, intrinsic :: iso_fortran_env, only : ERROR_UNIT,OUTPUT_UNIT    ! access computing environment
+use,intrinsic :: iso_fortran_env, only : ERROR_UNIT,OUTPUT_UNIT    ! access computing environment
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
 implicit none
 private
 !-----------------------------------------------------------------------------------------------------------------------------------
@@ -12,11 +13,16 @@ public str
 public stderr
 public wrt
 public fmt
+public set
 !!public :: a,i,f,g
 
 interface str
    module procedure msg_scalar, msg_one
 end interface str
+
+interface set
+   module procedure set_scalar
+end interface set
 
 contains
 !===================================================================================================================================
@@ -571,6 +577,194 @@ character(len=256)           :: msg
       endif
    enddo
 end subroutine wrt
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
+!>
+!!##NAME
+!!    set(3f) - [M_set] set scalars from an array
+!!    (LICENSE:PD)
+!!
+!!##SYNOPSIS
+!!
+!!    Syntax:
+!!
+!!      function set(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
+!!      & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,gk)
+!!      class(*),intent(in)           :: g0
+!!      class(*),intent(out),optional  :: g1,g2,g3,g4,g5,g6,g7,g8,g9,ga
+!!      class(*),intent(out),optional  :: gb,gc,gd,ge,gf,gg,gh,gi,gj,gk
+!!
+!!##DESCRIPTION
+!!    set(3f) sets up to tweny scalars to elements from an array.
+!!    Sort of like an equivalence.
+!!
+!!##OPTIONS
+!!    g0(:)       array to read values from. Can be of type INTEGER or REAL
+!!    g[1-9a-k]   optional values to set to an array element. Can
+!!                be of type INTEGER or REAL
+!!
+!!##EXAMPLES
+!!
+!!   Sample program:
+!!
+!!    program demo_set
+!!    use M_msg, only : set
+!!    implicit none
+!!    real :: a,b,c; namelist all/a,b,c/
+!!    integer :: i,j,k; namelist all/i,j,k
+!!    call set([1,2,3,4,5,6],a,b,c,i,j,k)
+!!    write(*,nml=all)
+!!    end program demo_set
+!!
+!!  Output
+!!
+!!##AUTHOR
+!!    John S. Urban
+!!
+!!##LICENSE
+!!    Public Domain
+subroutine set_scalar(generic0, generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9, &
+          & generica, genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj, generick)
+implicit none
+
+! ident_7="@(#)M_msg::set_scalar(3fp): set scalars to array elements"
+
+class(*),intent(in)            :: generic0(:)
+class(*),intent(out),optional  ::           generic1, generic2, generic3, generic4
+class(*),intent(out),optional  :: generic5, generic6, generic7, generic8, generic9
+class(*),intent(out),optional  :: generica, genericb, genericc, genericd, generice
+class(*),intent(out),optional  :: genericf, genericg, generich, generici, genericj
+class(*),intent(out),optional  :: generick
+
+   if(present(generic1))call set_generic(generic1,1)
+   if(present(generic2))call set_generic(generic2,2)
+   if(present(generic3))call set_generic(generic3,3)
+   if(present(generic4))call set_generic(generic4,4)
+   if(present(generic5))call set_generic(generic5,5)
+   if(present(generic6))call set_generic(generic6,6)
+   if(present(generic7))call set_generic(generic7,7)
+   if(present(generic8))call set_generic(generic8,8)
+   if(present(generic9))call set_generic(generic9,9)
+   if(present(generica))call set_generic(generica,10)
+   if(present(genericb))call set_generic(genericb,11)
+   if(present(genericc))call set_generic(genericc,12)
+   if(present(genericd))call set_generic(genericd,13)
+   if(present(generice))call set_generic(generice,14)
+   if(present(genericf))call set_generic(genericf,15)
+   if(present(genericg))call set_generic(genericg,16)
+   if(present(generich))call set_generic(generich,17)
+   if(present(generici))call set_generic(generici,18)
+   if(present(genericj))call set_generic(genericj,19)
+   if(present(generick))call set_generic(generick,20)
+contains
+!===================================================================================================================================
+subroutine set_generic(gen,i)
+class(*),intent(out) :: gen
+integer,intent(in)   :: i
+   if(size(generic0).lt.i)then
+      write(ERROR_UNIT,'()')'<ERROR> i=',i,' is out of bounds (<',size(generic0),')'
+      stop 1
+   endif
+   select type(generic0)
+   type is(integer(kind=int8))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(integer(kind=int16))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(integer(kind=int32))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(integer(kind=int64))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(real(kind=real32))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(real(kind=real64))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+#ifdef ___NVCOMPILER
+#else
+   type is(real(kind=real128))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+#endif
+      end select
+   end select
+end subroutine set_generic
+!===================================================================================================================================
+end subroutine set_scalar
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
