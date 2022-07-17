@@ -22,6 +22,7 @@ end interface str
 
 interface set
    module procedure set_scalar
+   module procedure set_single
 end interface set
 
 contains
@@ -596,7 +597,7 @@ end subroutine wrt
 !!      class(*),intent(out),optional  :: gb,gc,gd,ge,gf,gg,gh,gi,gj,gk
 !!
 !!##DESCRIPTION
-!!    set(3f) sets up to tweny scalars to elements from an array.
+!!    set(3f) sets up to twenty scalars to elements from an array.
 !!    Sort of like an equivalence.
 !!
 !!##OPTIONS
@@ -609,26 +610,137 @@ end subroutine wrt
 !!   Sample program:
 !!
 !!    program demo_set
+!!    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+!!    use,intrinsic :: iso_fortran_env, only : real32, real64, real128
 !!    use M_msg, only : set
 !!    implicit none
-!!    real :: a,b,c; namelist all/a,b,c/
-!!    integer :: i,j,k; namelist all/i,j,k
-!!    call set([1,2,3,4,5,6],a,b,c,i,j,k)
-!!    write(*,nml=all)
+!!    real(kind=real32)    :: a; namelist /all/a
+!!    real(kind=real64)    :: b; namelist /all/b
+!!    real(kind=real128)   :: c; namelist /all/c
+!!    integer(kind=int8)   :: i; namelist /all/i
+!!    integer(kind=int16)  :: j; namelist /all/j
+!!    integer(kind=int32)  :: k; namelist /all/k
+!!    integer(kind=int64)  :: l; namelist /all/l
+!!    integer              :: iarr(7)=[1,2,3,4,5,6,7]
+!!       call set(iarr,a,b,c,i,j,k,l)
+!!       write(*,nml=all)
 !!    end program demo_set
 !!
-!!  Output
+!!    Output
+!!
+!!     &ALL
+!!     A       =   1.000000    ,
+!!     B       =   2.00000000000000     ,
+!!     C       =   3.00000000000000000000000000000000      ,
+!!     I       =    4,
+!!     J       =      5,
+!!     K       =           6,
+!!     L       =                     7
+!!     /
 !!
 !!##AUTHOR
 !!    John S. Urban
 !!
 !!##LICENSE
 !!    Public Domain
+subroutine set_single(generic0, generic1)
+implicit none
+class(*),intent(in)            :: generic0
+class(*),intent(out)           :: generic1
+   call set_generic(generic1)
+contains
+subroutine set_generic(gen)
+class(*),intent(out) :: gen
+   select type(generic0)
+
+   type is(integer(kind=int8))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(integer(kind=int16))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(integer(kind=int32))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(integer(kind=int64))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(real(kind=real32))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(real(kind=real64))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(real(kind=real128))
+
+   end select
+end subroutine set_generic
+end subroutine set_single
 subroutine set_scalar(generic0, generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9, &
           & generica, genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj, generick)
 implicit none
 
-! ident_7="@(#)M_msg::set_scalar(3fp): set scalars to array elements"
+! ident_7="@(#)M_msg::set_scalar(3fp): set scalars from array elements"
 
 class(*),intent(in)            :: generic0(:)
 class(*),intent(out),optional  ::           generic1, generic2, generic3, generic4
@@ -745,8 +857,6 @@ integer,intent(in)   :: i
          type is (real(kind=real128));     gen=generic0(i)
 #endif
       end select
-#ifdef ___NVCOMPILER
-#else
    type is(real(kind=real128))
       select type(gen)
          type is (integer(kind=int8));     gen=generic0(i)
@@ -758,7 +868,6 @@ integer,intent(in)   :: i
 #ifdef __NVCOMPILER
 #else
          type is (real(kind=real128));     gen=generic0(i)
-#endif
 #endif
       end select
    end select
