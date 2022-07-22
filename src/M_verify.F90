@@ -268,6 +268,8 @@ public almost         ! function compares two numbers only up to a specified num
 public dp_accdig      ! compare two double numbers only up to a specified number of digits
 public in_margin      ! check if two reals are approximately equal using a relative margin
 public round          ! round val to specified number of significant digits
+public round_to_power ! round val to specified number of digits after the decimal point
+public significant    ! round val to specified number of significant digits
 !-----------------------------------------------------------------------------------------------------------------------------------
 contains
 !===================================================================================================================================
@@ -1941,10 +1943,25 @@ logical             :: in_margin
    endif
 
 end function in_margin
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
+pure elemental function round_to_power(val,n)
+
+! ident_18="@(#)M_verify::round_to_power(3f): round val to specified given decimal (power) position"
+
+real,intent(in) :: val
+integer,intent(in) :: n
+real :: round_to_power
+   round_to_power = anint(val*10.0**n)/10.0**n
+end function round_to_power
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
 function round(val,idigits0)
 implicit none
 
-! ident_18="@(#)M_verify::round(3f): round val to specified number of significant digits"
+! ident_19="@(#)M_verify::round(3f): round val to specified number of significant digits"
 
 integer,parameter          :: dp=kind(0.0d0)
 real(kind=dp),intent(in)   :: val
@@ -1974,6 +1991,91 @@ end function round
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
+!>
+!!##NAME
+!!   significant(3f) - [M_verify] round val to specified number of significant digits
+!!
+!!##SYNOPSIS
+!!
+!!     pure elemental function significant(val,digits,round)
+!!
+!!      real,intent(in)                      :: val
+!!      integer,intent(in)                   :: digits
+!!      character(len=*),intent(in),optional :: round
+!!
+!!##DESCRIPTION
+!!
+!! Round real value to specified number of significant digits
+!!
+!! val     value to round
+!! digits  number of significant digits to produce
+!! round   Use the round edit descriptor
+!!
+!!           RU  UP : the value resulting from conversion shall be the
+!!                    smallest representable value that is greater than or
+!!                    equal to the original value
+!!           RD  DOWN : the value resulting from conversion shall be the
+!!                    largest representable value that is less than or
+!!                    equal to the original value
+!!           RZ  ZERO : the value resulting from conversion shall be the value
+!!                    closest to the original value and no greater in
+!!                    magnitude than the original value.
+!!           RN  NEAREST : modeis NEAREST,thevalueresulting from conversion
+!!                        shall be the closer of the two nearest
+!!                        representable values if one is closer than the
+!!                        other. If the two nearest representable values
+!!                        are equidistant from the original value, it is
+!!                        processor dependent which one of them is chosen.
+!!           RC  COMPATIBLE : the value resulting from conversion shall be
+!!                          the closer of the two nearest representable
+!!                          values or the value away from zero if halfway
+!!                          between them.
+!!           RP  PROCESSOR_DEFINED : rounding during conversion shall be
+!!                                   a processor-dependent default mode,
+!!                                   which may correspond to one of the
+!!                                   other modes.
+!!
+!!##EXAMPLE
+!!
+!!  Sample program
+!!
+!!    program demo_significant
+!!    use M_verify, only : significant
+!!    implicit none
+!!    integer :: i
+!!    real :: r, v
+!!    character(len=*),parameter :: g='(*(g0,1x))'
+!!
+!!       write(*,g)significant([8765.43210,0.1234567890],5)
+!!
+!!       write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9])
+!!       write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RU'),'RU'
+!!       write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RD'),'RD'
+!!       write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RZ'),'RZ'
+!!       write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RN'),'RN'
+!!       write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RC'),'RC'
+!!       write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RP'),'RP'
+!!    end program demo_significant
+pure elemental function significant(val,digits,round)
+
+! ident_20="@(#)M_verify::significant(3f): round val to specified number of significant digits"
+
+real,intent(in)                      :: val
+integer,intent(in)                   :: digits
+character(len=*),intent(in),optional :: round
+character(len=80)                    :: line,fmt
+real                                 :: significant
+   if(present(round))then
+      write(fmt,'("(",a,",e0.",i0,")")')trim(round),digits ! build e0.N format to write specified number of digits as 0.NNNNN+EE
+   else
+      write(fmt,'("(e0.",i0,")")')digits ! build e0.N format to write specified number of digits as 0.NNNNN+EE
+   endif
+   write(line,fmt)val                  ! write with specified number of significant diguts
+   read(line,'(e50.20)')significant    ! read back into a value
+end function significant
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
 pure elemental function anyscalar_to_realbig(valuein) result(d_out)
 use, intrinsic :: iso_fortran_env, only : error_unit !! ,input_unit,output_unit
 #ifdef __NVCOMPILER
@@ -1983,7 +2085,7 @@ use,intrinsic :: iso_fortran_env, only : wp=>real128
 #endif
 implicit none
 
-! ident_19="@(#)M_verify::anyscalar_to_realbig(3f): convert integer or real parameter of any kind to real128 or biggest available"
+! ident_21="@(#)M_verify::anyscalar_to_realbig(3f): convert integer or real parameter of any kind to real128 or biggest available"
 
 class(*),intent(in)          :: valuein
 real(kind=wp)           :: d_out
@@ -2015,7 +2117,7 @@ pure elemental function anyscalar_to_double(valuein) result(d_out)
 use, intrinsic :: iso_fortran_env, only : error_unit !! ,input_unit,output_unit
 implicit none
 
-! ident_20="@(#)M_verify::anyscalar_to_double(3f): convert integer or real parameter of any kind to doubleprecision"
+! ident_22="@(#)M_verify::anyscalar_to_double(3f): convert integer or real parameter of any kind to doubleprecision"
 
 class(*),intent(in)       :: valuein
 doubleprecision           :: d_out

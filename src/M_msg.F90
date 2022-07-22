@@ -624,9 +624,12 @@ end subroutine wrt
 !!    integer              :: iarr(7)=[1,2,3,4,5,6,7]
 !!       call set(iarr,a,b,c,i,j,k,l)
 !!       write(*,nml=all)
+!!       call set(10,a)
+!!       call set(100,l)
+!!       write(*,nml=all)
 !!    end program demo_set
 !!
-!!    Output
+!!   Results:
 !!
 !!     &ALL
 !!     A       =   1.000000    ,
@@ -637,6 +640,16 @@ end subroutine wrt
 !!     K       =           6,
 !!     L       =                     7
 !!     /
+!!     &ALL
+!!     A       =   10.00000    ,
+!!     B       =   2.00000000000000     ,
+!!     C       =   3.00000000000000000000000000000000      ,
+!!     I       =    4,
+!!     J       =      5,
+!!     K       =           6,
+!!     L       =                   100
+!!     /
+!!
 !!
 !!##AUTHOR
 !!    John S. Urban
