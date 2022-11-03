@@ -53,6 +53,9 @@ Manager](https://github.com/fortran-lang/fpm) )
      cd M_msg
      fpm test
 ```
+<!--
+  fpm test --compiler nvfortran --flag '-D__NVFORTRAN -Mbackslash'
+-->
 
 or just list it as a dependency in your fpm.toml project file.
 

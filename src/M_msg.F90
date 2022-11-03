@@ -14,7 +14,6 @@ public stderr
 public wrt
 public fmt
 public set
-public jux
 !!public :: a,i,f,g
 
 interface str
@@ -39,7 +38,7 @@ contains
 !!
 !!    Syntax:
 !!
-!!      function str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
+!!      pure function str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
 !!      & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,sep)
 !!      class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
 !!      class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
@@ -112,9 +111,9 @@ contains
 !!
 !!##LICENSE
 !!    Public Domain
-function msg_scalar(generic0, generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9, &
-                  & generica, genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj, &
-                  & sep)
+pure function msg_scalar(generic0, generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9, &
+                       & generica, genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj, &
+                       & sep)
 implicit none
 
 ! ident_2="@(#) M_msg msg_scalar(3fp) writes a message to a string composed of any standard scalar types"
@@ -139,33 +138,37 @@ character(len=:),allocatable  :: sep_local
 
    istart=1
    line=''
-   if(present(generic0))call print_generic(generic0)
-   if(present(generic1))call print_generic(generic1)
-   if(present(generic2))call print_generic(generic2)
-   if(present(generic3))call print_generic(generic3)
-   if(present(generic4))call print_generic(generic4)
-   if(present(generic5))call print_generic(generic5)
-   if(present(generic6))call print_generic(generic6)
-   if(present(generic7))call print_generic(generic7)
-   if(present(generic8))call print_generic(generic8)
-   if(present(generic9))call print_generic(generic9)
-   if(present(generica))call print_generic(generica)
-   if(present(genericb))call print_generic(genericb)
-   if(present(genericc))call print_generic(genericc)
-   if(present(genericd))call print_generic(genericd)
-   if(present(generice))call print_generic(generice)
-   if(present(genericf))call print_generic(genericf)
-   if(present(genericg))call print_generic(genericg)
-   if(present(generich))call print_generic(generich)
-   if(present(generici))call print_generic(generici)
-   if(present(genericj))call print_generic(genericj)
+   if(present(generic0))call print_generic(generic0,line,istart,increment,sep_local)
+   if(present(generic1))call print_generic(generic1,line,istart,increment,sep_local)
+   if(present(generic2))call print_generic(generic2,line,istart,increment,sep_local)
+   if(present(generic3))call print_generic(generic3,line,istart,increment,sep_local)
+   if(present(generic4))call print_generic(generic4,line,istart,increment,sep_local)
+   if(present(generic5))call print_generic(generic5,line,istart,increment,sep_local)
+   if(present(generic6))call print_generic(generic6,line,istart,increment,sep_local)
+   if(present(generic7))call print_generic(generic7,line,istart,increment,sep_local)
+   if(present(generic8))call print_generic(generic8,line,istart,increment,sep_local)
+   if(present(generic9))call print_generic(generic9,line,istart,increment,sep_local)
+   if(present(generica))call print_generic(generica,line,istart,increment,sep_local)
+   if(present(genericb))call print_generic(genericb,line,istart,increment,sep_local)
+   if(present(genericc))call print_generic(genericc,line,istart,increment,sep_local)
+   if(present(genericd))call print_generic(genericd,line,istart,increment,sep_local)
+   if(present(generice))call print_generic(generice,line,istart,increment,sep_local)
+   if(present(genericf))call print_generic(genericf,line,istart,increment,sep_local)
+   if(present(genericg))call print_generic(genericg,line,istart,increment,sep_local)
+   if(present(generich))call print_generic(generich,line,istart,increment,sep_local)
+   if(present(generici))call print_generic(generici,line,istart,increment,sep_local)
+   if(present(genericj))call print_generic(genericj,line,istart,increment,sep_local)
    msg_scalar=trim(line)
 contains
 !===================================================================================================================================
-subroutine print_generic(generic)
+pure subroutine print_generic(generic,line,istart,increment,sep)
 !use, intrinsic :: iso_fortran_env, only : int8, int16, int32, biggest=>int64, real32, real64, dp=>real128
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
 class(*),intent(in) :: generic
+character(len=4096),intent(inout) :: line
+integer,intent(inout) :: istart
+integer,intent(in) :: increment
+character(len=*),intent(in) :: sep
    select type(generic)
       type is (integer(kind=int8));     write(line(istart:),'(i0)') generic
       type is (integer(kind=int16));    write(line(istart:),'(i0)') generic
@@ -182,16 +185,16 @@ class(*),intent(in) :: generic
       type is (complex);                write(line(istart:),'("(",1pg0,",",1pg0,")")') generic
    end select
    istart=len_trim(line)+increment
-   line=trim(line)//sep_local
+   line=trim(line)//sep
 end subroutine print_generic
 !===================================================================================================================================
 end function msg_scalar
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
-function msg_one(generic0,generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9,&
-               & generica,genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj,&
-               & sep)
+pure function msg_one(generic0,generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9,&
+                    & generica,genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj,&
+                    & sep)
 implicit none
 
 ! ident_3="@(#) M_msg msg_one(3fp) writes a message to a string composed of any standard one dimensional types"
@@ -217,33 +220,37 @@ integer                       :: increment
 
    istart=1
    line=' '
-   call print_generic(generic0)
-   if(present(generic1))call print_generic(generic1)
-   if(present(generic2))call print_generic(generic2)
-   if(present(generic3))call print_generic(generic3)
-   if(present(generic4))call print_generic(generic4)
-   if(present(generic5))call print_generic(generic5)
-   if(present(generic6))call print_generic(generic6)
-   if(present(generic7))call print_generic(generic7)
-   if(present(generic8))call print_generic(generic8)
-   if(present(generic9))call print_generic(generic9)
-   if(present(generica))call print_generic(generica)
-   if(present(genericb))call print_generic(genericb)
-   if(present(genericc))call print_generic(genericc)
-   if(present(genericd))call print_generic(genericd)
-   if(present(generice))call print_generic(generice)
-   if(present(genericf))call print_generic(genericf)
-   if(present(genericg))call print_generic(genericg)
-   if(present(generich))call print_generic(generich)
-   if(present(generici))call print_generic(generici)
-   if(present(genericj))call print_generic(genericj)
+   call print_generic(generic0,line,istart,increment,sep_local)
+   if(present(generic1))call print_generic(generic1,line,istart,increment,sep_local)
+   if(present(generic2))call print_generic(generic2,line,istart,increment,sep_local)
+   if(present(generic3))call print_generic(generic3,line,istart,increment,sep_local)
+   if(present(generic4))call print_generic(generic4,line,istart,increment,sep_local)
+   if(present(generic5))call print_generic(generic5,line,istart,increment,sep_local)
+   if(present(generic6))call print_generic(generic6,line,istart,increment,sep_local)
+   if(present(generic7))call print_generic(generic7,line,istart,increment,sep_local)
+   if(present(generic8))call print_generic(generic8,line,istart,increment,sep_local)
+   if(present(generic9))call print_generic(generic9,line,istart,increment,sep_local)
+   if(present(generica))call print_generic(generica,line,istart,increment,sep_local)
+   if(present(genericb))call print_generic(genericb,line,istart,increment,sep_local)
+   if(present(genericc))call print_generic(genericc,line,istart,increment,sep_local)
+   if(present(genericd))call print_generic(genericd,line,istart,increment,sep_local)
+   if(present(generice))call print_generic(generice,line,istart,increment,sep_local)
+   if(present(genericf))call print_generic(genericf,line,istart,increment,sep_local)
+   if(present(genericg))call print_generic(genericg,line,istart,increment,sep_local)
+   if(present(generich))call print_generic(generich,line,istart,increment,sep_local)
+   if(present(generici))call print_generic(generici,line,istart,increment,sep_local)
+   if(present(genericj))call print_generic(genericj,line,istart,increment,sep_local)
    msg_one=trim(line)
 contains
 !===================================================================================================================================
-subroutine print_generic(generic)
+pure subroutine print_generic(generic,line,istart,increment,sep)
 !use, intrinsic :: iso_fortran_env, only : int8, int16, int32, biggest=>int64, real32, real64, dp=>real128
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
 class(*),intent(in),optional :: generic(:)
+character(len=4096),intent(inout) :: line
+integer,intent(inout) :: istart
+integer,intent(in) :: increment
+character(len=*),intent(in) :: sep
 integer :: i
    select type(generic)
       type is (integer(kind=int8));     write(line(istart:),'("[",*(i0,1x))') generic
@@ -261,7 +268,7 @@ integer :: i
       type is (character(len=*));       write(line(istart:),'("[",:*("""",a,"""",1x))') (trim(generic(i)),i=1,size(generic))
       type is (complex);                write(line(istart:),'("[",*("(",1pg0,",",1pg0,")",1x))') generic
       class default
-         stop 'unknown type in *print_generic*'
+         !error_stop 'unknown type in *print_generic*'
    end select
    istart=len_trim(line)+increment+1
    line=trim(line)//']'//sep_local
@@ -346,7 +353,7 @@ integer                      :: ilen
    ! add ",a" and print null and use position of null to find length of output
    ! add cannot use SIZE= or POS= or ADVANCE='NO' on WRITE() on INTERNAL READ,
    ! and do not want to trim as trailing spaces can be significant
-   if(fmt_local.eq.'')then
+   if(fmt_local == '')then
       select type(generic)
          type is (integer(kind=int8));     fmt_local='(i0,a)'
          type is (integer(kind=int16));    fmt_local='(i0,a)'
@@ -363,7 +370,7 @@ integer                      :: ilen
          type is (complex);                fmt_local='("(",1pg0,",",1pg0,")",a)'
       end select
    else
-      if(format(1:1).eq.'(')then
+      if(format(1:1) == '(')then
          fmt_local=format(:len_trim(format)-1)//',a)'
       else
          fmt_local='('//fmt_local//',a)'
@@ -386,11 +393,11 @@ integer                      :: ilen
       type is (character(len=*));       write(line,fmt_local,iostat=ios,iomsg=msg) generic,null
       type is (complex);                write(line,fmt_local,iostat=ios,iomsg=msg) generic,null
    end select
-   if(ios.ne.0)then
+   if(ios /= 0)then
       line='<ERROR>'//trim(msg)
    else
       ilen=index(line,null,back=.true.)
-      if(ilen.eq.0)ilen=len(line)
+      if(ilen == 0)ilen=len(line)
       line=line(:ilen-1)
    endif
 end function fmt
@@ -574,7 +581,7 @@ integer                      :: i
 character(len=256)           :: msg
    do i=1,size(luns)
       write(luns(i),'(a)',iostat=iostat,iomsg=msg)str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,ga,gb,gc,gd,ge,gf,gg,gh,gi,gj)
-      if(iostat.ne.0)then
+      if(iostat /= 0)then
          call stderr('<ERROR>*write*:',msg)
       endif
    enddo
@@ -745,8 +752,22 @@ class(*),intent(out) :: gen
          type is (real(kind=real128));     gen=generic0
 #endif
       end select
+#ifdef __NVCOMPILER
+#else
    type is(real(kind=real128))
-
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+#endif
    end select
 end subroutine set_generic
 end subroutine set_single
@@ -788,7 +809,7 @@ contains
 subroutine set_generic(gen,i)
 class(*),intent(out) :: gen
 integer,intent(in)   :: i
-   if(size(generic0).lt.i)then
+   if(size(generic0) < i)then
       write(ERROR_UNIT,'()')'<ERROR> i=',i,' is out of bounds (<',size(generic0),')'
       stop 1
    endif
@@ -871,6 +892,8 @@ integer,intent(in)   :: i
          type is (real(kind=real128));     gen=generic0(i)
 #endif
       end select
+#ifdef __NVCOMPILER
+#else
    type is(real(kind=real128))
       select type(gen)
          type is (integer(kind=int8));     gen=generic0(i)
@@ -884,114 +907,11 @@ integer,intent(in)   :: i
          type is (real(kind=real128));     gen=generic0(i)
 #endif
       end select
+#endif
    end select
 end subroutine set_generic
 !===================================================================================================================================
 end subroutine set_scalar
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
-!===================================================================================================================================
-!===================================================================================================================================
-!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
-!===================================================================================================================================
-!>
-!!##NAME
-!!    jux(3f) - [M_msg] converts up to twenty standard scalar type values to a string
-!!    (LICENSE:PD)
-!!
-!!##SYNOPSIS
-!!
-!!    Syntax:
-!!
-!!      pure function jux(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
-!!      & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj)
-!!      class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
-!!      class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
-!!      character,len=(:),allocatable :: jux
-!!
-!!##DESCRIPTION
-!!    jux(3f) builds a space-separated string from up to twenty scalar values.
-!!
-!!##OPTIONS
-!!    g[0-9a-j]   optional value to print the value of after the message. May
-!!                be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION,
-!!                COMPLEX, or CHARACTER.
-!!
-!!##RETURNS
-!!    jux     description to print
-!!
-!!##EXAMPLES
-!!
-!!   Sample program:
-!!
-!!    program demo_jux
-!!    use M_msg, only : jux
-!!    character(len=:),allocatable :: text
-!!    text=jux('it is',.true.,'I like to add some numbers like',10,'and',30.4,'and',(30.0,40.0),'to the message')
-!!    print *, text
-!!    end program demo_jux
-!!
-!!##AUTHOR
-!!    John S. Urban
-!!
-!!##LICENSE
-!!    Public Domain
-pure function jux(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj)
-! jux(3f) - [M_jux] converts up to twenty standard scalar type values to a string
-! pure version for experimentation
-implicit none
-class(*),intent(in),optional  :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9,ga, gb, gc, gd, ge, gf, gg, gh, gi, gj
-character(len=:),allocatable  :: jux
-character(len=4096)           :: line
-integer                       :: istart
-   istart=1
-   line=''
-   if(present(g0))call print_g(g0,line,istart)
-   if(present(g1))call print_g(g1,line,istart)
-   if(present(g2))call print_g(g2,line,istart)
-   if(present(g3))call print_g(g3,line,istart)
-   if(present(g4))call print_g(g4,line,istart)
-   if(present(g5))call print_g(g5,line,istart)
-   if(present(g6))call print_g(g6,line,istart)
-   if(present(g7))call print_g(g7,line,istart)
-   if(present(g8))call print_g(g8,line,istart)
-   if(present(g9))call print_g(g9,line,istart)
-   if(present(g9))call print_g(ga,line,istart)
-   if(present(g9))call print_g(gb,line,istart)
-   if(present(g9))call print_g(gc,line,istart)
-   if(present(g9))call print_g(gd,line,istart)
-   if(present(g9))call print_g(ge,line,istart)
-   if(present(g9))call print_g(gf,line,istart)
-   if(present(g9))call print_g(gg,line,istart)
-   if(present(g9))call print_g(gh,line,istart)
-   if(present(g9))call print_g(gi,line,istart)
-   if(present(g9))call print_g(gj,line,istart)
-   jux=trim(line)
-contains
-pure subroutine print_g(g,line,istart)
-use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
-class(*),intent(in) :: g
-character(len=4096),intent(inout) :: line
-integer,intent(inout) :: istart
-integer,parameter :: increment=2
-character(len=*),parameter :: sep=' '
-   select type(g)
-      type is (integer(kind=int8));     write(line(istart:),'(i0)') g
-      type is (integer(kind=int16));    write(line(istart:),'(i0)') g
-      type is (integer(kind=int32));    write(line(istart:),'(i0)') g
-      type is (integer(kind=int64));    write(line(istart:),'(i0)') g
-      type is (real(kind=real32));      write(line(istart:),'(1pg0)') g
-      type is (real(kind=real64));      write(line(istart:),'(1pg0)') g
-      !type is (real(kind=real128));     write(line(istart:),'(1pg0)') g
-      type is (logical);                write(line(istart:),'(l1)') g
-      type is (character(len=*));       write(line(istart:),'(a)') trim(g)
-      type is (complex);                write(line(istart:),'("(",1pg0,",",1pg0,")")') g
-   end select
-   istart=len_trim(line)+increment
-   line=trim(line)//sep
-end subroutine print_g
-end function jux
-
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
