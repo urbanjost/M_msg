@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="easy project">
-    
     <meta name="author" content="John Doe" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,49 +43,25 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-               
-        
-            <li><a href="../lists/programs.html">Programs</a></li>
-        
+                   <li><a href="../lists/programs.html">Programs</a></li>
+       
             </ul>
-            </li>
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-                             
-
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
-
-          </ul>
         
+            </li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+          </ul>
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -99,50 +70,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>fmt
       <small>Function</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 7.5% of total for procedures.">77 statements</a>
+    title=" 6.8% of total for procedures.">77 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/M_msg.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/m_msg.f90.html'>M_msg.F90</a></li>
-    
      <li><a href='../module/m_msg.html'>M_msg</a></li>
-    
-  
      <li class="active">fmt</li>
   </ol>
 </div>
@@ -158,96 +108,31 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
-  <div id="vars-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-fmt_local">fmt_local</a>
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-ilen~2">ilen</a>
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-ios~3">ios</a>
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-msg~8">msg</a>
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-null">null</a>
-      
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/fmt.html#src">fmt</a>
-  </div>
-</div>
-
-
+<em>None</em>
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public recursive function fmt(generic, format) result(line)
-    
-    
-   
-</h2>
-    
-  
-    <div class="panel panel-default">
+    <h2>public recursive function fmt(generic, format) result(line)</h2>
+        <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Uses</h3>
       </div>
       <ul class="list-group">
-      
       <li class="list-group-item">
   <ul class="list-inline">
-    
     <li><a href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html">iso_fortran_env</a></li>
-    
   </ul>
       </li>
-      
-      
-      
       </ul>
     </div>
-    
 
 
-    
     <h2 id="name">NAME</h2>
 <div class="codehilite"><pre><span></span><code><span class="n">fmt</span><span class="p">(</span><span class="mi">3</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">M_msg</span><span class="o">]</span><span class="w"> </span><span class="nf">convert</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">intrinsic</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="nf">format</span><span class="w"></span>
 <span class="p">(</span><span class="nl">LICENSE</span><span class="p">:</span><span class="n">PD</span><span class="p">)</span><span class="w"></span>
@@ -311,328 +196,65 @@ format.
 <h2 id="license">LICENSE</h2>
 <div class="codehilite"><pre><span></span><code>Public Domain
 </code></pre></div>
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-generic"></span>class(*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>generic</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-format"></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td></td><td>::</td>
   <td><strong>format</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
+   <h3>Return Value <small><span class="anchor" id="variable-line"></span>character(len=:),allocatable</small></h3>
     
-    
-    
-    
-    
-    
-    
-   <h3>Return Value <small><span class="anchor" id="variable-line"></span>character(len=:),
-  allocatable</small></h3>
-    
-    
-    
-    
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
-  <div id="vars-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-fmt_local">fmt_local</a>
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-ilen~2">ilen</a>
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-ios~3">ios</a>
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-msg~8">msg</a>
-      
-      <a class="list-group-item" href="../proc/fmt.html#variable-null">null</a>
-      
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/fmt.html#src">fmt</a>
-  </div>
-</div>
-
-
+<em>None</em>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
-    
 
-    
-    <section>    
-      <h2>Variables</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-fmt_local"></span>character(len=:),</td>
-  
-  <td>public,</td>
-  <td>allocatable</td><td>::</td>
-  <td><strong>fmt_local</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-ilen~2"></span>integer,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>ilen</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-ios~3"></span>integer,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>ios</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-msg~8"></span>character(len=255),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>msg</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-null"></span>character(len=1),</td>
-  
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>null</strong></td><td> =</td><td>char(0)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
-    
-    
-    
     
     
 
     
     
-    
-    
-    
 
 
-    
-    
-    
-    <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">recursive function </span><span class="n">fmt</span><span class="p">(</span><span class="k">generic</span><span class="p">,</span><span class="k">format</span><span class="p">)</span> <span class="k">result</span> <span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">int8</span><span class="p">,</span> <span class="n">int16</span><span class="p">,</span> <span class="n">int32</span><span class="p">,</span> <span class="n">int64</span><span class="p">,</span> <span class="n">real32</span><span class="p">,</span> <span class="n">real64</span><span class="p">,</span> <span class="n">real128</span>
-
-<span class="c">! ident_4=&quot;@(#)M_msg::fmt(3f): convert any intrinsic to a string using specified format&quot;</span>
-
-<span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="k">generic</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>  <span class="kd">::</span> <span class="k">format</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">line</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">fmt_local</span>
-<span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">ios</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">msg</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="k">parameter</span>   <span class="kd">::</span> <span class="nb">null</span><span class="o">=</span><span class="nb">char</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="kt">integer</span>                      <span class="kd">::</span> <span class="n">ilen</span>
-   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="k">format</span><span class="p">))</span><span class="k">then</span>
-<span class="k">      </span><span class="n">fmt_local</span><span class="o">=</span><span class="k">format</span>
-<span class="k">   else</span>
-<span class="k">      </span><span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-   <span class="k">endif</span>
-   <span class="c">! add &quot;,a&quot; and print null and use position of null to find length of output</span>
-   <span class="c">! add cannot use SIZE= or POS= or ADVANCE=&#39;NO&#39; on WRITE() on INTERNAL READ,</span>
-   <span class="c">! and do not want to trim as trailing spaces can be significant</span>
-   <span class="k">if</span><span class="p">(</span><span class="n">fmt_local</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="k">then</span>
-<span class="k">      select type</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>     <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>    <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>    <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>    <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(i0,a)&#39;</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>      <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(1pg0,a)&#39;</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>      <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(1pg0,a)&#39;</span>
-<span class="cp">#ifdef __NVCOMPILER</span>
-<span class="cp">#else</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(1pg0,a)&#39;</span>
-<span class="cp">#endif</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(l1,a)&#39;</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(a,a)&#39;</span>
-         <span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(&quot;(&quot;,1pg0,&quot;,&quot;,1pg0,&quot;)&quot;,a)&#39;</span>
-      <span class="k">end select</span>
-<span class="k">   else</span>
-<span class="k">      if</span><span class="p">(</span><span class="k">format</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">).</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;(&#39;</span><span class="p">)</span><span class="k">then</span>
-<span class="k">         </span><span class="n">fmt_local</span><span class="o">=</span><span class="k">format</span><span class="p">(:</span><span class="nb">len_trim</span><span class="p">(</span><span class="k">format</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;,a)&#39;</span>
-      <span class="k">else</span>
-<span class="k">         </span><span class="n">fmt_local</span><span class="o">=</span><span class="s1">&#39;(&#39;</span><span class="o">//</span><span class="n">fmt_local</span><span class="o">//</span><span class="s1">&#39;,a)&#39;</span>
-      <span class="k">endif</span>
-<span class="k">   endif</span>
-<span class="k">   allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span> <span class="kd">::</span> <span class="n">line</span><span class="p">)</span> <span class="c">! cannot currently write into allocatable variable</span>
-   <span class="n">ios</span><span class="o">=</span><span class="mi">0</span>
-   <span class="k">select type</span><span class="p">(</span><span class="k">generic</span><span class="p">)</span>
-      <span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int8</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int16</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int32</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">int64</span><span class="p">));</span>    <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">));</span>      <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="cp">#ifdef __NVCOMPILER</span>
-<span class="cp">#else</span>
-      <span class="k">type is</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">));</span>     <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="cp">#endif</span>
-      <span class="k">type is</span> <span class="p">(</span><span class="kt">logical</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">));</span>       <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="nb">      </span><span class="k">type is</span> <span class="p">(</span><span class="kt">complex</span><span class="p">);</span>                <span class="k">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">fmt_local</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span> <span class="k">generic</span><span class="p">,</span><span class="nb">null</span>
-<span class="nb">   </span><span class="k">end select</span>
-<span class="k">   if</span><span class="p">(</span><span class="n">ios</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
-<span class="k">      </span><span class="n">line</span><span class="o">=</span><span class="s1">&#39;&lt;ERROR&gt;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-   <span class="k">else</span>
-<span class="k">      </span><span class="n">ilen</span><span class="o">=</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="nb">null</span><span class="p">,</span><span class="n">back</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">ilen</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="n">ilen</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-      <span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">(:</span><span class="n">ilen</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-   <span class="k">endif</span>
-<span class="k">end function </span><span class="n">fmt</span>
-</pre></div>
-
-    </section>
-    <br>
     
     
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2022 
-                                          </p></div>
-        <div class="col-xs-6 col-md-4 col-md-push-4">
+        <div class="col-xs-6 col-md-6"><p>easy was developed by John Doe<br>&copy; 2022 
+</p>
+        </div>
+        <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
-            <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2022-07-07 22:20  
-          </p>
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2022-11-02 22:51            </p>
         </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> easy was developed by John Doe</p></div>
       </div>
       <br>
       </div> <!-- /container -->    
@@ -658,14 +280,11 @@ format.
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

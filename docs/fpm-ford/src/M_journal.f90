@@ -365,7 +365,7 @@ interface journal
    module procedure set_stdout_lun            ! journal(i)               ! first is not a string
 end interface journal
 
-! ident_1="@(#)M_journal::journal(3fg): provides public message routine, no paging or graphic mode change"
+! ident_1="@(#) M_journal journal(3fg) provides public message routine no paging or graphic mode change"
 
 ! global variables
 
@@ -383,7 +383,7 @@ contains
 !===================================================================================================================================
 subroutine where_write_message(where,msg)
 
-! ident_2="@(#)M_journal::where_write_message(3fp): basic message routine used for journal files"
+! ident_2="@(#) M_journal where_write_message(3fp) basic message routine used for journal files"
 
 character(len=*),intent(in)  :: where
 character(len=*),intent(in)  :: msg
@@ -525,7 +525,7 @@ end subroutine where_write_message
 !===================================================================================================================================
 subroutine flush_trail()
 
-! ident_3="@(#)M_journal::flush_trail(3fp): flush trail file"
+! ident_3="@(#) M_journal flush_trail(3fp) flush trail file"
 
 call where_write_message('F','IGNORE THIS STRING')
 end subroutine flush_trail
@@ -534,7 +534,7 @@ end subroutine flush_trail
 !===================================================================================================================================
 subroutine set_stdout_lun(iounit)
 
-! ident_4="@(#)M_journal::set_stdout_lun(3fp): change I/O logical unit value for standard writes"
+! ident_4="@(#) M_journal set_stdout_lun(3fp) change I/O logical unit value for standard writes"
 
 integer,intent(in)                   :: iounit
    my_stdout=iounit
@@ -584,7 +584,7 @@ end subroutine set_stdout_lun
 subroutine where_write_message_all(where, g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, sep)
 implicit none
 
-! ident_5="@(#)M_journal::where_write_message_all(3f): writes a message to a string composed of any standard scalar types"
+! ident_5="@(#) M_journal where_write_message_all(3f) writes a message to a string composed of any standard scalar types"
 
 character(len=*),intent(in)   :: where
 class(*),intent(in)           :: g0
@@ -597,7 +597,7 @@ end subroutine where_write_message_all
 !===================================================================================================================================
 subroutine write_message_only(message)
 
-! ident_6="@(#)M_journal::write_message_only(3fp): calls JOURNAL('sc',message)"
+! ident_6="@(#) M_journal write_message_only(3fp) calls JOURNAL('sc' message)"
 
 character(len=*),intent(in)          :: message
 !-----------------------------------------------------------------------------------------------------------------------------------
@@ -619,7 +619,7 @@ subroutine d2j(dat,julian,ierr)
 ! * Julian Day must be non-negative
 ! * Julian Day starts at noon; while Civil Calendar date starts at midnight
 !-----------------------------------------------------------------------------------------------------------------------------------
-! ident_7="@(#)d2j(3f): Converts proleptic Gregorian date array to Julian Day"
+! ident_7="@(#) d2j(3f) Converts proleptic Gregorian date array to Julian Day"
 integer,intent(in)         :: dat(8)   ! array like returned by DATE_AND_TIME(3f)
 real(kind=dp),intent(out)  :: julian   ! Julian Day (non-negative, but may be non-integer)
 integer,intent(out)        :: ierr     ! Error return, 0 for successful execution,-1=invalid year,-2=invalid month,-3=invalid day,
@@ -665,7 +665,7 @@ end subroutine d2j
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 subroutine j2d(dat,julian,ierr)
-! ident_8="@(#)j2d(3f): Converts Julian Day to date array"
+! ident_8="@(#) j2d(3f) Converts Julian Day to date array"
 integer,intent(out)        :: dat(8)
 integer                    :: timezone(8), tz
 real(kind=dp),intent(in)   :: julian            ! Julian Day (non-negative)
@@ -748,7 +748,7 @@ end subroutine j2d
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 subroutine d2u(dat,unixtime,ierr)
-! ident_9="@(#)d2u(3f): Converts date array to Unix Time (UT starts at 0000 on 1 Jan. 1970)"
+! ident_9="@(#) d2u(3f) Converts date array to Unix Time (UT starts at 0000 on 1 Jan. 1970)"
 integer,intent(in)         :: dat(8)                  ! date time array similar to that returned by DATE_AND_TIME
 real(kind=dp),intent(out)  :: unixtime                ! Unix time (seconds)
 integer,intent(out)        :: ierr                    ! return 0 on successful, otherwise 1
@@ -773,7 +773,7 @@ subroutine u2d(dat,unixtime,ierr)
 ! REF:JRH:1991-05-23
 ! REF:JSU:2015-12-12
 !-----------------------------------------------------------------------------------------------------------------------------------
-! ident_10="@(#)u2d(3f): Converts Unix Time to date array"
+! ident_10="@(#) u2d(3f) Converts Unix Time to date array"
 integer,intent(out)        :: dat(8)                           ! date and time array
 real(kind=dp),intent(in)   :: unixtime                         ! Unix time (seconds)
 integer,intent(out)        :: ierr                             ! 0 for successful execution, otherwise 1
@@ -797,7 +797,7 @@ end subroutine u2d
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 FUNCTION d2o(dat) RESULT (ordinal)
-! ident_11="@(#)d2o(3f): Converts date-time array to Ordinal day"
+! ident_11="@(#) d2o(3f) Converts date-time array to Ordinal day"
 INTEGER,INTENT(IN)         :: dat(8)                  ! date time array similar to that returned by DATE_AND_TIME
 INTEGER                    :: ordinal                 ! the returned number of days
    REAL(KIND=dp)           :: unixtime                ! Unix time (seconds)
@@ -816,7 +816,7 @@ END FUNCTION d2o
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 FUNCTION v2mo(imonth) RESULT(month_name)
-! ident_12="@(#)v2mo(3f): returns the month name of a Common month"
+! ident_12="@(#) v2mo(3f) returns the month name of a Common month"
 CHARACTER(LEN=:),ALLOCATABLE :: month_name                                        ! string containing month name or abbreviation.
 INTEGER,INTENT(IN)           :: imonth                                            ! the number of the month(1-12)
 CHARACTER(LEN=*),PARAMETER   :: names(12)=[ character(len=9) ::  &
@@ -831,7 +831,7 @@ END FUNCTION v2mo
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 FUNCTION now(format)
-! ident_13="@(#)now(3f): return string representing current time given format"
+! ident_13="@(#) JSU 2015-10-24"
 CHARACTER(LEN=*),INTENT(IN),OPTIONAL :: format
 CHARACTER(LEN=:),ALLOCATABLE         :: now
    INTEGER                           :: values(8)
@@ -853,7 +853,7 @@ END FUNCTION now
 FUNCTION fmtdate(values,format) RESULT (timestring)
 ! Read the FORMAT string and replace the "%" strings per the following rules:
 !-----------------------------------------------------------------------------------------------------------------------------------
-! ident_14="@(#)fmtdate(3f): given date array return date as string using format"
+! ident_14="@(#) fmtdate(3f) given date array return date as string using format"
 CHARACTER(LEN=*),INTENT(IN)     :: format    ! input format string
 INTEGER,DIMENSION(8),INTENT(IN) :: values    ! numeric time values as DATE_AND_TIME(3f) intrinsic returns
 CHARACTER(LEN=:),ALLOCATABLE    :: timestring
@@ -1008,7 +1008,7 @@ END FUNCTION fmtdate
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 subroutine fmtdate_usage(ii)
-! ident_15="@(#)fmtdate_usage(3f): display macros recognized by fmtdate(3f)"
+! ident_15="@(#) JSU 2015-10-24"
 character(len=51),allocatable :: usage(:)
 integer                       :: i,ii
 character(len=ii)             :: blanks
@@ -1057,7 +1057,7 @@ end subroutine fmtdate_usage
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 subroutine dow(values, weekday, day, ierr)
-! ident_16="@(#)dow(3f): Return the day of the week"
+! ident_16="@(#) dow(3f) Return the day of the week"
 real(kind=dp)                      :: julian    ! the julian day for which the weekday is required,
 integer,intent(in)                 :: values(8) ! date and time array used to get time zone
 integer,intent(out),optional       :: weekday   ! The day of the week, 1 = Sunday
@@ -1148,7 +1148,7 @@ subroutine woy(dat,iso_year,iso_week,iso_weekday,iso_name)
 !AUTHOR:
 !  John S. Urban, 2015-12-19
 !-----------------------------------------------------------------------------------------------------------------------------------
-! ident_17="@(#)woy(3f): Calculate iso-8601 Week-numbering year date yyyy-Www-d"
+! ident_17="@(#) woy(3f) Calculate iso-8601 Week-numbering year date yyyy-Www-d"
 integer,parameter               :: dp=kind(0.0d0)
 integer,intent(in)              :: dat(8)     ! input date array
 integer,intent(out)             :: iso_year, iso_week, iso_weekday
@@ -1193,7 +1193,7 @@ end subroutine woy
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 function dj(dat) result (julian)
-! ident_18="@(#)dj(3f): Given date array returns Julian Day"
+! ident_18="@(#) dj(3f) Given date array returns Julian Day"
 real(kind=dp)              :: julian
 integer,intent(in)         :: dat(8)
    integer                 :: ierr
@@ -1201,7 +1201,7 @@ call d2j(dat,julian,ierr)
 end function dj
 
 function jd(julian) result (dat)
-! ident_19="@(#)jd(3f): Given Julian Day returns date array"
+! ident_19="@(#) jd(3f) Given Julian Day returns date array"
 real(kind=dp),intent(in)   :: julian
 integer                    :: dat(8)
    integer                 :: ierr
@@ -1209,7 +1209,7 @@ call j2d(dat,julian,ierr)
 end function jd
 
 function du(dat) result (unixtime)
-! ident_20="@(#)du(3f): Given date array returns Unix Epoch time"
+! ident_20="@(#) du(3f) Given date array returns Unix Epoch time"
 real(kind=dp)              :: unixtime
 integer,intent(in)         :: dat(8)
    integer                 :: ierr
@@ -1217,7 +1217,7 @@ call d2u(dat,unixtime,ierr)
 end function du
 
 function ud(unixtime) result (dat)
-! ident_21="@(#)ud(3f): Given Unix Epoch Time returns date array"
+! ident_21="@(#) ud(3f) Given Unix Epoch Time returns date array"
 real(kind=dp),intent(in)   :: unixtime
 integer                    :: dat(8)
    integer                 :: ierr
@@ -1240,7 +1240,7 @@ end function ud
 subroutine sys_sleep(wait_seconds)
 use, intrinsic  :: iso_c_binding, only: c_int
 
-! ident_22="@(#)sys_sleep(3f): call sleep(3c)"
+! ident_22="@(#) sys_sleep(3f) call sleep(3c)"
 
 integer (c_int) :: wait_seconds, how_long
 interface
@@ -1259,7 +1259,7 @@ end subroutine sys_sleep
 !===================================================================================================================================
 function now_ex(format)
 
-! ident_23="@(#)M_time::now_ex(3f): use of now(3f) outside of a module"
+! ident_23="@(#) M_time now_ex(3f) use of now(3f) outside of a module"
 
 character(len=*),intent(in),optional :: format
 character(len=:),allocatable         :: now_ex

@@ -22,6 +22,7 @@ PROGFILES = \
  ../example/demo_journal.f90 \
  ../example/demo_M_journal.f90 \
  ../example/demo_help_command.f90 \
+ ../example/demo_jux.f90 \
 $(NULL)
 
 CPROGFILES = 

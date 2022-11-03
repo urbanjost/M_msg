@@ -1,22 +1,30 @@
 module M_msg
-use, intrinsic :: iso_fortran_env, only : ERROR_UNIT,OUTPUT_UNIT    ! access computing environment
+use,intrinsic :: iso_fortran_env, only : ERROR_UNIT,OUTPUT_UNIT    ! access computing environment
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
 implicit none
 private
 !-----------------------------------------------------------------------------------------------------------------------------------
 ! USED SO FREQUENTLY IN OTHER MODULES PUT IN THIS ONE WITH NO DEPENDENCIES TO PREVENT CIRCULAR DEPENDENCY
 !-----------------------------------------------------------------------------------------------------------------------------------
 
-! ident_1="@(#)M_msg::str(3f): {msg_scalar,msg_one}"
+! ident_1="@(#) M_msg str(3f) {msg_scalar msg_one}"
 
 public str
 public stderr
 public wrt
 public fmt
+public set
+public jux
 !!public :: a,i,f,g
 
 interface str
    module procedure msg_scalar, msg_one
 end interface str
+
+interface set
+   module procedure set_scalar
+   module procedure set_single
+end interface set
 
 contains
 !===================================================================================================================================
@@ -109,7 +117,7 @@ function msg_scalar(generic0, generic1, generic2, generic3, generic4, generic5, 
                   & sep)
 implicit none
 
-! ident_2="@(#)M_msg::msg_scalar(3fp): writes a message to a string composed of any standard scalar types"
+! ident_2="@(#) M_msg msg_scalar(3fp) writes a message to a string composed of any standard scalar types"
 
 class(*),intent(in),optional  :: generic0, generic1, generic2, generic3, generic4
 class(*),intent(in),optional  :: generic5, generic6, generic7, generic8, generic9
@@ -186,7 +194,7 @@ function msg_one(generic0,generic1, generic2, generic3, generic4, generic5, gene
                & sep)
 implicit none
 
-! ident_3="@(#)M_msg::msg_one(3fp): writes a message to a string composed of any standard one dimensional types"
+! ident_3="@(#) M_msg msg_one(3fp) writes a message to a string composed of any standard one dimensional types"
 
 class(*),intent(in)           :: generic0(:)
 class(*),intent(in),optional  :: generic1(:), generic2(:), generic3(:), generic4(:), generic5(:)
@@ -320,7 +328,7 @@ end function msg_one
 recursive function fmt(generic,format) result (line)
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
 
-! ident_4="@(#)M_msg::fmt(3f): convert any intrinsic to a string using specified format"
+! ident_4="@(#) M_msg fmt(3f) convert any intrinsic to a string using specified format"
 
 class(*),intent(in)          :: generic
 character(len=*),intent(in),optional  :: format
@@ -472,7 +480,7 @@ end function fmt
 subroutine stderr(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj)
 implicit none
 
-! ident_5="@(#)M_msg::stderr(3f): writes a message to standard error using a standard f2003 method"
+! ident_5="@(#) M_msg stderr(3f) writes a message to standard error using a standard f2003 method"
 
 class(*),intent(in),optional :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
 class(*),intent(in),optional :: ga, gb, gc, gd, ge, gf, gg, gh, gi, gj
@@ -556,7 +564,7 @@ end subroutine stderr
 subroutine wrt(luns,g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj,iostat)
 implicit none
 
-! ident_6="@(#)M_msg::write(3f): writes a message to any number of open files with any scalar values"
+! ident_6="@(#) M_msg write(3f) writes a message to any number of open files with any scalar values"
 
 integer,intent(in)           :: luns(:)
 class(*),intent(in),optional :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
@@ -571,6 +579,419 @@ character(len=256)           :: msg
       endif
    enddo
 end subroutine wrt
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
+!>
+!!##NAME
+!!    set(3f) - [M_set] set scalars from an array
+!!    (LICENSE:PD)
+!!
+!!##SYNOPSIS
+!!
+!!    Syntax:
+!!
+!!      function set(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
+!!      & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,gk)
+!!      class(*),intent(in)           :: g0
+!!      class(*),intent(out),optional  :: g1,g2,g3,g4,g5,g6,g7,g8,g9,ga
+!!      class(*),intent(out),optional  :: gb,gc,gd,ge,gf,gg,gh,gi,gj,gk
+!!
+!!##DESCRIPTION
+!!    set(3f) sets up to twenty scalars to elements from an array.
+!!    Sort of like an equivalence.
+!!
+!!##OPTIONS
+!!    g0(:)       array to read values from. Can be of type INTEGER or REAL
+!!    g[1-9a-k]   optional values to set to an array element. Can
+!!                be of type INTEGER or REAL
+!!
+!!##EXAMPLES
+!!
+!!   Sample program:
+!!
+!!    program demo_set
+!!    use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+!!    use,intrinsic :: iso_fortran_env, only : real32, real64, real128
+!!    use M_msg, only : set
+!!    implicit none
+!!    real(kind=real32)    :: a; namelist /all/a
+!!    real(kind=real64)    :: b; namelist /all/b
+!!    real(kind=real128)   :: c; namelist /all/c
+!!    integer(kind=int8)   :: i; namelist /all/i
+!!    integer(kind=int16)  :: j; namelist /all/j
+!!    integer(kind=int32)  :: k; namelist /all/k
+!!    integer(kind=int64)  :: l; namelist /all/l
+!!    integer              :: iarr(7)=[1,2,3,4,5,6,7]
+!!       call set(iarr,a,b,c,i,j,k,l)
+!!       write(*,nml=all)
+!!       call set(10,a)
+!!       call set(100,l)
+!!       write(*,nml=all)
+!!    end program demo_set
+!!
+!!   Results:
+!!
+!!     &ALL
+!!     A       =   1.000000    ,
+!!     B       =   2.00000000000000     ,
+!!     C       =   3.00000000000000000000000000000000      ,
+!!     I       =    4,
+!!     J       =      5,
+!!     K       =           6,
+!!     L       =                     7
+!!     /
+!!     &ALL
+!!     A       =   10.00000    ,
+!!     B       =   2.00000000000000     ,
+!!     C       =   3.00000000000000000000000000000000      ,
+!!     I       =    4,
+!!     J       =      5,
+!!     K       =           6,
+!!     L       =                   100
+!!     /
+!!
+!!
+!!##AUTHOR
+!!    John S. Urban
+!!
+!!##LICENSE
+!!    Public Domain
+subroutine set_single(generic0, generic1)
+implicit none
+class(*),intent(in)            :: generic0
+class(*),intent(out)           :: generic1
+   call set_generic(generic1)
+contains
+subroutine set_generic(gen)
+class(*),intent(out) :: gen
+   select type(generic0)
+
+   type is(integer(kind=int8))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(integer(kind=int16))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(integer(kind=int32))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(integer(kind=int64))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(real(kind=real32))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(real(kind=real64))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0
+         type is (integer(kind=int16));    gen=generic0
+         type is (integer(kind=int32));    gen=generic0
+         type is (integer(kind=int64));    gen=generic0
+         type is (real(kind=real32));      gen=generic0
+         type is (real(kind=real64));      gen=generic0
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0
+#endif
+      end select
+   type is(real(kind=real128))
+
+   end select
+end subroutine set_generic
+end subroutine set_single
+subroutine set_scalar(generic0, generic1, generic2, generic3, generic4, generic5, generic6, generic7, generic8, generic9, &
+          & generica, genericb, genericc, genericd, generice, genericf, genericg, generich, generici, genericj, generick)
+implicit none
+
+! ident_7="@(#)M_msg::set_scalar(3fp): set scalars from array elements"
+
+class(*),intent(in)            :: generic0(:)
+class(*),intent(out),optional  ::           generic1, generic2, generic3, generic4
+class(*),intent(out),optional  :: generic5, generic6, generic7, generic8, generic9
+class(*),intent(out),optional  :: generica, genericb, genericc, genericd, generice
+class(*),intent(out),optional  :: genericf, genericg, generich, generici, genericj
+class(*),intent(out),optional  :: generick
+
+   if(present(generic1))call set_generic(generic1,1)
+   if(present(generic2))call set_generic(generic2,2)
+   if(present(generic3))call set_generic(generic3,3)
+   if(present(generic4))call set_generic(generic4,4)
+   if(present(generic5))call set_generic(generic5,5)
+   if(present(generic6))call set_generic(generic6,6)
+   if(present(generic7))call set_generic(generic7,7)
+   if(present(generic8))call set_generic(generic8,8)
+   if(present(generic9))call set_generic(generic9,9)
+   if(present(generica))call set_generic(generica,10)
+   if(present(genericb))call set_generic(genericb,11)
+   if(present(genericc))call set_generic(genericc,12)
+   if(present(genericd))call set_generic(genericd,13)
+   if(present(generice))call set_generic(generice,14)
+   if(present(genericf))call set_generic(genericf,15)
+   if(present(genericg))call set_generic(genericg,16)
+   if(present(generich))call set_generic(generich,17)
+   if(present(generici))call set_generic(generici,18)
+   if(present(genericj))call set_generic(genericj,19)
+   if(present(generick))call set_generic(generick,20)
+contains
+!===================================================================================================================================
+subroutine set_generic(gen,i)
+class(*),intent(out) :: gen
+integer,intent(in)   :: i
+   if(size(generic0).lt.i)then
+      write(ERROR_UNIT,'()')'<ERROR> i=',i,' is out of bounds (<',size(generic0),')'
+      stop 1
+   endif
+   select type(generic0)
+   type is(integer(kind=int8))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(integer(kind=int16))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(integer(kind=int32))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(integer(kind=int64))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(real(kind=real32))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(real(kind=real64))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   type is(real(kind=real128))
+      select type(gen)
+         type is (integer(kind=int8));     gen=generic0(i)
+         type is (integer(kind=int16));    gen=generic0(i)
+         type is (integer(kind=int32));    gen=generic0(i)
+         type is (integer(kind=int64));    gen=generic0(i)
+         type is (real(kind=real32));      gen=generic0(i)
+         type is (real(kind=real64));      gen=generic0(i)
+#ifdef __NVCOMPILER
+#else
+         type is (real(kind=real128));     gen=generic0(i)
+#endif
+      end select
+   end select
+end subroutine set_generic
+!===================================================================================================================================
+end subroutine set_scalar
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
+!===================================================================================================================================
+!>
+!!##NAME
+!!    jux(3f) - [M_msg] converts up to twenty standard scalar type values to a string
+!!    (LICENSE:PD)
+!!
+!!##SYNOPSIS
+!!
+!!    Syntax:
+!!
+!!      pure function jux(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
+!!      & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj)
+!!      class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
+!!      class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
+!!      character,len=(:),allocatable :: jux
+!!
+!!##DESCRIPTION
+!!    jux(3f) builds a space-separated string from up to twenty scalar values.
+!!
+!!##OPTIONS
+!!    g[0-9a-j]   optional value to print the value of after the message. May
+!!                be of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION,
+!!                COMPLEX, or CHARACTER.
+!!
+!!##RETURNS
+!!    jux     description to print
+!!
+!!##EXAMPLES
+!!
+!!   Sample program:
+!!
+!!    program demo_jux
+!!    use M_msg, only : jux
+!!    character(len=:),allocatable :: text
+!!    text=jux('it is',.true.,'I like to add some numbers like',10,'and',30.4,'and',(30.0,40.0),'to the message')
+!!    print *, text
+!!    end program demo_jux
+!!
+!!##AUTHOR
+!!    John S. Urban
+!!
+!!##LICENSE
+!!    Public Domain
+pure function jux(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj)
+! jux(3f) - [M_jux] converts up to twenty standard scalar type values to a string
+! pure version for experimentation
+implicit none
+class(*),intent(in),optional  :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9,ga, gb, gc, gd, ge, gf, gg, gh, gi, gj
+character(len=:),allocatable  :: jux
+character(len=4096)           :: line
+integer                       :: istart
+   istart=1
+   line=''
+   if(present(g0))call print_g(g0,line,istart)
+   if(present(g1))call print_g(g1,line,istart)
+   if(present(g2))call print_g(g2,line,istart)
+   if(present(g3))call print_g(g3,line,istart)
+   if(present(g4))call print_g(g4,line,istart)
+   if(present(g5))call print_g(g5,line,istart)
+   if(present(g6))call print_g(g6,line,istart)
+   if(present(g7))call print_g(g7,line,istart)
+   if(present(g8))call print_g(g8,line,istart)
+   if(present(g9))call print_g(g9,line,istart)
+   if(present(g9))call print_g(ga,line,istart)
+   if(present(g9))call print_g(gb,line,istart)
+   if(present(g9))call print_g(gc,line,istart)
+   if(present(g9))call print_g(gd,line,istart)
+   if(present(g9))call print_g(ge,line,istart)
+   if(present(g9))call print_g(gf,line,istart)
+   if(present(g9))call print_g(gg,line,istart)
+   if(present(g9))call print_g(gh,line,istart)
+   if(present(g9))call print_g(gi,line,istart)
+   if(present(g9))call print_g(gj,line,istart)
+   jux=trim(line)
+contains
+pure subroutine print_g(g,line,istart)
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64, real32, real64, real128
+class(*),intent(in) :: g
+character(len=4096),intent(inout) :: line
+integer,intent(inout) :: istart
+integer,parameter :: increment=2
+character(len=*),parameter :: sep=' '
+   select type(g)
+      type is (integer(kind=int8));     write(line(istart:),'(i0)') g
+      type is (integer(kind=int16));    write(line(istart:),'(i0)') g
+      type is (integer(kind=int32));    write(line(istart:),'(i0)') g
+      type is (integer(kind=int64));    write(line(istart:),'(i0)') g
+      type is (real(kind=real32));      write(line(istart:),'(1pg0)') g
+      type is (real(kind=real64));      write(line(istart:),'(1pg0)') g
+      !type is (real(kind=real128));     write(line(istart:),'(1pg0)') g
+      type is (logical);                write(line(istart:),'(l1)') g
+      type is (character(len=*));       write(line(istart:),'(a)') trim(g)
+      type is (complex);                write(line(istart:),'("(",1pg0,",",1pg0,")")') g
+   end select
+   istart=len_trim(line)+increment
+   line=trim(line)//sep
+end subroutine print_g
+end function jux
+
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
