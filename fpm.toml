@@ -10,7 +10,7 @@ categories = ["messages", " testing"]
 keywords = ["fortran", "unit testing"]
 homepage = "https://github.com/urbanjost/M_msg.git"
 
-[[ executable ]]
+[[executable]]
 name = "hlp"
 source-dir = "app"
 main = "hlp.f90"
