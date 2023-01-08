@@ -889,7 +889,7 @@ integer                              :: clicks_now
    if(present(msg))then
       call stderr(trim(out)//': '//trim(msg))
    else
-      call stderr(trim(out))
+      call stderr(out)
    endif
    if(IFAILED_ALL_G == 0)then
       stop EXIT_SUCCESS
