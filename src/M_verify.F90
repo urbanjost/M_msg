@@ -1014,7 +1014,7 @@ integer                              :: clicks_now
    if(present(msg))then
       call stderr(trim(out)//': '//trim(msg))
    else
-      call stderr(trim(out))
+      call stderr(out)
    endif
 !-----------------------------------------------------------------------------------------------------------------------------------
    IPASSED_G=0
