@@ -1,6 +1,6 @@
-# NAME
+# Name
 
-## DESCRIPTION
+## Description
 This is a collection of modules useful for creating messages, logfiles and
 performing unit tests, 
 
@@ -15,7 +15,7 @@ performing unit tests,
  + **M_journal** allows for creating log and journal files
 
 
-## BUILDING THE MODULE
+## Building the Module
 A conventional GNU/Linux or Unix install:
 
 ```bash
@@ -42,7 +42,7 @@ Optionally
 ```bash
 ```
 
-## SUPPORTS FPM ![fpm](docs/images/fpm_logo.gif)
+## Supports FPM ![fpm](docs/images/fpm_logo.gif)
 
 Alternatively, download the github repository and
 build it with fpm ( as described at [Fortran Package
@@ -66,8 +66,8 @@ or just list it as a dependency in your fpm.toml project file.
 
 #### (registered at the [fpm(1) registry](https://github.com/fortran-lang/fpm-registry) )
 
-## DOCUMENTATION   ![docs](docs/images/docs.gif)
-### USER
+## Documentation   ![docs](docs/images/docs.gif)
+### User
    
  - man-pages in 
     + [manpages.zip](https://urbanjost.github.io/M_msg/manpages.zip) 
@@ -80,7 +80,7 @@ or just list it as a dependency in your fpm.toml project file.
    of the man-pages is at
    [BOOK_M_msg](https://urbanjost.github.io/M_msg/BOOK_M_msg.html).
 
-## ADDITIONAL DIRECTORY DESCRIPTIONS
+## Additional Directory Descriptions
 There are 
 
    - src/ is where the source for the M_msg(3f) modules resides 
