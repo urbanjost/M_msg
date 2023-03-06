@@ -119,7 +119,7 @@ man:
 	@test -d ../man  || ( echo 'manpages must be expanded into ../man'; exit)
 	@mandb ../man 1>&2
 	@env MANPATH=../man MANWIDTH=256 man -k .|col -b
-	@env MANWIDTH=80 MANPATH=../man MANWIDTH=80  man --regex '.*'|col -b
+	@env MANWIDTH=80 MANPATH=../man MANWIDTH=80  man -Tutf8 --regex '.*'|col -b
 #=================================================================================
 .PHONY: doxygen
 doxygen: 
