@@ -1,10 +1,19 @@
+---
+---
+---
+# DEPRECATED (at least for now) -- see M_framework
+---
+---
+---
+---
 # Name
+M_msg
 
 ## Description
 This is a collection of modules useful for creating messages, logfiles and
 performing unit tests, 
 
- + **M_msg** is is a small module that can convert a list of variables of any of
+ + **M_msg** is a small module that can convert a list of variables of any of
    the most common default types to a string.
 
    It performs low-level operations that are often used by other larger
