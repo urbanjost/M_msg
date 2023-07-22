@@ -1,0 +1,2411 @@
+accdig (3m_verify)   - [M_verify] compare two real numbers only up to a specified number of digits (LICENSE:PD)
+almost (3m_verify)   - [M_verify] return true or false if two numbers agree up to specified number of digits (LICENSE:PD)
+assert (3m_verify)   - [M_verify] print filename, linenumber, and message to stderr and stop program (LICENSE:PD)
+dp_accdig (3m_verify) - [M_verify] compare two numbers only up to a specified number of digits (LICENSE:PD)
+fmt (3m_msg)	     - [M_msg] convert any intrinsic to a string using specified format (LICENSE:PD)
+fstop (3m_verify)    - [M_verify] call stop with both a number and a message (LICENSE:PD)
+help_command (3m_help) - [M_help] uses a specially formatted text array to provide a HELP interface (LICENSE:PD)
+in_margin (3m_verify) - [M_verify] check if two reals are approximately equal using a relative margin
+journal (3m_journal) - [M_journal] provides public message routine, no paging or graphic mode change (LICENSE:PD)
+M_journal (3m_journal) - [M_journal::INTRO] write program messages to stdout and/or a log file (LICENSE:PD)
+M_verify (3m_verify) - [M_verify::INTRO] a collection of Fortran routines for supporting code development by providing error processing, debugging procedures and unit testing. (LICENSE:PD)
+pdec (3m_verify)     - [M_verify] write out string with ASCII decimal equivalent vertically under it (LICENSE:PD)
+significant (3m_verify) - [M_verify] round val to specified number of significant digits
+stderr (3m_msg)      - [M_msg] write message to stderr (LICENSE:PD)
+stderr (3m_verify)   - [M_verify] write message to stderr (LICENSE:PD)
+str (3m_msg)	     - [M_msg] converts up to twenty standard scalar type values to a string (LICENSE:PD)
+unit_check (3m_verify) - [M_verify] if logical expression is false, call command "goodbad NAME bad" and stop program by default (LICENSE:PD)
+unit_check_bad (3m_verify) - [M_verify] call command "goodbad NAME bad" and stop program (LICENSE:PD)
+unit_check_done (3m_verify) - [M_verify] call command "goodbad NAME good" or "goodbad NAME bad" depending on whether failures were found (LICENSE:PD)
+unit_check_good (3m_verify) - [M_verify] call command "goodbad NAME good" (LICENSE:PD)
+unit_check_msg (3m_verify) - [M_verify] converts up to nine standard scalar values to a message for unit testing (LICENSE:PD)
+unit_check_start (3m_verify) - [M_verify] call command "goodbad NAME start" and optionally set options (LICENSE:PD)
+unit_check_stop (3m_verify) - [M_verify] call command "goodbad NAME good" or goodbad NAME bad" depending on whether failures were found (LICENSE:PD)
+wrt (3m_msg)	     - [M_msg] write multiple scalar values to any number of files (LICENSE:PD)
+help_command(3m_help)					 help_command(3m_help)
+
+
+
+NAME
+  help_command(3f) - [M_help] uses a specially formatted text array to provide
+  a HELP interface (LICENSE:PD)
+
+
+SYNOPSIS
+  Syntax:
+
+       function help_command(text_array,topic,position)
+
+
+DESCRIPTION
+  This routine, when given a CHARACTER array displays the text interactively.
+  The special topics "manual","topics", and "search" are reserved. "manual"
+  causes the entire array to be displayed.  "topics" displays all lines not
+  beginning with a space or three or more equal signs, and "search" must be
+  followed by a string to search for in the manual.
+
+  A line beginning with a non-blank character in column one is a topic
+
+  A topic with the preceding line beginning with "===" is a special topic that
+  will be displayed up to the next line beginning with "==="
+
+  The special topic "manual" displays the entire help text
+
+  The help text is paged based on the values in the position() array. The
+  first value is the current line count on the current page, and the second
+  value is how many lines should be displayed as a page before a paging prompt
+  is produced. POSITION(2) is typically set to 23.  POSITION(1) can be set to
+  zero, especially if the calling page is not tracking paging itself.
+
+  Entering a "q" at the prompt exits the help text. To see other options enter
+  an "h" at the prompt.
+
+	h
+	#----------------------------------------------------# PAGING
+	| f|SPACE b  forward or backward one page	     |
+	| u d	     redraw up or down one-half page	     |
+	| r	     refresh page			     |
+	| e y | j k  refresh page moving up or down one line |
+	#----------------------------------------------------# JUMPING
+	| g	     go to top of manual		     |
+	| NNN	     go to line number NNN. Use a sign (+-)  |
+	|	     for a relative move.		     |
+	| .	     toggle line numbering		     |
+	#----------------------------------------------------# SEARCHING
+	| /STRING    advance to next line containing string  |
+	| ?STRING    search for string above current line    |
+	| n N	     find next occurrence up or down in file |
+	| \STRING    show all lines with specified string.   |
+	| t	     displays topic lines.		     |
+	#----------------------------------------------------#
+	| w FILENAME write entire user guide to local file   |
+	| h	     display this help			     |
+	| q	     quit				     |
+	#----------------------------------------------------#
+	Anything else is ignored.
+	Line count is 25 out of 54 . Page size is 23 (see "lines")
+	continue ..
+
+
+  A normal topic is displayed until another topic line (line beginning with a
+  non-blank) is encountered
+
+  The help text must begin with a line starting with "==="
+
+  If a line is preceded by an "===" line it is considered a section instead of
+  a topic, and all lines between that line and the next line beginning with
+  "===" are displayed.
+
+OPTIONS
+  help_text
+    The block of text to treat as the input document
+
+  topic
+    What topic or section to search for (case sensitive). A blank is
+    equivalent to "SUMMARY". There are several reserved names.	"manual" means
+    the entire help text, and "topics" shows only lines not beginning with a
+    blank, and "search" does a case-insensitive search for a string.
+
+  position
+    A small array with two values. The second value is the size of the page to
+    be used between pauses. The first one indicates how many lines on the
+    current page have been displayed.
+
+EXAMPLE
+  Sample program:
+
+     program demo_help_command
+     use M_help, only : help_command
+     character(len=:),allocatable :: help_text(:)
+     integer			  :: position(2)
+     position=[0,23]
+     help_text=[character(len=80) :: &
+     '==============================================',&
+     '	 A sample help text file.		    ',&
+     '	 Note the first line MUST start with "==="  ',&
+     '==============================================',&
+     'SUMMARY					    ',&
+     '	This is usually a crib sheet		    ',&
+     '==============================================',&
+     'SECTION1					    ',&
+     'topic1					    ',&
+     '	 A description of topic 1		    ',&
+     '						    ',&
+     '	 and any general text you want		    ',&
+     '						    ',&
+     'topic2  A description of topic 2		    ',&
+     'topic3					    ',&
+     '	 A description of topic 3		    ',&
+     '	 more  description of topic 3		    ',&
+     '	 and more description of topic 3 a	    ',&
+     '	 and more description of topic 3 b	    ',&
+     '	 and more description of topic 3 c	    ',&
+     '	 and more description of topic 3 d	    ',&
+     '	 and more description of topic 3 e	    ',&
+     '	 and more description of topic 3 f	    ',&
+     '	 and more description of topic 3 g	    ',&
+     '	 and more description of topic 3 h	    ',&
+     '	 and more description of topic 3 i	    ',&
+     '	 and more description of topic 3 j	    ',&
+     '	 and more description of topic 3 k	    ',&
+     '	 and more description of topic 3 l	    ',&
+     '	 and more description of topic 3 m	    ',&
+     '	 and more description of topic 3 n	    ',&
+     '	 and more description of topic 3 o	    ',&
+     '	 and more description of topic 3 p	    ',&
+     '	 and more description of topic 3 q	    ',&
+     '	 and more description of topic 3 r	    ',&
+     '	 and more description of topic 3 s	    ',&
+     '	 and more description of topic 3 t	    ',&
+     '	 and more description of topic 3 u	    ',&
+     '	 and more description of topic 3 v	    ',&
+     '	 and more description of topic 3 w	    ',&
+     '	 and more description of topic 3 x	    ',&
+     '	 and more description of topic 3 y	    ',&
+     '	 and more description of topic 3 z	    ',&
+     '==============================================',&
+     'SECTION2					    ',&
+     'topic4  A description of topic 4		    ',&
+     '	 this is the last part of SECTION1	    ',&
+     'topic5					    ',&
+     '	This is all about the fifth topic and is    ',&
+     '	just displayed as-is. The text cannot start ',&
+     '	in column one or it will be seen as the     ',&
+     '	beginning of a topic.			    ',&
+     '==============================================',&
+     '						    ' ]
+
+     write(*,*)'>>>>>'
+     call help_command(help_text,'',position)
+     write(*,*)'>>>>>topic1'
+     call help_command(help_text,'topic1',position)
+     write(*,*)'>>>>>topics'
+     call help_command(help_text,'topics',position)
+     write(*,*)'>>>>>manual'
+     call help_command(help_text,'manual',position)
+     end program demo_help_command
+
+
+
+				 July 22, 2023		 help_command(3m_help)
+journal(3m_journal)					   journal(3m_journal)
+
+
+
+NAME
+  journal(3f) - [M_journal] provides public message routine, no paging or
+  graphic mode change (LICENSE:PD)
+
+SYNOPSIS
+  subroutine journal([where,],[VALUE(s)])
+
+      character(len=*),intent(in) :: where
+      character(len=*)|real|integer|doubleprecision|complex,optional :: g1,g2,g3,g4,g5,g6,g7,g8,g9
+
+
+   WRITE MESSAGES
+  basic messages
+
+	call journal(where,[VALUE(S)])
+	call journal(message) # a shortcut for "call journal('sc',message)":
+
+   OPEN OR CLOSE TRAIL FILE
+  trail file
+
+	call journal('O',trailfile_name) # open trail file
+	call journal('O','')		 # close trail file
+
+   SET OUTPUT TIME PREFIX
+  set the function display format for timestamps. See the NOW(3f) procedure
+  for allowable timestamp macros
+
+	call journal('%',time_stamp_prefix_specification)
+
+
+   MODES
+  Turn on/off writing DEBUG messages to trail file
+
+	call journal('>','debug on') # turn on debug mode
+	call journal('<','debug off') # turn off debug mode
+
+
+   ASSIGN STDOUT TO AN ALTERNATE FILE
+  change stdout to iunit and open filename; or close unit and go back to
+  stdout if filename=''
+
+	call journal(iunit,filename)
+
+  change stdout to iunit to use a file already open
+
+	call journal(iunit)
+
+
+DESCRIPTION
+  If a user procedure is used for outputting messages instead of calling
+  WRITE(3f) it is easy to provide control of when messages are printed (ie. a
+  "verbose" mode, or "quite" mode), creating files to replay program
+  execution, duplicating output, ...
+
+OPTIONS
+  WHERE
+    indicates where messages are written. A combination of the following
+    characters can be used...
+
+    Usually one of these to write to the standard output files ...
+
+    S write to stdout or iounit set with journal(unit) or
+      journal(unit,filename).
+
+    E write to stderr
+
+    And one of these to write to trail file (ignore if no trail file defined)
+    ...
+
+    C write to trail file as a comment (if file is open) Writing output "as a
+      comment" means it is preceded by a pound(#) character.
+
+    T write to trail file (if file is open)
+
+    Usually used by itself
+
+    D write to trail file as a comment with "DEBUG:" prefix in front of
+      message (if file is open) if debug mode is on. Write to stdout if no
+      trail file and debug mode is on.
+
+    Modifier for S|E|C|T|D specifiers
+
+    •  subsequent files are written to with advance='no'. Position is
+       important. '+sc' does an advance='no' on both files, 's+c' only does
+       the advance='no' for the trail file.
+
+    Mode changing options used by themselves:
+
+    > turn off debug messages
+
+    < turn on debug messages
+
+    O open trail file using value of "message" parameter or close trail file
+      if no filename or a blank filename.
+
+    A Auxiliary programs that also want to write to the current log file (a2b,
+      z2a, ...) call this routine to see if there is a trail file being
+      generated and then add to it so that a program like ush(1f) can call the
+      auxiliary programs and still just generate one log file, but if the
+      auxiliary program is used as a stand-alone program no trail is
+      generated.
+
+  VALUES(S)
+    message to write to stdout, stderr, and the trail file.  a numeric or
+    character value to optionally be appended to the message. Up to nine
+    values are allowed. The WHERE field is required if values are added.
+
+  FILENAME
+    when WHERE="O" to turn the trail file on or off, the "message" field
+    becomes the trail filename to open. If blank, writing to the trail file is
+    turned off.
+
+  TFORMAT
+    when WHERE="%" the message is treated as a time format specification as
+    described under now(3f).
+
+EXAMPLE
+  Sample program:
+
+     program demo_journal
+     use M_journal, only : journal
+     !! BASIC USAGE
+     call journal('write to standard output as-is, and trail file as a comment if open')
+     ! since we have not opened a trail file yet, only stdout will display output
+     call journal('c','ignored, as trail file is not open')
+     ! now open trail file "trail"
+     call journal('o','trail')
+     call journal('sc','same thing except now trail file is open')
+     ! only write to trail file if open
+     call journal('c','not ignored, as trail file is open. Written with # suffix')
+     call journal('t','not ignored, as trail file is open. Written as-is')
+     ! turn off trail file
+     call journal('o','')
+     end program demo_journal
+
+  Adding intrinsic scalar values to the message:
+
+     program test_journal
+     use M_journal, only: journal
+     implicit none
+	call journal('S','This is a test with no optional value')
+	call journal('S','This is a test with a logical value',.true.)
+	call journal('S','This is a test with a double value',1234567890.123456789d0)
+	call journal('S','This is a test with a real value',1234567890.123456789)
+	call journal('S','This is a test with an integer value',1234567890)
+	call journal('STDC','This is a test using STDC',1234567890)
+	call journal('stdc','This is a test using stdc',1234567890)
+	call journal('o','journal.txt') 		       ! open trail file
+	call journal('S',1,12.34,56789.111111111d0,.false.,'a bunch of values')
+	! the combinations that make sense
+	call journal('st','stdout and trail')
+	call journal('s' ,'stdout only')
+	call journal('t' ,'trail only')
+	call journal('sc','stdout and trail_comment')
+	call journal('c' ,'trail_comment only ')
+	call journal('d' ,'debug only')
+	call journal('e' ,'stderr only')
+	call journal('o' ,' ') ! closing trail file
+     end program test_journal
+
+     program testit
+     ! this is a utility program that calls the module routines. It is typically built using ccall(1).
+     use M_journal, only : journal
+	character(len=:),allocatable :: time_stamp_prefix
+	call journal('s','--------------------------------------------------------------------------------')
+	call journal('s','SIMPLE WRITES')
+	call one()
+	call two()
+	call journal('sc','called ONE() and TWO() but did not generate a log file')
+	call journal('s','--------------------------------------------------------------------------------')
+	call journal('s','SIMPLE WRITES WITH LOG FILE')
+	call journal('o','journal.txt') 		       ! open trail file
+	call one()
+	call two()
+	call journal('sc','called ONE() and TWO() and generated log file journal.txt')
+	call journal('','journal.txt')			       ! close trail file
+	call journal('s','--------------------------------------------------------------------------------')
+	call journal('s','SIMPLE WRITES WITH TIMING INFORMATION')
+	time_stamp_prefix='CPU_TIME=%c:CALLS=%C:SINCE=%S:%b'  ! change time prefix
+	call journal('%',time_stamp_prefix) ! set a time prefix in front of messages
+	call journal('o','timed.txt')			       ! open trail file
+	call one()
+	call two()
+	call journal('sc','called ONE() and TWO() and generate log file timed.txt')
+	call journal('','timed.txt')			       ! close trail file
+	call journal('%','')				       ! turn off time prefix
+	call journal('o','timed.txt')			       ! open trail file
+	call journal('s','--------------------------------------------------------------------------------')
+
+     contains
+
+	subroutine two()
+	   call journal('Entered subroutine two')
+	   call journal('Exited subroutine two')
+	end subroutine two
+
+	subroutine one()
+	   call journal('Entered subroutine one')
+	   sum=-HUGE(1.0)
+	   do i=1,10000000
+	     sum=sum+sqrt(real(i))
+	   enddo
+	   write(*,*)'SUM=',sum
+	   call journal('Exited subroutine one')
+	end subroutine one
+
+     end program testit
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		   journal(3m_journal)
+M_journal(3m_journal)					 M_journal(3m_journal)
+
+
+
+NAME
+  M_journal(3fm) - [M_journal::INTRO] write program messages to stdout and/or
+  a log file (LICENSE:PD)
+
+SYNOPSIS
+  use, M_journal , only : journal
+
+DESCRIPTION
+  For interactive programs in particular it is useful if all messages go thru
+  the JOURNAL(3f) routine. This makes it easy to write messages to a log file
+  as well as standard output; to toggle time prefixes on and off; to turn on
+  and off debug-mode messages; control output paging and create replayable
+  input journals.
+
+  The primary use of JOURNAL(3f) is to create journal files for interactive
+  programs that can be replayed and/or be used to verify program executions.
+  Typically, you would echo what the user typed to the trail file as-is, and
+  write output you write to stdout as comments to the trail file so that the
+  trail file can easily be read back in (by ignoring comments). So usually
+  things that are read from user input are using output with WHERE='T' and
+  output that usually goes to stdout is written with WHERE='SC' in the
+  JOURNAL(3f) call.
+
+      >      :
+      >      :
+      > character(len=256) userline, output
+      > call journal('O','my_trail_file')  ! open trail file
+      >      :
+      >      :
+      > do
+      >    read(*,'(a)',iostat=ios) userline  ! read user input
+      >    if(ios /= 0)exit
+      >    ! echo user input to trail file
+      >    call journal('T',userline)
+      >    ! assume user input causes values i1, i2, and i3 to be calculated
+      >    write(output,'(i0,1x,i0,1x)')i1,i2,i3 ! build an output line
+      >    ! write output to stdout and as comment to trail file
+      >    call journal(output)
+      >    !or you can specify the WHERE parameter and up to ten scalar values
+      >    call journal('SC','i1=',i1,'i2=',i2,'i3=',i3)
+      > enddo
+
+  In this example an output line was built with an internal write; but calls
+  to journal(3f) with numeric values with and without advancing I/O turned on
+  are often used for simpler output:
+
+	I=10
+	R=20.3
+	! write to stdout and trail file without advancing I/O
+	call journal('+SC','I=',i)
+	call journal('SC','AND R=',r)
+
+  writes to the trail file are ignored unless a trail file was opened with
+
+	CALL JOURNAL('O',filename)
+
+
+  So that routines that do their output via JOURNAL(3f) can be used with and
+  without programs generating trail files. That is, destinations 'T' and 'C'
+  are ignored unless a trail file has been requested.
+
+  With no parameters, the trail file is flushed.
+
+EXAMPLES
+  The man(1) page for journal(3f) describes all the options for the WHERE
+  field.  In addition to being used to generate a journal, the routine can be
+  used for producing optional debug messages and timing information.
+
+  Sample program for debug messages:
+
+       program demo_journal
+       !! showing creating debug messages
+       use M_journal, only : journal
+       implicit none
+       !! produces no output because trail is not on
+       call journal('D','*demo* DEBUG MESSAGE 001 IGNORED')
+       !! turn on debug messages
+       call journal('>','debug on')
+       !! produces output on stdout because debug mode
+       !! is on but no named trail file
+       call journal('D','*demo* DEBUG MESSAGE 002 ON STDOUT')
+       !! open trail file
+       call journal('O','mytrail.txt')
+       !! debug messages now go to the trail file
+       call journal('D','*demo* DEBUG MESSAGE 003 TO TRAIL')
+       !! close trail file so messages go to stdout again
+       call journal('O','')
+       !! debug on stdout now
+       call journal('D','*demo* DEBUG MESSAGE 004 TO STDOUT')
+       call journal('<','debug off')
+       !! back to no output from the next message
+       call journal('D','*demo* DEBUG MESSAGE 005 IGNORED')
+       end program demo_journal
+
+  Sample program for trail messages with optional timing information:
+
+       program testit
+       use M_journal,only : journal
+       implicit none
+       call journal('a single string A -should be on S')
+
+       ! add time prefix to output
+       call journal('%','%Y-%M-%DT%h:%m:%s.%x%u:%b')
+       call journal('a single string B -should be on S with prefix')
+       call journal('%','CPU_TIME: %c:CALLS: %C: %b')  ! change time prefix
+       call journal('a single string B-1 -should be on S with prefix')
+       call journal('a single string B-2 -should be on S with prefix')
+       call journal('a single string B-3 -should be on S with prefix')
+       !  Other useful time formats:
+       !     %E -- Unix Epoch time
+       !     %e -- integer value of Unix Epoch time
+       !     %C -- number of times this format is used
+       !     %c -- CPU_time(3f) output
+       !     %S -- seconds since last use of this format
+       !     %k -- CPU time in seconds from system_clock
+       call journal('%','') ! turn off time prefix
+       !
+       call journal('a single string C -should be on S')
+       !
+       call journal('O','aaa.out') ! turn on trail file
+       call journal('a single string D -should be on SC')
+       call journal('a single string E -should be on SC')
+       call journal('a single string F -should be on SC')
+       call journal('O','') ! turn off trail file
+       !
+       call journal('a single string G -should be on S')
+       call journal('a single string H -should be on S')
+       call journal('a single string I -should be on S')
+
+       ! build one line of output with intrinsic scalar values added
+       call journal('+sc','APPEND:')
+       call journal('+sc',' integer',	      1234)
+       call journal('+sc',' and real',	      1234.5678)
+       call journal('+sc',' and double',1234567890.123456d0)
+       call journal('+sc',' and logical',    .true.)
+       call journal('sc','')
+       !
+       end program testit
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		 M_journal(3m_journal)
+fmt(3m_msg)							   fmt(3m_msg)
+
+
+
+NAME
+  fmt(3f) - [M_msg] convert any intrinsic to a string using specified format
+  (LICENSE:PD)
+
+SYNOPSIS
+  function fmt(value,format) result(string)
+
+      class(*),intent(in),optional :: value
+      character(len=*),intent(in),optional  :: format
+      character(len=:),allocatable :: string
+
+DESCRIPTION
+  FMT(3f) converts any standard intrinsic value to a string using the
+  specified format.
+
+OPTIONS
+  value
+    value to print the value of. May be of type INTEGER, LOGICAL, REAL,
+    DOUBLEPRECISION, COMPLEX, or CHARACTER.
+
+  format
+    format to use to print value. It is up to the user to use an appropriate
+    format. The format does not require being surrounded by parenthesis. If
+    not present a default is selected similar to what would be produced with
+    free format.
+
+RETURNS
+  string
+    A string value
+
+EXAMPLES
+  Sample program:
+
+      program demo_fmt
+      use :: M_msg, only : fmt
+      implicit none
+      character(len=:),allocatable :: output
+
+	 output=fmt(10,"'[',i0,']'")
+	 write(*,*)'result is ',output
+
+	 output=fmt(10.0/3.0,"'[',g0.5,']'")
+	 write(*,*)'result is ',output
+
+	 output=fmt(.true.,"'The final answer is [',g0,']'")
+	 write(*,*)'result is ',output
+
+      end program demo_fmt
+
+  Results:
+
+      result is [10]
+      result is [3.3333]
+      result is The final answer is [T]
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023			   fmt(3m_msg)
+stderr(3m_msg)							stderr(3m_msg)
+
+
+
+NAME
+  stderr(3f) - [M_msg] write message to stderr (LICENSE:PD)
+
+SYNOPSIS
+  subroutine stderr(msg,[generic])
+
+      class(*),intent(in),optional :: msg
+      class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4
+      class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9
+
+DESCRIPTION
+  STDERR(3f) writes a message to standard error using a standard f2003 method.
+  Up to ten generic options are available.
+
+OPTIONS
+  msg
+    - description to print
+
+  generic[0-9]
+    - optional value to print the value of after the message. May be of type
+    INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.
+
+EXAMPLES
+  Sample program:
+
+     program demo_stderr
+     use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+     use,intrinsic :: iso_fortran_env, only : real32, real64, real128
+     use,intrinsic :: iso_fortran_env, only : real=> real32, integer=> int32
+     use M_msg, only: stderr
+     implicit none
+
+     call stderr('A simple message')
+     call stderr('error: RVALUE=',3.0/4.0)
+     call stderr('error: IVALUE=',123456789)
+     call stderr('error: LVALUE=',.true.)
+
+     SEVERAL: block
+     integer :: least=10, most=999, ival=-10
+     call stderr('error: value',ival,'should be between',least,'and',most)
+     endblock SEVERAL
+
+     call stderr('real32  :',huge(0.0_real32),0.0_real32,12345.6789_real32,tiny(0.0_real32))
+     call stderr('real64  :',huge(0.0_real64),0.0_real64,12345.6789_real64,tiny(0.0_real64))
+     !#ifdef __NVCOMPILER
+     !#else
+     call stderr('real128 :',huge(0.0_real128),0.0_real128,12345.6789_real128,tiny(0.0_real128))
+     !#endif
+     call stderr('complex :',cmplx(huge(0.0_real),tiny(0.0_real)))
+
+     call stderr('error: program will now stop')
+     stop 1
+
+     end program demo_stderr
+
+  Results: A simple message error: RVALUE= 0.750000000 error: IVALUE=
+  123456789 error: LVALUE= T error: value -10 should be between 10 and 999
+
+    real32
+      : 3.40282347E+38 ...  0.00000000 ...  12345.6787 ...  1.17549435E-38
+
+    real64
+      : 1.7976931348623157E+308 ...  0.0000000000000000 ...
+      12345.678900000001 ...  2.2250738585072014E-308 real128 :
+      1.18973149535723176508575932662800702E+4932 ...
+
+      0.00000000000000000000000000000000000
+	12345.6789000000000000000000000000002 ...
+	3.36210314311209350626267781732175260E-4932 complex :
+	(3.40282347E+38,1.17549435E-38) error: program will now stop STOP 1
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023			stderr(3m_msg)
+str(3m_msg)							   str(3m_msg)
+
+
+
+NAME
+  str(3f) - [M_msg] converts up to twenty standard scalar type values to a
+  string (LICENSE:PD)
+
+
+SYNOPSIS
+  Syntax:
+
+       pure function str(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
+       & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,sep)
+       class(*),intent(in),optional  :: g0,g1,g2,g3,g4,g5,g6,g7,g8,g9
+       class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
+       character(len=*),intent(in),optional :: sep
+       character,len=(:),allocatable :: str
+
+
+DESCRIPTION
+  str(3f) builds a space-separated string from up to twenty scalar values.
+
+OPTIONS
+  g[0-9a-j]
+    optional value to print the value of after the message. May be of type
+    INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.
+
+    Optionally, all the generic values can be single-dimensioned arrays.
+    Currently, mixing scalar arguments and array arguments is not supported.
+
+  sep
+    separator string used between values. Defaults to a space.
+
+RETURNS
+  str
+    description to print
+
+EXAMPLES
+  Sample program:
+
+     program demo_msg
+     use M_msg, only : str
+     implicit none
+     character(len=:),allocatable :: pr
+     character(len=:),allocatable :: frmt
+     integer			  :: biggest
+
+     pr=str('HUGE(3f) integers',huge(0),&
+     &'and real',huge(0.0),'and double',huge(0.0d0))
+     write(*,'(a)')pr
+     pr=str('real	     :',huge(0.0),0.0,12345.6789,tiny(0.0) )
+     write(*,'(a)')pr
+     pr=str('doubleprecision :',huge(0.0d0),0.0d0,12345.6789d0,tiny(0.0d0) )
+     write(*,'(a)')pr
+     pr=str('complex	     :',cmplx(huge(0.0),tiny(0.0)) )
+     write(*,'(a)')pr
+
+     ! create a format on the fly
+     biggest=huge(0)
+     frmt=str('(*(i',int(log10(real(biggest))),':,1x))',sep='')
+     write(*,*)'format=',frmt
+
+     ! although it will often work, using str(3f)
+     ! in an I/O statement is not recommended
+     ! because if an error occurs str(3f) will try
+     ! to write while part of an I/O statement
+     ! which not all compilers can handle and is currently non-standard
+     write(*,*)str('program will now stop')
+
+     end program demo_msg
+
+  Output
+
+     HUGE(3f) integers 2147483647 and real 3.40282347E+38 and double 1.7976931348623157E+308
+     real	     : 3.40282347E+38 0.00000000 12345.6787 1.17549435E-38
+     doubleprecision : 1.7976931348623157E+308 0.0000000000000000 12345.678900000001 2.2250738585072014E-308
+     complex	     : (3.40282347E+38,1.17549435E-38)
+      format=(*(i9:,1x))
+      program will now stop
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023			   str(3m_msg)
+wrt(3m_msg)							   wrt(3m_msg)
+
+
+
+NAME
+  wrt(3f) - [M_msg] write multiple scalar values to any number of files
+  (LICENSE:PD)
+
+SYNOPSIS
+  subroutine wrt(luns,generic(s),iostat)
+
+      integer,intent(in)	   :: luns(:)
+      class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4
+      class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9
+      class(*),intent(in),optional :: generica,genericb,genericc,genericd,generice
+      class(*),intent(in),optional :: genericf,genericg,generich,generici,genericj
+      integer,intent(out),optional :: ios
+
+DESCRIPTION
+  WRT(3f) writes a list of scalar values
+    to the list of unit numbers in LUNS(:).
+
+OPTIONS
+  LUNS
+    Unit numbers to write to. If of size zero no output is generated
+
+  generic[1-20]
+    optional value to print the value of after the message. May be of type
+    INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.
+
+RETURNS
+  IOSTAT
+    The value of the last non-zero IOSTAT value. Returns zero if no errors
+    occurred.
+
+EXAMPLES
+  Sample program:
+
+     program demo_wrt
+     use, intrinsic :: iso_fortran_env, only : &
+      & stdin=>input_unit, &
+      & stdout=>output_unit, &
+      & stderr=>error_unit
+     use M_msg, only: wrt, fmt
+     implicit none
+     integer,allocatable :: luns(:)
+     integer :: iostat=0
+     integer,parameter :: ints(3)=[1,2,3]
+
+     ! a null list allows for turning off verbose or debug mode output
+     luns=[integer ::]
+     call wrt(luns,'NULL LIST:',huge(0),'PI=',asin(1.0d0)*2.0d0,iostat=iostat)
+     write(*,*)'IOSTAT=',iostat
+
+     ! multiple files can be used to create a log file, for example
+     luns=[stderr,stdout]
+     call wrt(luns,'TWO FILES:',huge(0),'PI=',asin(1.0d0)*2.0d0,iostat=iostat)
+     write(*,*)'IOSTAT=',iostat
+
+     ! using fmt
+     call wrt([stdout,stdout,stdout],'USING FMT :', &
+      & huge(0),'PI=',asin(1.0d0)*2.0d0,fmt(ints(2),'i0.4'),iostat=iostat)
+
+
+     end program demo_wrt
+
+  TWO FILES: 2147483647 PI= 3.1415926535897931 TWO FILES: 2147483647 PI=
+  3.1415926535897931
+
+  IOSTAT=
+    USING FMT : 2147483647 PI= 3.1415926535897931 0002 USING FMT : 2147483647
+    PI= 3.1415926535897931 0002 USING FMT : 2147483647 PI= 3.1415926535897931
+    0002
+
+    IOSTAT=
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023			   wrt(3m_msg)
+accdig(3m_verify)					     accdig(3m_verify)
+
+
+
+NAME
+  accdig(3f) - [M_verify] compare two real numbers only up to a specified
+  number of digits (LICENSE:PD)
+
+
+SYNOPSIS
+  subroutine accdig(x,y,digio,acurcy,ind)
+
+	 real,intent(in)     :: X
+	 real,intent(in)     :: Y
+	 real,intent(in)     :: DIGI0
+	 real,intent(out)    :: acurcy
+	 integer,intent(out) :: ind
+
+
+DESCRIPTION
+  This procedure is used to check how closely two numbers agree.
+
+	call accdig(X,Y,DIGI0,ACURCY,IND)
+
+  The values X and Y are the numbers to compare, and DIGI0 is the threshold
+  number of digits to consider significant in returning IND.
+
+  If X and Y are considered equal within DIGI0 relative tolerance,
+
+	 IND	= 0, if tolerance is	 satisfied.
+		= 1, if tolerance is not satisfied.
+
+  The result ACURCY gives a measure of the number of leading digits in X which
+  are the same as the number of leading digits in Y.
+
+	     ACURCY=-log10((X-Y)/Y)   if X != Y and Y != 0
+	     ACURCY=-log10(X-Y)       if X != Y and Y = 0
+	     ACURCY=8		      if X=Y
+
+	     ACURCY is never less than -8 or greater than 8
+
+  TOLERANCE ...  X and Y are considered equal within DIGI0 relative tolerance,
+  if ACURCY is greater than DIGI0.
+
+  For example, Take some numbers and compare then
+    to 1.2345678 ...
+
+	================================================
+	A number     |	  ACURCY       |   ACURCY
+		     |	  1.2345678=Y  |   1.2345678=X
+	================================================
+	 1.234680    |	  3.7900571    |   3.7901275
+	 1.2345378   |	  4.6144510    |   4.6144404
+	 2.2234568   |	  0.096367393  |   0.35188114
+	 1.2345678   |	  8.0000000    |   8.0000000
+	 1.2345679   |	  7.0732967    |   7.0731968
+	-1.2345678   |	 -0.30103000   |  -0.30103000
+	76.234567    |	 -1.7835463    |   0.0070906729
+	 2.4691356   |	  0.0	       |   0.3010300
+	 0.0	     |	  0.0	       |  -0.91514942.
+
+  Due to the typical limits of the log function, the number of significant
+  digits in the result is best considered to be three.
+
+  Notice that 1.2345678=Y produces different values than 1.2345678=X
+
+  A negative result indicates the two values being compared either do not
+  agree in the first digit or they differ with respect to sign. An example of
+  two numbers which do not agree in their leading digit (and actually differ
+  in order of magnitude) is given above by X=76.234567 and Y=1.2345678; the
+  accuracy reported is -1.7835463. An example of two numbers which do not
+  agree in sign in X=-1.2345678 and Y=1.2345678; here the accuracy reported is
+  -0.30103000.
+
+EXAMPLE
+  Example program:
+
+     program demo_accdig ! fortran 90 example
+     use M_verify, only : accdig
+     implicit none
+     integer :: digi
+     integer :: i10, i20, i30
+     integer :: ind, ind1, ind2
+     real    :: acurcy, acurcy1, acurcy2
+     real    :: a, b
+     real    :: vals(9)
+     data vals/ &
+       &1.234680,   1.2345378,	2.2234568, 1.2345678, &
+       &1.2345679, -1.2345678, 76.234567,  2.4691356, &
+       &0.0/
+	write(*,*)'========================='
+	do i10=0,16
+	   a=1.0
+	   b=a+1.0/(10**i10)
+	   call accdig(a,b,8.0,acurcy,ind)
+	   write(*,*)i10,a,b,acurcy,ind
+	enddo
+	write(*,*)'========================='
+	digi=16
+	do i20=0,digi
+	   a=1.0
+	   b=a+1.0/(10**i20)
+	   call accdig(a,b,real(digi),acurcy,ind)
+	   write(*,*)i20,a,b,acurcy,ind
+	enddo
+	write(*,*)'========================='
+	do i30=1,9
+	   call accdig(1.2345678,vals(i30),8.0,acurcy1,ind1)
+	   call accdig(vals(i30),1.2345678,8.0,acurcy2,ind2)
+	   write(*,*)i30,vals(i30),acurcy1,acurcy2,ind1,ind2
+	enddo
+     end program demo_accdig
+
+
+REFERENCES
+  based on ...
+
+     NBS OMNITAB 1980 VERSION 6.01  1/ 1/81. accdig V 7.00  2/14/90. **
+	David Hogben,
+	Statistical Engineering Division,
+	Center for Computing and Applied Mathematics,
+	A337 Administration Building,
+	National Institute of Standards and Technology,
+	Gaithersburg, MD 20899
+		       TELEPHONE 301-975-2845
+	    ORIGINAL VERSION -	October, 1969.
+	     CURRENT VERSION - February, 1990.
+	     JSU     VERSION - February, 1991.
+
+
+DEPENDENCIES
+  •  M_journal(),log10(), abs(1)
+
+AUTHOR
+  David Hogben, John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		     accdig(3m_verify)
+almost(3m_verify)					     almost(3m_verify)
+
+
+
+NAME
+  almost(3f) - [M_verify] return true or false if two numbers agree up to
+  specified number of digits (LICENSE:PD)
+
+SYNOPSIS
+  function almost(x,y,digits)
+
+      class(*),intent(in)	  :: x,y
+      class(*),intent(in)	  :: rdigits
+      logical,intent(in),optional :: verbose
+      logical			  :: almost
+
+
+DESCRIPTION
+  Returns true or false depending on whether the two numbers given agree to
+  within the specified number of digits as calculated by ACCDIG(3f).
+
+OPTIONS
+  x,y
+    expected and calculated values to be compared. May be of type REAL,
+    INTEGER, or DOUBLEPRECISION.
+
+  rdigits
+    real number representing number of digits of precision to compare
+
+  verbose
+    optional value that specifies to print the results of the comparison when
+    set to .TRUE..
+
+RETURNS
+  almost
+    TRUE if the input values compare up to the specified number of values
+
+EXAMPLE
+  sample:
+
+     program demo_almost
+     use M_verify, only : almost
+     implicit none
+     real    :: x, y
+     logical :: z
+     integer :: i
+     x=1.2345678
+     y=1.2300000
+     do i=1,8
+	z=almost(x,y,real(i),verbose=.true.)
+	write(*,*)i,z
+     enddo
+     end program demo_almost
+
+  output:
+
+      *almost* for values 1.23456776 1.23000002 agreement of 2.43020344 digits out of requested 1.0
+	     1	 T
+      *almost* for values 1.23456776 1.23000002 agreement of 2.43020344 digits out of requested 2.0
+	     2	 T
+      *almost* for values 1.23456776 1.23000002 agreement of 2.43020344 digits out of requested 3.0
+	     3	 F
+      *almost* for values 1.23456776 1.23000002 agreement of 2.43020344 digits out of requested 4.0
+	     4	 F
+      *almost* for values 1.23456776 1.23000002 agreement of 2.43020344 digits out of requested 5.0
+	     5	 F
+      *almost* for values 1.23456776 1.23000002 agreement of 2.43020344 digits out of requested 6.0
+	     6	 F
+      *almost* for values 1.23456776 1.23000002 agreement of 2.43020344 digits out of requested 7.0
+	     7	 F
+      *accdig* significant digit request too high= 8.00000000
+      *almost* for values 1.23456776 1.23000002 agreement of 2.43020344 digits out of requested 8.0
+	     8	 F
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		     almost(3m_verify)
+assert(3m_verify)					     assert(3m_verify)
+
+
+
+NAME
+  assert(3f) - [M_verify] print filename, linenumber, and message to stderr
+  and stop program (LICENSE:PD)
+
+SYNOPSIS
+  function assert(file,linenum,expr,g1,g2g3,g4,g5,g6,g7,g8,g9)
+
+      character(len=*),intent(in)  :: file
+      character(len=*),intent(in)  :: linenum
+      logical,intent(in)	   :: expr
+      class(*),intent(in),optional :: g1,g2,g3,g4,g5,g6,g7,g8,g9
+
+DESCRIPTION
+  assert(3f) prints strings to stderr and then stops program with exit code 1
+  It labels the first string as the filename, the next integer parameter as
+  the linenumber, and then up to nine scalar values.
+
+  It is primarily intended for use by the prep(1) preprocessor $ASSERT
+  directive
+
+OPTIONS
+  filename
+    a string assumed to be the current filename when compiling
+
+  linenum
+    assumed to be the line number of the source code the ASSERT(3f) procedure
+    was called at.
+
+  expr
+    logical value
+
+  g[1-9]
+    optional value(s) to print as a message before stopping. May be of type
+    INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.
+
+EXAMPLES
+  Sample program:
+
+     program demo_assert
+     use M_verify, only : assert
+     implicit none
+     real :: a, toobig=1024
+     a=2000
+     call assert('myroutine', 101, a > toobig, 'The value is too large', a, ' > ', toobig)
+     end program demo_assert
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		     assert(3m_verify)
+dp_accdig(3m_verify)					  dp_accdig(3m_verify)
+
+
+
+NAME
+  dp_accdig(3f) - [M_verify] compare two numbers only up to a specified number
+  of digits (LICENSE:PD)
+
+
+SYNOPSIS
+  subroutine dp_accdig(x,y,digio,acurcy,ind)
+
+	 class(*),intent(in)  :: X
+	 class(*),intent(in)  :: Y
+	 class(*),intent(in)  :: DIGI0
+	 real,intent(out)     :: acurcy
+	 integer,intent(out)  :: ind
+
+
+DESCRIPTION
+  This procedure is used to check how closely two numbers agree.
+
+	call dp_accdig(X,Y,DIGI0,ACURCY,IND)
+
+  The values X and Y are the numbers to compare, and DIGI0 is the threshold
+  number of digits to consider significant in returning IND.
+
+  If X and Y are considered equal within DIGI0 relative tolerance,
+
+	 IND	= 0, if tolerance is	 satisfied.
+		= 1, if tolerance is not satisfied.
+
+  The result ACURCY gives a measure of the number of leading digits in X which
+  are the same as the number of leading digits in Y.
+
+	  ACURCY=-log10((X-Y)/Y)   if X != Y and Y != 0
+	  ACURCY=-log10(X-Y)	   if X != Y and Y = 0
+	  ACURCY=8		   if X=Y
+
+	  ACURCY is never less than -8 or greater than 8 for REAL values
+
+  TOLERANCE ...  X and Y are considered equal within DIGI0 relative tolerance,
+  if ACURCY is greater than DIGI0.
+
+  For example, Take some numbers and compare then
+    to 1.2345678 ...
+
+	================================================
+	A number     |	  ACURCY       |   ACURCY
+		     |	  1.2345678=Y  |   1.2345678=X
+	================================================
+	 1.234680    |	  3.7900571    |   3.7901275
+	 1.2345378   |	  4.6144510    |   4.6144404
+	 2.2234568   |	  0.096367393  |   0.35188114
+	 1.2345678   |	  8.0000000    |   8.0000000
+	 1.2345679   |	  7.0732967    |   7.0731968
+	-1.2345678   |	 -0.30103000   |  -0.30103000
+	76.234567    |	 -1.7835463    |   0.0070906729
+	 2.4691356   |	  0.0	       |   0.3010300
+	 0.0	     |	  0.0	       |  -0.91514942.
+
+  Due to the typical limits of the log function, the number of significant
+  digits in the result is best considered to be three.
+
+  Notice that 1.2345678=Y produces different values than 1.2345678=X
+
+  A negative result indicates the two values being compared either do not
+  agree in the first digit or they differ with respect to sign. An example of
+  two numbers which do not agree in their leading digit (and actually differ
+  in order of magnitude) is given above by X=76.234567 and Y=1.2345678; the
+  accuracy reported is -1.7835463. An example of two numbers which do not
+  agree in sign in X=-1.2345678 and Y=1.2345678; here the accuracy reported is
+  -0.30103000.
+
+EXAMPLE
+  Example program:
+
+     program demo_dp_accdig ! fortran 90 example
+     use M_verify, only : dp_accdig
+     implicit none
+     integer	     :: digi
+     doubleprecision :: a, b
+     integer	     :: i10, i20, i30
+     integer	     :: ind, ind1, ind2
+     real	     :: acurcy, acurcy1, acurcy2
+     doubleprecision :: vals(9)
+     data vals/ &
+       &1.234680d0,   1.2345378d0,  2.2234568d0, 1.2345678d0, &
+       &1.2345679d0, -1.2345678d0, 76.234567d0,  2.4691356d0, &
+       &0.0d0/
+	write(*,*)'========================='
+	do i10=0,16
+	   a=1.0d0
+	   b=a+1.0d0/(10**i10)
+	   call dp_accdig(a,b,8.0,acurcy,ind)
+	   write(*,*)i10,a,b,acurcy,ind
+	enddo
+	write(*,*)'========================='
+	digi=16
+	do i20=0,digi
+	   a=1.0d0
+	   b=a+1.0d0/(10**i20)
+	   call dp_accdig(a,b,dble(digi),acurcy,ind)
+	   write(*,*)i20,a,b,acurcy,ind
+	enddo
+	write(*,*)'========================='
+	do i30=1,9
+	   call dp_accdig(1.2345678d0,vals(i30),8.0,acurcy1,ind1)
+	   call dp_accdig(vals(i30),1.2345678d0,8.0,acurcy2,ind2)
+	   write(*,*)i30,vals(i30),acurcy1,acurcy2,ind1,ind2
+	enddo
+     end program demo_dp_accdig
+
+
+NOTES
+REFERENCES
+  based on ...
+
+     NBS OMNITAB 1980 VERSION 6.01  1/ 1/81. dp_accdig V 7.00  2/14/90. **
+	David Hogben,
+	Statistical Engineering Division,
+	Center for Computing and Applied Mathematics,
+	A337 Administration Building,
+	National Institute of Standards and Technology,
+	Gaithersburg, MD 20899
+		       TELEPHONE 301-975-2845
+	    ORIGINAL VERSION -	October, 1969.
+	     CURRENT VERSION - February, 1990.
+	     JSU     VERSION - February, 1991.
+
+
+DEPENDENCIES
+  •  M_journal(), log10(), abs(1)
+
+AUTHORS
+  David Hogben, John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		  dp_accdig(3m_verify)
+fstop(3m_verify)					      fstop(3m_verify)
+
+
+
+NAME
+  fstop(3f) - [M_verify] call stop with both a number and a message
+  (LICENSE:PD)
+
+SYNOPSIS
+  subroutine fstop(ierr,stdout,stderr)
+
+      integer,intent(in)		   :: ierr
+      character(len=*),intent(in),optional :: stdout
+      character(len=*),intent(in),optional :: stderr
+
+DESCRIPTION
+  FSTOP(3f) call STOP(3f). What a call to STOP does is very system dependent,
+  so using an abstraction layer is useful, as it allows just the fstop()
+  routine to be changed; and STOP does not allow a variable to be used on the
+  numeric access status (this has changed at f2015).
+
+OPTIONS
+  ierr
+    - value in range 0 to 32
+
+  stdout
+    - description to be printed to standard output
+
+  stderr
+    - description to be printed to standard error
+
+EXAMPLES
+  Sample program:
+
+     program demo_fstop
+     use M_verify, only: fstop
+     implicit none
+     integer :: int
+     !*!write(*,*)'Enter stop value'
+     !*!read(*,*) int
+     int=25
+     select case(int)
+     case(10) ; call fstop(int)
+     case(20) ; call fstop(int,stderr='error: program will now stop')
+     case(25) ; call fstop(int,stdout='stdout message',stderr='stderr message')
+     case(30) ; call fstop(int,stdout='error: program will now stop')
+     case default
+		call fstop(int)
+     endselect
+
+     end program demo_fstop
+
+  Results:
+
+SEE ALSO
+  Look for common extensions, such as abort(3f), backtrace(3f)
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		      fstop(3m_verify)
+in_margin(3m_verify)					  in_margin(3m_verify)
+
+
+
+NAME
+  in_margin(3f) - [M_verify] check if two reals are approximately equal using
+  a relative margin
+
+
+SYNOPSIS
+  elemental pure function in_margin( expected_value, measured_value,
+  allowed_margin )
+
+       real, intent(in)    :: expected_value
+       real, intent(in)    :: measured_value
+       real, intent(in)    :: allowed_margin
+       class(*),intent(in) :: invalue
+
+
+DESCRIPTION
+  Compare two values to see if they are relatively equal using the specified
+  allowed margin. That is, see if VALUE_MEASURED is in the range
+  VALUE_EXPECTED +- ALLOWED_ERROR where the allowed error varies with the
+  magnitude of the values, such that the allowed error is margin * average
+  magnitude of measured and expected).
+
+  So the allowed error is smaller when the magnitudes are smaller.
+
+OPTIONS
+  expected_value
+    First value
+
+  measured_value
+    Second value
+
+  allowed_margin
+    Allowed relative margin
+
+EXAMPLE
+  Sample program:
+
+     program demo_in_margin
+     use :: M_verify, only : in_margin
+     implicit none
+     write(*,*) in_margin(4.00000,3.99999,0.000000001)
+     write(*,*) in_margin(4.00000,3.99999,0.00000001)
+     write(*,*) in_margin(4.00000,3.99999,0.0000001)
+     write(*,*) in_margin(4.00000,3.99999,0.000001)
+
+     write(*,*) in_margin([4.0,40.0,400.0,4000.0,40000.0], [3.9,39.9,399.9,3999.9,39999.9] ,0.000001)
+     write(*,*) in_margin([4.0,40.0,400.0,4000.0,40000.0], [3.9,39.9,399.9,3999.9,39999.9] ,0.00001)
+
+     write(*,*) in_margin(4.00000,3.99999,0.00001)
+     write(*,*) in_margin(4.00000,3.99999,0.0001)
+     write(*,*) in_margin(4.00000,3.99999,0.001)
+     write(*,*) in_margin(4.00000,3.99999,0.01)
+
+     end program demo_in_margin
+
+  Results:
+
+   F
+   F
+   F
+   F
+   F F F F F
+   F F F F T
+   T
+   T
+   T
+   T
+				 July 22, 2023		  in_margin(3m_verify)
+M_verify(3m_verify)					   M_verify(3m_verify)
+
+
+
+NAME
+  M_verify(3fm) - [M_verify::INTRO] a collection of Fortran routines for
+  supporting code development by providing error processing, debugging
+  procedures and unit testing.	(LICENSE:PD)
+
+SYNOPSIS
+  Module procedures
+
+     use M_verify, only : unit_check, unit_check_start, unit_check_done, unit_check_stop
+     use M_verify, only : unit_check_good, unit_check_bad
+     use M_verify, only : unit_check_msg
+     use M_verify, only : debug
+     use M_verify, only : fstop
+     use M_verify, only : assert
+
+  Module values
+
+     use M_verify, only : unit_check_limit, unit_check_keep_going
+     use M_verify, only : unit_check_command
+
+
+QUOTE
+  Do not let your victories go to your head, nor let your failures go to your
+  heart.
+
+DESCRIPTION
+  The M_verify(3fm) Fortran module provides procedures and variables useful
+  for providing error processing, debugging capabilities, and unit testing.
+
+    •  allows for a user-defined command to be called to collect results or
+       mail failure alerts, ...
+
+    •  supports easily composing a message from up to nine scalar intrinsic
+       values and different message levels
+
+    •  allows stopping on first failure or continuing
+
+    •  provides for a non-zero exit code if any tests fail
+
+   SET MODES
+  unit_check_keep_going
+    logical variable that can be used to turn off program termination on
+    errors.
+
+  unit_check_level
+    An integer that can be used to specify different debug levels
+
+  unit_check_command
+    name of command to execute. Defaults to the name "".
+
+   UNIT TESTS
+  unit_check_start(3f)
+    start tests of a procedure and optionally call
+
+			       command NAME start ...
+
+  unit_check(3f)
+    if expression is false optionally call
+
+			       command NAME bad
+
+  and stop program (by default)
+
+  unit_check_done(3f)
+    call
+
+			       command NAME good
+
+  if no failures; else call
+
+			       command NAME bad
+
+  unit_check_stop(3f)
+    stop program with exit value of 0 if no failures else with an exit value
+    of 1
+
+    unit_check_good(3f)
+      call command
+
+				 command NAME good
+
+
+    unit_check_bad(3f)
+      call command
+
+				 command NAME bad
+
+    and stop program by default
+
+    unit_check_msg(3f)
+      write message
+
+   BASIC DEBUGGING
+  fstop(3f)
+    calls 'STOP VALUE' passing in a value (1-32), with optional message
+
+  pdec(3f)
+    write ASCII Decimal Equivalent (ADE) numbers vertically beneath string
+
+  debug
+    logical variable that can be tested by routines as a flag to process debug
+    statements.
+
+  For unit testing, the existence of a command called "goodbad" is initially
+  assumed. This is generally a script that makes entries for each unit in an
+  SQLite data file which is then used to create CSV and HTML reports on the
+  status of each unit. A sample goodbad(1) command written in the bash(1)
+  shell and using the sqlite3(1) command should be included in this
+  distribution as an example.
+
+  The flexibility introduced by calling an external script or program is that
+  The goodbad(1) command can be changed as desired to write CSV files or
+  simple logs or to notify developers with e-mail as desired.
+
+   RELATED FUNCTIONS
+  The routines in M_verify(3f) are often combined with the M_hashkeys(3fm)
+  routines and various math and statistical routines to quickly create unit
+  tests.
+
+  Comparisons of real values can be done with a tolerance with
+  M_Compare_Float_Numbers(3fm), for example.
+
+  The intrinsics ANY(3f) and ALL(3f) are particularly useful in calls to
+  unit_check(3f).
+
+EXAMPLES
+  Sample program
+
+      !!program demo_unit_tests
+      module M_demo
+      private
+      public one !! regular routines
+      public two !! regular routines
+      public test_suite_M_demo !! special name for use with test_suite(1bash).
+      contains
+
+      !!  regular routines
+      subroutine one()
+      end subroutine one
+
+      subroutine two()
+      end subroutine two
+
+      !! unit test
+      subroutine test_suite_M_demo
+      use M_verify, only: unit_check_start, unit_check
+      use M_verify, only: unit_check_good, unit_check_bad, unit_check_done
+      use M_verify, only: unit_check_msg, unit_check_stop
+      implicit none
+      integer :: i, j, k
+      integer,allocatable :: array(:)
+      integer :: arr(4)=[21,51,14,45]
+      integer :: a=21, b=51, c=14, d=45
+      ! TEST-DRIVEN DEVELOPMENT
+      ! optional set-up       perform initialization operations common to all tests within a module
+	 i=1
+	 j=2
+	 k=3
+	 array=[10,20,30,40,50,60,70]
+	 call test_one()
+	 call test_two()
+      ! optional tear-down    perform finalization operations common to all tests within a module
+      contains
+
+      subroutine test_one()
+      !  register an entry for specified name ("one") in database with status of zero (0)
+      call unit_check_start('one')
+
+      !  if mask test fails, can
+      !  * produce a SUCCESS: or FAIL: message and stop program
+      !  * change database status for specified entry to -1 and stop program, else continue
+      !  * produce a SUCCESS: or FAIL: message and keep going
+      !  * produce a FAIL: message if test fails but no SUCCESS: message if test passes
+      call unit_check('one',i > 0,msg='I > 0')
+
+      ! using ANY(3f) and ALL(3f)
+      call unit_check('one',all([i,j,k] > 0),	   'testing if everyone greater than zero')
+      ! display message built of scalars as well
+      call unit_check('one',all(.not.[i,j,k] == 4),'for set ',i,j,k,'testing if no one is equal to four')
+
+      ! for tests that are hard to reduce to a logical test just call unit_check_bad(3f) if fail
+      if(i+j+k < 1)then
+	 call unit_check_bad('one')
+      endif
+
+      call unit_check_done('one','checks on "one" ended')
+      end subroutine test_one
+
+      subroutine test_two
+      ! use of all(3f), any(3f), merge(3f) can be useful
+      ! if you know what these would produce
+      ! write(*,*)['A','X','X','X','X','B'] == 'B'	! this would return an array, the last element having the value T, else F
+      ! write(*,*)all(['A','X','X','X','X','X'] == 'X') ! this would return F
+      ! write(*,*)any(['A','X','X','X','X','X'] == 'B') ! this would return F
+      ! write(*,*)any(['A','X','X','X','X','B'] == 'B') ! this would return T
+      ! write(*,*).not.all(array < 100)
+      ! write(*,*)all(array < 100)
+      ! write(*,*)all([a,b,c,d] == [21,51,14,45]) ! compare a list. This would return T
+      ! write(*,*)all(arr == [21,51,14,45])	  ! compare an array. This would return T
+      ! you know how valuable ANY(3f) and ALL(3f) will be
+      call unit_check_start('two','check on "two" passed')
+      call unit_check('two', 1 > 0 .and. abs(10.10000-10.10001) < 0.0001,msg='two looks good')
+      call unit_check_done('two','checks on "two" ended')
+      end subroutine test_two
+
+      end subroutine test_suite_M_demo
+
+      end module M_demo
+
+      program demo_M_verify
+      use M_demo,  only: test_suite_M_demo
+      use M_verify, only: unit_check_command, unit_check_keep_going,unit_check_level
+      unit_check_command=''
+      unit_check_keep_going=.true.
+      unit_check_level=0
+	call test_suite_M_demo
+      end program demo_M_verify
+
+  Expected output:
+
+      unit_check:	one		     SUCCESS:I > 0
+      unit_check:	one		     SUCCESS:testing if everyone greater than zero
+      unit_check:	one		     SUCCESS:for set 1 2 3 testing if no one is equal to four
+      unit_check_done:	one		     PASSED   GOOD:3  BAD:0
+
+      unit_check:	two		     SUCCESS:two looks good
+      unit_check_done:	two		     PASSED   GOOD:1  BAD:0
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		   M_verify(3m_verify)
+pdec(3m_verify) 					       pdec(3m_verify)
+
+
+
+NAME
+  pdec(3f) - [M_verify] write out string with ASCII decimal equivalent
+  vertically under it (LICENSE:PD)
+
+
+SYNOPSIS
+  Usage:
+
+      subroutine pdec(string)
+      character(len=*),intent(in) :: string
+
+
+DESCRIPTION
+  Given a string to print, PDEC() writes out the ASCII Decimal equivalent of
+  the string directly underneath it. This can help you to locate unprintable
+  characters or non-standard white-space such as a backspace character or tab
+  character in input strings that your program could not interpret. On output,
+  non-printable characters are replaced with a space, and trailing spaces are
+  ignored.
+
+  You read the numbers vertically.
+
+  1.  ignore trailing spaces
+
+  2.  print the character if it has an ADE of 32 on up
+
+  3.  print a space if it has an ADE of less than 32
+
+  4.  underneath each character print the ADE value vertically
+
+  5.  strings are assumed under 32767 characters in length.  Format integer
+      constants > 32767 are not supported on HP-UX when newer compilers are
+      available use unlimited
+
+EXAMPLES
+  Sample program:
+
+	program demo_pdec
+	use M_verify, only : pdec
+	call pdec(' ABCDEFG abcdefg    ')
+	end program demo_pdec
+
+  would produce (notice trailing space is trimmed):
+
+       > ABCDEFG abcdefg
+       >0000000000001111
+       >3666667739990000
+       >2567890127890123
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		       pdec(3m_verify)
+significant(3m_verify)					significant(3m_verify)
+
+
+
+NAME
+  significant(3f) - [M_verify] round val to specified number of significant
+  digits
+
+
+SYNOPSIS
+  pure elemental function significant(val,digits,round)
+
+       real,intent(in)			    :: val
+       integer,intent(in)		    :: digits
+       character(len=*),intent(in),optional :: round
+       real				    :: significant
+
+
+DESCRIPTION
+  Round real value to specified number of significant digits
+
+  val
+    value to round
+
+  digits
+    number of significant digits to produce
+
+  round
+    Use the round edit descriptor
+
+	    RU	UP : the value resulting from conversion shall be the
+		     smallest representable value that is greater than or
+		     equal to the original value
+	    RD	DOWN : the value resulting from conversion shall be the
+		     largest representable value that is less than or
+		     equal to the original value
+	    RZ	ZERO : the value resulting from conversion shall be the value
+		     closest to the original value and no greater in
+		     magnitude than the original value.
+	    RN	NEAREST : modeis NEAREST,thevalueresulting from conversion
+			 shall be the closer of the two nearest
+			 representable values if one is closer than the
+			 other. If the two nearest representable values
+			 are equidistant from the original value, it is
+			 processor dependent which one of them is chosen.
+	    RC	COMPATIBLE : the value resulting from conversion shall be
+			   the closer of the two nearest representable
+			   values or the value away from zero if halfway
+			   between them.
+	    RP	PROCESSOR_DEFINED : rounding during conversion shall be
+				    a processor-dependent default mode,
+				    which may correspond to one of the
+				    other modes.
+
+
+EXAMPLE
+  Sample program
+
+     program demo_significant
+     use M_verify, only : significant
+     implicit none
+     integer :: i
+     real :: r, v
+     character(len=*),parameter :: g='(*(g0.7,1x))'
+
+	write(*,g)significant([8765.43210,0.1234567890],5)
+
+	write(*,*)'default:',1.23456789012345
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9])
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RU'),'RU'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RD'),'RD'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RZ'),'RZ'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RN'),'RN'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RC'),'RC'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RP'),'RP'
+     end program demo_significant
+
+  Results:
+
+     8765.400 .1234600
+      default:	 1.234568
+     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568
+     2.000000 1.300000 1.240000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RU
+     1.000000 1.200000 1.230000 1.234000 1.234500 1.234560 1.234567 1.234568 1.234568 RD
+     1.000000 1.200000 1.230000 1.234000 1.234500 1.234560 1.234567 1.234568 1.234568 RZ
+     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RN
+     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RC
+     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RP
+
+
+
+
+				 July 22, 2023		significant(3m_verify)
+stderr(3m_verify)					     stderr(3m_verify)
+
+
+
+NAME
+       stderr(3f) - [M_verify] write message to stderr (LICENSE:PD)
+
+SYNOPSIS
+       subroutine stderr(msg,[generic])
+
+	   class(*),intent(in),optional :: msg
+	   class(*),intent(in),optional :: generic0,generic1,generic2,generic3,generic4
+	   class(*),intent(in),optional :: generic5,generic6,generic7,generic8,generic9
+
+DESCRIPTION
+       STDERR(3f) writes a message to standard error using a standard f2003
+       method.	Up to ten generic options are available.
+
+OPTIONS
+       msg    - description to print
+
+       generic[0-9]
+	      - optional value to print the value of after the message. May be
+	      of type INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX, or
+	      CHARACTER.
+
+EXAMPLES
+       Sample program:
+
+	  program demo_stderr
+	  use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+	  use,intrinsic :: iso_fortran_env, only : real32, real64, real128
+	  use,intrinsic :: iso_fortran_env, only : real=> real32, integer=> int32
+	  use M_verify, only: stderr
+	  implicit none
+
+	  call stderr('A simple message')
+	  call stderr('error: RVALUE=',3.0/4.0)
+	  call stderr('error: IVALUE=',123456789)
+	  call stderr('error: LVALUE=',.true.)
+
+	  SEVERAL: block
+	  integer :: least=10, most=999, ival=-10
+	  call stderr('error: value',ival,'should be between',least,'and',most)
+	  endblock SEVERAL
+
+	  call stderr('real32  :',huge(0.0_real32),0.0_real32,12345.6789_real32,tiny(0.0_real32))
+	  call stderr('real64  :',huge(0.0_real64),0.0_real64,12345.6789_real64,tiny(0.0_real64))
+	  call stderr('real128 :',huge(0.0_real128),0.0_real128,12345.6789_real128,tiny(0.0_real128))
+	  call stderr('complex :',cmplx(huge(0.0_real),tiny(0.0_real)))
+
+	  call stderr('error: program will now stop')
+	  stop 1
+
+	  end program demo_stderr
+
+       Results: A simple message error: RVALUE= 0.750000000 error: IVALUE=
+       123456789 error: LVALUE= T error: value -10 should be between 10 and
+       999
+
+	      real32 : 3.40282347E+38 ...  0.00000000 ...  12345.6787 ...
+		     1.17549435E-38
+
+	      real64 : 1.7976931348623157E+308 ...  0.0000000000000000 ...
+		     12345.678900000001 ...  2.2250738585072014E-308 real128 :
+		     1.18973149535723176508575932662800702E+4932 ...
+
+		     0.00000000000000000000000000000000000
+			    12345.6789000000000000000000000000002 ...
+			    3.36210314311209350626267781732175260E-4932
+			    complex : (3.40282347E+38,1.17549435E-38) error:
+			    program will now stop STOP 1
+			    ================================================================================
+
+AUTHOR
+       John S. Urban
+
+LICENSE
+       Public Domain
+
+
+
+			       January 09, 2021 	     stderr(3m_verify)
+unit_check(3m_verify)					 unit_check(3m_verify)
+
+
+
+NAME
+  unit_check(3f) - [M_verify] if logical expression is false, call command
+  "goodbad NAME bad" and stop program by default (LICENSE:PD)
+
+
+SYNOPSIS
+  subroutine
+  unit_check(name,expression,msg,msg1,msg2,msg3,msg4,msg5,msg6,msg7,msg8,msg9)
+
+      character(len=*),intent(in) :: name
+      logical,intent(in) :: expression
+      class(*),intent(in),optional :: msg,msg1,msg2,msg3,msg4,msg5,msg6,msg7,msg8,msg9
+
+
+DESCRIPTION
+  unit_check(3f) tests the expression and if it is false, calls the shell
+  command
+
+	  goodbad NAME bad
+
+  and stops the program.
+
+OPTIONS
+  NAME
+    the unit test name passed on to the goodbad(1) command
+
+  EXPRESSION
+    the logical expression to evaluate
+
+  MSG,MSG1...MSG9
+    optional message to display when performing test, composed of any scalar
+    intrinsics of type INTEGER, REAL, DOUBLEPRECISION, COMPLEX, LOGICAL, or
+    CHARACTER, with a space placed between each value.
+
+EXAMPLES
+  Sample program:
+
+     program demo_unit_check
+     use M_verify, only: unit_check
+     use M_verify, only: unit_check_start
+     use M_verify, only: unit_check_done
+     use M_verify,  only: almost
+
+     !!use M_verify, only: unit_check_keep_going	 ! default is unit_check_keep_going=.false.
+     !!use M_verify, only: debug	      ! default is .false.
+     !!use M_verify, only: unit_check_command ! default is unit_check_command=''; was 'goodbad'
+
+     implicit none
+     integer :: i
+     integer :: x
+     integer,allocatable :: arr(:)
+     real,allocatable :: arr1(:)
+     real,allocatable :: arr2(:)
+
+	!!unit_check_command=''
+	x=10
+	arr1=[1.0,10.0,100.0]
+	arr2=[1.0001,10.001,100.01]
+	call unit_check_start('myroutine')
+
+	call unit_check('myroutine', x > 3 ,'test if big enough')
+	call unit_check('myroutine', x < 100 ,'test if small enough')
+
+	do i=1,size(arr1)
+	   call unit_check('myroutine', almost(arr1(i),arr2(i),3.9,verbose=.true.) )
+	enddo
+
+	arr=[10,20,30]
+	call unit_check('myroutine', .not.any(arr < 0) ,'test if any negative values in array ARR')
+	call unit_check('myroutine', all(arr < 100) ,'test if all values less than 100 in array ARR')
+
+	call unit_check_done('myroutine',msg='checks on "myroutine" all passed')
+
+     end program demo_unit_check
+
+  Sample output (varies with what goodbad(1) command is used):
+
+     unit_check:      myroutine        SUCCESS:test if big enough
+     unit_check:      myroutine        SUCCESS:test if small enough
+     unit_check:      myroutine        SUCCESS:test if any negative values in array ARR
+     unit_check:      myroutine        SUCCESS:test if all values less than 100 in array ARR
+      *almost* for values 1.00000000 1.00010002 agreement of 3.99997139 digits out of requested 3.90000010
+      *almost* for values 10.0000000 10.0010004 agreement of 3.99986792 digits out of requested 3.90000010
+      *almost* for values 100.000000 100.010002 agreement of 3.99995065 digits out of requested 3.90000010
+     unit_check_good: myroutine        PASSED:checks on "myroutine" all passed
+
+
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023		 unit_check(3m_verify)
+unit_check_bad(3m_verify)			     unit_check_bad(3m_verify)
+
+
+
+NAME
+  unit_check_bad(3f) - [M_verify] call command "goodbad NAME bad" and stop
+  program (LICENSE:PD)
+
+
+SYNOPSIS
+  subroutine unit_check_bad(name,opts,msg)
+
+      character(len=*),intent(in) :: name
+      character(len=*),intent(in),optional :: opts
+      character(len=*),intent(in),optional :: msg
+
+
+DESCRIPTION
+  unit_check_bad(3f) calls the shell command
+
+	  goodbad NAME bad [opts]
+
+  and stops the program. It is just a shortcut for calling call
+  unit_check(name,.false.)  call unit_check_done(name,opts,msg)
+
+EXAMPLES
+  Sample program:
+
+      program demo_unit_check_bad
+      use M_verify, only: unit_check_start
+      use M_verify, only: unit_check
+      use M_verify, only: unit_check_good, unit_check_bad
+
+      implicit none
+      integer :: x
+      x=10
+      call unit_check_start('myroutine')
+
+      call unit_check('myroutine', x > 3 ,'test if big enough')
+      call unit_check('myroutine', x < 100 ,'test if small enough')
+
+      if(x /= 0)then
+	 call unit_check_bad ('myroutine',msg='checks on "myroutine" failed') ! program execution stopped
+      endif
+
+      end program demo_unit_check_bad
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023	     unit_check_bad(3m_verify)
+unit_check_done(3m_verify)			    unit_check_done(3m_verify)
+
+
+
+NAME
+  unit_check_done(3f) - [M_verify] call command "goodbad NAME good" or
+  "goodbad NAME bad" depending on whether failures were found (LICENSE:PD)
+
+
+SYNOPSIS
+  subroutine unit_check_done(name,opts,msg)
+
+      character(len=*),intent(in) :: name
+      character(len=*),intent(in),optional :: opts
+      character(len=*),intent(in),optional :: msg
+
+
+DESCRIPTION
+  If there have been no failures the shell command
+
+	  goodbad NAME good [opts]
+
+  is executed, else the command
+
+	  goodbad NAME bad [opts]
+
+  is executed and by default stops the program if their have been any
+  failures.
+
+EXAMPLES
+  Sample program:
+
+      program demo_unit_check_done
+      use M_verify, only: unit_check_start
+      use M_verify, only: unit_check
+      use M_verify, only: unit_check_good, unit_check_done, unit_check_bad
+
+      implicit none
+      integer :: x
+      x=10
+      call unit_check_start('myroutine')
+
+      call unit_check('myroutine', x > 3 ,'test if big enough')
+      call unit_check('myroutine', x < 100 ,'test if small enough')
+
+      if(x /= 0)then
+	 call unit_check_done ('myroutine',msg='checks on "myroutine"' ) ! program execution stopped
+      endif
+
+      end program demo_unit_check_done
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023	    unit_check_done(3m_verify)
+unit_check_good(3m_verify)			    unit_check_good(3m_verify)
+
+
+
+NAME
+  unit_check_good(3f) - [M_verify] call command "goodbad NAME good"
+  (LICENSE:PD)
+
+
+SYNOPSIS
+  subroutine unit_check_good(name,opts,msg)
+
+      character(len=*),intent(in)	   :: name
+      character(len=*),intent(in),optional :: opts
+      character(len=*),intent(in),optional :: msg
+
+
+DESCRIPTION
+  A shortcut for
+
+	call unit_check(name,.true.)
+	call unit_check_done(name,opts,msg)
+
+
+EXAMPLES
+  Sample program:
+
+      program demo_unit_check_good
+      use M_verify, only: unit_check_start, unit_check_done
+      use M_verify, only: unit_check
+      use M_verify, only: unit_check_good, unit_check_bad
+
+      implicit none
+      integer :: x
+      x=10
+      call unit_check_start('myroutine')
+
+      call unit_check('myroutine', x > 3 ,'test if big enough')
+      call unit_check('myroutine', x < 100 ,'test if small enough')
+
+      call unit_check_good('myroutine',msg='checks on "myroutine" ')
+
+      end program demo_unit_check_good
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023	    unit_check_good(3m_verify)
+unit_check_msg(3m_verify)			     unit_check_msg(3m_verify)
+
+
+
+NAME
+  unit_check_msg(3f) - [M_verify] converts up to nine standard scalar values
+  to a message for unit testing (LICENSE:PD)
+
+SYNOPSIS
+  function unit_check_msg(name,g1,g2g3,g4,g5,g6,g7,g8,g9)
+
+      character(len=*),intent(in)  :: name
+      class(*),intent(in),optional :: g1,g2,g3,g4,g5,g6,g7,g8,g9
+
+DESCRIPTION
+  unit_check_msg(3f) builds a string from up to nine scalar values and prints
+  it to the error long.
+
+OPTIONS
+  name
+    name of unit being tested
+
+  g[1-9]
+    optional value to print the value of after the message. May be of type
+    INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.
+
+EXAMPLES
+  Sample program:
+
+     program demo_unit_check_msg
+     use M_verify, only : unit_check_start,unit_check_msg,unit_check_done
+     implicit none
+
+     call unit_check_start('myroutine')
+     call unit_check_msg('myroutine','HUGE(3f) integers',huge(0),'and real',huge(0.0),'and double',huge(0.0d0))
+     call unit_check_msg('myroutine','real	      :',huge(0.0),0.0,12345.6789,tiny(0.0) )
+     call unit_check_msg('myroutine','doubleprecision :',huge(0.0d0),0.0d0,12345.6789d0,tiny(0.0d0) )
+     call unit_check_msg('myroutine','complex	      :',cmplx(huge(0.0),tiny(0.0)) )
+     call unit_check_done('myroutine')
+
+     end program demo_unit_check_msg
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023	     unit_check_msg(3m_verify)
+unit_check_start(3m_verify)			   unit_check_start(3m_verify)
+
+
+
+NAME
+  unit_check_start(3f) - [M_verify] call command "goodbad NAME start" and
+  optionally set options (LICENSE:PD)
+
+
+SYNOPSIS
+  subroutine unit_check_start(name,options,msg)
+
+      character(len=*),intent(in)	   :: name
+      character(len=*),intent(in),optional :: options
+      character(len=*),intent(in),optional :: msg
+
+
+DESCRIPTION
+  unit_check_start(3f) is an initialization command that by default calls the
+  shell command
+
+	goodbad NAME start [options]
+
+  The command can be changed by setting the environment variable
+  UNIT_CHECK_COMMAND or the global module variable UNIT_CHECK_COMMAND.	The
+  environment variable overrides the global module variable.
+
+  By default if a unit_check(3f) logical expression is false or the
+  unit_check_bad(3f) procedure is called the program will be stopped.
+
+  This has the same effect as setting the environment variable M_verify_STOP
+  to "FALSE" or the global module variable UNIT_CHECK_KEEP_GOING to .FALSE. .
+  Set the value to .true. and the program will continue even when tests fail.
+
+OPTIONS
+  NAME
+    name of the shell command to execute. If blank, no command is executed.
+
+  OPTIONS
+    pass additional options to the shell command
+
+    MSG
+      print message
+
+EXAMPLES
+  Sample program:
+
+      program demo_unit_check_start
+      use M_verify, only: unit_check_start
+      use M_verify, only: unit_check
+      use M_verify, only: unit_check_done
+
+      implicit none
+      integer :: ival
+      call unit_check_start('myroutine')
+      ! the goodbad(1) command called here takes many options
+      ! used to build an SQLite3 entry
+      call unit_check_start('myroutine_long',' &
+	& -section	  3		       &
+	& -library	  libGPF	       &
+	& -filename	  `pwd`/M_verify.FF	&
+	& -documentation  y		       &
+	& -prep 	  y		       &
+	& -ccall	  n		       &
+	& -archive	  GPF.a 	       &
+	& ')
+
+      ival=10
+      call unit_check('myroutine', ival > 3 ,	msg='test if big enough')
+      call unit_check('myroutine', ival < 100 , msg='test if small enough')
+
+      call unit_check_done('myroutine',msg='completed checks of "myroutine"')
+
+      end program demo_unit_check_start
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023	   unit_check_start(3m_verify)
+unit_check_stop(3m_verify)			    unit_check_stop(3m_verify)
+
+
+
+NAME
+  unit_check_stop(3f) - [M_verify] call command "goodbad NAME good" or goodbad
+  NAME bad" depending on whether failures were found (LICENSE:PD)
+
+
+SYNOPSIS
+  subroutine unit_check_stop(name,opts,msg)
+
+      character(len=*),intent(in) :: name
+      character(len=*),intent(in),optional :: opts
+      character(len=*),intent(in),optional :: msg
+
+
+DESCRIPTION
+  give a tally of all calls to unit_check(3f)
+
+EXAMPLES
+  Sample program:
+
+      program demo_unit_check_stop
+      use M_verify, only: unit_check_start, unit_check_done
+      use M_verify, only: unit_check
+      use M_verify, only: unit_check_good, unit_check_stop, unit_check_bad
+      use M_verify, only: unit_check_command, unit_check_keep_going, unit_check_level
+
+      implicit none
+      integer :: x
+
+      unit_check_command=''
+      unit_check_keep_going=.true.
+      unit_check_level=0
+
+      x=10
+      call unit_check_start('myroutine')
+
+      call unit_check('myroutine', x > 3 ,'test if big enough')
+      call unit_check('myroutine', x < 100 ,'test if small enough')
+
+      if(x /= 0)then
+	 call unit_check_bad  ('myroutine',msg='x /= 0' )
+      endif
+      call unit_check_done  ('myroutine',msg='checks on "myroutine"' )
+
+      call unit_check_stop()
+      end program demo_unit_check_stop
+
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+
+
+				 July 22, 2023	    unit_check_stop(3m_verify)

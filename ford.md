@@ -7,7 +7,7 @@ output_dir: docs/fpm-ford
 project: M_msg
 summary: messaging, logging, and unit testing
 project_github: https://github.com/urbanjost/M_msg
-project_download:
+project_download: https://github.com/urbanjost/M_msg/archive/refs/heads/master.zip
 author: John Doe
 author_email: urbanjost@gmail.com
 github: https://github.com/urbanjost/M_msg
