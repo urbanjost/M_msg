@@ -1,86 +1,64 @@
+<!-- -*- mode: jinja2 -*- -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="easy project">
+      <meta name="description" content="messaging, logging, and unit testing">
     <meta name="author" content="John Doe" >
     <link rel="icon" href="../favicon.png">
 
-    <title>wrt &ndash; easy</title>
+    <title>wrt &ndash; M_msg</title>
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
       <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-         <script src="../js/jquery-2.1.3.min.js"></script>
-         <script src="../js/svg-pan-zoom.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
   <body>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">M_msg </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
           </button>
-          <a class="navbar-brand" href="../index.html">easy </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
-              <a href="#" class="dropdown-toggle"
-                 data-toggle="dropdown" role="button"
-                 aria-haspopup="true"
-                 aria-expanded="false">
-                 Contents <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                    <li><a href="../lists/files.html">Source Files</a></li>
-                  <li><a href="../lists/modules.html">Modules</a></li>
-                  <li><a href="../lists/procedures.html">Procedures</a></li>
-                  <li><a href="../lists/programs.html">Programs</a></li>
-              </ul>
-            </li>
-                <li class="visible-xs hidden-sm visible-lg">
-                  <a href="../lists/files.html">Source Files</a>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
                 </li>
-              <li class="visible-xs hidden-sm visible-lg">
-                <a href="../lists/modules.html">Modules</a>
-              </li>
-              <li class="visible-xs hidden-sm visible-lg">
-                <a href="../lists/procedures.html">Procedures</a>
-              </li>
-              <li class="visible-xs hidden-sm visible-lg">
-                <a href="../lists/programs.html">Programs</a>
-              </li>
-          </ul>
-            <form action="../search.html" class="navbar-form navbar-right" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
               </div>
-              <!--
-                  <button type="submit" class="btn btn-default">Submit</button>
-                  -->
-            </form>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
 
     <div class="container">
   <div class="row">
@@ -88,33 +66,37 @@
       <small>Subroutine</small>
       
     </h1>
-      <div class="row" id="info-bar">
-    <div class="col-lg-12">
-      <div class="well well-sm">
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
         <ul class="list-inline" style="margin-bottom:0px;display:inline">
 
-          <li id="statements"><i class="fa fa-list-ol"></i>
-            <a data-toggle="tooltip"
-               data-placement="bottom" data-html="true"
-               title=" 1.4% of total for procedures.">15 statements</a>
-          </li>
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip"
+                 data-bs-placement="bottom" data-html="true"
+                 title=" 1.4% of total for procedures.">15 statements</a>
+            </li>
 
-            <li id="source-file">
+            <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
               <a href="../src/M_msg.F90"> Source File</a>
             </li>
         </ul>
-        <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/m_msg.f90.html'>M_msg.F90</a></li>
-              <li><a href='../module/m_msg.html'>M_msg</a></li>
-          <li class="active">wrt</li>
-        </ol>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/m_msg.f90.html'>M_msg.F90</a></li>
+                <li class="breadcrumb-item"><a href='../module/m_msg.html'>M_msg</a></li>
+            <li class="breadcrumb-item active" aria-current="page">wrt</li>
+          </ol>
+        </nav>
       </div>
     </div>
   </div>
   <script>
     $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-bs-toggle="tooltip"]').tooltip()
     })
   </script>
 
@@ -143,8 +125,9 @@
   
   
   
-    <div class="panel panel-primary">
-      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
       <div class="list-group">
         <a class="list-group-item" href="../proc/wrt.html#src">wrt</a>
       </div>
@@ -161,8 +144,8 @@
     
 
     <h2 id="name">NAME</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">wrt</span><span class="p">(</span><span class="mi">3</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">M_msg</span><span class="o">]</span><span class="w"> </span><span class="k">write</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">scalar</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">files</span><span class="w"></span>
-<span class="p">(</span><span class="nl">LICENSE</span><span class="p">:</span><span class="n">PD</span><span class="p">)</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="n">wrt</span><span class="p">(</span><span class="mi">3</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="n">M_msg</span><span class="o">]</span><span class="w"> </span><span class="k">write</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">scalar</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">files</span>
+<span class="p">(</span><span class="nl">LICENSE</span><span class="p">:</span><span class="n">PD</span><span class="p">)</span>
 </code></pre></div>
 
 <h2 id="synopsis">SYNOPSIS</h2>
@@ -181,46 +164,46 @@
 </code></pre></div>
 
 <h2 id="options">OPTIONS</h2>
-<div class="codehilite"><pre><span></span><code><span class="nv">LUNS</span>            <span class="nv">Unit</span> <span class="nv">numbers</span> <span class="nv">to</span> <span class="nv">write</span> <span class="nv">to</span>. <span class="k">If</span> <span class="nv">of</span> <span class="nv">size</span> <span class="nv">zero</span> <span class="nv">no</span> <span class="nv">output</span> <span class="nv">is</span> <span class="nv">generated</span>
-<span class="nv">generic</span>[<span class="mi">1</span><span class="o">-</span><span class="mi">20</span>]   <span class="nv">optional</span> <span class="nv">value</span> <span class="nv">to</span> <span class="nv">print</span> <span class="nv">the</span> <span class="nv">value</span> <span class="nv">of</span> <span class="nv">after</span> <span class="nv">the</span> <span class="nv">message</span>. <span class="nv">May</span>
-                <span class="nv">be</span> <span class="nv">of</span> <span class="nv">type</span> <span class="nv">INTEGER</span>, <span class="nv">LOGICAL</span>, <span class="nv">REAL</span>, <span class="nv">DOUBLEPRECISION</span>, <span class="nv">COMPLEX</span>,
-                <span class="nv">or</span> <span class="nv">CHARACTER</span>.
+<div class="codehilite"><pre><span></span><code><span class="nx">LUNS</span><span class="w">            </span><span class="nx">Unit</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">write</span><span class="w"> </span><span class="nx">to</span><span class="p">.</span><span class="w"> </span><span class="nx">If</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">size</span><span class="w"> </span><span class="nx">zero</span><span class="w"> </span><span class="nx">no</span><span class="w"> </span><span class="nx">output</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">generated</span>
+<span class="nx">generic</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">20</span><span class="p">]</span><span class="w">   </span><span class="nx">optional</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">print</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">after</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">message</span><span class="p">.</span><span class="w"> </span><span class="nx">May</span>
+<span class="w">                </span><span class="nx">be</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="nx">INTEGER</span><span class="p">,</span><span class="w"> </span><span class="nx">LOGICAL</span><span class="p">,</span><span class="w"> </span><span class="nx">REAL</span><span class="p">,</span><span class="w"> </span><span class="nx">DOUBLEPRECISION</span><span class="p">,</span><span class="w"> </span><span class="nx">COMPLEX</span><span class="p">,</span>
+<span class="w">                </span><span class="k">or</span><span class="w"> </span><span class="nx">CHARACTER</span><span class="p">.</span>
 </code></pre></div>
 
 <h2 id="returns">RETURNS</h2>
-<div class="codehilite"><pre><span></span><code><span class="nv">IOSTAT</span>          <span class="nv">The</span> <span class="nv">value</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">last</span> <span class="nv">non</span><span class="o">-</span><span class="nv">zero</span> <span class="nv">IOSTAT</span> <span class="nv">value</span>. <span class="nv">Returns</span> <span class="nv">zero</span> <span class="k">if</span>
-                <span class="nv">no</span> <span class="nv">errors</span> <span class="nv">occurred</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">IOSTAT</span><span class="w">          </span><span class="nv">The</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">last</span><span class="w"> </span><span class="nv">non</span><span class="o">-</span><span class="nv">zero</span><span class="w"> </span><span class="nv">IOSTAT</span><span class="w"> </span><span class="nv">value</span>.<span class="w"> </span><span class="nv">Returns</span><span class="w"> </span><span class="nv">zero</span><span class="w"> </span><span class="k">if</span>
+<span class="w">                </span><span class="nv">no</span><span class="w"> </span><span class="nv">errors</span><span class="w"> </span><span class="nv">occurred</span>.
 </code></pre></div>
 
 <h2 id="examples">EXAMPLES</h2>
 <p>Sample program:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">program</span><span class="w"> </span><span class="n">demo_wrt</span><span class="w"></span>
-<span class="n">use</span><span class="p">,</span><span class="w"> </span><span class="n">intrinsic</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
-<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stdin</span><span class="o">=&gt;</span><span class="n">input_unit</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
-<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stdout</span><span class="o">=&gt;</span><span class="n">output_unit</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
-<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stderr</span><span class="o">=&gt;</span><span class="n">error_unit</span><span class="w"></span>
-<span class="n">use</span><span class="w"> </span><span class="n">M_msg</span><span class="p">,</span><span class="w"> </span><span class="n">only</span><span class="o">:</span><span class="w"> </span><span class="n">wrt</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="w"></span>
-<span class="n">implicit</span><span class="w"> </span><span class="n">none</span><span class="w"></span>
-<span class="n">integer</span><span class="p">,</span><span class="n">allocatable</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">luns</span><span class="p">(</span><span class="o">:</span><span class="p">)</span><span class="w"></span>
-<span class="n">integer</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="mi">0</span><span class="w"></span>
-<span class="n">integer</span><span class="p">,</span><span class="n">parameter</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">ints</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="n">program</span><span class="w"> </span><span class="n">demo_wrt</span>
+<span class="n">use</span><span class="p">,</span><span class="w"> </span><span class="n">intrinsic</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">&amp;</span>
+<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stdin</span><span class="o">=&gt;</span><span class="n">input_unit</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span>
+<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stdout</span><span class="o">=&gt;</span><span class="n">output_unit</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span>
+<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stderr</span><span class="o">=&gt;</span><span class="n">error_unit</span>
+<span class="n">use</span><span class="w"> </span><span class="n">M_msg</span><span class="p">,</span><span class="w"> </span><span class="n">only</span><span class="o">:</span><span class="w"> </span><span class="n">wrt</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span>
+<span class="n">implicit</span><span class="w"> </span><span class="n">none</span>
+<span class="n">integer</span><span class="p">,</span><span class="n">allocatable</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">luns</span><span class="p">(</span><span class="o">:</span><span class="p">)</span>
+<span class="n">integer</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">integer</span><span class="p">,</span><span class="n">parameter</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">ints</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 
-<span class="o">!</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">null</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">allows</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">turning</span><span class="w"> </span><span class="n">off</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">debug</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="n">output</span><span class="w"></span>
-<span class="n">luns</span><span class="o">=</span><span class="p">[</span><span class="n">integer</span><span class="w"> </span><span class="o">::</span><span class="p">]</span><span class="w"></span>
-<span class="n">call</span><span class="w"> </span><span class="n">wrt</span><span class="p">(</span><span class="n">luns</span><span class="p">,</span><span class="err">&#39;</span><span class="nb">NULL</span><span class="w"> </span><span class="n">LIST</span><span class="o">:</span><span class="err">&#39;</span><span class="p">,</span><span class="n">huge</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="err">&#39;</span><span class="n">PI</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">asin</span><span class="p">(</span><span class="mf">1.0</span><span class="n">d0</span><span class="p">)</span><span class="o">*</span><span class="mf">2.0</span><span class="n">d0</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">)</span><span class="w"></span>
-<span class="n">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="err">&#39;</span><span class="n">IOSTAT</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="w"></span>
+<span class="o">!</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">null</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">allows</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">turning</span><span class="w"> </span><span class="n">off</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">debug</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="n">output</span>
+<span class="n">luns</span><span class="o">=</span><span class="p">[</span><span class="n">integer</span><span class="w"> </span><span class="o">::</span><span class="p">]</span>
+<span class="n">call</span><span class="w"> </span><span class="n">wrt</span><span class="p">(</span><span class="n">luns</span><span class="p">,</span><span class="err">&#39;</span><span class="nb">NULL</span><span class="w"> </span><span class="n">LIST</span><span class="o">:</span><span class="err">&#39;</span><span class="p">,</span><span class="n">huge</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="err">&#39;</span><span class="n">PI</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">asin</span><span class="p">(</span><span class="mf">1.0</span><span class="n">d0</span><span class="p">)</span><span class="o">*</span><span class="mf">2.0</span><span class="n">d0</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="err">&#39;</span><span class="n">IOSTAT</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">iostat</span>
 
-<span class="o">!</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">example</span><span class="w"></span>
-<span class="n">luns</span><span class="o">=</span><span class="p">[</span><span class="n">stderr</span><span class="p">,</span><span class="n">stdout</span><span class="p">]</span><span class="w"></span>
-<span class="n">call</span><span class="w"> </span><span class="n">wrt</span><span class="p">(</span><span class="n">luns</span><span class="p">,</span><span class="err">&#39;</span><span class="n">TWO</span><span class="w"> </span><span class="n">FILES</span><span class="o">:</span><span class="err">&#39;</span><span class="p">,</span><span class="n">huge</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="err">&#39;</span><span class="n">PI</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">asin</span><span class="p">(</span><span class="mf">1.0</span><span class="n">d0</span><span class="p">)</span><span class="o">*</span><span class="mf">2.0</span><span class="n">d0</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">)</span><span class="w"></span>
-<span class="n">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="err">&#39;</span><span class="n">IOSTAT</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="w"></span>
+<span class="o">!</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">example</span>
+<span class="n">luns</span><span class="o">=</span><span class="p">[</span><span class="n">stderr</span><span class="p">,</span><span class="n">stdout</span><span class="p">]</span>
+<span class="n">call</span><span class="w"> </span><span class="n">wrt</span><span class="p">(</span><span class="n">luns</span><span class="p">,</span><span class="err">&#39;</span><span class="n">TWO</span><span class="w"> </span><span class="n">FILES</span><span class="o">:</span><span class="err">&#39;</span><span class="p">,</span><span class="n">huge</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="err">&#39;</span><span class="n">PI</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">asin</span><span class="p">(</span><span class="mf">1.0</span><span class="n">d0</span><span class="p">)</span><span class="o">*</span><span class="mf">2.0</span><span class="n">d0</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="err">&#39;</span><span class="n">IOSTAT</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">iostat</span>
 
-<span class="o">!</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">fmt</span><span class="w"></span>
-<span class="n">call</span><span class="w"> </span><span class="n">wrt</span><span class="p">([</span><span class="n">stdout</span><span class="p">,</span><span class="n">stdout</span><span class="p">,</span><span class="n">stdout</span><span class="p">],</span><span class="err">&#39;</span><span class="n">USING</span><span class="w"> </span><span class="n">FMT</span><span class="w"> </span><span class="o">:</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
-<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">huge</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="err">&#39;</span><span class="n">PI</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">asin</span><span class="p">(</span><span class="mf">1.0</span><span class="n">d0</span><span class="p">)</span><span class="o">*</span><span class="mf">2.0</span><span class="n">d0</span><span class="p">,</span><span class="n">fmt</span><span class="p">(</span><span class="n">ints</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="err">&#39;</span><span class="n">i0</span><span class="mf">.4</span><span class="err">&#39;</span><span class="p">),</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">)</span><span class="w"></span>
+<span class="o">!</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">fmt</span>
+<span class="n">call</span><span class="w"> </span><span class="n">wrt</span><span class="p">([</span><span class="n">stdout</span><span class="p">,</span><span class="n">stdout</span><span class="p">,</span><span class="n">stdout</span><span class="p">],</span><span class="err">&#39;</span><span class="n">USING</span><span class="w"> </span><span class="n">FMT</span><span class="w"> </span><span class="o">:</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span>
+<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">huge</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="err">&#39;</span><span class="n">PI</span><span class="o">=</span><span class="err">&#39;</span><span class="p">,</span><span class="n">asin</span><span class="p">(</span><span class="mf">1.0</span><span class="n">d0</span><span class="p">)</span><span class="o">*</span><span class="mf">2.0</span><span class="n">d0</span><span class="p">,</span><span class="n">fmt</span><span class="p">(</span><span class="n">ints</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="err">&#39;</span><span class="n">i0</span><span class="mf">.4</span><span class="err">&#39;</span><span class="p">),</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">)</span>
 
 
-<span class="n">end</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="n">demo_wrt</span><span class="w"></span>
+<span class="n">end</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="n">demo_wrt</span>
 </code></pre></div>
 
 <h2 id="two-files-2147483647-pi-31415926535897931">TWO FILES: 2147483647 PI= 3.1415926535897931</h2>
@@ -238,15 +221,16 @@
 <div class="codehilite"><pre><span></span><code>Public Domain
 </code></pre></div>
 
+
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
     <thead>
       <tr>
-        <th>Type</th>
-<th>Intent</th><th>Optional</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-        <th></th>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
     </thead>
     <tbody>
         <tr>
@@ -266,7 +250,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g0~2"></span>
+              <span class="anchor" id="variable-g0~3"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -281,7 +265,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g1~4"></span>
+              <span class="anchor" id="variable-g1~5"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -296,7 +280,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g2~4"></span>
+              <span class="anchor" id="variable-g2~5"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -311,7 +295,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g3~4"></span>
+              <span class="anchor" id="variable-g3~5"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -326,7 +310,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g4~4"></span>
+              <span class="anchor" id="variable-g4~5"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -341,7 +325,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g5~4"></span>
+              <span class="anchor" id="variable-g5~5"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -356,7 +340,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g6~4"></span>
+              <span class="anchor" id="variable-g6~5"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -371,7 +355,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g7~4"></span>
+              <span class="anchor" id="variable-g7~5"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -386,7 +370,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g8~4"></span>
+              <span class="anchor" id="variable-g8~5"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -401,7 +385,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-g9~4"></span>
+              <span class="anchor" id="variable-g9~5"></span>
               class(*),
             </td>
 <td>intent(in),</td>
@@ -584,67 +568,36 @@
 
     <br>
 
-    <section class="visible-xs visible-sm hidden-md">
-        <h3>Contents</h3>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-    <div class="panel panel-primary">
-      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-      <div class="list-group">
-        <a class="list-group-item" href="../proc/wrt.html#src">wrt</a>
-      </div>
-    </div>
-
-
-    </section>
-    <br class="visible-xs visible-sm hidden-md">
-
 
     
     
 
     
     
+
 
 
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">wrt</span><span class="p">(</span><span class="n">luns</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="w"> </span><span class="n">g1</span><span class="p">,</span><span class="w"> </span><span class="n">g2</span><span class="p">,</span><span class="w"> </span><span class="n">g3</span><span class="p">,</span><span class="w"> </span><span class="n">g4</span><span class="p">,</span><span class="w"> </span><span class="n">g5</span><span class="p">,</span><span class="w"> </span><span class="n">g6</span><span class="p">,</span><span class="w"> </span><span class="n">g7</span><span class="p">,</span><span class="w"> </span><span class="n">g8</span><span class="p">,</span><span class="w"> </span><span class="n">g9</span><span class="p">,</span><span class="w"> </span><span class="n">ga</span><span class="p">,</span><span class="w"> </span><span class="n">gb</span><span class="p">,</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="w"> </span><span class="n">gd</span><span class="p">,</span><span class="w"> </span><span class="n">ge</span><span class="p">,</span><span class="w"> </span><span class="n">gf</span><span class="p">,</span><span class="w"> </span><span class="n">gg</span><span class="p">,</span><span class="w"> </span><span class="n">gh</span><span class="p">,</span><span class="w"> </span><span class="n">gi</span><span class="p">,</span><span class="w"> </span><span class="n">gj</span><span class="p">,</span><span class="n">iostat</span><span class="p">)</span><span class="w"></span>
-<span class="k">implicit none</span><span class="w"></span>
+    <div class="hl codehilite"><pre><span></span><span class="k">subroutine </span><span class="n">wrt</span><span class="p">(</span><span class="n">luns</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="w"> </span><span class="n">g1</span><span class="p">,</span><span class="w"> </span><span class="n">g2</span><span class="p">,</span><span class="w"> </span><span class="n">g3</span><span class="p">,</span><span class="w"> </span><span class="n">g4</span><span class="p">,</span><span class="w"> </span><span class="n">g5</span><span class="p">,</span><span class="w"> </span><span class="n">g6</span><span class="p">,</span><span class="w"> </span><span class="n">g7</span><span class="p">,</span><span class="w"> </span><span class="n">g8</span><span class="p">,</span><span class="w"> </span><span class="n">g9</span><span class="p">,</span><span class="w"> </span><span class="n">ga</span><span class="p">,</span><span class="w"> </span><span class="n">gb</span><span class="p">,</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="w"> </span><span class="n">gd</span><span class="p">,</span><span class="w"> </span><span class="n">ge</span><span class="p">,</span><span class="w"> </span><span class="n">gf</span><span class="p">,</span><span class="w"> </span><span class="n">gg</span><span class="p">,</span><span class="w"> </span><span class="n">gh</span><span class="p">,</span><span class="w"> </span><span class="n">gi</span><span class="p">,</span><span class="w"> </span><span class="n">gj</span><span class="p">,</span><span class="n">iostat</span><span class="p">)</span>
+<span class="k">implicit none</span>
 
 <span class="c">! ident_6=&quot;@(#) M_msg write(3f) writes a message to any number of open files with any scalar values&quot;</span>
 
-<span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">luns</span><span class="p">(:)</span><span class="w"></span>
-<span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">g0</span><span class="p">,</span><span class="w"> </span><span class="n">g1</span><span class="p">,</span><span class="w"> </span><span class="n">g2</span><span class="p">,</span><span class="w"> </span><span class="n">g3</span><span class="p">,</span><span class="w"> </span><span class="n">g4</span><span class="p">,</span><span class="w"> </span><span class="n">g5</span><span class="p">,</span><span class="w"> </span><span class="n">g6</span><span class="p">,</span><span class="w"> </span><span class="n">g7</span><span class="p">,</span><span class="w"> </span><span class="n">g8</span><span class="p">,</span><span class="w"> </span><span class="n">g9</span><span class="w"></span>
-<span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ga</span><span class="p">,</span><span class="w"> </span><span class="n">gb</span><span class="p">,</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="w"> </span><span class="n">gd</span><span class="p">,</span><span class="w"> </span><span class="n">ge</span><span class="p">,</span><span class="w"> </span><span class="n">gf</span><span class="p">,</span><span class="w"> </span><span class="n">gg</span><span class="p">,</span><span class="w"> </span><span class="n">gh</span><span class="p">,</span><span class="w"> </span><span class="n">gi</span><span class="p">,</span><span class="w"> </span><span class="n">gj</span><span class="w"></span>
-<span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iostat</span><span class="w"></span>
-<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">msg</span><span class="w"></span>
-<span class="w">   </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">luns</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="n">luns</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39;(a)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span><span class="n">str</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">g2</span><span class="p">,</span><span class="n">g3</span><span class="p">,</span><span class="n">g4</span><span class="p">,</span><span class="n">g5</span><span class="p">,</span><span class="n">g6</span><span class="p">,</span><span class="n">g7</span><span class="p">,</span><span class="n">g8</span><span class="p">,</span><span class="n">g9</span><span class="p">,</span><span class="n">ga</span><span class="p">,</span><span class="n">gb</span><span class="p">,</span><span class="n">gc</span><span class="p">,</span><span class="n">gd</span><span class="p">,</span><span class="n">ge</span><span class="p">,</span><span class="n">gf</span><span class="p">,</span><span class="n">gg</span><span class="p">,</span><span class="n">gh</span><span class="p">,</span><span class="n">gi</span><span class="p">,</span><span class="n">gj</span><span class="p">)</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">luns</span><span class="p">(:)</span>
+<span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">g0</span><span class="p">,</span><span class="w"> </span><span class="n">g1</span><span class="p">,</span><span class="w"> </span><span class="n">g2</span><span class="p">,</span><span class="w"> </span><span class="n">g3</span><span class="p">,</span><span class="w"> </span><span class="n">g4</span><span class="p">,</span><span class="w"> </span><span class="n">g5</span><span class="p">,</span><span class="w"> </span><span class="n">g6</span><span class="p">,</span><span class="w"> </span><span class="n">g7</span><span class="p">,</span><span class="w"> </span><span class="n">g8</span><span class="p">,</span><span class="w"> </span><span class="n">g9</span>
+<span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ga</span><span class="p">,</span><span class="w"> </span><span class="n">gb</span><span class="p">,</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="w"> </span><span class="n">gd</span><span class="p">,</span><span class="w"> </span><span class="n">ge</span><span class="p">,</span><span class="w"> </span><span class="n">gf</span><span class="p">,</span><span class="w"> </span><span class="n">gg</span><span class="p">,</span><span class="w"> </span><span class="n">gh</span><span class="p">,</span><span class="w"> </span><span class="n">gi</span><span class="p">,</span><span class="w"> </span><span class="n">gj</span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iostat</span>
+<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">msg</span>
+<span class="w">   </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">luns</span><span class="p">)</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="n">luns</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39;(a)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span><span class="n">str</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">,</span><span class="n">g2</span><span class="p">,</span><span class="n">g3</span><span class="p">,</span><span class="n">g4</span><span class="p">,</span><span class="n">g5</span><span class="p">,</span><span class="n">g6</span><span class="p">,</span><span class="n">g7</span><span class="p">,</span><span class="n">g8</span><span class="p">,</span><span class="n">g9</span><span class="p">,</span><span class="n">ga</span><span class="p">,</span><span class="n">gb</span><span class="p">,</span><span class="n">gc</span><span class="p">,</span><span class="n">gd</span><span class="p">,</span><span class="n">ge</span><span class="p">,</span><span class="n">gf</span><span class="p">,</span><span class="n">gg</span><span class="p">,</span><span class="n">gh</span><span class="p">,</span><span class="n">gi</span><span class="p">,</span><span class="n">gj</span><span class="p">)</span>
 <span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">iostat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
-<span class="k">         call </span><span class="n">stderr</span><span class="p">(</span><span class="s1">&#39;&lt;ERROR&gt;*write*:&#39;</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+<span class="k">         call </span><span class="n">stderr</span><span class="p">(</span><span class="s1">&#39;&lt;ERROR&gt;*write*:&#39;</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span>
 <span class="w">      </span><span class="k">endif</span>
 <span class="k">   enddo</span>
-<span class="k">end subroutine </span><span class="n">wrt</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">wrt</span>
 </pre></div>
 
     </section>
@@ -657,32 +610,27 @@
     </div> <!-- /container -->
     <footer>
       <div class="container">
-        <div class="row">
-          <div class="col-xs-6 col-md-6"><p>easy was developed by John Doe<br>&copy; 2023 
+        <div class="row justify-content-between">
+          <div class="col"><p>M_msg was developed by John Doe<br>&copy; 2024 
 </p>
           </div>
-          <div class="col-xs-6 col-md-6">
-            <p class="text-right">
+          <div class="col">
+            <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-03-18 10:04              </p>
+ on 2024-03-29 03:46              </p>
           </div>
         </div>
         <br>
       </div> <!-- /container -->
     </footer>
 
-    <!-- Bootstrap core JavaScript
-         ================================================== -->
-         <!-- Placed at the end of the document so the pages load faster -->
-    <!--
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        -->
-        <script src="../js/bootstrap.min.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
 
-        <!-- MathJax JavaScript
+    <!-- MathJax JavaScript
              ================================================== -->
              <!-- Placed at the end of the document so the pages load faster -->
         <script type="text/x-mathjax-config">
