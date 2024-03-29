@@ -6,7 +6,7 @@
 
      !!use M_verify, only: unit_check_keep_going         ! default is unit_check_keep_going=.false.
      !!use M_verify, only: debug              ! default is .false.
-     !!use M_verify, only: unit_check_command ! default is unit_check_command=''; was 'goodbad'
+     !!use M_verify, only: unit_check_command ! default is unit_check_command='goodbad'
 
      implicit none
      integer :: i

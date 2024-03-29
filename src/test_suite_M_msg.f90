@@ -31,6 +31,7 @@ character(len=*),intent(in)   :: question
 character(len=*),intent(in)   :: answer
 character(len=*),intent(in)   :: answer2
 logical                       :: passed
+integer                       :: ipad
   passed=question .eq. answer
   if(.not.passed)then
      passed=question .eq. answer2
