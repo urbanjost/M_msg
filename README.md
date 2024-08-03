@@ -22,7 +22,32 @@ performing unit tests,
  + **M_verify** contains procedures useful for generating unit tests
 
  + **M_journal** allows for creating log and journal files
+ + **M_messages** includes messages containing line art, ASCII plotting
+   procedures, and various table presentations.
 
+# LineArt Messages
+
+
+The lineart routines files display eye-catching messages
+as block letters or with ASCII art.
+
++ junbad        -  print an eye-catching image of a skull. 
++ junbat        -  print an eye-catching image of a bat. 
++ junbuster     -  es] call journal(3f) to print eye-catching ASCII graphic (ghostbuster) 
++ jundragon     -  fill in a character array with a message 
++ junroach      -  print an eye-catching image of a roach. 
++ junsun        -  print an eye-catching image of a smiling sun. 
++ juntrolls     -  print an eye-catching bulletin 
+
+## Message Routines
+
+   Generic procedures that are used to generate messages.
+
++ blocks        -  write large block letters 
++ signs         -  write out string in large block letters 
+
++ percent_done  -  non-advancing status counter displays percentage done on terminal displays 
++ tabgraph      -  write out a row of numbers and a text-based scaled graph 
 
 ## Building the Module
 A conventional GNU/Linux or Unix install:
