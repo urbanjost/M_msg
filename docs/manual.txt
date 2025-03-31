@@ -1,19 +1,31 @@
 accdig (3m_verify)   - [M_verify] compare two real numbers only up to a specified number of digits (LICENSE:PD)
 almost (3m_verify)   - [M_verify] return true or false if two numbers agree up to specified number of digits (LICENSE:PD)
 assert (3m_verify)   - [M_verify] print filename, linenumber, and message to stderr and stop program (LICENSE:PD)
+blocks (3m_messages) - [M_messages] write large block letters (LICENSE:PD)
 dp_accdig (3m_verify) - [M_verify] compare two numbers only up to a specified number of digits (LICENSE:PD)
 fmt (3m_msg)	     - [M_msg] convert any intrinsic to a string using specified format (LICENSE:PD)
 fstop (3m_verify)    - [M_verify] call stop with both a number and a message (LICENSE:PD)
 help_command (3m_help) - [M_help] uses a specially formatted text array to provide a HELP interface (LICENSE:PD)
 in_margin (3m_verify) - [M_verify] check if two reals are approximately equal using a relative margin
 journal (3m_journal) - [M_journal] provides public message routine, no paging or graphic mode change (LICENSE:PD)
+junbad (3m_messages) - [M_messages] print an eye-catching image of a skull. (LICENSE:PD)
+junbat (3m_messages) - [M_messages] print an eye-catching image of a bat. (LICENSE:PD)
+junbuster (3m_messages) - [M_messages] call journal(3f) to print eye-catching ASCII graphic (ghostbuster) (LICENSE:PD)
+jundragon (3m_messages) - [M_messages] fill in a character array with a message (LICENSE:PD)
+junroach (3m_messages) - [M_messages] print an eye-catching image of a roach. (LICENSE:PD)
+junsun (3m_messages) - [M_messages] print an eye-catching image of a smiling sun. (LICENSE:PD)
+juntrolls (3m_messages) - [M_messages] print an eye-catching bulletin (LICENSE:PD)
 M_journal (3m_journal) - [M_journal::INTRO] write program messages to stdout and/or a log file (LICENSE:PD)
 M_verify (3m_verify) - [M_verify::INTRO] a collection of Fortran routines for supporting code development by providing error processing, debugging procedures and unit testing. (LICENSE:PD)
 pdec (3m_verify)     - [M_verify] write out string with ASCII decimal equivalent vertically under it (LICENSE:PD)
+percent_done (3m_messages) - [M_messages] non-advancing status counter displays percentage done on terminal displays (LICENSE:PD)
+set (3m_msg)	     - [M_msg] set scalars from an array (LICENSE:PD)
 significant (3m_verify) - [M_verify] round val to specified number of significant digits
+signs (3m_messages)  - [M_messages] write out string in large block letters (LICENSE:PD)
 stderr (3m_msg)      - [M_msg] write message to stderr (LICENSE:PD)
 stderr (3m_verify)   - [M_verify] write message to stderr (LICENSE:PD)
 str (3m_msg)	     - [M_msg] converts up to twenty standard scalar type values to a string (LICENSE:PD)
+tabgraph (3m_messages) - [M_messages] write out a row of numbers and a text-based scaled graph (LICENSE:PD)
 unit_check (3m_verify) - [M_verify] if logical expression is false, call command "goodbad NAME bad" and stop program by default (LICENSE:PD)
 unit_check_bad (3m_verify) - [M_verify] call command "goodbad NAME bad" and stop program (LICENSE:PD)
 unit_check_done (3m_verify) - [M_verify] call command "goodbad NAME good" or "goodbad NAME bad" depending on whether failures were found (LICENSE:PD)
@@ -24,18 +36,14 @@ unit_check_stop (3m_verify) - [M_verify] call command "goodbad NAME good" or goo
 wrt (3m_msg)	     - [M_msg] write multiple scalar values to any number of files (LICENSE:PD)
 help_command(3m_help)					 help_command(3m_help)
 
-
-
 NAME
   help_command(3f) - [M_help] uses a specially formatted text array to provide
   a HELP interface (LICENSE:PD)
-
 
 SYNOPSIS
   Syntax:
 
        function help_command(text_array,topic,position)
-
 
 DESCRIPTION
   This routine, when given a CHARACTER array displays the text interactively.
@@ -62,7 +70,7 @@ DESCRIPTION
 
 	h
 	#----------------------------------------------------# PAGING
-	| f|SPACE b  forward or backward one page	     |
+	| f b	     forward or backward one page	     |
 	| u d	     redraw up or down one-half page	     |
 	| r	     refresh page			     |
 	| e y | j k  refresh page moving up or down one line |
@@ -82,10 +90,9 @@ DESCRIPTION
 	| h	     display this help			     |
 	| q	     quit				     |
 	#----------------------------------------------------#
-	Anything else is ignored.
+	A blank repeats last positioning command. Anything else is ignored.
 	Line count is 25 out of 54 . Page size is 23 (see "lines")
-	continue ..
-
+	help:
 
   A normal topic is displayed until another topic line (line beginning with a
   non-blank) is encountered
@@ -111,7 +118,7 @@ OPTIONS
     be used between pauses. The first one indicates how many lines on the
     current page have been displayed.
 
-EXAMPLE
+EXAMPLES
   Sample program:
 
      program demo_help_command
@@ -185,12 +192,8 @@ EXAMPLE
      call help_command(help_text,'manual',position)
      end program demo_help_command
 
-
-
-				March 30, 2024		 help_command(3m_help)
+				March 30, 2025		 help_command(3m_help)
 journal(3m_journal)					   journal(3m_journal)
-
-
 
 NAME
   journal(3f) - [M_journal] provides public message routine, no paging or
@@ -201,7 +204,6 @@ SYNOPSIS
 
       character(len=*),intent(in) :: where
       character(len=*)|real|integer|doubleprecision|complex,optional :: g1,g2,g3,g4,g5,g6,g7,g8,g9
-
 
    WRITE MESSAGES
   basic messages
@@ -221,13 +223,11 @@ SYNOPSIS
 
 	call journal('%',time_stamp_prefix_specification)
 
-
    MODES
   Turn on/off writing DEBUG messages to trail file
 
 	call journal('>','debug on') # turn on debug mode
 	call journal('<','debug off') # turn off debug mode
-
 
    ASSIGN STDOUT TO AN ALTERNATE FILE
   change stdout to iunit and open filename; or close unit and go back to
@@ -238,7 +238,6 @@ SYNOPSIS
   change stdout to iunit to use a file already open
 
 	call journal(iunit)
-
 
 DESCRIPTION
   If a user procedure is used for outputting messages instead of calling
@@ -308,7 +307,7 @@ OPTIONS
     when WHERE="%" the message is treated as a time format specification as
     described under now(3f).
 
-EXAMPLE
+EXAMPLES
   Sample program:
 
      program demo_journal
@@ -400,19 +399,14 @@ EXAMPLE
 
      end program testit
 
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024		   journal(3m_journal)
+				March 30, 2025		   journal(3m_journal)
 M_journal(3m_journal)					 M_journal(3m_journal)
-
-
 
 NAME
   M_journal(3fm) - [M_journal::INTRO] write program messages to stdout and/or
@@ -469,7 +463,6 @@ DESCRIPTION
   writes to the trail file are ignored unless a trail file was opened with
 
 	CALL JOURNAL('O',filename)
-
 
   So that routines that do their output via JOURNAL(3f) can be used with and
   without programs generating trail files. That is, destinations 'T' and 'C'
@@ -553,75 +546,810 @@ EXAMPLES
        !
        end program testit
 
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024		 M_journal(3m_journal)
-fmt(3m_msg)							   fmt(3m_msg)
-
-
+				March 30, 2025		 M_journal(3m_journal)
+blocks(3m_messages)					   blocks(3m_messages)
 
 NAME
-  fmt(3f) - [M_msg] convert any intrinsic to a string using specified format
-  (LICENSE:PD)
+  blocks(1f) - [M_messages] write large block letters (LICENSE:PD)
 
 SYNOPSIS
-  function fmt(value,format) result(string)
+  subroutine blocks(string,iounit)
 
-      class(*),intent(in),optional :: value
-      character(len=*),intent(in),optional  :: format
-      character(len=:),allocatable :: string
+      character(len=*)	::  string
+      integer :: iounit
 
 DESCRIPTION
-  FMT(3f) converts any standard intrinsic value to a string using the
-  specified format.
+  Given a string, BLOCKS() writes out the string left-justified starting in
+  column 2 in large block letters 10 lines tall Note that 10 characters will
+  fit between columns 2 and 131.
+
+  This can be used to make banners in program output files; it is also handy
+  for making attention-catching notices in interactive programs. The routine
+  has been used to make large delivery banners on fixed-type printers and to
+  make eye-readable headers on microfiche.
+
+  If the output unit number is negative, JOURNAL() is called instead of
+  writing to a unit
 
 OPTIONS
-  value
-    value to print the value of. May be of type INTEGER, LOGICAL, REAL,
-    DOUBLEPRECISION, COMPLEX, or CHARACTER.
+  STRING
+    The string to represent in block characters
 
-  format
-    format to use to print value. It is up to the user to use an appropriate
-    format. The format does not require being surrounded by parenthesis. If
-    not present a default is selected similar to what would be produced with
-    free format.
-
-RETURNS
-  string
-    A string value
+  IOUNIT
+    The unit number (the LUN) for the file to write to
 
 EXAMPLES
   Sample program:
 
-      program demo_fmt
-      use :: M_msg, only : fmt
-      implicit none
-      character(len=:),allocatable :: output
+     program demo_blocks
+     use M_messages, only : blocks
+	call blocks('NOTICE',6)
+     end program demo_blocks
 
-	 output=fmt(10,"'[',i0,']'")
-	 write(*,*)'result is ',output
+  would produce:
 
-	 output=fmt(10.0/3.0,"'[',g0.5,']'")
-	 write(*,*)'result is ',output
+      >nn      nn    oooooooo	 tttttttttt   iiiiiiiiii    cccccccc	eeeeeeeeee
+      >nnn     nn   oooooooooo	 tttttttttt   iiiiiiiiii   cccccccccc	eeeeeeeeee
+      >nnnn    nn   oo	   ooo	     tt 	  ii	   cc	    c	ee
+      >nn nn   nn   oo	  o oo	     tt 	  ii	   cc		ee
+      >nn  nn  nn   oo	 o  oo	     tt 	  ii	   cc		eeeee
+      >nn  nn  nn   oo	o   oo	     tt 	  ii	   cc		eeeee
+      >nn   nn nn   oo o    oo	     tt 	  ii	   cc		ee
+      >nn    nnnn   ooo     oo	     tt 	  ii	   cc	    c	ee
+      >nn     nnn   oooooooooo	     tt       iiiiiiiiii   cccccccccc	eeeeeeeeee
+      >nn      nn    oooooooo	     tt       iiiiiiiiii    cccccccc	eeeeeeeeee
 
-	 output=fmt(.true.,"'The final answer is [',g0,']'")
-	 write(*,*)'result is ',output
+AUTHOR
+  John S. Urban
 
-      end program demo_fmt
+LICENSE
+  Public License
+
+				March 30, 2025		   blocks(3m_messages)
+junbad(3m_messages)					   junbad(3m_messages)
+
+NAME
+  junbad(3f) - [M_messages] print an eye-catching image of a skull.
+  (LICENSE:PD)
+
+SYNOPSIS
+  SUBROUTINE junbad(where)
+
+      character(len=*),intent(in) :: where
+
+DESCRIPTION
+  Calls JOURNAL(3f) to print an eye-catching lineart image of a skill.
+  Typically used to indicate an error has occurred in a program.
+
+OPTIONS
+  where
+    String used to indicate output disposition. See the description of
+    JOURNAL() for a meaning for the I/O flag. To write to stdout use 's'.
+
+EXAMPLES
+  Example program:
+
+	program demo_junbad
+	use M_messages, only : junbad
+	   call junbad('s')
+	end program demo_junbad
+
+  Expected output:
+
+	>	    _,.-----.,_
+	>	  ,-~		~-.
+	>	,^___		___^.
+	>      /~"   ~"   .   "~   "~	   >	 Y  ,--._    I	  _.--.  Y
+	>     | Y     ~-. | ,-~     Y |
+	>     | |	 }:{	    | |
+	>     j l	/ | \	    ! l
+	>  .-~	(__,.--" .^. "--.,__)  ~-.
+	> (	      / / | \ \ 	  )
+	>  \.____,   ~	\/"\/  ~   .____,/
+	>   ^.____		   ____.^
+	>      | |T ~\	!   !  /~ T| |
+	>      | |l   _ _ _ _ _   !| |
+	>      | l \/V V V V V V\/ j |
+	>      l  \ \|_|_|_|_|_|/ /  !
+	>	\  \[T T T T T TI/  /
+	>	 \  `^-^-^-^-^-^`  /
+	>	  \		  /
+	>	   \.		,/
+	>	     "^-.___,-^"
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025		   junbad(3m_messages)
+junbat(3m_messages)					   junbat(3m_messages)
+
+NAME
+  junbat(3f) - [M_messages] print an eye-catching image of a bat.
+  (LICENSE:PD)
+
+SYNOPSIS
+  SUBROUTINE junbat(where)
+
+     character(len=*),intent(in) :: where
+
+DESCRIPTION
+  Sample output:
+
+    >			  .-			.-
+    >		     _..-'(			  )`-.._
+    >		  ./'. '||\\.	    (\_/)	.//||` .`\.
+    >	       ./'.|'.'||||\\|..    )o o(    ..|//||||`.`|.`\.
+    >	    ./'..|'.|| |||||\`````` '`"'` ''''''/||||| ||.`|..`\.
+    >	  ./'.||'.|||| ||||||||||||.	 .|||||||||||| ||||.`||.`\.
+    >	 /'|||'.|||||| ||||||||||||{	 }|||||||||||| ||||||.`|||`  >	 '.|||'.||||||| ||||||||||||{	  }|||||||||||| |||||||.`|||.`
+    >  '.||| ||||||||| |/'   ``\||``	 ''||/''   `\| ||||||||| |||.`
+    >  |/' \./'     `\./	 \!|\	/|!/	     \./'     `\./ `\|
+    >  V    V	      V 	 }' `\ /' `{	      V 	V    V
+    >  `    `	      ` 	      V 	      ' 	'    '
+
+  See the description of JOURNAL() for a meaning for the I/O flag.
+
+EXAMPLES
+  Sample program:
+
+     program demo_junbad
+     use M_messages, only : junbat
+	call junbat('s')
+     end program demo_junbad
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025		   junbat(3m_messages)
+percent_done(3m_messages)			     percent_done(3m_messages)
+
+NAME
+  percent_done(3f) - [M_messages] non-advancing status counter displays
+  percentage done on terminal displays (LICENSE:PD)
+
+SYNOPSIS
+  subroutine percent_done(part,whole)
+
+     class(*),intent(in) :: part
+     class(*),intent(in) :: whole
+
+DESCRIPTION
+  For interactive terminal sessions display the message
+
+       " Percent Complete: NNN.NN%"
+
+OPTIONS
+  part
+    number of elements completed. Should take any scalar numeric value.
+
+  whole
+    total number of elements to be completed. Should take any scalar numeric
+    value.
+
+EXAMPLES
+  Sample program:
+
+     program demo_percent_done
+     use m_time, only : system_sleep
+     use m_messages, only : percent_done
+     implicit none
+     integer :: i, nr=10
+
+     do i=1,nr
+	call percent_done(i,nr)
+	call system_sleep(1)  !give a delay in seconds
+     enddo
+
+     end program demo_percent_done
 
   Results:
 
-      result is [10]
-      result is [3.3333]
-      result is The final answer is [T]
+     Percent Complete: 100.00%
 
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025	     percent_done(3m_messages)
+signs(3m_messages)					    signs(3m_messages)
+
+NAME
+  signs(3f) - [M_messages] write out string in large block letters
+  (LICENSE:PD)
+
+SYNOPSIS
+  subroutine signs(string,iounit)
+
+       character(len=*),intent(in)	    :: string
+       integer,intent(in)		    :: iounit
+       character(len=1),intent(in),optional :: letter
+
+DESCRIPTION
+  SIGNS(2f) writes out the string left-justified in large (13 lines x 8
+  columns) block letters starting in column 2.
+
+  This can be used to make banners in program output files; it is also handy
+  for making attention-catching notices in interactive programs.
+
+EXAMPLE
+  The program:
+
+	 program demo_signs
+	 use M_messages, only : signs
+	 call signs('NOTICE',6)
+	 end program demo_signs
+
+  would produce:
+
+       > XX  XXX   XXX	 XXXXXXX  XXXXX    XXXX  XXXXXXX
+       >  X   X   X   X  X  X  X    X	  X    X  X    X
+       >  XX  X  X     X    X	    X	 X	  X
+       >  XX  X  X     X    X	    X	 X	  X  X
+       >  X X X  X     X    X	    X	 X	  XXXX
+       >  X  XX  X     X    X	    X	 X	  X  X
+       >  X  XX  X     X    X	    X	 X	  X
+       >  X   X   X   X     X	    X	  X    X  X    X
+       > XXX  X    XXX	   XXX	  XXXXX    XXXX  XXXXXXX
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025		    signs(3m_messages)
+tabgraph(3m_messages)					 tabgraph(3m_messages)
+
+NAME
+  tabgraph(3f) - [M_messages] write out a row of numbers and a text-based
+  scaled graph (LICENSE:PD)
+
+SYNOPSIS
+  SUBROUTINE tabgraph(ctmp,array,ivals,rmin,rmax,cfill,ilen)
+
+DESCRIPTION
+  Given a max and min value for setting up a range write out a series of real
+  numbers with a text-based graph scale appended.  Each column of numbers is
+  written with a format of "1x,g14.7", taking up 15 characters per number.
+
+  Given an array of numbers in ARRAY(IVALS),
+
+    1.	write the numbers into string CTMP with a scale appended to the right
+	that depicts the relative ranges of the numbers.
+
+    2.	RMIN and RMAX are the minimum and maximum numbers to determine where
+	ARRAY(2) thru ARRAY(IVALS) go on the scale graph.  ARRAY(1) is printed
+	but is not plotted unless IVALS is less than or equal to one (1), on
+	the assumption that it is the X values and the other columns are Y
+	values.  ABS(IVALS) is the number of numbers in array. Negative
+	numbers flag that ARRAY(1) should be plotted too.
+
+    3.	CFILL is the character to fill the scale with as a background
+	character
+
+    4.	ILEN is the number of characters to use for the scale region.  If set
+	to 0, it pads out to 132 columns unless the scale would be less than
+	15 characters wide; then it pads out to 255 characters
+
+  Each number takes up 15 columns on output.
+
+  Could stand being made more generic and/or robust. Maybe label max and min
+  values, draw a vertical line at 0 or some reference value, check if I/O
+  errors occur many times and stop putting out message (some platforms
+  probably won't like really wide lines), and put a marker for values that
+  should be off scale (and so on).
+
+  It is assumed that from this, you can easy make a routine that, given all of
+  curves at once, finds max and min and loops calling tabgraph.
+
+OPTIONS
+  CC
+    is the string to fill and return with the "graph"
+
+  ARRAY
+    is the list of numbers to put into the graph
+
+  IVALUES0
+    is the number of numbers in array; if < 2 then take abs(ivalues0) and show
+    first column. Else assume first column is X values and should not be added
+    to scale.
+
+  RMIN
+    is the min value for the scale.
+
+  RMAX
+    is the max value for the scale.
+
+  FILL
+    is the character to fill the scale with as a background.
+
+  ILEN0
+    is the width of the scale in characters.  0=> fit into line of 132
+    characters unless scale becomes narrower than ICMIN characters, then fit
+    into 255 character line.)
+
+EXAMPLES
+  Sample program:
+
+       program demo_tabgraph
+       use M_messages, only : tabgraph
+       implicit none
+       character(len=500) :: ctmp
+       integer		  :: i10, i20
+       real		  :: array(4)
+       integer		  :: ilen
+       do i20=1,4
+	  do i10=1,400
+	     array(1)=i10*12/100.0
+	     array(2)=sin(array(1))
+	     array(3)=cos(array(1))
+	     if(i20.eq.1)then
+	     ! fixed width of 50 for scale
+		call tabgraph(ctmp,array,3,-1.0,1.0,' ',50)
+		! ctmp	--> CTMP string to fill
+		! array --> ARRAY data
+		! 3	--> IVALS
+		!-1	--> RMIN
+		! 1	--> RMAX
+		!' '	--> CFILL
+		!50	--> ILEN
+	     elseif(i20.eq.2)then
+	     ! fixed width of 90 for scale with a non-blank fill character
+		call tabgraph(ctmp,array,3,-1.0,1.0,'.',90)
+	     elseif(i20.eq.3)then
+	     ! 0 len auto-sizes scale region
+		call tabgraph(ctmp,array,3,-1.0,1.0,' ',0)
+	     elseif(i20.eq.4)then
+	     ! number of values less than or equal to 1
+		call tabgraph(ctmp,array,1,0.0,48.0,' ',0)
+	     endif
+	     if(i10.eq.1)then
+		ilen=len_trim(ctmp)
+		ilen=max(ilen,1)
+	     endif
+	     write(*,'(a)')ctmp(1:ilen) ! tabgraph test program
+	     ! write(*,'(i5,a)')i10,ctmp(1:ilen) write with a number count
+	  enddo
+       enddo
+       end program demo_tabgraph
+
+  The purpose of this routine becomes much clearer when looking at a sample
+  output. The third pass thru loop 20 in the test code above will produce:
+
+    0.1200000	   0.1197122	  0.9928086    #					       1				    2#
+    0.2400000	   0.2377026	  0.9713380    #						    1				   2 #
+    0.3600000	   0.3522742	  0.9358968    #							1			 2   #
+    0.4800000	   0.4617792	  0.8869949    #							     1		       2     #
+    0.6000000	   0.5646425	  0.8253356    #								 1	     2	     #
+    0.7200000	   0.6593847	  0.7518057    #								      1  2	     #
+    0.8400000	   0.7446431	  0.6674628    #								      2  1	     #
+    0.9600000	   0.8191916	  0.5735200    #								  2	    1	     #
+     1.080000	   0.8819578	  0.4713283    #							      2 	       1     #
+     1.200000	   0.9320391	  0.3623577    #							 2			 1   #
+     1.320000	   0.9687151	  0.2481754    #						    2				   1 #
+     1.440000	   0.9914584	  0.1304237    #					       2				    1#
+     1.560000	   0.9999417	  0.1079617E-01#					  2					    1#
+     1.680000	   0.9940432	 -0.1089867    #				     2						    1#
+     1.800000	   0.9738476	 -0.2272020    #				2						   1 #
+     1.920000	   0.9396455	 -0.3421496    #			   2							 1   #
+     2.040000	   0.8919287	 -0.4521761    #		      2 						       1     #
+     2.160000	   0.8313834	 -0.5556992    #		  2							     1	     #
+     2.280000	   0.7588807	 -0.6512296    #	      2 							  1	     #
+     2.400000	   0.6754631	 -0.7373938    #	  2							      1 	     #
+     2.520000	   0.5823306	 -0.8129520    #       2							  1		     #
+     2.640000	   0.4808225	 -0.8768179    #    2							      1 		     #
+     2.760000	   0.3723991	 -0.9280727    #  2							 1			     #
+     2.880000	   0.2586192	 -0.9659793    #2						    1				     #
+     3.000000	   0.1411200	 -0.9899925    #2					       1				     #
+     3.120000	   0.2159109E-01 -0.9997669    #2					  1					     #
+     3.240000	  -0.9824860E-01 -0.9951619    #2				     1						     #
+     3.360000	  -0.2166750	 -0.9762438    #2				1						     #
+     3.480000	  -0.3319852	 -0.9432846    # 2			   1							     #
+     3.600000	  -0.4425204	 -0.8967584    #   2		       1							     #
+     3.720000	  -0.5466911	 -0.8373344    #      2 	  1								     #
+     3.840000	  -0.6429987	 -0.7658673    #	 2    1 								     #
+     3.960000	  -0.7300584	 -0.6833848    #	  1 2									     #
+     4.080000	  -0.8066177	 -0.5910735    #       1	2								     #
+     4.200000	  -0.8715757	 -0.4902610    #    1		     2								     #
+     4.320000	  -0.9239982	 -0.3823968    #  1			 2							     #
+     4.440000	  -0.9631310	 -0.2690330    # 1			      2 						     #
+     4.560000	  -0.9884112	 -0.1517999    #1				   2						     #
+     4.680000	  -0.9994755	 -0.3238349E-01#1					2					     #
+     4.800000	  -0.9961646	  0.8749917E-01#1					     2					     #
+     4.920000	  -0.9785261	  0.2061229    #1						  2				     #
+     5.040000	  -0.9468138	  0.3217820    # 1						       2			     #
+     5.160000	  -0.9014837	  0.4328130    #   1							    2			     #
+     5.280000	  -0.8431876	  0.5376194    #      1 							2		     #
+     5.400000	  -0.7727644	  0.6346930    #	 1							    2		     #
+     5.520000	  -0.6912268	  0.7226379    #	    1								2	     #
+     5.640000	  -0.5997474	  0.8001894    #		1							    2	     #
+     5.760000	  -0.4996417	  0.8662322    #		    1							      2      #
+     5.880000	  -0.3923501	  0.9198160    #			 1							 2   #
+     6.000000	  -0.2794155	  0.9601703    #			      1 						  2  #
+     6.120000	  -0.1624621	  0.9867148    #				   1						   2 #
+     6.240000	  -0.4317211E-01  0.9990677    #					1					    2#
+     6.360000	   0.7673930E-01  0.9970512    #					     1					    2#
+     6.480000	   0.1955465	  0.9806944    #						  1				   2 #
+     6.600000	   0.3115413	  0.9502326    #						       1			  2  #
+     6.720000	   0.4230552	  0.9061039    #							   1			2    #
+     6.840000	   0.5284849	  0.8489427    #								1	      2      #
+     6.960000	   0.6263130	  0.7795717    #								    1	   2	     #
+     7.080000	   0.7151332	  0.6989882    #								       21	     #
+     7.200000	   0.7936677	  0.6083515    #								   2	   1	     #
+     7.320000	   0.8607875	  0.5089645    #							       2	      1      #
+     7.440000	   0.9155264	  0.4022577    #							   2			1    #
+     7.560000	   0.9570977	  0.2897654    #						      2 			  1  #
+     7.680000	   0.9849033	  0.1731054    #						 2				   1 #
+     7.800000	   0.9985434	  0.5395523E-01#					    2					    1#
+     7.920000	   0.9978216	 -0.6597050E-01#				       2					    1#
+     8.040000	   0.9827484	 -0.1849474    #				  2						   1 #
+     8.160000	   0.9535407	 -0.3012642    #			     2							  1  #
+     8.280000	   0.9106185	 -0.4132481    #			2							1    #
+     8.400000	   0.8545991	 -0.5192883    #		   2							      1      #
+     8.520000	   0.7862877	 -0.6178606    #	       2							   1	     #
+     8.640000	   0.7066678	 -0.7075455    #	   2								1	     #
+	:
+	:
+	:
+
+NOTES
+  TABGRAPH makes it very easy to find values in particular ranges in printed
+  output.  Works particularly well with the once-ubiquitous fan-fold paper.
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025		 tabgraph(3m_messages)
+junbuster(3m_messages)					junbuster(3m_messages)
+
+NAME
+  junbuster(3f) - [M_messages] call journal(3f) to print eye-catching ASCII
+  graphic (ghostbuster) (LICENSE:PD)
+
+SYNOPSIS
+  SUBROUTINE junbuster(where)
+
+	 character(len=*),intent(in) :: where
+
+DESCRIPTION
+  Sample output:
+
+    >			     __---__
+    >			  _-	   _--______
+    >		     __--( /	 \ )XXXXXXXXXXXXX_
+    >		   --XXX(   O	O  )XXXXXXXXXXXXXXX-
+    >		  /XXX(       U     )	     XXXXXXX  > 	  /XXXXX(	       )--_  XXXXXXXXXXX  >	     /XXXXX/ (	    O	  )   XXXXXX   \XXXXX  >	  XXXXX/   /		XXXXXX	 \__ \XXXXX----
+    >	       XXXXXX__/	  XXXXXX	 \__----  -
+    >  ---___  XXX__/	       XXXXXX	   \__	       ---
+    >	 --  --__/   ___/\  XXXXXX	      /  ___---=
+    >	   -_	 ___/	 XXXXXX 	     '--- XXXXXX
+    >	     --\/XXX\ XXXXXX			  /XXXXX
+    >	       \XXXXXXXXX			 /XXXXX/
+    >		\XXXXXX 		       _/XXXXX/
+    >		  \XXXXX--__/		   __-- XXXX/
+    >		   --XXXXXXX---------------  XXXXX--
+    >		      \XXXXXXXXXXXXXXXXXXXXXXXX-
+    >			--XXXXXXXXXXXXXXXXXX-
+
+  See the description of JOURNAL() for a meaning for the I/O flag.
+
+EXAMPLES
+  Sample program:
+
+     program demo_junbuster
+     use M_messages, only : junbuster
+	call junbuster('s')
+     end program demo_junbuster
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025		junbuster(3m_messages)
+jundragon(3m_messages)					jundragon(3m_messages)
+
+NAME
+  jundragon(3f) - [M_messages] fill in a character array with a message
+  (LICENSE:PD)
+
+SYNOPSIS
+  subroutine jundragon(where,a)
+
+	character(len=*),intent(in) :: where
+	character(len=32),intent(in) :: a(8)
+
+DESCRIPTION
+  Prints out a pretty message shaped like a dragon puffing smoke
+
+EXAMPLES
+  Sample program:
+
+     program demo_sundragon
+     use M_messages, only : jundragon
+     character(len=32) :: a(8)
+	a(1)='Puff, the magic dragon----------'
+	a(2)='lived by the sea----------------'
+	a(3)='and frolicked in the Autumn mist'
+	a(4)='in a land called----------------'
+	a(5)='Honiley-------------------------'
+	a(6)='--------------------------------'
+	a(7)='--------------------------------'
+	a(8)='--------------------------------'
+	call jundragon('s',a)
+     end program demo_sundragon
+
+      > 		\=/,	     _-===-_-====-_-===-_-==========-_-====-_
+      > 	       |  @___oo   (  Puff, the magic dragon----------	     )_
+      >      /\  /\   / (___,,,}_--=  lived by the sea----------------	     )
+      >     ) /^\) ^\/ _)	 =__ and frolicked in the Autumn mist	    )
+      >     )	/^\/   _)	   (_  in a land called----------------      )
+      >     )	_ /  / _)	     (	Honiley-------------------------      )
+      > /\  )/\/ ||  | )_)	      (_ --------------------------------	)
+      ><  >	 |(,,) )__)		(  --------------------------------   )
+      > ||	/    \)___)\		 ( --------------------------------__)
+      > | \____(      )___) )___	   -==-_____-=====-_____-=====-___==
+      >  \______(_______;;; __;;;
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025		jundragon(3m_messages)
+junroach(3m_messages)					 junroach(3m_messages)
+
+NAME
+  junroach(3f) - [M_messages] print an eye-catching image of a roach.
+  (LICENSE:PD)
+
+SYNOPSIS
+  SUBROUTINE junroach(where)
+
+      integer,intent(in) :: where
+
+DESCRIPTION
+  Prints an eye-catching image of a roach. Typically used to mark an error has
+  occurred in an output file.
+
+OPTIONS
+  where
+    the I/O flag to pass on to JOURNAL().  To write to stdout use 's'.	See
+    the description of JOURNAL() for a meaning for the I/O flag.
+
+EXAMPLES
+  Typical Usage:
+
+       program demo_junroach
+       use M_messages, only : junroach
+       implicit none
+       logical :: error=.true.
+	  if (error)then
+	     write(*,*)'ERROR:'
+	     call junroach('s')
+	     write(*,*)'   explanation of error.'
+	     write(*,*)' '
+	     write(*,*)'Pauci sunt errata in codice tuo'
+	     write(*,*)' or'
+	     write(*,*)'There are a few errors in your code'
+	  endif
+       end program demo_junroach
+
+  Results:
+
+      >ERROR:
+      >      ,--.     .--.
+      >     /	 \. ./	      >    /  /\ / " \ /\      >   / _/  {~~v~~}  \_	 >  /	  {   |   }	    > ;   /\{	 |    }/\	> | _/	{    |	  }  \_  :
+      > |     {    |	}      |
+      > |    /{    |	}\     |
+      > |   / {    |	} \    |
+      > |  /  {    |	}  \   |
+      > |  \  \    |	/  /   |
+      > |   \  \   |   /  /    |
+      >  \   \	\  |  /  /    /
+      >   \  /	 ~~~~~	 \   /
+      >   explanation of error.
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025		 junroach(3m_messages)
+junsun(3m_messages)					   junsun(3m_messages)
+
+NAME
+  junsun(3f) - [M_messages] print an eye-catching image of a smiling sun.
+  (LICENSE:PD)
+
+SYNOPSIS
+  SUBROUTINE junsun(where)
+
+DESCRIPTION
+  Sample output:
+
+    ####################		  #####################
+    ######################		  ###################
+    ########################		  #################
+    ##########################		  ###############		       ##
+       #########################		 ###### 		  #######
+	    ######################   ###########   ##		      ###########
+		 ###############  #################		 ################
+		      ########	#####################	    #####################
+			   ##  #######################	#########################
+			      #####	###	#######  ########################
+			     #####   ##  #   ##  #######  #######################
+    #######################  ########### ###############  #######################
+    #######################  ######## #   ## ###########
+    ########################  #####  ########	#######
+    #########################  ### ##	     ### #####	##
+    #####################	#####################  ########
+    ################		  #####   #########  ###############
+    ########### 		##   ###########   ######################
+    ######		      ######		     #########################
+    #			    ###############	       ##########################
+			  #################		 ########################
+			###################		   ######################
+		      #####################		     ####################
+
+OPTIONS
+  where
+    the I/O flag to pass on to JOURNAL().  See the description of JOURNAL()
+    for a meaning for the I/O flag.
+
+EXAMPLES
+  Sample program:
+
+     program demo_junsun
+     use M_messages, only : junsun
+	call junsun('s')
+     end program demo_junsun
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025		   junsun(3m_messages)
+juntrolls(3m_messages)					juntrolls(3m_messages)
+
+NAME
+  juntrolls(3f) - [M_messages] print an eye-catching bulletin (LICENSE:PD)
+
+  SYNOPSIS/USAGE
+
+       SUBROUTINE juntrolls(where,a)
+
+	character(len=*)  :: where  ! the I/O flag to pass on to JOURNAL()
+	character(len=21) :: a(4)
+
+DESCRIPTION
+  Sample output:
+
+      > 	 \|||/
+      > 	 (o o)
+      > ;~~~~ooO~~(_)~~~~~~~~~;
+      > |		      |
+      > |		      |
+      > |		      |
+      > |_____________________|
+      > '~~~~~~~~~~~~~~~~Ooo~~'
+      > 	|  |  |
+      > 	~~~ ~~~
+      > 	 || ||
+      > 	ooO Ooo
+
+  See the description of JOURNAL() for a meaning for the I/O flag.
+
+EXAMPLES
+  Sample program:
+
+     program demo_juntrolls
+     use M_messages, only : juntrolls
+	call juntrolls('s',[	     &
+	   'Please ...		 ',  &
+	   "   don't feed	 ",  &
+	   '   the		 ',  &
+	   '   TROLLS!		 '   &
+	   ])
+     end program demo_juntrolls
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public License
+
+				March 30, 2025		juntrolls(3m_messages)
+set(3m_msg)							   set(3m_msg)
+
+NAME
+  set(3f) - [M_msg] set scalars from an array (LICENSE:PD)
+
+SYNOPSIS
+  Syntax:
+
+       function set(g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,&
+       & ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,gk)
+       class(*),intent(in)	     :: g0
+       class(*),intent(out),optional  :: g1,g2,g3,g4,g5,g6,g7,g8,g9,ga
+       class(*),intent(out),optional  :: gb,gc,gd,ge,gf,gg,gh,gi,gj,gk
+
+DESCRIPTION
+  set(3f) sets up to twenty scalars to elements from an array.	Sort of like
+  an equivalence.
+
+OPTIONS
+  g0(:)
+    array to read values from. Can be of type INTEGER or REAL
+
+  g[1-9a-k]
+    optional values to set to an array element. Can be of type INTEGER or REAL
+
+EXAMPLES
+  Sample program:
+
+     program demo_set
+     use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+     use,intrinsic :: iso_fortran_env, only : real32, real64, real128
+     use M_msg, only : set
+     implicit none
+     real(kind=real32)	  :: a; namelist /all/a
+     real(kind=real64)	  :: b; namelist /all/b
+     real(kind=real128)   :: c; namelist /all/c
+     integer(kind=int8)   :: i; namelist /all/i
+     integer(kind=int16)  :: j; namelist /all/j
+     integer(kind=int32)  :: k; namelist /all/k
+     integer(kind=int64)  :: l; namelist /all/l
+     integer		  :: iarr(7)=[1,2,3,4,5,6,7]
+	call set(iarr,a,b,c,i,j,k,l)
+	write(*,nml=all)
+	call set(10,a)
+	call set(100,l)
+	write(*,nml=all)
+     end program demo_set
+
+  Results:
+
+      &ALL
+      A       =   1.000000    ,
+      B       =   2.00000000000000     ,
+      C       =   3.00000000000000000000000000000000	  ,
+      I       =    4,
+      J       =      5,
+      K       = 	  6,
+      L       = 		    7
+      /
+      &ALL
+      A       =   10.00000    ,
+      B       =   2.00000000000000     ,
+      C       =   3.00000000000000000000000000000000	  ,
+      I       =    4,
+      J       =      5,
+      K       = 	  6,
+      L       = 		  100
+      /
 
 AUTHOR
   John S. Urban
@@ -629,12 +1357,8 @@ AUTHOR
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024			   fmt(3m_msg)
+				March 30, 2025			   set(3m_msg)
 stderr(3m_msg)							stderr(3m_msg)
-
-
 
 NAME
   stderr(3f) - [M_msg] write message to stderr (LICENSE:PD)
@@ -713,17 +1437,12 @@ AUTHOR
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024			stderr(3m_msg)
+				March 30, 2025			stderr(3m_msg)
 str(3m_msg)							   str(3m_msg)
-
-
 
 NAME
   str(3f) - [M_msg] converts up to twenty standard scalar type values to a
   string (LICENSE:PD)
-
 
 SYNOPSIS
   Syntax:
@@ -734,7 +1453,6 @@ SYNOPSIS
        class(*),intent(in),optional  :: ga,gb,gc,gd,ge,gf,gg,gh,gi,gj
        character(len=*),intent(in),optional :: sep
        character,len=(:),allocatable :: str
-
 
 DESCRIPTION
   str(3f) builds a space-separated string from up to twenty scalar values.
@@ -757,7 +1475,7 @@ RETURNS
 EXAMPLES
   Sample program:
 
-     program demo_msg
+     program demo_str
      use M_msg, only : str
      implicit none
      character(len=:),allocatable :: pr
@@ -786,7 +1504,7 @@ EXAMPLES
      ! which not all compilers can handle and is currently non-standard
      write(*,*)str('program will now stop')
 
-     end program demo_msg
+     end program demo_str
 
   Output
 
@@ -797,19 +1515,14 @@ EXAMPLES
       format=(*(i9:,1x))
       program will now stop
 
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024			   str(3m_msg)
+				March 30, 2025			   str(3m_msg)
 wrt(3m_msg)							   wrt(3m_msg)
-
-
 
 NAME
   wrt(3f) - [M_msg] write multiple scalar values to any number of files
@@ -870,7 +1583,6 @@ EXAMPLES
      call wrt([stdout,stdout,stdout],'USING FMT :', &
       & huge(0),'PI=',asin(1.0d0)*2.0d0,fmt(ints(2),'i0.4'),iostat=iostat)
 
-
      end program demo_wrt
 
   TWO FILES: 2147483647 PI= 3.1415926535897931 TWO FILES: 2147483647 PI=
@@ -889,12 +1601,72 @@ AUTHOR
 LICENSE
   Public Domain
 
+				March 30, 2025			   wrt(3m_msg)
+fmt(3m_msg)							   fmt(3m_msg)
 
+NAME
+  fmt(3f) - [M_msg] convert any intrinsic to a string using specified format
+  (LICENSE:PD)
 
-				March 30, 2024			   wrt(3m_msg)
+SYNOPSIS
+  function fmt(value,format) result(string)
+
+      class(*),intent(in),optional :: value
+      character(len=*),intent(in),optional  :: format
+      character(len=:),allocatable :: string
+
+DESCRIPTION
+  FMT(3f) converts any standard intrinsic value to a string using the
+  specified format.
+
+OPTIONS
+  value
+    value to print the value of. May be of type INTEGER, LOGICAL, REAL,
+    DOUBLEPRECISION, COMPLEX, or CHARACTER.
+
+  format
+    format to use to print value. It is up to the user to use an appropriate
+    format. The format does not require being surrounded by parenthesis. If
+    not present a default is selected similar to what would be produced with
+    free format.
+
+RETURNS
+  string
+    A string value
+
+EXAMPLES
+  Sample program:
+
+      program demo_fmt
+      use :: M_msg, only : fmt
+      implicit none
+      character(len=:),allocatable :: output
+
+	 output=fmt(10,"'[',i0,']'")
+	 write(*,*)'result is ',output
+
+	 output=fmt(10.0/3.0,"'[',g0.5,']'")
+	 write(*,*)'result is ',output
+
+	 output=fmt(.true.,"'The final answer is [',g0,']'")
+	 write(*,*)'result is ',output
+
+      end program demo_fmt
+
+  Results:
+
+      result is [10]
+      result is [3.3333]
+      result is The final answer is [T]
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+				March 30, 2025			   fmt(3m_msg)
 almost(3m_verify)					     almost(3m_verify)
-
-
 
 NAME
   almost(3f) - [M_verify] return true or false if two numbers agree up to
@@ -907,7 +1679,6 @@ SYNOPSIS
       class(*),intent(in)	  :: rdigits
       logical,intent(in),optional :: verbose
       logical			  :: almost
-
 
 DESCRIPTION
   Returns true or false depending on whether the two numbers given agree to
@@ -929,7 +1700,7 @@ RETURNS
   almost
     TRUE if the input values compare up to the specified number of values
 
-EXAMPLE
+EXAMPLES
   sample:
 
      program demo_almost
@@ -972,378 +1743,12 @@ AUTHOR
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024		     almost(3m_verify)
-significant(3m_verify)					significant(3m_verify)
-
-
-
-NAME
-  significant(3f) - [M_verify] round val to specified number of significant
-  digits
-
-
-SYNOPSIS
-  pure elemental function significant(val,digits,round)
-
-       real,intent(in)			    :: val
-       integer,intent(in)		    :: digits
-       character(len=*),intent(in),optional :: round
-       real				    :: significant
-
-
-DESCRIPTION
-  Round real value to specified number of significant digits
-
-  val
-    value to round
-
-  digits
-    number of significant digits to produce
-
-  round
-    Use the round edit descriptor
-
-	    RU	UP : the value resulting from conversion shall be the
-		     smallest representable value that is greater than or
-		     equal to the original value
-	    RD	DOWN : the value resulting from conversion shall be the
-		     largest representable value that is less than or
-		     equal to the original value
-	    RZ	ZERO : the value resulting from conversion shall be the value
-		     closest to the original value and no greater in
-		     magnitude than the original value.
-	    RN	NEAREST : modeis NEAREST,thevalueresulting from conversion
-			 shall be the closer of the two nearest
-			 representable values if one is closer than the
-			 other. If the two nearest representable values
-			 are equidistant from the original value, it is
-			 processor dependent which one of them is chosen.
-	    RC	COMPATIBLE : the value resulting from conversion shall be
-			   the closer of the two nearest representable
-			   values or the value away from zero if halfway
-			   between them.
-	    RP	PROCESSOR_DEFINED : rounding during conversion shall be
-				    a processor-dependent default mode,
-				    which may correspond to one of the
-				    other modes.
-
-
-EXAMPLE
-  Sample program
-
-     program demo_significant
-     use M_verify, only : significant
-     implicit none
-     integer :: i
-     real :: r, v
-     character(len=*),parameter :: g='(*(g0.7,1x))'
-
-	write(*,g)significant([8765.43210,0.1234567890],5)
-
-	write(*,*)'default:',1.23456789012345
-	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9])
-	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RU'),'RU'
-	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RD'),'RD'
-	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RZ'),'RZ'
-	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RN'),'RN'
-	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RC'),'RC'
-	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RP'),'RP'
-     end program demo_significant
-
-  Results:
-
-     8765.400 .1234600
-      default:	 1.234568
-     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568
-     2.000000 1.300000 1.240000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RU
-     1.000000 1.200000 1.230000 1.234000 1.234500 1.234560 1.234567 1.234568 1.234568 RD
-     1.000000 1.200000 1.230000 1.234000 1.234500 1.234560 1.234567 1.234568 1.234568 RZ
-     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RN
-     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RC
-     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RP
-
-
-
-
-				March 30, 2024		significant(3m_verify)
-assert(3m_verify)					     assert(3m_verify)
-
-
-
-NAME
-  assert(3f) - [M_verify] print filename, linenumber, and message to stderr
-  and stop program (LICENSE:PD)
-
-SYNOPSIS
-  function assert(file,linenum,expr,g1,g2g3,g4,g5,g6,g7,g8,g9)
-
-      character(len=*),intent(in)  :: file
-      character(len=*),intent(in)  :: linenum
-      logical,intent(in)	   :: expr
-      class(*),intent(in),optional :: g1,g2,g3,g4,g5,g6,g7,g8,g9
-
-DESCRIPTION
-  assert(3f) prints strings to stderr and then stops program with exit code 1
-  It labels the first string as the filename, the next integer parameter as
-  the linenumber, and then up to nine scalar values.
-
-  It is primarily intended for use by the prep(1) preprocessor $ASSERT
-  directive
-
-OPTIONS
-  filename
-    a string assumed to be the current filename when compiling
-
-  linenum
-    assumed to be the line number of the source code the ASSERT(3f) procedure
-    was called at.
-
-  expr
-    logical value
-
-  g[1-9]
-    optional value(s) to print as a message before stopping. May be of type
-    INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.
-
-EXAMPLES
-  Sample program:
-
-     program demo_assert
-     use M_verify, only : assert
-     implicit none
-     real :: a, toobig=1024
-     a=2000
-     call assert('myroutine', 101, a > toobig, 'The value is too large', a, ' > ', toobig)
-     end program demo_assert
-
-
-AUTHOR
-  John S. Urban
-
-LICENSE
-  Public Domain
-
-
-
-				March 30, 2024		     assert(3m_verify)
-fstop(3m_verify)					      fstop(3m_verify)
-
-
-
-NAME
-  fstop(3f) - [M_verify] call stop with both a number and a message
-  (LICENSE:PD)
-
-SYNOPSIS
-  subroutine fstop(ierr,stdout,stderr)
-
-      integer,intent(in)		   :: ierr
-      character(len=*),intent(in),optional :: stdout
-      character(len=*),intent(in),optional :: stderr
-
-DESCRIPTION
-  FSTOP(3f) call STOP(3f). What a call to STOP does is very system dependent,
-  so using an abstraction layer is useful, as it allows just the fstop()
-  routine to be changed; and STOP does not allow a variable to be used on the
-  numeric access status (this has changed at f2015).
-
-OPTIONS
-  ierr
-    - value in range 0 to 32
-
-  stdout
-    - description to be printed to standard output
-
-  stderr
-    - description to be printed to standard error
-
-EXAMPLES
-  Sample program:
-
-     program demo_fstop
-     use M_verify, only: fstop
-     implicit none
-     integer :: int
-     !*!write(*,*)'Enter stop value'
-     !*!read(*,*) int
-     int=25
-     select case(int)
-     case(10) ; call fstop(int)
-     case(20) ; call fstop(int,stderr='error: program will now stop')
-     case(25) ; call fstop(int,stdout='stdout message',stderr='stderr message')
-     case(30) ; call fstop(int,stdout='error: program will now stop')
-     case default
-		call fstop(int)
-     endselect
-
-     end program demo_fstop
-
-  Results:
-
-SEE ALSO
-  Look for common extensions, such as abort(3f), backtrace(3f)
-
-AUTHOR
-  John S. Urban
-
-LICENSE
-  Public Domain
-
-
-
-				March 30, 2024		      fstop(3m_verify)
-accdig(3m_verify)					     accdig(3m_verify)
-
-
-
-NAME
-  accdig(3f) - [M_verify] compare two real numbers only up to a specified
-  number of digits (LICENSE:PD)
-
-
-SYNOPSIS
-  subroutine accdig(x,y,digio,acurcy,ind)
-
-	 real,intent(in)     :: X
-	 real,intent(in)     :: Y
-	 real,intent(in)     :: DIGI0
-	 real,intent(out)    :: acurcy
-	 integer,intent(out) :: ind
-
-
-DESCRIPTION
-  This procedure is used to check how closely two numbers agree.
-
-	call accdig(X,Y,DIGI0,ACURCY,IND)
-
-  The values X and Y are the numbers to compare, and DIGI0 is the threshold
-  number of digits to consider significant in returning IND.
-
-  If X and Y are considered equal within DIGI0 relative tolerance,
-
-	 IND	= 0, if tolerance is	 satisfied.
-		= 1, if tolerance is not satisfied.
-
-  The result ACURCY gives a measure of the number of leading digits in X which
-  are the same as the number of leading digits in Y.
-
-	     ACURCY=-log10((X-Y)/Y)   if X != Y and Y != 0
-	     ACURCY=-log10(X-Y)       if X != Y and Y = 0
-	     ACURCY=8		      if X=Y
-
-	     ACURCY is never less than -8 or greater than 8
-
-  TOLERANCE ...  X and Y are considered equal within DIGI0 relative tolerance,
-  if ACURCY is greater than DIGI0.
-
-  For example, Take some numbers and compare then
-    to 1.2345678 ...
-
-	================================================
-	A number     |	  ACURCY       |   ACURCY
-		     |	  1.2345678=Y  |   1.2345678=X
-	================================================
-	 1.234680    |	  3.7900571    |   3.7901275
-	 1.2345378   |	  4.6144510    |   4.6144404
-	 2.2234568   |	  0.096367393  |   0.35188114
-	 1.2345678   |	  8.0000000    |   8.0000000
-	 1.2345679   |	  7.0732967    |   7.0731968
-	-1.2345678   |	 -0.30103000   |  -0.30103000
-	76.234567    |	 -1.7835463    |   0.0070906729
-	 2.4691356   |	  0.0	       |   0.3010300
-	 0.0	     |	  0.0	       |  -0.91514942.
-
-  Due to the typical limits of the log function, the number of significant
-  digits in the result is best considered to be three.
-
-  Notice that 1.2345678=Y produces different values than 1.2345678=X
-
-  A negative result indicates the two values being compared either do not
-  agree in the first digit or they differ with respect to sign. An example of
-  two numbers which do not agree in their leading digit (and actually differ
-  in order of magnitude) is given above by X=76.234567 and Y=1.2345678; the
-  accuracy reported is -1.7835463. An example of two numbers which do not
-  agree in sign in X=-1.2345678 and Y=1.2345678; here the accuracy reported is
-  -0.30103000.
-
-EXAMPLE
-  Example program:
-
-     program demo_accdig ! fortran 90 example
-     use M_verify, only : accdig
-     implicit none
-     integer :: digi
-     integer :: i10, i20, i30
-     integer :: ind, ind1, ind2
-     real    :: acurcy, acurcy1, acurcy2
-     real    :: a, b
-     real    :: vals(9)
-     data vals/ &
-       &1.234680,   1.2345378,	2.2234568, 1.2345678, &
-       &1.2345679, -1.2345678, 76.234567,  2.4691356, &
-       &0.0/
-	write(*,*)'========================='
-	do i10=0,16
-	   a=1.0
-	   b=a+1.0/(10**i10)
-	   call accdig(a,b,8.0,acurcy,ind)
-	   write(*,*)i10,a,b,acurcy,ind
-	enddo
-	write(*,*)'========================='
-	digi=16
-	do i20=0,digi
-	   a=1.0
-	   b=a+1.0/(10**i20)
-	   call accdig(a,b,real(digi),acurcy,ind)
-	   write(*,*)i20,a,b,acurcy,ind
-	enddo
-	write(*,*)'========================='
-	do i30=1,9
-	   call accdig(1.2345678,vals(i30),8.0,acurcy1,ind1)
-	   call accdig(vals(i30),1.2345678,8.0,acurcy2,ind2)
-	   write(*,*)i30,vals(i30),acurcy1,acurcy2,ind1,ind2
-	enddo
-     end program demo_accdig
-
-
-REFERENCES
-  based on ...
-
-     NBS OMNITAB 1980 VERSION 6.01  1/ 1/81. accdig V 7.00  2/14/90. **
-	David Hogben,
-	Statistical Engineering Division,
-	Center for Computing and Applied Mathematics,
-	A337 Administration Building,
-	National Institute of Standards and Technology,
-	Gaithersburg, MD 20899
-		       TELEPHONE 301-975-2845
-	    ORIGINAL VERSION -	October, 1969.
-	     CURRENT VERSION - February, 1990.
-	     JSU     VERSION - February, 1991.
-
-
-DEPENDENCIES
-  •  M_journal(),log10(), abs(1)
-
-AUTHOR
-  David Hogben, John S. Urban
-
-LICENSE
-  Public Domain
-
-
-
-				March 30, 2024		     accdig(3m_verify)
+				March 30, 2025		     almost(3m_verify)
 dp_accdig(3m_verify)					  dp_accdig(3m_verify)
-
-
 
 NAME
   dp_accdig(3f) - [M_verify] compare two numbers only up to a specified number
   of digits (LICENSE:PD)
-
 
 SYNOPSIS
   subroutine dp_accdig(x,y,digio,acurcy,ind)
@@ -1353,7 +1758,6 @@ SYNOPSIS
 	 class(*),intent(in)  :: DIGI0
 	 real,intent(out)     :: acurcy
 	 integer,intent(out)  :: ind
-
 
 DESCRIPTION
   This procedure is used to check how closely two numbers agree.
@@ -1410,7 +1814,7 @@ DESCRIPTION
   agree in sign in X=-1.2345678 and Y=1.2345678; here the accuracy reported is
   -0.30103000.
 
-EXAMPLE
+EXAMPLES
   Example program:
 
      program demo_dp_accdig ! fortran 90 example
@@ -1449,7 +1853,6 @@ EXAMPLE
 	enddo
      end program demo_dp_accdig
 
-
 NOTES
 REFERENCES
   based on ...
@@ -1466,7 +1869,6 @@ REFERENCES
 	     CURRENT VERSION - February, 1990.
 	     JSU     VERSION - February, 1991.
 
-
 DEPENDENCIES
   •  M_journal(), log10(), abs(1)
 
@@ -1476,17 +1878,12 @@ AUTHORS
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024		  dp_accdig(3m_verify)
+				March 30, 2025		  dp_accdig(3m_verify)
 in_margin(3m_verify)					  in_margin(3m_verify)
-
-
 
 NAME
   in_margin(3f) - [M_verify] check if two reals are approximately equal using
   a relative margin
-
 
 SYNOPSIS
   elemental pure function in_margin( expected_value, measured_value,
@@ -1496,7 +1893,6 @@ SYNOPSIS
        real, intent(in)    :: measured_value
        real, intent(in)    :: allowed_margin
        class(*),intent(in) :: invalue
-
 
 DESCRIPTION
   Compare two values to see if they are relatively equal using the specified
@@ -1517,7 +1913,7 @@ OPTIONS
   allowed_margin
     Allowed relative margin
 
-EXAMPLE
+EXAMPLES
   Sample program:
 
      program demo_in_margin
@@ -1550,22 +1946,18 @@ EXAMPLE
    T
    T
    T
-				March 30, 2024		  in_margin(3m_verify)
+				March 30, 2025		  in_margin(3m_verify)
 pdec(3m_verify) 					       pdec(3m_verify)
-
-
 
 NAME
   pdec(3f) - [M_verify] write out string with ASCII decimal equivalent
   vertically under it (LICENSE:PD)
-
 
 SYNOPSIS
   Usage:
 
       subroutine pdec(string)
       character(len=*),intent(in) :: string
-
 
 DESCRIPTION
   Given a string to print, PDEC() writes out the ASCII Decimal equivalent of
@@ -1604,19 +1996,99 @@ EXAMPLES
        >3666667739990000
        >2567890127890123
 
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
+				March 30, 2025		       pdec(3m_verify)
+significant(3m_verify)					significant(3m_verify)
 
+NAME
+  significant(3f) - [M_verify] round val to specified number of significant
+  digits
 
-				March 30, 2024		       pdec(3m_verify)
+SYNOPSIS
+  pure elemental function significant(val,digits,round)
+
+       real,intent(in)			    :: val
+       integer,intent(in)		    :: digits
+       character(len=*),intent(in),optional :: round
+       real				    :: significant
+
+DESCRIPTION
+  Round real value to specified number of significant digits
+
+  val
+    value to round
+
+  digits
+    number of significant digits to produce
+
+  round
+    Use the round edit descriptor
+
+	    RU	UP : the value resulting from conversion shall be the
+		     smallest representable value that is greater than or
+		     equal to the original value
+	    RD	DOWN : the value resulting from conversion shall be the
+		     largest representable value that is less than or
+		     equal to the original value
+	    RZ	ZERO : the value resulting from conversion shall be the value
+		     closest to the original value and no greater in
+		     magnitude than the original value.
+	    RN	NEAREST : modeis NEAREST,thevalueresulting from conversion
+			 shall be the closer of the two nearest
+			 representable values if one is closer than the
+			 other. If the two nearest representable values
+			 are equidistant from the original value, it is
+			 processor dependent which one of them is chosen.
+	    RC	COMPATIBLE : the value resulting from conversion shall be
+			   the closer of the two nearest representable
+			   values or the value away from zero if halfway
+			   between them.
+	    RP	PROCESSOR_DEFINED : rounding during conversion shall be
+				    a processor-dependent default mode,
+				    which may correspond to one of the
+				    other modes.
+
+EXAMPLES
+  Sample program
+
+     program demo_significant
+     use M_verify, only : significant
+     implicit none
+     integer :: i
+     real :: r, v
+     character(len=*),parameter :: g='(*(g0.7,1x))'
+
+	write(*,g)significant([8765.43210,0.1234567890],5)
+
+	write(*,*)'default:',1.23456789012345
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9])
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RU'),'RU'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RD'),'RD'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RZ'),'RZ'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RN'),'RN'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RC'),'RC'
+	write(*,g)significant(1.23456789012345,[1,2,3,4,5,6,7,8,9],'RP'),'RP'
+     end program demo_significant
+
+  Results:
+
+     8765.400 .1234600
+      default:	 1.234568
+     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568
+     2.000000 1.300000 1.240000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RU
+     1.000000 1.200000 1.230000 1.234000 1.234500 1.234560 1.234567 1.234568 1.234568 RD
+     1.000000 1.200000 1.230000 1.234000 1.234500 1.234560 1.234567 1.234568 1.234568 RZ
+     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RN
+     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RC
+     1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RP
+
+				March 30, 2025		significant(3m_verify)
 stderr(3m_verify)					     stderr(3m_verify)
-
-
 
 NAME
        stderr(3f) - [M_verify] write message to stderr (LICENSE:PD)
@@ -1694,17 +2166,12 @@ AUTHOR
 LICENSE
        Public Domain
 
-
-
 			       January 09, 2021 	     stderr(3m_verify)
 unit_check(3m_verify)					 unit_check(3m_verify)
-
-
 
 NAME
   unit_check(3f) - [M_verify] if logical expression is false, call command
   "goodbad NAME bad" and stop program by default (LICENSE:PD)
-
 
 SYNOPSIS
   subroutine
@@ -1713,7 +2180,6 @@ SYNOPSIS
       character(len=*),intent(in) :: name
       logical,intent(in) :: expression
       class(*),intent(in),optional :: msg,msg1,msg2,msg3,msg4,msg5,msg6,msg7,msg8,msg9
-
 
 DESCRIPTION
   unit_check(3f) tests the expression and if it is false, calls the shell
@@ -1787,26 +2253,18 @@ EXAMPLES
       *almost* for values 100.000000 100.010002 agreement of 3.99995065 digits out of requested 3.90000010
      unit_check_good: myroutine        PASSED:checks on "myroutine" all passed
 
-
-
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024		 unit_check(3m_verify)
+				March 30, 2025		 unit_check(3m_verify)
 unit_check_bad(3m_verify)			     unit_check_bad(3m_verify)
-
-
 
 NAME
   unit_check_bad(3f) - [M_verify] call command "goodbad NAME bad" and stop
   program (LICENSE:PD)
-
 
 SYNOPSIS
   subroutine unit_check_bad(name,opts,msg)
@@ -1814,7 +2272,6 @@ SYNOPSIS
       character(len=*),intent(in) :: name
       character(len=*),intent(in),optional :: opts
       character(len=*),intent(in),optional :: msg
-
 
 DESCRIPTION
   unit_check_bad(3f) calls the shell command
@@ -1846,24 +2303,18 @@ EXAMPLES
 
       end program demo_unit_check_bad
 
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024	     unit_check_bad(3m_verify)
+				March 30, 2025	     unit_check_bad(3m_verify)
 unit_check_done(3m_verify)			    unit_check_done(3m_verify)
-
-
 
 NAME
   unit_check_done(3f) - [M_verify] call command "goodbad NAME good" or
   "goodbad NAME bad" depending on whether failures were found (LICENSE:PD)
-
 
 SYNOPSIS
   subroutine unit_check_done(name,opts,msg)
@@ -1871,7 +2322,6 @@ SYNOPSIS
       character(len=*),intent(in) :: name
       character(len=*),intent(in),optional :: opts
       character(len=*),intent(in),optional :: msg
-
 
 DESCRIPTION
   If there have been no failures the shell command
@@ -1913,17 +2363,12 @@ AUTHOR
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024	    unit_check_done(3m_verify)
+				March 30, 2025	    unit_check_done(3m_verify)
 unit_check_good(3m_verify)			    unit_check_good(3m_verify)
-
-
 
 NAME
   unit_check_good(3f) - [M_verify] call command "goodbad NAME good"
   (LICENSE:PD)
-
 
 SYNOPSIS
   subroutine unit_check_good(name,opts,msg)
@@ -1932,13 +2377,11 @@ SYNOPSIS
       character(len=*),intent(in),optional :: opts
       character(len=*),intent(in),optional :: msg
 
-
 DESCRIPTION
   A shortcut for
 
 	call unit_check(name,.true.)
 	call unit_check_done(name,opts,msg)
-
 
 EXAMPLES
   Sample program:
@@ -1960,19 +2403,14 @@ EXAMPLES
 
       end program demo_unit_check_good
 
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024	    unit_check_good(3m_verify)
+				March 30, 2025	    unit_check_good(3m_verify)
 unit_check_msg(3m_verify)			     unit_check_msg(3m_verify)
-
-
 
 NAME
   unit_check_msg(3f) - [M_verify] converts up to nine standard scalar values
@@ -2012,24 +2450,18 @@ EXAMPLES
 
      end program demo_unit_check_msg
 
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024	     unit_check_msg(3m_verify)
+				March 30, 2025	     unit_check_msg(3m_verify)
 unit_check_start(3m_verify)			   unit_check_start(3m_verify)
-
-
 
 NAME
   unit_check_start(3f) - [M_verify] call command "goodbad NAME start" and
   optionally set options (LICENSE:PD)
-
 
 SYNOPSIS
   subroutine unit_check_start(name,options,msg)
@@ -2037,7 +2469,6 @@ SYNOPSIS
       character(len=*),intent(in)	   :: name
       character(len=*),intent(in),optional :: options
       character(len=*),intent(in),optional :: msg
-
 
 DESCRIPTION
   unit_check_start(3f) is an initialization command that by default calls the
@@ -2097,24 +2528,18 @@ EXAMPLES
 
       end program demo_unit_check_start
 
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024	   unit_check_start(3m_verify)
+				March 30, 2025	   unit_check_start(3m_verify)
 unit_check_stop(3m_verify)			    unit_check_stop(3m_verify)
-
-
 
 NAME
   unit_check_stop(3f) - [M_verify] call command "goodbad NAME good" or goodbad
   NAME bad" depending on whether failures were found (LICENSE:PD)
-
 
 SYNOPSIS
   subroutine unit_check_stop(name,opts,msg)
@@ -2122,7 +2547,6 @@ SYNOPSIS
       character(len=*),intent(in) :: name
       character(len=*),intent(in),optional :: opts
       character(len=*),intent(in),optional :: msg
-
 
 DESCRIPTION
   give a tally of all calls to unit_check(3f)
@@ -2157,19 +2581,14 @@ EXAMPLES
       call unit_check_stop()
       end program demo_unit_check_stop
 
-
 AUTHOR
   John S. Urban
 
 LICENSE
   Public Domain
 
-
-
-				March 30, 2024	    unit_check_stop(3m_verify)
+				March 30, 2025	    unit_check_stop(3m_verify)
 M_verify(3m_verify)					   M_verify(3m_verify)
-
-
 
 NAME
   M_verify(3fm) - [M_verify::INTRO] a collection of Fortran routines for
@@ -2190,7 +2609,6 @@ SYNOPSIS
 
      use M_verify, only : unit_check_limit, unit_check_keep_going
      use M_verify, only : unit_check_command
-
 
 QUOTE
   Do not let your victories go to your head, nor let your failures go to your
@@ -2251,7 +2669,6 @@ DESCRIPTION
       call command
 
 				 command NAME good
-
 
     unit_check_bad(3f)
       call command
@@ -2399,6 +2816,67 @@ EXAMPLES
       unit_check:	two		     SUCCESS:two looks good
       unit_check_done:	two		     PASSED   GOOD:1  BAD:0
 
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+				March 30, 2025		   M_verify(3m_verify)
+fstop(3m_verify)					      fstop(3m_verify)
+
+NAME
+  fstop(3f) - [M_verify] call stop with both a number and a message
+  (LICENSE:PD)
+
+SYNOPSIS
+  subroutine fstop(ierr,stdout,stderr)
+
+      integer,intent(in)		   :: ierr
+      character(len=*),intent(in),optional :: stdout
+      character(len=*),intent(in),optional :: stderr
+
+DESCRIPTION
+  FSTOP(3f) call STOP(3f). What a call to STOP does is very system dependent,
+  so using an abstraction layer is useful, as it allows just the fstop()
+  routine to be changed; and STOP does not allow a variable to be used on the
+  numeric access status (this has changed at f2015).
+
+OPTIONS
+  ierr
+    - value in range 0 to 32
+
+  stdout
+    - description to be printed to standard output
+
+  stderr
+    - description to be printed to standard error
+
+EXAMPLES
+  Sample program:
+
+     program demo_fstop
+     use M_verify, only: fstop
+     implicit none
+     integer :: int
+     !*!write(*,*)'Enter stop value'
+     !*!read(*,*) int
+     int=25
+     select case(int)
+     case(10) ; call fstop(int)
+     case(20) ; call fstop(int,stderr='error: program will now stop')
+     case(25) ; call fstop(int,stdout='stdout message',stderr='stderr message')
+     case(30) ; call fstop(int,stdout='error: program will now stop')
+     case default
+		call fstop(int)
+     endselect
+
+     end program demo_fstop
+
+  Results:
+
+SEE ALSO
+  Look for common extensions, such as abort(3f), backtrace(3f)
 
 AUTHOR
   John S. Urban
@@ -2406,6 +2884,193 @@ AUTHOR
 LICENSE
   Public Domain
 
+				March 30, 2025		      fstop(3m_verify)
+assert(3m_verify)					     assert(3m_verify)
 
+NAME
+  assert(3f) - [M_verify] print filename, linenumber, and message to stderr
+  and stop program (LICENSE:PD)
 
-				March 30, 2024		   M_verify(3m_verify)
+SYNOPSIS
+  function assert(file,linenum,expr,g1,g2g3,g4,g5,g6,g7,g8,g9)
+
+      character(len=*),intent(in)  :: file
+      character(len=*),intent(in)  :: linenum
+      logical,intent(in)	   :: expr
+      class(*),intent(in),optional :: g1,g2,g3,g4,g5,g6,g7,g8,g9
+
+DESCRIPTION
+  assert(3f) prints strings to stderr and then stops program with exit code 1
+  It labels the first string as the filename, the next integer parameter as
+  the linenumber, and then up to nine scalar values.
+
+  It is primarily intended for use by the prep(1) preprocessor $ASSERT
+  directive
+
+OPTIONS
+  filename
+    a string assumed to be the current filename when compiling
+
+  linenum
+    assumed to be the line number of the source code the ASSERT(3f) procedure
+    was called at.
+
+  expr
+    logical value
+
+  g[1-9]
+    optional value(s) to print as a message before stopping. May be of type
+    INTEGER, LOGICAL, REAL, DOUBLEPRECISION, COMPLEX, or CHARACTER.
+
+EXAMPLES
+  Sample program:
+
+     program demo_assert
+     use M_verify, only : assert
+     implicit none
+     real :: a, toobig=1024
+     a=2000
+     call assert('myroutine', 101, a > toobig, 'The value is too large', a, ' > ', toobig)
+     end program demo_assert
+
+AUTHOR
+  John S. Urban
+
+LICENSE
+  Public Domain
+
+				March 30, 2025		     assert(3m_verify)
+accdig(3m_verify)					     accdig(3m_verify)
+
+NAME
+  accdig(3f) - [M_verify] compare two real numbers only up to a specified
+  number of digits (LICENSE:PD)
+
+SYNOPSIS
+  subroutine accdig(x,y,digio,acurcy,ind)
+
+	 real,intent(in)     :: X
+	 real,intent(in)     :: Y
+	 real,intent(in)     :: DIGI0
+	 real,intent(out)    :: acurcy
+	 integer,intent(out) :: ind
+
+DESCRIPTION
+  This procedure is used to check how closely two numbers agree.
+
+	call accdig(X,Y,DIGI0,ACURCY,IND)
+
+  The values X and Y are the numbers to compare, and DIGI0 is the threshold
+  number of digits to consider significant in returning IND.
+
+  If X and Y are considered equal within DIGI0 relative tolerance,
+
+	 IND	= 0, if tolerance is	 satisfied.
+		= 1, if tolerance is not satisfied.
+
+  The result ACURCY gives a measure of the number of leading digits in X which
+  are the same as the number of leading digits in Y.
+
+	     ACURCY=-log10((X-Y)/Y)   if X != Y and Y != 0
+	     ACURCY=-log10(X-Y)       if X != Y and Y = 0
+	     ACURCY=8		      if X=Y
+
+	     ACURCY is never less than -8 or greater than 8
+
+  TOLERANCE ...  X and Y are considered equal within DIGI0 relative tolerance,
+  if ACURCY is greater than DIGI0.
+
+  For example, Take some numbers and compare then
+    to 1.2345678 ...
+
+	================================================
+	A number     |	  ACURCY       |   ACURCY
+		     |	  1.2345678=Y  |   1.2345678=X
+	================================================
+	 1.234680    |	  3.7900571    |   3.7901275
+	 1.2345378   |	  4.6144510    |   4.6144404
+	 2.2234568   |	  0.096367393  |   0.35188114
+	 1.2345678   |	  8.0000000    |   8.0000000
+	 1.2345679   |	  7.0732967    |   7.0731968
+	-1.2345678   |	 -0.30103000   |  -0.30103000
+	76.234567    |	 -1.7835463    |   0.0070906729
+	 2.4691356   |	  0.0	       |   0.3010300
+	 0.0	     |	  0.0	       |  -0.91514942.
+
+  Due to the typical limits of the log function, the number of significant
+  digits in the result is best considered to be three.
+
+  Notice that 1.2345678=Y produces different values than 1.2345678=X
+
+  A negative result indicates the two values being compared either do not
+  agree in the first digit or they differ with respect to sign. An example of
+  two numbers which do not agree in their leading digit (and actually differ
+  in order of magnitude) is given above by X=76.234567 and Y=1.2345678; the
+  accuracy reported is -1.7835463. An example of two numbers which do not
+  agree in sign in X=-1.2345678 and Y=1.2345678; here the accuracy reported is
+  -0.30103000.
+
+EXAMPLES
+  Example program:
+
+     program demo_accdig ! fortran 90 example
+     use M_verify, only : accdig
+     implicit none
+     integer :: digi
+     integer :: i10, i20, i30
+     integer :: ind, ind1, ind2
+     real    :: acurcy, acurcy1, acurcy2
+     real    :: a, b
+     real    :: vals(9)
+     data vals/ &
+       &1.234680,   1.2345378,	2.2234568, 1.2345678, &
+       &1.2345679, -1.2345678, 76.234567,  2.4691356, &
+       &0.0/
+	write(*,*)'========================='
+	do i10=0,16
+	   a=1.0
+	   b=a+1.0/(10**i10)
+	   call accdig(a,b,8.0,acurcy,ind)
+	   write(*,*)i10,a,b,acurcy,ind
+	enddo
+	write(*,*)'========================='
+	digi=16
+	do i20=0,digi
+	   a=1.0
+	   b=a+1.0/(10**i20)
+	   call accdig(a,b,real(digi),acurcy,ind)
+	   write(*,*)i20,a,b,acurcy,ind
+	enddo
+	write(*,*)'========================='
+	do i30=1,9
+	   call accdig(1.2345678,vals(i30),8.0,acurcy1,ind1)
+	   call accdig(vals(i30),1.2345678,8.0,acurcy2,ind2)
+	   write(*,*)i30,vals(i30),acurcy1,acurcy2,ind1,ind2
+	enddo
+     end program demo_accdig
+
+REFERENCES
+  based on ...
+
+     NBS OMNITAB 1980 VERSION 6.01  1/ 1/81. accdig V 7.00  2/14/90. **
+	David Hogben,
+	Statistical Engineering Division,
+	Center for Computing and Applied Mathematics,
+	A337 Administration Building,
+	National Institute of Standards and Technology,
+	Gaithersburg, MD 20899
+		       TELEPHONE 301-975-2845
+	    ORIGINAL VERSION -	October, 1969.
+	     CURRENT VERSION - February, 1990.
+	     JSU     VERSION - February, 1991.
+
+DEPENDENCIES
+  •  M_journal(),log10(), abs(1)
+
+AUTHOR
+  David Hogben, John S. Urban
+
+LICENSE
+  Public Domain
+
+				March 30, 2025		     accdig(3m_verify)

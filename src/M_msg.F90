@@ -10,10 +10,10 @@ private
 ! ident_1="@(#) M_msg str(3f) {msg_scalar msg_one}"
 
 public str
-public stderr
 public wrt
 public fmt
 public set
+public stderr
 !!public :: a,i,f,g
 
 interface str
@@ -66,7 +66,7 @@ contains
 !!
 !!   Sample program:
 !!
-!!    program demo_msg
+!!    program demo_str
 !!    use M_msg, only : str
 !!    implicit none
 !!    character(len=:),allocatable :: pr
@@ -95,7 +95,7 @@ contains
 !!    ! which not all compilers can handle and is currently non-standard
 !!    write(*,*)str('program will now stop')
 !!
-!!    end program demo_msg
+!!    end program demo_str
 !!
 !!  Output
 !!
@@ -591,7 +591,7 @@ end subroutine wrt
 !===================================================================================================================================
 !>
 !!##NAME
-!!    set(3f) - [M_set] set scalars from an array
+!!    set(3f) - [M_msg] set scalars from an array
 !!    (LICENSE:PD)
 !!
 !!##SYNOPSIS

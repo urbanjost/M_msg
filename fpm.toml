@@ -11,32 +11,56 @@ keywords = ["fortran", "unit testing"]
 homepage = "https://github.com/urbanjost/M_msg.git"
 
 [build]
-auto-executables = true
-auto-tests = true
-auto-examples = true
-# new force module naming rules to avoid collisions with other packages
-#module-naming = true
-# traditional where user can use any module name
-module-naming = false
+   auto-executables = true
+   auto-tests = true
+   auto-examples = true
+   # new force module naming rules to avoid collisions with other packages
+   #module-naming = true
+   # traditional where user can use any module name
+   module-naming = false
 
-# new default
 [fortran]
-implicit-typing = false
-implicit-external = false
-source-form = "free"
-# traditional pre-version8 compatibility
-#implicit-typing = true
-#implicit-external = true
-#source-form = "default"
+   # new default
+   implicit-typing = false
+   implicit-external = false
+   source-form = "free"
+   # traditional pre-version8 compatibility
+   #implicit-typing = true
+   #implicit-external = true
+   #source-form = "default"
 
 # demo programs
 [install]
-library=true
+   library=true
 
 [[executable]]
-name = "hlp"
-source-dir = "app"
-main = "hlp.f90"
-#link = "z"
+   name = "hlp"
+   source-dir = "app"
+   main = "hlp.f90"
+   #link = "z"
 [executable.dependencies]
-M_io   = { git = "https://github.com/urbanjost/M_io.git" }
+   M_io  =  {  git        =  "https://github.com/urbanjost/M_io.git"  }
+   #M_io  =  {  namespace  =  "GPF"                                    }
+   #M_io   =  {  path       =  "GLINKS/M_io"                            }
+
+[dependencies]
+   M_strings   =  {  git        =  "https://github.com/urbanjost/M_strings.git"   }
+   M_anything  =  {  git        =  "https://github.com/urbanjost/M_anything.git"  }
+   #M_strings   =  {  namespace  =  "GPF"                                          }
+   #M_anything  =  {  namespace  =  "GPF"                                          }
+   #M_strings    =  {  path       =  "GLINKS/M_strings"                             }
+   #M_anything   =  {  path       =  "GLINKS/M_anything"                            }
+
+[dev-dependencies]
+   M_time  =  {  git        =  "https://github.com/urbanjost/M_time.git"  }
+   #M_time  =  {  namespace  =  "GPF"                                      }
+   #M_time   =  {  path       =  "GLINKS/M_time"                            }
+
+#[[executable]]
+   #name="tat"
+   #source-dir="app"
+   #main="tat.f90"
+   #[executable.dependencies]
+      #M_CLI2   =  {  git        =  "https://github.com/urbanjost/M_CLI2.git"  }
+      ##M_CLI2  =  {  namespace  =  "GPF"                                      }
+      ##M_CLI2  =  {  path       =  "../GLINKS/M_CLI2"                         }
