@@ -192,7 +192,7 @@ EXAMPLES
      call help_command(help_text,'manual',position)
      end program demo_help_command
 
-				March 30, 2025		 help_command(3m_help)
+				 May 11, 2025		 help_command(3m_help)
 journal(3m_journal)					   journal(3m_journal)
 
 NAME
@@ -405,7 +405,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025		   journal(3m_journal)
+				 May 11, 2025		   journal(3m_journal)
 M_journal(3m_journal)					 M_journal(3m_journal)
 
 NAME
@@ -552,7 +552,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025		 M_journal(3m_journal)
+				 May 11, 2025		 M_journal(3m_journal)
 blocks(3m_messages)					   blocks(3m_messages)
 
 NAME
@@ -611,7 +611,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		   blocks(3m_messages)
+				 May 11, 2025		   blocks(3m_messages)
 junbad(3m_messages)					   junbad(3m_messages)
 
 NAME
@@ -669,7 +669,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		   junbad(3m_messages)
+				 May 11, 2025		   junbad(3m_messages)
 junbat(3m_messages)					   junbat(3m_messages)
 
 NAME
@@ -712,7 +712,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		   junbat(3m_messages)
+				 May 11, 2025		   junbat(3m_messages)
 percent_done(3m_messages)			     percent_done(3m_messages)
 
 NAME
@@ -764,7 +764,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025	     percent_done(3m_messages)
+				 May 11, 2025	     percent_done(3m_messages)
 signs(3m_messages)					    signs(3m_messages)
 
 NAME
@@ -811,7 +811,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		    signs(3m_messages)
+				 May 11, 2025		    signs(3m_messages)
 tabgraph(3m_messages)					 tabgraph(3m_messages)
 
 NAME
@@ -1016,7 +1016,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		 tabgraph(3m_messages)
+				 May 11, 2025		 tabgraph(3m_messages)
 junbuster(3m_messages)					junbuster(3m_messages)
 
 NAME
@@ -1064,7 +1064,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		junbuster(3m_messages)
+				 May 11, 2025		junbuster(3m_messages)
 jundragon(3m_messages)					jundragon(3m_messages)
 
 NAME
@@ -1115,7 +1115,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		jundragon(3m_messages)
+				 May 11, 2025		jundragon(3m_messages)
 junroach(3m_messages)					 junroach(3m_messages)
 
 NAME
@@ -1175,7 +1175,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		 junroach(3m_messages)
+				 May 11, 2025		 junroach(3m_messages)
 junsun(3m_messages)					   junsun(3m_messages)
 
 NAME
@@ -1231,7 +1231,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		   junsun(3m_messages)
+				 May 11, 2025		   junsun(3m_messages)
 juntrolls(3m_messages)					juntrolls(3m_messages)
 
 NAME
@@ -1281,7 +1281,7 @@ AUTHOR
 LICENSE
   Public License
 
-				March 30, 2025		juntrolls(3m_messages)
+				 May 11, 2025		juntrolls(3m_messages)
 set(3m_msg)							   set(3m_msg)
 
 NAME
@@ -1357,7 +1357,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025			   set(3m_msg)
+				 May 11, 2025			   set(3m_msg)
 stderr(3m_msg)							stderr(3m_msg)
 
 NAME
@@ -1437,7 +1437,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025			stderr(3m_msg)
+				 May 11, 2025			stderr(3m_msg)
 str(3m_msg)							   str(3m_msg)
 
 NAME
@@ -1521,7 +1521,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025			   str(3m_msg)
+				 May 11, 2025			   str(3m_msg)
 wrt(3m_msg)							   wrt(3m_msg)
 
 NAME
@@ -1601,7 +1601,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025			   wrt(3m_msg)
+				 May 11, 2025			   wrt(3m_msg)
 fmt(3m_msg)							   fmt(3m_msg)
 
 NAME
@@ -1665,7 +1665,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025			   fmt(3m_msg)
+				 May 11, 2025			   fmt(3m_msg)
 almost(3m_verify)					     almost(3m_verify)
 
 NAME
@@ -1743,7 +1743,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025		     almost(3m_verify)
+				 May 11, 2025		     almost(3m_verify)
 dp_accdig(3m_verify)					  dp_accdig(3m_verify)
 
 NAME
@@ -1878,7 +1878,7 @@ AUTHORS
 LICENSE
   Public Domain
 
-				March 30, 2025		  dp_accdig(3m_verify)
+				 May 11, 2025		  dp_accdig(3m_verify)
 in_margin(3m_verify)					  in_margin(3m_verify)
 
 NAME
@@ -1946,7 +1946,7 @@ EXAMPLES
    T
    T
    T
-				March 30, 2025		  in_margin(3m_verify)
+				 May 11, 2025		  in_margin(3m_verify)
 pdec(3m_verify) 					       pdec(3m_verify)
 
 NAME
@@ -2002,7 +2002,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025		       pdec(3m_verify)
+				 May 11, 2025		       pdec(3m_verify)
 significant(3m_verify)					significant(3m_verify)
 
 NAME
@@ -2087,7 +2087,7 @@ EXAMPLES
      1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RC
      1.000000 1.200000 1.230000 1.235000 1.234600 1.234570 1.234568 1.234568 1.234568 RP
 
-				March 30, 2025		significant(3m_verify)
+				 May 11, 2025		significant(3m_verify)
 stderr(3m_verify)					     stderr(3m_verify)
 
 NAME
@@ -2259,7 +2259,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025		 unit_check(3m_verify)
+				 May 11, 2025		 unit_check(3m_verify)
 unit_check_bad(3m_verify)			     unit_check_bad(3m_verify)
 
 NAME
@@ -2309,7 +2309,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025	     unit_check_bad(3m_verify)
+				 May 11, 2025	     unit_check_bad(3m_verify)
 unit_check_done(3m_verify)			    unit_check_done(3m_verify)
 
 NAME
@@ -2363,7 +2363,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025	    unit_check_done(3m_verify)
+				 May 11, 2025	    unit_check_done(3m_verify)
 unit_check_good(3m_verify)			    unit_check_good(3m_verify)
 
 NAME
@@ -2409,7 +2409,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025	    unit_check_good(3m_verify)
+				 May 11, 2025	    unit_check_good(3m_verify)
 unit_check_msg(3m_verify)			     unit_check_msg(3m_verify)
 
 NAME
@@ -2456,7 +2456,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025	     unit_check_msg(3m_verify)
+				 May 11, 2025	     unit_check_msg(3m_verify)
 unit_check_start(3m_verify)			   unit_check_start(3m_verify)
 
 NAME
@@ -2534,7 +2534,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025	   unit_check_start(3m_verify)
+				 May 11, 2025	   unit_check_start(3m_verify)
 unit_check_stop(3m_verify)			    unit_check_stop(3m_verify)
 
 NAME
@@ -2587,7 +2587,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025	    unit_check_stop(3m_verify)
+				 May 11, 2025	    unit_check_stop(3m_verify)
 M_verify(3m_verify)					   M_verify(3m_verify)
 
 NAME
@@ -2822,7 +2822,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025		   M_verify(3m_verify)
+				 May 11, 2025		   M_verify(3m_verify)
 fstop(3m_verify)					      fstop(3m_verify)
 
 NAME
@@ -2884,7 +2884,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025		      fstop(3m_verify)
+				 May 11, 2025		      fstop(3m_verify)
 assert(3m_verify)					     assert(3m_verify)
 
 NAME
@@ -2939,7 +2939,7 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025		     assert(3m_verify)
+				 May 11, 2025		     assert(3m_verify)
 accdig(3m_verify)					     accdig(3m_verify)
 
 NAME
@@ -3073,4 +3073,4 @@ AUTHOR
 LICENSE
   Public Domain
 
-				March 30, 2025		     accdig(3m_verify)
+				 May 11, 2025		     accdig(3m_verify)

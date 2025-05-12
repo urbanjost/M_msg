@@ -5,6 +5,8 @@ character(len=:),allocatable  :: help_text(:)
 integer                        :: position(2)
 character(len=128)             :: string
    position=[0,23]
+   write(*,'(*(g0))',advance='no')'enter position array>'
+   read(*,*)position
    call swallow('app/sample.hlp',help_text)
    do
       write(*,'(*(g0))',advance='no')'enter topic>'
